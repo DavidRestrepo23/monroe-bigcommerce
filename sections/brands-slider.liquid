@@ -1,0 +1,170 @@
+{{ 'component-brands-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #BrandsSlider-{{ section.id }} {
+    --bs-bg: {{ section.settings.background_color }};
+    --bs-pad-v: {{ section.settings.padding_vertical }}px;
+    --bs-speed: {{ section.settings.speed }}s;
+    --bs-play-state: {{ section.settings.pause_on_hover | default: true | json | replace: 'true', 'paused' | replace: 'false', 'running' }};
+    --bs-gap: {{ section.settings.gap }}px;
+    --bs-gap-half: {{ section.settings.gap | divided_by: 2 }}px;
+    --bs-logo-height: {{ section.settings.logo_height }}px;
+    --bs-filter: {{ section.settings.grayscale | default: false | json | replace: 'true', 'grayscale(1)' | replace: 'false', 'none' }};
+    --bs-opacity: {{ section.settings.logo_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+{%- if section.blocks.size > 0 -%}
+  <div id="BrandsSlider-{{ section.id }}" class="brands-slider" aria-label="Brand partners">
+    <div class="brands-slider__track">
+      {%- comment -%} Render list twice for seamless loop {%- endcomment -%}
+      {%- for i in (1..2) -%}
+        <ul class="brands-slider__list" aria-hidden="{{ forloop.index | minus: 1 | at_least: 0 | at_most: 1 }}">
+          {%- for block in section.blocks -%}
+            <li class="brands-slider__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.logo != blank -%}
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" aria-label="{{ block.settings.brand_name | default: 'Brand' }}">
+                    {{- block.settings.logo | image_url: height: section.settings.logo_height | image_tag:
+                      height: section.settings.logo_height,
+                      alt: block.settings.brand_name | default: block.settings.logo.alt
+                    -}}
+                  </a>
+                {%- else -%}
+                  {{- block.settings.logo | image_url: height: section.settings.logo_height | image_tag:
+                    height: section.settings.logo_height,
+                    alt: block.settings.brand_name | default: block.settings.logo.alt
+                  -}}
+                {%- endif -%}
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brands Slider",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "default": 36,
+      "unit": "px",
+      "label": "Logo height"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 24,
+      "max": 120,
+      "step": 8,
+      "default": 64,
+      "unit": "px",
+      "label": "Gap between logos"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 8,
+      "max": 64,
+      "step": 4,
+      "default": 20,
+      "unit": "px",
+      "label": "Vertical padding"
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "default": 30,
+      "unit": "s",
+      "label": "Speed (higher = slower)"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "logo_opacity",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 70,
+      "unit": "%",
+      "label": "Logo opacity"
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "label": "Grayscale logos",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand name",
+          "info": "Used as alt text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brands Slider",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

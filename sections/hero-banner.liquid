@@ -1,0 +1,378 @@
+{{ 'component-hero-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #HeroBanner-{{ section.id }} {
+    --hb-bg: {{ section.settings.background_color }};
+    --hb-radius: {{ section.settings.border_radius }}px;
+    --hb-min-height: {{ section.settings.min_height }}px;
+    --hb-pad-top: {{ section.settings.padding_top }}px;
+    --hb-heading-size: {{ section.settings.heading_size }}px;
+    --hb-heading-color: {{ section.settings.heading_color }};
+    --hb-stars: {{ section.settings.stars_color }};
+    --hb-product-height: {{ section.settings.product_height }}px;
+    {%- if section.settings.background_image != blank -%}
+      --hb-bg-image: url({{ section.settings.background_image | image_url: width: 1800 }});
+    {%- else -%}
+      --hb-bg-image: none;
+    {%- endif -%}
+  }
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'floating_key' -%}
+      #HeroBanner-{{ section.id }} .hero-banner__key--{{ forloop.index }} {
+        top: {{ block.settings.pos_top }}%;
+        left: {{ block.settings.pos_left }}%;
+        width: {{ block.settings.size }}px;
+        height: {{ block.settings.size }}px;
+        font-size: {{ block.settings.size | times: 0.45 | round }}px;
+        transform: rotate({{ block.settings.rotation }}deg);
+        animation-duration: {{ block.settings.float_duration }}s;
+        animation-delay: {{ block.settings.float_delay }}s;
+      }
+    {%- endif -%}
+  {%- endfor -%}
+  @media (max-width: 768px) {
+    #HeroBanner-{{ section.id }} .hero-banner__heading {
+      font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div id="HeroBanner-{{ section.id }}" class="hero-banner">
+
+  {%- if section.settings.background_image != blank -%}
+    <div class="hero-banner__bg-image" aria-hidden="true"></div>
+  {%- endif -%}
+
+  {%- comment -%} Corner CTA {%- endcomment -%}
+  {%- if section.settings.cta_url != blank -%}
+    <a href="{{ section.settings.cta_url }}" class="hero-banner__cta-corner" aria-label="{{ section.settings.cta_label | default: 'Learn more' }}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 17L17 7M7 7h10v10"/>
+      </svg>
+    </a>
+  {%- endif -%}
+
+  {%- comment -%} Social proof {%- endcomment -%}
+  <div class="hero-banner__topbar">
+    {%- assign avatar_blocks = section.blocks | where: 'type', 'avatar' -%}
+    {%- if avatar_blocks.size > 0 -%}
+      <div class="hero-banner__avatars">
+        {%- for block in avatar_blocks -%}
+          {%- if block.settings.image != blank -%}
+            {{- block.settings.image | image_url: width: 76 | image_tag:
+              width: 38, height: 38,
+              class: 'hero-banner__avatar',
+              alt: 'Customer'
+            -}}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.users_text != blank -%}
+      <div class="hero-banner__social-proof">
+        <div class="hero-banner__stars" aria-label="5 stars">
+          {%- for i in (1..5) -%}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {%- endfor -%}
+        </div>
+        <p class="hero-banner__users-text">{{ section.settings.users_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Heading {%- endcomment -%}
+  {%- if section.settings.heading != blank -%}
+    <h1 class="hero-banner__heading">{{ section.settings.heading }}</h1>
+  {%- endif -%}
+
+  {%- comment -%} Product image {%- endcomment -%}
+  {%- if section.settings.product_image != blank -%}
+    <div class="hero-banner__product">
+      {{- section.settings.product_image | image_url: height: section.settings.product_height | image_tag:
+        height: section.settings.product_height,
+        alt: section.settings.heading
+      -}}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Floating keyboard keys {%- endcomment -%}
+  {%- assign key_blocks = section.blocks | where: 'type', 'floating_key' -%}
+  {%- if key_blocks.size > 0 -%}
+    <div class="hero-banner__keys" aria-hidden="true">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'floating_key' -%}
+          {%- if block.settings.image != blank or block.settings.label != blank -%}
+            <div class="hero-banner__key hero-banner__key--{{ forloop.index }}{% if block.settings.image != blank %} hero-banner__key--image{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{- block.settings.image | image_url: width: 200 | image_tag:
+                  width: block.settings.size,
+                  height: block.settings.size,
+                  alt: '',
+                  style: 'width:100%;height:100%;object-fit:contain;display:block;'
+                -}}
+              {%- else -%}
+                {{ block.settings.label }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "page-width",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Industry-Leading Business Supplies"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 32,
+      "max": 96,
+      "step": 2,
+      "default": 68,
+      "unit": "px",
+      "label": "Heading size"
+    },
+    {
+      "type": "text",
+      "id": "users_text",
+      "label": "Social proof text",
+      "default": "+100K Users Active"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Corner button URL"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Corner button aria-label",
+      "default": "Learn more"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Overlays background color when set"
+    },
+    {
+      "type": "range",
+      "id": "product_height",
+      "min": 200,
+      "max": 700,
+      "step": 20,
+      "default": 460,
+      "unit": "px",
+      "label": "Product image height"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "default": 620,
+      "unit": "px",
+      "label": "Min height"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "default": 40,
+      "unit": "px",
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "margin_vertical",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 16,
+      "unit": "px",
+      "label": "Outer margin vertical"
+    },
+    {
+      "type": "range",
+      "id": "margin_horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 16,
+      "unit": "px",
+      "label": "Outer margin horizontal"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 20,
+      "unit": "px",
+      "label": "Border radius"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Stars",
+      "default": "#FFCC00"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "avatar",
+      "name": "Avatar",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Avatar image"
+        }
+      ]
+    },
+    {
+      "type": "floating_key",
+      "name": "Floating Key",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Key image",
+          "info": "Takes priority over label text"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Key label",
+          "default": "A",
+          "info": "Used when no image set"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "min": 40,
+          "max": 100,
+          "step": 4,
+          "default": 60,
+          "unit": "px",
+          "label": "Size"
+        },
+        {
+          "type": "range",
+          "id": "pos_top",
+          "min": 5,
+          "max": 90,
+          "step": 1,
+          "default": 30,
+          "unit": "%",
+          "label": "Position top"
+        },
+        {
+          "type": "range",
+          "id": "pos_left",
+          "min": 1,
+          "max": 95,
+          "step": 1,
+          "default": 20,
+          "unit": "%",
+          "label": "Position left"
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "min": -45,
+          "max": 45,
+          "step": 5,
+          "default": -15,
+          "label": "Rotation (deg)"
+        },
+        {
+          "type": "range",
+          "id": "float_duration",
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "default": 3,
+          "unit": "s",
+          "label": "Float speed"
+        },
+        {
+          "type": "range",
+          "id": "float_delay",
+          "min": 0,
+          "max": 4,
+          "step": 1,
+          "default": 0,
+          "unit": "s",
+          "label": "Float delay"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "blocks": [
+        { "type": "avatar" },
+        { "type": "avatar" },
+        { "type": "avatar" },
+        { "type": "floating_key", "settings": { "label": "E", "pos_top": 35, "pos_left": 12, "rotation": -20, "float_duration": 3 } },
+        { "type": "floating_key", "settings": { "label": "A", "pos_top": 25, "pos_left": 76, "rotation": 15, "float_duration": 4, "float_delay": 1 } },
+        { "type": "floating_key", "settings": { "label": "S", "pos_top": 60, "pos_left": 18, "rotation": -10, "float_duration": 5, "float_delay": 2 } },
+        { "type": "floating_key", "settings": { "label": "O", "pos_top": 50, "pos_left": 80, "rotation": 20, "float_duration": 3, "float_delay": 1 } },
+        { "type": "floating_key", "settings": { "label": "L", "pos_top": 70, "pos_left": 85, "rotation": -5, "float_duration": 4, "float_delay": 3 } },
+        { "type": "floating_key", "settings": { "label": "2", "pos_top": 45, "pos_left": 8, "rotation": 10, "float_duration": 5, "float_delay": 2 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

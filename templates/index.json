@@ -1,75 +1,443 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero_slider_main": {
+      "type": "hero-slider",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_dVPqr6": {
+          "type": "slide",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Industry-Leading Printing Calculators and Business Supplies",
+            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
+            "button_text": "Shop Our Calculators",
+            "button_link": "",
+            "main_image": "shopify://shop_images/Frame_1171276530_5e99f170-7489-4ccc-9e5a-dbbda98f5cfd.png",
+            "product_title": "",
+            "product_price": "$199.00",
+            "product_link": "",
+            "rating": 5
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "slide_dVPqr6"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "autoplay": true,
+        "autoplay_delay": 5000,
+        "loop": true,
+        "show_arrows": false,
+        "background_color": "#ededed",
+        "text_color": "#0a0a0a",
+        "accent_color": "#1f6f75",
+        "border_radius": 24
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "brands_slider_xNRMmQ": {
+      "type": "brands-slider",
+      "blocks": {
+        "brand_Yx7tQG": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_kwiyWF": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_KH8AyB": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_GRLVnR": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_JC9taW": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_BXQxyn": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Mask_group_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_Yx7tQG",
+        "brand_kwiyWF",
+        "brand_KH8AyB",
+        "brand_GRLVnR",
+        "brand_JC9taW",
+        "brand_BXQxyn"
+      ],
+      "name": "Brands Slider",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
+        "logo_height": 36,
+        "gap": 64,
+        "padding_vertical": 20,
+        "speed": 30,
+        "pause_on_hover": true,
+        "background_color": "#ffffff",
+        "logo_opacity": 70,
+        "grayscale": false
+      }
+    },
+    "product_categories_Qa9TxM": {
+      "type": "product-categories",
+      "blocks": {
+        "category_nLWVg6": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171276606.png",
+            "title": "Printing Calculators",
+            "link": ""
+          }
+        },
+        "category_KJhVQC": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171276607.png",
+            "title": "Calculator Tape Rolls",
+            "link": ""
+          }
+        },
+        "category_jBPDhY": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/freepik__replace-the-product-from-img1-with-this-typewriter__70875_1.png",
+            "title": "Office Equipment",
+            "link": ""
+          }
+        },
+        "category_b7BER4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_26.png",
+            "title": "Calculator Ink Ribbons",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_nLWVg6",
+        "category_KJhVQC",
+        "category_jBPDhY",
+        "category_b7BER4"
+      ],
+      "name": "Product Categories",
+      "settings": {
+        "heading": "OUR TOP PRODUCT CATEGORIES",
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "gap": 2,
+        "card_height": 520,
+        "card_radius": 14,
+        "padding_vertical": 48,
+        "padding_horizontal": 0,
+        "accent_color": "#1f6f75",
+        "text_color": "#ffffff"
+      }
+    },
+    "solutions_accordion_twFWJJ": {
+      "type": "solutions-accordion",
+      "blocks": {
+        "item_q93bJB": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Calculator.svg",
+            "title": "Accounting Offices",
+            "description": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
+            "image": "shopify://shop_images/businessman-using-calculator-calculate-numbers-company-s-financial-documents-he-is-analyzing-historical-financial-data-plan-how-grow-company-financial-concept_1.png"
+          }
+        },
+        "item_tPHGLV": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/CashRegister.svg",
+            "title": "Accounting Offices",
+            "description": ""
+          }
+        },
+        "item_3dQ9Ak": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/GraduationCap.svg",
+            "title": "Accounting Offices",
+            "description": ""
+          }
+        },
+        "item_4KA8b7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/Briefcase.svg",
+            "title": "Accounting Offices",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_q93bJB",
+        "item_tPHGLV",
+        "item_3dQ9Ak",
+        "item_4KA8b7"
+      ],
+      "name": "Solutions Accordion",
+      "settings": {
+        "heading": "Find the Right Solution for Your Business",
+        "heading_size": 64,
+        "button_label": "View All Solutions",
+        "button_url": "#",
+        "testimonial_avatar": "shopify://shop_images/Ellipse_1.svg",
+        "testimonial_quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+        "testimonial_author": "NICOLA T.",
+        "background_color": "#ffffff",
+        "text_color": "#1c1c1c",
+        "icon_background": "#e6f3f4",
+        "button_color": "#007681",
+        "stars_color": "#0a0a0a"
+      }
+    },
+    "hero_banner_fjiQJQ": {
+      "type": "hero-banner",
+      "blocks": {
+        "avatar_ddTbgj": {
+          "type": "avatar",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_1.png"
+          }
+        },
+        "avatar_MWWynr": {
+          "type": "avatar",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_2.png"
+          }
+        },
+        "avatar_X4tWnk": {
+          "type": "avatar",
+          "settings": {
+            "image": "shopify://shop_images/Ellipse_3.png"
+          }
+        },
+        "floating_key_wzTmG8": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6.png",
+            "label": "E",
+            "size": 60,
+            "pos_top": 35,
+            "pos_left": 12,
+            "rotation": -20,
+            "float_duration": 3,
+            "float_delay": 0
+          }
+        },
+        "floating_key_9in7Hm": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6_1.png",
+            "label": "A",
+            "size": 60,
+            "pos_top": 25,
+            "pos_left": 76,
+            "rotation": 15,
+            "float_duration": 4,
+            "float_delay": 1
+          }
+        },
+        "floating_key_afqcqK": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_2.png",
+            "label": "S",
+            "size": 60,
+            "pos_top": 60,
+            "pos_left": 18,
+            "rotation": -10,
+            "float_duration": 5,
+            "float_delay": 2
+          }
+        },
+        "floating_key_Wj7AGj": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_6.png",
+            "label": "O",
+            "size": 60,
+            "pos_top": 50,
+            "pos_left": 80,
+            "rotation": 20,
+            "float_duration": 3,
+            "float_delay": 1
+          }
+        },
+        "floating_key_KP9k7a": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_4.png",
+            "label": "L",
+            "size": 60,
+            "pos_top": 70,
+            "pos_left": 85,
+            "rotation": -5,
+            "float_duration": 4,
+            "float_delay": 3
+          }
+        },
+        "floating_key_YY8a3L": {
+          "type": "floating_key",
+          "settings": {
+            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_7.png",
+            "label": "2",
+            "size": 60,
+            "pos_top": 45,
+            "pos_left": 8,
+            "rotation": 10,
+            "float_duration": 5,
+            "float_delay": 2
+          }
+        }
+      },
+      "block_order": [
+        "avatar_ddTbgj",
+        "avatar_MWWynr",
+        "avatar_X4tWnk",
+        "floating_key_wzTmG8",
+        "floating_key_9in7Hm",
+        "floating_key_afqcqK",
+        "floating_key_Wj7AGj",
+        "floating_key_KP9k7a",
+        "floating_key_YY8a3L"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "heading": "Industry-Leading Business Supplies",
+        "heading_size": 74,
+        "users_text": "+100K Users Active",
+        "cta_url": "",
+        "cta_label": "Learn more",
+        "product_image": "shopify://shop_images/Group_2354.png",
+        "product_height": 520,
+        "min_height": 620,
+        "padding_top": 40,
+        "margin_vertical": 16,
+        "margin_horizontal": 16,
+        "border_radius": 32,
+        "background_color": "#111111",
+        "heading_color": "#ffffff",
+        "stars_color": "#ffffff"
+      }
+    },
+    "reviews_slider_WNYF6r": {
+      "type": "reviews-slider",
+      "blocks": {
+        "testimonial_8LJH3m": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+            "author": "NICOLA T.",
+            "rating": 5
+          }
+        },
+        "image_yzrcG3": {
+          "type": "image",
+          "settings": {}
+        },
+        "testimonial_mRbxYJ": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+            "author": "JEFF H.",
+            "rating": 5
+          }
+        },
+        "image_ReDykW": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "testimonial_8LJH3m",
+        "image_yzrcG3",
+        "testimonial_mRbxYJ",
+        "image_ReDykW"
+      ],
+      "name": "Reviews Slider",
+      "settings": {
+        "heading": "See what our \ncustomers \nare saying",
+        "subtext": "Big brands, rising stars, and local businesses. Hear what those who have partnered with us have to say.",
+        "autoplay": false,
+        "autoplay_delay": 6000,
+        "loop": true,
+        "background_color": "#ffffff",
+        "card_background": "#e6eded",
+        "text_color": "#0a0a0a",
+        "accent_color": "#1f6f75",
+        "card_radius": 16,
+        "padding_vertical": 64
+      }
+    },
+    "recent_posts_HPJpBd": {
+      "type": "recent-posts",
+      "name": "Recent Posts",
+      "settings": {
+        "heading": "RECENT POSTS",
+        "blog": "",
+        "post_limit": 3,
+        "button_label": "View All Posts",
+        "read_more_label": "Read More",
+        "columns": 3,
+        "first_col_span": 2,
+        "image_ratio": "4/3",
+        "gap": 24,
+        "card_radius": 16,
+        "padding_vertical": 56,
+        "padding_horizontal": 16,
+        "heading_size": 24,
+        "title_size": 16,
+        "background_color": "#ffffff",
+        "card_background": "#ffffff",
+        "text_color": "#1c1c1c",
+        "button_color": "#007681"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero_slider_main",
+    "brands_slider_xNRMmQ",
+    "product_categories_Qa9TxM",
+    "solutions_accordion_twFWJJ",
+    "hero_banner_fjiQJQ",
+    "reviews_slider_WNYF6r",
+    "recent_posts_HPJpBd"
   ]
 }

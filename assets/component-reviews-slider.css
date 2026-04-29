@@ -1,0 +1,191 @@
+.reviews-slider {
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--rs-text);
+}
+
+.reviews-slider__container {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  gap: 142px;
+  align-items: stretch;
+  padding-left: clamp(16px, 5vw, 64px);
+  padding-right: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.reviews-slider__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 0 32px;
+}
+
+.reviews-slider__heading {
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 100%;
+  font-weight: 500;
+  margin: 0 0 40px;
+  text-transform: capitalize;
+}
+
+.reviews-slider__subtext {
+  font-size: 1rem;
+  line-height: 150%;
+  font-weight: 400;
+  margin: 0;
+}
+
+.reviews-slider__nav {
+  display: flex;
+  gap: 0;
+  margin-top: 32px;
+}
+
+.reviews-slider__nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--rs-text);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.reviews-slider__nav-btn:hover { background: rgba(0, 0, 0, 0.06); }
+.reviews-slider__nav-btn.swiper-button-disabled { opacity: 0.3; cursor: not-allowed; }
+
+.reviews-slider__carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-slider__swiper { overflow: visible; }
+
+.reviews-slider__slide {
+  height: auto;
+  display: flex;
+}
+
+.reviews-slider__card {
+  background: var(--rs-card-bg);
+  border-radius: var(--rs-radius);
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  min-height: 460px;
+  box-sizing: border-box;
+}
+
+.reviews-slider__quote-mark {
+  color: var(--rs-accent);
+  display: inline-flex;
+}
+
+.reviews-slider__quote {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.reviews-slider__footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.reviews-slider__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #ddd;
+}
+
+.reviews-slider__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviews-slider__meta { display: flex; flex-direction: column; gap: 4px; }
+
+.reviews-slider__stars { display: flex; gap: 2px; font-size: 0.95rem; line-height: 1; }
+.reviews-slider__star { color: #d8d8d8; }
+.reviews-slider__star.is-filled { color: #f5b301; }
+
+.reviews-slider__author {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.reviews-slider__image-card {
+  width: 100%;
+  border-radius: var(--rs-radius);
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.reviews-slider__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.reviews-slider__image-card img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  display: block;
+}
+
+.reviews-slider__progress {
+  margin-top: 56px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
+}
+
+.reviews-slider__pagination.swiper-pagination-progressbar {
+  position: relative !important;
+  inset: unset !important;
+  width: 220px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.reviews-slider__pagination .swiper-pagination-progressbar-fill {
+  background: var(--rs-text, #0a0a0a);
+  border-radius: 2px;
+}
+
+@media (max-width: 990px) {
+  .reviews-slider__container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-right: clamp(16px, 5vw, 64px);
+  }
+  .reviews-slider__intro { min-height: auto; padding-bottom: 8px; }
+  .reviews-slider__nav { margin-top: 16px; }
+  .reviews-slider__carousel { padding-right: 0; }
+  .reviews-slider__card,
+  .reviews-slider__image-card,
+  .reviews-slider__image { min-height: 320px; }
+  .reviews-slider__progress { justify-content: center; }
+  .reviews-slider__pagination.swiper-pagination-progressbar { width: 160px; }
+}

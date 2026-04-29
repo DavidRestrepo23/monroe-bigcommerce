@@ -1,0 +1,261 @@
+{{ 'component-recent-posts.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #RecentPosts-{{ section.id }} {
+    --rp-bg: {{ section.settings.background_color }};
+    --rp-pad-v: {{ section.settings.padding_vertical }}px;
+    --rp-pad-h: {{ section.settings.padding_horizontal }}px;
+    --rp-heading-size: {{ section.settings.heading_size }}px;
+    --rp-text: {{ section.settings.text_color }};
+    --rp-button: {{ section.settings.button_color }};
+    --rp-grid-cols: {{ section.settings.first_col_span }}fr repeat({{ section.settings.columns | minus: 1 }}, 1fr);
+    --rp-gap: {{ section.settings.gap }}px;
+    --rp-card-radius: {{ section.settings.card_radius }}px;
+    --rp-card-bg: {{ section.settings.card_background }};
+    --rp-image-ratio: {{ section.settings.image_ratio }};
+    --rp-title-size: {{ section.settings.title_size }}px;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign blog_handle = section.settings.blog
+  assign post_limit = section.settings.post_limit | default: 3
+-%}
+
+<div id="RecentPosts-{{ section.id }}" class="recent-posts page-width">
+
+  <div class="recent-posts__header">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="recent-posts__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      {%- assign blog_url = blogs[blog_handle].url | default: routes.root_url -%}
+      <a href="{{ blog_url }}" class="recent-posts__cta">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+
+  {%- if blog_handle != blank and blogs[blog_handle] != blank -%}
+    {%- assign articles = blogs[blog_handle].articles | limit: post_limit -%}
+    <div class="recent-posts__grid">
+      {%- for article in articles -%}
+        <article class="recent-posts__card">
+
+          <div class="recent-posts__card-image-wrap">
+            {%- if article.image != blank -%}
+              {{- article.image | image_url: width: 1000 | image_tag:
+                loading: 'lazy',
+                widths: '400, 600, 800, 1000',
+                sizes: '(min-width: 990px) 33vw, 100vw',
+                alt: article.image.alt | default: article.title
+              -}}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          <div class="recent-posts__card-body">
+
+            <div class="recent-posts__card-meta">
+              <span class="recent-posts__card-author">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                </svg>
+                {{ article.author }}
+              </span>
+              <span class="recent-posts__card-date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+            </div>
+
+            <h3 class="recent-posts__card-title">{{ article.title }}</h3>
+
+            <div class="recent-posts__card-excerpt">
+                {{ article.excerpt | truncate: 100, '...' }}
+            </div>
+
+            <a href="{{ article.url }}" class="recent-posts__card-read-more" aria-label="{{ 'Read more about' }} {{ article.title }}">
+              {{ section.settings.read_more_label | default: 'Read More' }}
+            </a>
+
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Recent Posts",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "RECENT POSTS"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "Number of posts"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View All Posts"
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more label",
+      "default": "Read More"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns"
+    },
+    {
+      "type": "range",
+      "id": "first_col_span",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "First column width multiplier",
+      "info": "1 = equal, 2 = featured first card"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "16/9", "label": "Landscape (16:9)" },
+        { "value": "4/3", "label": "Standard (4:3)" },
+        { "value": "3/2", "label": "Classic (3:2)" },
+        { "value": "1/1", "label": "Square" }
+      ],
+      "default": "4/3"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24,
+      "unit": "px",
+      "label": "Gap"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 16,
+      "unit": "px",
+      "label": "Card radius"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 120,
+      "step": 8,
+      "default": 56,
+      "unit": "px",
+      "label": "Vertical padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 80,
+      "step": 8,
+      "default": 16,
+      "unit": "px",
+      "label": "Horizontal padding"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "default": 24,
+      "unit": "px",
+      "label": "Section heading size"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 13,
+      "max": 28,
+      "step": 1,
+      "default": 16,
+      "unit": "px",
+      "label": "Article title size"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1C1C1C"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button",
+      "default": "#007681"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recent Posts"
+    }
+  ]
+}
+{% endschema %}

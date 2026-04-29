@@ -1,0 +1,449 @@
+{{ 'component-collection-products-slider.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+{%- liquid
+  assign collection = collections[section.settings.collection]
+-%}
+
+{%- style -%}
+  #CollectionProductsSlider-{{ section.id }} {
+    --cps-bg: {{ section.settings.background_color }};
+    --cps-card-bg: {{ section.settings.card_background }};
+    --cps-text: {{ section.settings.text_color }};
+    --cps-accent: {{ section.settings.accent_color }};
+    --cps-accent-hover: {{ section.settings.accent_color | color_darken: 8 }};
+    --cps-pad-top: {{ section.settings.padding_top }}px;
+    --cps-pad-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<section
+  id="CollectionProductsSlider-{{ section.id }}"
+  class="collection-products-slider"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-delay="{{ section.settings.autoplay_delay }}"
+  data-loop="{{ section.settings.loop }}"
+>
+  <div class="collection-products-slider__container">
+    <div class="collection-products-slider__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="collection-products-slider__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="collection-products-slider__nav">
+        <button
+          class="collection-products-slider__nav-btn collection-products-slider__prev"
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M38 24H10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 38L10 24L24 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button
+          class="collection-products-slider__nav-btn collection-products-slider__next"
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+          type="button"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M10 24H38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 10L38 24L24 38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="swiper collection-products-slider__swiper">
+      <div class="swiper-wrapper">
+        {%- if collection != blank and collection.products.size > 0 -%}
+          {%- for product in collection.products limit: section.settings.product_limit -%}
+            {%- liquid
+              assign show_badge = false
+              assign badge_label = section.settings.badge_text
+              if section.settings.badge_source == 'metafield'
+                if product.metafields.custom.badge != blank
+                  assign show_badge = true
+                  assign badge_label = product.metafields.custom.badge
+                endif
+              elsif section.settings.badge_source == 'first_n'
+                if forloop.index <= section.settings.badge_count
+                  assign show_badge = true
+                endif
+              elsif section.settings.badge_source == 'all'
+                assign show_badge = true
+              endif
+
+              assign variant = product.selected_or_first_available_variant
+            -%}
+            <div class="swiper-slide">
+              <article class="collection-products-slider__card">
+                <a
+                  class="collection-products-slider__media-wrap"
+                  href="{{ product.url }}"
+                  aria-label="{{ product.title | escape }}"
+                >
+                  {%- if show_badge and badge_label != blank -%}
+                    <span class="collection-products-slider__badge">{{ badge_label }}</span>
+                  {%- endif -%}
+                  {%- if product.featured_media -%}
+                    {{
+                      product.featured_media
+                      | image_url: width: 600
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '240, 360, 480, 600, 800',
+                        sizes: '(min-width: 990px) 22vw, (min-width: 750px) 33vw, 60vw',
+                        alt: product.featured_media.alt
+                      | default: product.title
+                    }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </a>
+                <div class="collection-products-slider__info">
+                  <h3 class="collection-products-slider__title">
+                    <a href="{{ product.url }}">{{ product.title | escape }}</a>
+                  </h3>
+                  <div class="collection-products-slider__row">
+                    <span class="collection-products-slider__price">
+                      {%- if product.compare_at_price > product.price -%}
+                        <del>{{ product.compare_at_price | money }}</del>
+                      {%- endif -%}
+                      {{ product.price | money }}
+                    </span>
+                    <button
+                      class="collection-products-slider__cart-btn"
+                      type="button"
+                      data-add-to-cart
+                      data-variant-id="{{ variant.id }}"
+                      data-product-url="{{ product.url }}"
+                      {% if variant.available == false %}
+                        disabled
+                      {% endif %}
+                      aria-label="{{ 'products.product.add_to_cart' | t }}"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                      <span>
+                        {%- if variant.available -%}
+                          {{ section.settings.cart_label }}
+                        {%- else -%}
+                          {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            <div class="swiper-slide">
+              <article class="collection-products-slider__card">
+                <div class="collection-products-slider__media-wrap">
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                <div class="collection-products-slider__info">
+                  <h3 class="collection-products-slider__title">{{ 'onboarding.product_title' | t }}</h3>
+                  <div class="collection-products-slider__row">
+                    <span class="collection-products-slider__price">$0.00</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <div class="collection-products-slider__progress">
+        <div class="swiper-pagination collection-products-slider__pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+  (function () {
+    var sectionId = '{{ section.id }}';
+
+    function initSlider() {
+      var root = document.getElementById('CollectionProductsSlider-' + sectionId);
+      if (!root || root.dataset.initialized === 'true' || typeof Swiper === 'undefined') return;
+      root.dataset.initialized = 'true';
+
+      var autoplay = root.dataset.autoplay === 'true';
+      var delay = parseInt(root.dataset.autoplayDelay, 10) || 5000;
+      var loop = root.dataset.loop === 'true';
+
+      new Swiper(root.querySelector('.collection-products-slider__swiper'), {
+        slidesPerView: 1.4,
+        spaceBetween: 16,
+        slidesOffsetAfter: 70,
+        loop: loop,
+        autoplay: autoplay ? { delay: delay, disableOnInteraction: false } : false,
+        navigation: {
+          nextEl: root.querySelector('.collection-products-slider__next'),
+          prevEl: root.querySelector('.collection-products-slider__prev'),
+        },
+        pagination: {
+          el: root.querySelector('.collection-products-slider__pagination'),
+          type: 'progressbar',
+        },
+        a11y: { enabled: true },
+        breakpoints: {
+          640: { slidesPerView: 2.2, spaceBetween: 18 },
+          750: { slidesPerView: 3.2, spaceBetween: 20 },
+          990: { slidesPerView: 4, spaceBetween: 24 },
+          1280: { slidesPerView: 4.2, spaceBetween: 24 },
+        },
+      });
+    }
+
+    function initCart() {
+      var root = document.getElementById('CollectionProductsSlider-' + sectionId);
+      if (!root) return;
+
+      root.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-add-to-cart]');
+        if (!btn || btn.disabled || btn.classList.contains('is-loading')) return;
+
+        var variantId = btn.dataset.variantId;
+        if (!variantId) return;
+
+        var labelEl = btn.querySelector('span');
+        var originalLabel = labelEl ? labelEl.textContent : '';
+        btn.classList.add('is-loading');
+
+        var sections = [];
+        var cartDrawer = document.querySelector('cart-drawer');
+        var cartNotification = document.querySelector('cart-notification');
+        if (cartDrawer && cartDrawer.dataset.section) sections.push(cartDrawer.dataset.section);
+        if (cartNotification && cartNotification.dataset.section) sections.push(cartNotification.dataset.section);
+
+        var body = {
+          items: [{ id: parseInt(variantId, 10), quantity: 1 }],
+          sections: sections.join(','),
+          sections_url: window.location.pathname,
+        };
+
+        fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/javascript' },
+          body: JSON.stringify(body),
+        })
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            if (data.status) {
+              btn.classList.remove('is-loading');
+              if (labelEl) labelEl.textContent = data.message || 'Error';
+              setTimeout(function () {
+                if (labelEl) labelEl.textContent = originalLabel;
+              }, 2000);
+              return;
+            }
+
+            btn.classList.remove('is-loading');
+            btn.classList.add('is-added');
+            if (labelEl) labelEl.textContent = '{{ 'products.product.added' | t | default: "Added" }}';
+            setTimeout(function () {
+              btn.classList.remove('is-added');
+              if (labelEl) labelEl.textContent = originalLabel;
+            }, 1800);
+
+            if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+              publish(PUB_SUB_EVENTS.cartUpdate, {
+                source: 'collection-products-slider',
+                productVariantId: variantId,
+                cartData: data,
+              });
+            }
+
+            if (cartNotification && typeof cartNotification.renderContents === 'function') {
+              cartNotification.renderContents(data);
+            } else if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+              cartDrawer.renderContents(data);
+            }
+          })
+          .catch(function () {
+            btn.classList.remove('is-loading');
+            if (labelEl) labelEl.textContent = originalLabel;
+          });
+      });
+    }
+
+    function boot() {
+      if (typeof Swiper !== 'undefined') initSlider();
+      else window.addEventListener('load', initSlider);
+      initCart();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Products Slider",
+  "tag": "section",
+  "class": "section-collection-products-slider page-width mr-0",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "PRINTING CALCULATORS"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "label": "Max products",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "cart_label",
+      "label": "Cart button label",
+      "default": "Cart"
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "select",
+      "id": "badge_source",
+      "label": "Show badge on",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "first_n", "label": "First N products" },
+        { "value": "all", "label": "All products" },
+        { "value": "metafield", "label": "Products with metafield (custom.badge)" }
+      ],
+      "default": "first_n"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text (used when not from metafield)",
+      "default": "Top Seller"
+    },
+    {
+      "type": "range",
+      "id": "badge_count",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Badge count (first N)",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Slider behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "unit": "ms",
+      "label": "Autoplay delay",
+      "default": 5000
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop slides",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card image background",
+      "default": "#F1F1F1"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Cart button color",
+      "default": "#1F6F75"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Products Slider"
+    }
+  ]
+}
+{% endschema %}

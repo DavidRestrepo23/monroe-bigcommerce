@@ -1,0 +1,347 @@
+{{ 'component-reviews-slider.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+{%- style -%}
+  #ReviewsSlider-{{ section.id }} {
+    --rs-bg: {{ section.settings.background_color | default: '#FFFFFF' }};
+    --rs-card-bg: {{ section.settings.card_background | default: '#E6EDED' }};
+    --rs-text: {{ section.settings.text_color | default: '#0A0A0A' }};
+    --rs-accent: {{ section.settings.accent_color | default: '#1F6F75' }};
+    --rs-radius: {{ section.settings.card_radius | default: 16 }}px;
+    background: var(--rs-bg);
+  }
+{%- endstyle -%}
+
+<section
+  id="ReviewsSlider-{{ section.id }}"
+  class="reviews-slider"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-delay="{{ section.settings.autoplay_delay | default: 6000 }}"
+  data-loop="{{ section.settings.loop }}"
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="reviews-slider__container">
+    <div class="reviews-slider__intro">
+      <div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="reviews-slider__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <p class="reviews-slider__subtext">{{ section.settings.subtext }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="reviews-slider__nav">
+        <button class="reviews-slider__nav-btn reviews-slider__prev" aria-label="Previous review">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M38 24H10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 38L10 24L24 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="reviews-slider__nav-btn reviews-slider__next" aria-label="Next review">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M10 24H38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 10L38 24L24 38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="reviews-slider__carousel">
+      <div class="swiper reviews-slider__swiper">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            <div
+              class="swiper-slide reviews-slider__slide reviews-slider__slide--{{ block.type }}"
+              {{ block.shopify_attributes }}
+            >
+              {%- case block.type -%}
+                {%- when 'testimonial' -%}
+                  <article class="reviews-slider__card">
+                    <span class="reviews-slider__quote-mark" aria-hidden="true">
+                      <svg width="36" height="28" viewBox="0 0 36 28" fill="currentColor">
+                        <path d="M0 28V16C0 7.163 7.163 0 16 0v6c-5.523 0-10 4.477-10 10h10v12H0zm20 0V16C20 7.163 27.163 0 36 0v6c-5.523 0-10 4.477-10 10h10v12H20z"/>
+                      </svg>
+                    </span>
+                    {%- if block.settings.quote != blank -%}
+                      <p class="reviews-slider__quote">{{ block.settings.quote }}</p>
+                    {%- endif -%}
+                    <div class="reviews-slider__footer">
+                      {%- if block.settings.avatar != blank -%}
+                        <div class="reviews-slider__avatar">
+                          {{
+                            block.settings.avatar
+                            | image_url: width: 96
+                            | image_tag: width: 48, height: 48, alt: block.settings.author
+                          }}
+                        </div>
+                      {%- endif -%}
+                      <div class="reviews-slider__meta">
+                        {%- if block.settings.rating > 0 -%}
+                          <div class="reviews-slider__stars" aria-label="Rating: {{ block.settings.rating }} of 5">
+                            {%- for i in (1..5) -%}
+                              <span class="reviews-slider__star {% if i <= block.settings.rating %}is-filled{% endif %}"
+                                >★</span
+                              >
+                            {%- endfor -%}
+                          </div>
+                        {%- endif -%}
+                        {%- if block.settings.author != blank -%}
+                          <p class="reviews-slider__author">{{ block.settings.author }}</p>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </article>
+
+                {%- when 'image' -%}
+                  <div class="reviews-slider__image-card">
+                    {%- if block.settings.image != blank -%}
+                      {{
+                        block.settings.image
+                        | image_url: width: 800
+                        | image_tag:
+                          loading: 'lazy',
+                          sizes: '(min-width: 990px) 30vw, 70vw',
+                          widths: '320, 480, 640, 800, 1000',
+                          alt: block.settings.image.alt
+                        | default: 'Customer photo', class: 'reviews-slider__image'
+                      }}
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'reviews-slider__image placeholder-svg' }}
+                    {%- endif -%}
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="reviews-slider__progress">
+        <div class="swiper-pagination reviews-slider__pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+  (function () {
+    function init() {
+      var root = document.getElementById('ReviewsSlider-{{ section.id }}');
+      if (!root || root.dataset.initialized === 'true' || typeof Swiper === 'undefined') return;
+      root.dataset.initialized = 'true';
+
+      var autoplay = root.dataset.autoplay === 'true';
+      var delay = parseInt(root.dataset.autoplayDelay, 10) || 6000;
+      var loop = root.dataset.loop === 'true';
+
+      new Swiper(root.querySelector('.reviews-slider__swiper'), {
+        slidesPerView: 1.1,
+        spaceBetween: 16,
+        loop: loop,
+        autoplay: autoplay ? { delay: delay, disableOnInteraction: false } : false,
+        navigation: {
+          nextEl: root.querySelector('.reviews-slider__next'),
+          prevEl: root.querySelector('.reviews-slider__prev'),
+        },
+        pagination: {
+          el: root.querySelector('.reviews-slider__pagination'),
+          type: 'progressbar',
+        },
+        a11y: { enabled: true },
+        breakpoints: {
+          640: { slidesPerView: 1.5, spaceBetween: 20 },
+          990: { slidesPerView: 2.3, spaceBetween: 24 },
+          1280: { slidesPerView: 2.6, spaceBetween: 24 },
+        },
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof Swiper !== 'undefined') init();
+        else window.addEventListener('load', init);
+      });
+    } else {
+      if (typeof Swiper !== 'undefined') init();
+      else window.addEventListener('load', init);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Reviews Slider",
+  "tag": "section",
+  "class": "section-reviews-slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See what our customers are saying"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Big brands, rising stars, and local businesses. Hear what those who have partnered with us have to say."
+    },
+    {
+      "type": "header",
+      "content": "Slider behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "min": 2000,
+      "max": 9500,
+      "step": 500,
+      "unit": "ms",
+      "label": "Autoplay delay",
+      "default": 6000
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop slides",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Testimonial card background",
+      "default": "#E6EDED"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent (quote/progress)",
+      "default": "#1F6F75"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper."
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "NICOLA T."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Slider",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "JEFF H."
+          }
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

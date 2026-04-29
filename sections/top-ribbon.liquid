@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="{{ 'component-top-ribbon.css' | asset_url }}">
+
+{%- if section.blocks.size > 0 -%}
+  <div class="top-ribbon" id="top-ribbon-{{ section.id }}">
+    <div class="swiper top-ribbon__swiper" id="top-ribbon-swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'slide' -%}
+            <div class="swiper-slide top-ribbon__slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.text != blank -%}
+                <p class="top-ribbon__text">{{ block.settings.text }}</p>
+              {%- endif -%}
+              {%- if block.settings.link_text != blank and block.settings.link_url != blank -%}
+                <a href="{{ block.settings.link_url }}" class="top-ribbon__link">
+                  {{- block.settings.link_text -}}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if section.settings.show_close_button -%}
+      <button
+        class="top-ribbon__close"
+        aria-label="{{ 'general.accessibility.close' | t }}"
+        onclick="document.getElementById('top-ribbon-{{ section.id }}').classList.add('is-hidden')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M13 1L1 13M1 1l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+    {%- endif -%}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    (function () {
+      function initTopRibbonSwiper() {
+        if (typeof Swiper === 'undefined') {
+          setTimeout(initTopRibbonSwiper, 50);
+          return;
+        }
+        var swiperConfig = {
+          loop: true,
+          speed: 600,
+          effect: 'fade',
+          fadeEffect: { crossFade: true },
+        };
+        {%- if section.blocks.size > 1 -%}
+        swiperConfig.autoplay = {
+          delay: {{ section.settings.autoplay_speed | times: 1000 }},
+          disableOnInteraction: false,
+        };
+        {%- endif -%}
+        new Swiper('#top-ribbon-swiper-{{ section.id }}', swiperConfig);
+      }
+      document.addEventListener('DOMContentLoaded', initTopRibbonSwiper);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Top Ribbon",
+  "tag": "section",
+  "class": "top-ribbon-section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Slide Duration (seconds)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Show Close Button",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "Enjoy a flat shipping rate of $9.99 at checkout!"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Ribbon",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "text": "Enjoy a flat shipping rate of $9.99 at checkout!"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "text": "Call us at 267-580-2600, Monday–Friday 8 AM–5 PM EST."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
