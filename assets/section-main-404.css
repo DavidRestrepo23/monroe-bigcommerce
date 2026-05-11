@@ -1,0 +1,147 @@
+.main-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 24px 80px;
+}
+
+/* ── Typewriter keys ── */
+.main-404__keys {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 583px;
+  height: 413px;
+  margin-bottom: -55px;
+  max-width: 100%;
+}
+
+.main-404__keys-inner {
+  position: relative;
+  transform: rotate(10.76deg);
+  width: 533px;
+  height: 320px;
+}
+
+.main-404__key {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-404__key img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.main-404__key--left {
+  left: 0;
+  top: 80px;
+  width: 228px;
+  height: 213px;
+  transform: rotate(7.16deg);
+}
+
+.main-404__key--center {
+  left: 105px;
+  top: 0;
+  width: 226px;
+  height: 212px;
+  transform: rotate(32.36deg);
+}
+
+.main-404__key--right {
+  left: 260px;
+  top: 0;
+  width: 200px;
+  height: 186px;
+  transform: rotate(45.51deg);
+}
+
+/* ── Text content ── */
+.main-404__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.main-404__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.main-404__title {
+  font-family: var(--font-family);
+  font-size: 86px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0;
+  max-width: 735px;
+}
+
+.main-404__description {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin: 0;
+  max-width: 625px;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .main-404__keys {
+    width: 360px;
+    height: 260px;
+    margin-bottom: -30px;
+  }
+
+  .main-404__keys-inner {
+    width: 330px;
+    height: 200px;
+  }
+
+  .main-404__key--left {
+    left: 0;
+    top: 50px;
+    width: 142px;
+    height: 133px;
+  }
+
+  .main-404__key--center {
+    left: 65px;
+    top: 0;
+    width: 140px;
+    height: 132px;
+  }
+
+  .main-404__key--right {
+    left: 162px;
+    top: 0;
+    width: 124px;
+    height: 116px;
+  }
+
+  .main-404__title {
+    font-size: 52px;
+  }
+
+  .main-404__description {
+    font-size: 16px;
+    max-width: 90%;
+  }
+}

@@ -11,7 +11,6 @@
   align-items: stretch;
   padding-left: clamp(16px, 5vw, 64px);
   padding-right: 0;
-  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -183,9 +182,14 @@
   .reviews-slider__intro { min-height: auto; padding-bottom: 8px; }
   .reviews-slider__nav { margin-top: 16px; }
   .reviews-slider__carousel { padding-right: 0; }
-  .reviews-slider__card,
-  .reviews-slider__image-card,
-  .reviews-slider__image { min-height: 320px; }
+
   .reviews-slider__progress { justify-content: center; }
   .reviews-slider__pagination.swiper-pagination-progressbar { width: 160px; }
+}
+
+
+@media screen and (max-width: 768px) {
+  .reviews-slider__heading {
+    font-size: 26px;
+  }
 }

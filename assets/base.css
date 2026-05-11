@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* body,html {
+  overflow-x: hidden;
+} */
+
 :root {
   --font-family: "Roboto Condensed", "Roboto", sans-serif;
   --color-text: #1C1C1C;
@@ -102,4 +106,22 @@ a.button-primary {
   .page-width {
     margin: 0 24px 60px;
   }
+
+  a.button-primary {
+    font-size: 16px;
+    padding: 14px 22px;
+  }
+
+  .page-width.mr-0 {
+    margin-right: 24px;
+  }
+}
+
+/* ── Visibility utilities ── */
+.hide-mobile { display: none !important; }
+.hide-desktop { display: block !important; }
+
+@media screen and (min-width: 769px) {
+  .hide-mobile { display: block !important; }
+  .hide-desktop { display: none !important; }
 }

@@ -8,6 +8,14 @@
     --sol-button: {{ section.settings.button_color }};
     --sol-stars: {{ section.settings.stars_color }};
     --sol-heading-size: {{ section.settings.heading_size }}px;
+    --sol-pad-top: {{ section.settings.padding_top }}px;
+    --sol-pad-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media (max-width: 768px) {
+    #Solutions-{{ section.id }} {
+      --sol-pad-top: {{ section.settings.padding_top_mobile | default: 32 }}px;
+      --sol-pad-bottom: {{ section.settings.padding_bottom_mobile | default: 32 }}px;
+    }
   }
 {%- endstyle -%}
 
@@ -260,6 +268,46 @@
       "id": "stars_color",
       "label": "Stars",
       "default": "#007681"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 32
     }
   ],
   "blocks": [

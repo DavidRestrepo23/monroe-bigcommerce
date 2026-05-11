@@ -1,5 +1,5 @@
 .recent-posts {
-  padding: var(--rp-pad-v) var(--rp-pad-h);
+  padding: var(--rp-pad-v) 0;
   background-color: var(--rp-bg);
 }
 
@@ -168,8 +168,12 @@
     grid-template-columns: 1fr;
   }
 
-  .recent-posts__header {
-    flex-direction: column;
-    align-items: flex-start;
+  .recent-posts {
+    padding: 0;
   }
+
+  .recent-posts__heading {
+    font-size: 26px;
+  }
+
 }

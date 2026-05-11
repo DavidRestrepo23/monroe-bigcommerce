@@ -1,0 +1,18 @@
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+{%- if enable_filtering or enable_sorting -%}
+  <aside
+    aria-labelledby="verticalTitle"
+    class="facets-wrapper{% unless enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if filter_type != 'vertical' %} page-width{% endif %}"
+    id="main-collection-filters"
+    data-id="{{ section_id }}"
+  >
+    {% render 'facets',
+      results: collection,
+      enable_filtering: enable_filtering,
+      enable_sorting: enable_sorting,
+      filter_type: filter_type,
+      paginate: paginate
+    %}
+  </aside>
+{%- endif -%}

@@ -1,0 +1,78 @@
+{{ 'section-main-privacy-policy.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width">
+  <div class="privacy-policy">
+    <aside class="privacy-policy__toc" id="privacy-toc">
+      <nav class="privacy-policy__toc-nav" id="privacy-toc-nav" aria-label="Table of contents">
+        {%- comment -%} TOC links injected by JS from page content headings {%- endcomment -%}
+      </nav>
+    </aside>
+
+    <div class="privacy-policy__content">
+      <div class="privacy-policy__header">
+        <h1 class="privacy-policy__title">{{ page.title }}</h1>
+        {%- if section.settings.last_updated != blank -%}
+          <p class="privacy-policy__date">Last updated: {{ section.settings.last_updated }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="privacy-policy__body rte" id="privacy-body">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const body = document.getElementById('privacy-body');
+    const nav = document.getElementById('privacy-toc-nav');
+    if (!body || !nav) return;
+
+    const headings = body.querySelectorAll('h2, h3');
+    if (!headings.length) return;
+
+    headings.forEach(function (heading, i) {
+      const id = 'section-' + i;
+      heading.id = id;
+
+      const link = document.createElement('a');
+      link.href = '#' + id;
+      link.textContent = heading.textContent;
+      link.className = heading.tagName === 'H3'
+        ? 'privacy-policy__toc-link privacy-policy__toc-link--sub'
+        : 'privacy-policy__toc-link';
+
+      nav.appendChild(link);
+    });
+
+    /* highlight active TOC link on scroll */
+    const tocLinks = nav.querySelectorAll('.privacy-policy__toc-link');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function (l) { l.classList.remove('is-active'); });
+          const active = nav.querySelector('a[href="#' + entry.target.id + '"]');
+          if (active) active.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+    headings.forEach(function (h) { observer.observe(h); });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Privacy Policy",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "last_updated",
+      "label": "Last updated date",
+      "default": "May 7, 2026"
+    }
+  ]
+}
+{% endschema %}

@@ -12,6 +12,12 @@
     --ft-pad-top: {{ section.settings.padding_top | default: 64 }}px;
     --ft-pad-bottom: {{ section.settings.padding_bottom | default: 64 }}px;
   }
+  @media (max-width: 700px) {
+    #SiteFooter-{{ section.id }} {
+      --ft-pad-top: {{ section.settings.padding_top_mobile | default: 32 }}px;
+      --ft-pad-bottom: {{ section.settings.padding_bottom_mobile | default: 32 }}px;
+    }
+  }
 {%- endstyle -%}
 
 <footer id="SiteFooter-{{ section.id }}" class="site-footer" role="contentinfo" style="padding-top: var(--ft-pad-top); padding-bottom: var(--ft-pad-bottom);">
@@ -364,6 +370,16 @@
     },
     {
       "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
       "id": "padding_bottom",
       "min": 0,
       "max": 160,
@@ -371,6 +387,16 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 32
     }
   ],
   "blocks": [

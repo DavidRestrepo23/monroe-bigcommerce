@@ -136,6 +136,10 @@
   margin: 0 auto;
 }
 
+.hero-banner__product img.hero-banner__product-img--mobile {
+  display: none;
+}
+
 /* ── Floating keys ── */
 .hero-banner__keys {
   position: absolute;
@@ -171,7 +175,21 @@
 
 @media (max-width: 768px) {
   .hero-banner {
-    padding-top: 40px;
+    padding: 32px;
+  }
+
+  .hero-banner__product img {
+    width: 100%;
+  }
+
+  .hero-banner__product:has(.hero-banner__product-img--mobile) img.hero-banner__product-img--desktop {
+    display: none;
+  }
+
+  .hero-banner__product img.hero-banner__product-img--mobile {
+    display: block;
+    position: relative;
+    top: 120px;
   }
 
   .hero-banner__key {

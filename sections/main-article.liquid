@@ -1,0 +1,161 @@
+{{ 'section-main-article.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width">
+
+  {%- comment -%} ── Article Header ── {%- endcomment -%}
+  <div class="article-header">
+    <h1 class="article-header__title">{{ article.title }}</h1>
+    <div class="article-header__meta">
+      <span class="article-header__author">
+        {%- render 'icon-blog-book' -%}
+        {{ article.author }}
+      </span>
+      <span class="article-header__dot"></span>
+      <span class="article-header__date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+    </div>
+  </div>
+
+  {%- comment -%} ── Hero Image ── {%- endcomment -%}
+  {%- if article.image != blank -%}
+    <div class="article-hero">
+      {{ article.image | image_url: width: 2784 | image_tag:
+        loading: 'eager',
+        widths: '800, 1200, 1600, 2784',
+        sizes: '100vw',
+        alt: article.title
+      }}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ── Layout: TOC + Body ── {%- endcomment -%}
+  <div class="article-layout">
+
+    {%- comment -%} Table of Contents (auto-generated from headings in JS) {%- endcomment -%}
+    <nav class="article-toc" id="article-toc-{{ section.id }}" aria-label="Table of contents">
+      <div class="article-toc__progress">
+        <div class="article-toc__progress-track"></div>
+        <div class="article-toc__progress-fill" id="toc-fill-{{ section.id }}"></div>
+      </div>
+      <ol class="article-toc__links" id="toc-links-{{ section.id }}"></ol>
+    </nav>
+
+    {%- comment -%} Article Content ── {%- endcomment -%}
+    <div class="article-body" id="article-body-{{ section.id }}">
+      {{ article.content }}
+
+      {%- comment -%} ── Share Bar ── {%- endcomment -%}
+      <div class="article-share">
+        <p class="article-share__label">Share</p>
+        <div class="article-share__icons">
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ article.url | prepend: shop.url | url_encode }}" class="article-share__icon" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ article.url | prepend: shop.url | url_encode }}" class="article-share__icon" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ article.url | prepend: shop.url | url_encode }}&description={{ article.title | url_encode }}" class="article-share__icon" target="_blank" rel="noopener" aria-label="Share on Pinterest">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z"/></svg>
+          </a>
+          <a href="https://twitter.com/intent/tweet?url={{ article.url | prepend: shop.url | url_encode }}&text={{ article.title | url_encode }}" class="article-share__icon" target="_blank" rel="noopener" aria-label="Share on Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {%- comment -%} ── Related Posts ── {%- endcomment -%}
+  {%- if blog.articles.size > 1 -%}
+    <div class="article-related">
+      <div class="article-related__header">
+        <h2 class="article-related__heading">Related Posts</h2>
+        <a href="{{ blog.url }}" class="button-primary">View All Posts</a>
+      </div>
+
+      <div class="article-related__grid">
+        {%- assign count = 0 -%}
+        {%- for related in blog.articles limit: 4 -%}
+          {%- if related.id != article.id and count < 3 -%}
+            {%- if count == 0 -%}
+              <div class="article-related__featured">
+                {%- render 'blog-card', article: related -%}
+              </div>
+              {%- if blog.articles.size > 2 -%}
+                <div class="article-related__cards">
+              {%- endif -%}
+            {%- else -%}
+              {%- render 'blog-card', article: related -%}
+            {%- endif -%}
+            {%- assign count = count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if blog.articles.size > 2 -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+</div>
+
+<script>
+  (function() {
+    var body = document.getElementById('article-body-{{ section.id }}');
+    var tocLinks = document.getElementById('toc-links-{{ section.id }}');
+    var tocFill = document.getElementById('toc-fill-{{ section.id }}');
+    var toc = document.getElementById('article-toc-{{ section.id }}');
+    if (!body || !tocLinks) return;
+
+    var headings = body.querySelectorAll('h2, h3');
+    if (headings.length === 0) {
+      toc.style.display = 'none';
+      return;
+    }
+
+    headings.forEach(function(h, i) {
+      if (!h.id) h.id = 'section-' + i;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.className = 'article-toc__link' + (i === 0 ? ' article-toc__link--active' : '');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      li.appendChild(a);
+      tocLinks.appendChild(li);
+    });
+
+    var links = tocLinks.querySelectorAll('.article-toc__link');
+    var trackH = tocLinks.offsetHeight;
+
+    function onScroll() {
+      var active = 0;
+      headings.forEach(function(h, i) {
+        if (h.getBoundingClientRect().top <= 140) active = i;
+      });
+      links.forEach(function(l, i) {
+        l.classList.toggle('article-toc__link--active', i === active);
+      });
+      if (tocFill && links.length > 0) {
+        var linkTop = links[active].offsetTop;
+        tocFill.style.top = linkTop + 'px';
+        tocFill.style.height = links[active].offsetHeight + 'px';
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Blog Article",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

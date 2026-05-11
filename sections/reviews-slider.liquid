@@ -8,7 +8,15 @@
     --rs-text: {{ section.settings.text_color | default: '#0A0A0A' }};
     --rs-accent: {{ section.settings.accent_color | default: '#1F6F75' }};
     --rs-radius: {{ section.settings.card_radius | default: 16 }}px;
+    --rs-pad-top: {{ section.settings.padding_top | default: 64 }}px;
+    --rs-pad-bottom: {{ section.settings.padding_bottom | default: 64 }}px;
     background: var(--rs-bg);
+  }
+  @media (max-width: 749px) {
+    #ReviewsSlider-{{ section.id }} {
+      --rs-pad-top: {{ section.settings.padding_top_mobile | default: 32 }}px;
+      --rs-pad-bottom: {{ section.settings.padding_bottom_mobile | default: 32 }}px;
+    }
   }
 {%- endstyle -%}
 
@@ -18,7 +26,7 @@
   data-autoplay="{{ section.settings.autoplay }}"
   data-autoplay-delay="{{ section.settings.autoplay_delay | default: 6000 }}"
   data-loop="{{ section.settings.loop }}"
-  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  style="padding-top: var(--rs-pad-top); padding-bottom: var(--rs-pad-bottom);"
 >
   <div class="reviews-slider__container">
     <div class="reviews-slider__intro">
@@ -267,6 +275,16 @@
     },
     {
       "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
       "id": "padding_bottom",
       "min": 0,
       "max": 160,
@@ -274,6 +292,16 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 32
     }
   ],
   "blocks": [

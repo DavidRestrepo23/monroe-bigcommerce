@@ -4,6 +4,8 @@
   gap: 48px;
   align-items: start;
   background-color: var(--sol-bg);
+  padding-top: var(--sol-pad-top, 64px);
+  padding-bottom: var(--sol-pad-bottom, 64px);
 }
 
 /* ── Left: Accordion ── */
@@ -277,6 +279,15 @@
 @media (max-width: 768px) {
   .solutions {
     grid-template-columns: 1fr;
-    padding: 32px 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .solutions__heading {
+    font-size: 26px;
+  }
+
+  .solutions__content {
+    gap: 24px;
   }
 }

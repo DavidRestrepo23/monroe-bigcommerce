@@ -1,23 +1,78 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
+{{ 'section-main-404.css' | asset_url | stylesheet_tag }}
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
-    }
-  }
-</style>
+<div class="main-404">
+  <div class="main-404__keys">
+    <div class="main-404__keys-inner">
+      <div class="main-404__key main-404__key--right">
+        <img
+          src="{{ '404-key-1.png' | asset_url }}"
+          alt="4"
+          width="200"
+          height="186"
+          loading="eager"
+        >
+      </div>
+      <div class="main-404__key main-404__key--center">
+        <img
+          src="{{ '404-key-2.png' | asset_url }}"
+          alt="0"
+          width="226"
+          height="212"
+          loading="eager"
+        >
+      </div>
+      <div class="main-404__key main-404__key--left">
+        <img
+          src="{{ '404-key-1.png' | asset_url }}"
+          alt="4"
+          width="228"
+          height="213"
+          loading="eager"
+        >
+      </div>
+    </div>
+  </div>
 
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+  <div class="main-404__content">
+    <div class="main-404__text">
+      <h1 class="main-404__title">{{ section.settings.title }}</h1>
+      <p class="main-404__description">{{ section.settings.description }}</p>
+    </div>
+    <a href="{{ section.settings.button_link }}" class="button-primary">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
 </div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Oops…"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "This page is off the ribbon. While the typewriter is still functioning perfectly, we couldn't locate this page. Check out our collection of vintage typewriters, parts, and supplies!"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Explore Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    }
+  ]
+}
+{% endschema %}

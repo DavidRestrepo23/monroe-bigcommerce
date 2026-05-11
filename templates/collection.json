@@ -1,29 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": true,
         "show_collection_image": false,
         "color_scheme": "scheme-1"
       }
     },
+    "shop_by_category_cF7N93": {
+      "type": "shop-by-category",
+      "blocks": {
+        "category_mqhapE": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/Frame_1171276606_9bc27d5c-4f26-4155-b007-c1130f178006.png",
+            "title_override": ""
+          }
+        },
+        "category_ibGfCU": {
+          "type": "category",
+          "settings": {
+            "collection": "ink-ribbons-paper-tape-rolls",
+            "image": "shopify://shop_images/Frame_1171276607_23e6d75e-46ee-43e9-b890-fca2453ce594.png",
+            "title_override": ""
+          }
+        },
+        "category_BwRM94": {
+          "type": "category",
+          "settings": {
+            "collection": "ink-ribbons-paper-tape-rolls",
+            "image": "shopify://shop_images/3.png",
+            "title_override": ""
+          }
+        },
+        "category_wB3Kmm": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/Frame_1171276610.png",
+            "title_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_mqhapE",
+        "category_ibGfCU",
+        "category_BwRM94",
+        "category_wB3Kmm"
+      ],
+      "name": "Shop by category",
+      "settings": {
+        "heading": "Shop by Category",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "card_radius": 16,
+        "accent_color": "#1F7A7A",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 16,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "enable_filtering": true,
-        "filter_type": "horizontal",
-        "enable_sorting": true,
+        "columns_desktop": 3,
         "columns_mobile": "2",
+        "enable_sorting": true,
+        "show_search": true,
+        "enable_filtering": true,
+        "filter_heading": "Refine By",
+        "badge_source": "none",
+        "badge_text": "Top Seller",
+        "cart_label": "Cart",
+        "accent_color": "#1f7a7a",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -31,6 +92,7 @@
   },
   "order": [
     "banner",
+    "shop_by_category_cF7N93",
     "product-grid"
   ]
 }

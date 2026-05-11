@@ -19,25 +19,64 @@
             "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
             "button_text": "Shop Our Calculators",
             "button_link": "",
-            "main_image": "shopify://shop_images/Frame_1171276530_5e99f170-7489-4ccc-9e5a-dbbda98f5cfd.png",
-            "product_title": "",
-            "product_price": "$199.00",
-            "product_link": "",
+            "main_image": "shopify://shop_images/Frame_1171276530_4d5150ef-451a-495a-81fa-2f09041ac7bc.png",
+            "featured_product": "monroe-8130x",
+            "rating": 5
+          }
+        },
+        "slide_mmUFYz": {
+          "type": "slide",
+          "settings": {
+            "heading": "Not Sure Which Monroe Calculator Is Right For You?",
+            "subtext": "Compare features, print speeds, and workloads",
+            "button_text": "Compare Models",
+            "button_link": "#",
+            "main_image": "shopify://shop_images/Frame_1171276530_2_65fd260f-82a6-497a-8594-5190e3b41fc2.png",
+            "featured_product": "copy-of-monroe-8130x-12-digit-basic-function-heavy-duty-accounting-printing-calculator",
+            "rating": 5
+          }
+        },
+        "slide_CcjC8d": {
+          "type": "slide",
+          "settings": {
+            "heading": "Your Office. Fully Equipped",
+            "subtext": "From typewriters and toner to shredders, paper handling equipment, and everyday business essentials.",
+            "button_text": "Shop Our Partners Brands",
+            "button_link": "#",
+            "main_image": "shopify://shop_images/Frame_1171276530_b06a27ed-e8cd-4ea3-be55-9d0ecc39c197.png",
+            "featured_product": "brother-brougham-10-printwheel-by-rarotype",
+            "rating": 5
+          }
+        },
+        "slide_RNJy6g": {
+          "type": "slide",
+          "settings": {
+            "heading": "Industry-Leading Printing Calculators and Business Supplies",
+            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
+            "button_text": "Shop Our Calculators",
+            "button_link": "",
+            "main_image": "shopify://shop_images/Frame_1171276530_4d5150ef-451a-495a-81fa-2f09041ac7bc.png",
+            "featured_product": "monroe-8130x",
             "rating": 5
           }
         }
       },
       "block_order": [
-        "slide_dVPqr6"
+        "slide_dVPqr6",
+        "slide_mmUFYz",
+        "slide_CcjC8d",
+        "slide_RNJy6g"
       ],
       "settings": {
         "autoplay": true,
-        "autoplay_delay": 5000,
+        "autoplay_delay": 3000,
         "loop": true,
         "show_arrows": false,
         "background_color": "#ededed",
         "text_color": "#0a0a0a",
         "accent_color": "#1f6f75",
+        "heading_color": "#ffffff",
+        "subtext_color": "#ffffff",
         "border_radius": 24
       }
     },
@@ -47,47 +86,71 @@
         "brand_Yx7tQG": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group.png",
+            "logo": "shopify://shop_images/image_2_1.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_kwiyWF": {
+        "brand_RmNP9m": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group_1.png",
+            "logo": "shopify://shop_images/image_3_1.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_KH8AyB": {
+        "brand_KBJK8j": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group.png",
+            "logo": "shopify://shop_images/image_4_1.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_GRLVnR": {
+        "brand_Tj7iUc": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group_1.png",
+            "logo": "shopify://shop_images/image_6_1.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_JC9taW": {
+        "brand_Ec4hKi": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group.png",
+            "logo": "shopify://shop_images/image_7_1.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_BXQxyn": {
+        "brand_MREBJe": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Mask_group_1.png",
+            "logo": "shopify://shop_images/image_8_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_MF4QW9": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_9_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_zkiJnB": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_10_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_ytceRJ": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_11_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -95,22 +158,50 @@
       },
       "block_order": [
         "brand_Yx7tQG",
-        "brand_kwiyWF",
-        "brand_KH8AyB",
-        "brand_GRLVnR",
-        "brand_JC9taW",
-        "brand_BXQxyn"
+        "brand_RmNP9m",
+        "brand_KBJK8j",
+        "brand_Tj7iUc",
+        "brand_Ec4hKi",
+        "brand_MREBJe",
+        "brand_MF4QW9",
+        "brand_zkiJnB",
+        "brand_ytceRJ"
       ],
       "name": "Brands Slider",
       "settings": {
         "logo_height": 36,
         "gap": 64,
-        "padding_vertical": 20,
+        "padding_vertical": 60,
         "speed": 30,
-        "pause_on_hover": true,
+        "pause_on_hover": false,
         "background_color": "#ffffff",
-        "logo_opacity": 70,
+        "logo_opacity": 100,
         "grayscale": false
+      }
+    },
+    "collection_products_slider_4Bwh3a": {
+      "type": "collection-products-slider",
+      "name": "Collection Products Slider",
+      "settings": {
+        "heading": "PRINTING CALCULATORS",
+        "subheading": "",
+        "collection": "frontpage",
+        "product_limit": 12,
+        "cart_label": "Cart",
+        "badge_source": "first_n",
+        "badge_text": "Top Seller",
+        "badge_count": 5,
+        "autoplay": false,
+        "autoplay_delay": 5000,
+        "loop": false,
+        "background_color": "#ffffff",
+        "card_background": "#f1f1f1",
+        "text_color": "#0a0a0a",
+        "accent_color": "#1f6f75",
+        "padding_top": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom": 48,
+        "padding_bottom_mobile": 0
       }
     },
     "product_categories_Qa9TxM": {
@@ -163,7 +254,9 @@
         "card_height": 520,
         "card_radius": 14,
         "padding_vertical": 48,
+        "padding_vertical_mobile": 28,
         "padding_horizontal": 0,
+        "padding_horizontal_mobile": 16,
         "accent_color": "#1f6f75",
         "text_color": "#ffffff"
       }
@@ -184,24 +277,27 @@
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/CashRegister.svg",
-            "title": "Accounting Offices",
-            "description": ""
+            "title": "Retail and POS",
+            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support.",
+            "image": "shopify://shop_images/Frame_1171276554.png"
           }
         },
         "item_3dQ9Ak": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/GraduationCap.svg",
-            "title": "Accounting Offices",
-            "description": ""
+            "title": "Government & Education",
+            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces",
+            "image": "shopify://shop_images/Frame_1171276554_2.png"
           }
         },
         "item_4KA8b7": {
           "type": "item",
           "settings": {
             "icon": "shopify://shop_images/Briefcase.svg",
-            "title": "Accounting Offices",
-            "description": ""
+            "title": "Small Business Owner",
+            "description": "Small business owners need versatile products that support multiple roles and daily operations.",
+            "image": "shopify://shop_images/Frame_1171276554.png"
           }
         }
       },
@@ -224,7 +320,36 @@
         "text_color": "#1c1c1c",
         "icon_background": "#e6f3f4",
         "button_color": "#007681",
-        "stars_color": "#0a0a0a"
+        "stars_color": "#0a0a0a",
+        "padding_top": 120,
+        "padding_top_mobile": 32,
+        "padding_bottom": 120,
+        "padding_bottom_mobile": 32
+      }
+    },
+    "collection_products_slider_X77pVX": {
+      "type": "collection-products-slider",
+      "name": "Collection Products Slider",
+      "settings": {
+        "heading": "Monroe Ink Ribbons & Paper Tape Rolls",
+        "subheading": "Our paper tape rolls and ink ribbons are engineered to work as a system, delivering the darkest print and extending the life of your calculator.",
+        "collection": "ink-ribbons-paper-tape-rolls",
+        "product_limit": 12,
+        "cart_label": "Cart",
+        "badge_source": "first_n",
+        "badge_text": "Top Seller",
+        "badge_count": 5,
+        "autoplay": false,
+        "autoplay_delay": 5000,
+        "loop": false,
+        "background_color": "#ffffff",
+        "card_background": "#f1f1f1",
+        "text_color": "#0a0a0a",
+        "accent_color": "#1f6f75",
+        "padding_top": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom": 60,
+        "padding_bottom_mobile": 32
       }
     },
     "hero_banner_fjiQJQ": {
@@ -345,10 +470,12 @@
         "users_text": "+100K Users Active",
         "cta_url": "",
         "cta_label": "Learn more",
-        "product_image": "shopify://shop_images/Group_2354.png",
-        "product_height": 520,
+        "product_image": "shopify://shop_images/img-banner-with-shadow.png",
+        "product_image_mobile": "shopify://shop_images/Group_2362.png",
+        "product_height": 540,
         "min_height": 620,
         "padding_top": 40,
+        "padding_top_mobile": 0,
         "margin_vertical": 16,
         "margin_horizontal": 16,
         "border_radius": 32,
@@ -370,7 +497,9 @@
         },
         "image_yzrcG3": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
+          }
         },
         "testimonial_mRbxYJ": {
           "type": "testimonial",
@@ -382,7 +511,9 @@
         },
         "image_ReDykW": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
+          }
         }
       },
       "block_order": [
@@ -403,7 +534,10 @@
         "text_color": "#0a0a0a",
         "accent_color": "#1f6f75",
         "card_radius": 16,
-        "padding_vertical": 64
+        "padding_top": 160,
+        "padding_top_mobile": 32,
+        "padding_bottom": 80,
+        "padding_bottom_mobile": 100
       }
     },
     "recent_posts_HPJpBd": {
@@ -411,7 +545,7 @@
       "name": "Recent Posts",
       "settings": {
         "heading": "RECENT POSTS",
-        "blog": "",
+        "blog": "news",
         "post_limit": 3,
         "button_label": "View All Posts",
         "read_more_label": "Read More",
@@ -421,7 +555,7 @@
         "gap": 24,
         "card_radius": 16,
         "padding_vertical": 56,
-        "padding_horizontal": 16,
+        "padding_horizontal": 0,
         "heading_size": 24,
         "title_size": 16,
         "background_color": "#ffffff",
@@ -434,8 +568,10 @@
   "order": [
     "hero_slider_main",
     "brands_slider_xNRMmQ",
+    "collection_products_slider_4Bwh3a",
     "product_categories_Qa9TxM",
     "solutions_accordion_twFWJJ",
+    "collection_products_slider_X77pVX",
     "hero_banner_fjiQJQ",
     "reviews_slider_WNYF6r",
     "recent_posts_HPJpBd"

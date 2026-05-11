@@ -12,6 +12,8 @@
   margin-top: 15px;
 }
 
+
+
 /* ---------- Top Bar ---------- */
 
 .header__top-bar {
@@ -20,6 +22,16 @@
   align-items: center;
   gap: 24px;
   padding: 12px 32px;
+}
+
+@media screen and (max-width: 768px) {
+  .site-header {
+    padding: 0 20px;
+    margin-top: 10px;
+  }
+  .header__top-bar {
+    padding: 10px 0;
+  }
 }
 
 /* Logo + store identity */
@@ -164,8 +176,8 @@
 }
 
 .header__icon-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: block;
 }
 
@@ -174,10 +186,10 @@
   position: absolute;
   top: 2px;
   right: 2px;
-  min-width: 17px;
+  width: 10px;
   height: 17px;
   padding: 0 4px;
-  background: #e33;
+  background: #D94343;
   color: var(--color-white);
   font-size: 10px;
   font-weight: 700;

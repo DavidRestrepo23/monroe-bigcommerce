@@ -6,6 +6,8 @@
     --hero-bg: {{ section.settings.background_color | default: '#EDEDED' }};
     --hero-text: {{ section.settings.text_color | default: '#0A0A0A' }};
     --hero-accent: {{ section.settings.accent_color | default: '#1F6F75' }};
+    --hero-heading: {{ section.settings.heading_color | default: '#000000' }};
+    --hero-subtext: {{ section.settings.subtext_color | default: '#000000' }};
     --hero-radius: {{ section.settings.border_radius | default: 24 }}px;
   }
 {%- endstyle -%}
@@ -24,7 +26,9 @@
         {%- if block.type == 'slide' -%}
           <div
             class="swiper-slide hero-slider__slide{% if block.settings.main_image != blank %} hero-slider__slide--has-bg{% endif %}"
-            {% if block.settings.main_image != blank %}style="background-image: url('{{ block.settings.main_image | image_url: width: 1400 }}');background-repeat: no-repeat;"{% endif %}
+            {% if block.settings.main_image != blank %}
+              style="background-image: url('{{ block.settings.main_image | image_url: width: 1400 }}');background-repeat: no-repeat;background-position: center;background-size: cover;"
+            {% endif %}
             {{ block.shopify_attributes }}
           >
             <div class="hero-slider__inner">
@@ -40,35 +44,38 @@
                     {{ block.settings.button_text }}
                   </a>
                 {%- endif -%}
-
-                {%- if block.settings.product_title != blank or block.settings.product_image != blank -%}
-                  <a class="hero-slider__product-card" href="{{ block.settings.product_link | default: '#' }}">
-                    {%- if block.settings.product_image != blank -%}
+              </div>
+              <div class="hero-slider__featured-product">
+                {%- if block.settings.featured_product != blank -%}
+                  {%- assign fp = all_products[block.settings.featured_product] -%}
+                  <a class="hero-slider__product-card" href="{{ fp.url }}">
+                    {%- if fp.featured_media -%}
                       <div class="hero-slider__product-thumb">
                         {{
-                          block.settings.product_image
+                          fp.featured_media
                           | image_url: width: 160
-                          | image_tag: width: 80, height: 80, alt: block.settings.product_title
+                          | image_tag: width: 80, height: 80, alt: fp.title
                         }}
                       </div>
                     {%- endif -%}
                     <div class="hero-slider__product-info">
                       {%- if block.settings.rating > 0 -%}
                         <div class="hero-slider__rating" aria-label="Rating: {{ block.settings.rating }} out of 5">
-                          {%- for i in (1..5) -%}
-                            <span class="hero-slider__star {% if i <= block.settings.rating %}is-filled{% endif %}"
-                              >★</span
-                            >
-                          {%- endfor -%}
-                          <span class="hero-slider__product-arrow" aria-hidden="true">↗</span>
+                          <div>
+                            {%- for i in (1..5) -%}
+                              <span class="hero-slider__star {% if i <= block.settings.rating %}is-filled{% endif %}"
+                                >★</span
+                              >
+                            {%- endfor -%}
+                          </div>
+                          <span class="hero-slider__product-arrow" aria-hidden="true">
+                            {% render 'icon-arrow' %}
+                          </span>
                         </div>
                       {%- endif -%}
-                      {%- if block.settings.product_title != blank -%}
-                        <p class="hero-slider__product-title">{{ block.settings.product_title }}</p>
-                      {%- endif -%}
-                      {%- if block.settings.product_price != blank -%}
-                        <p class="hero-slider__product-price">{{ block.settings.product_price }}</p>
-                      {%- endif -%}
+
+                      <p class="hero-slider__product-title">{{ fp.title | escape }}</p>
+                      <p class="hero-slider__product-price">{{ fp.price | money }}</p>
                     </div>
                   </a>
                 {%- endif -%}
@@ -87,13 +94,12 @@
       {%- endfor -%}
     </div>
 
-    <div class="hero-slider__pagination swiper-pagination"></div>
-
     {%- if section.settings.show_arrows -%}
       <button class="hero-slider__nav hero-slider__nav--prev swiper-button-prev" aria-label="Previous slide"></button>
       <button class="hero-slider__nav hero-slider__nav--next swiper-button-next" aria-label="Next slide"></button>
     {%- endif -%}
   </div>
+  <div class="hero-slider__pagination swiper-pagination"></div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -197,6 +203,18 @@
       "default": "#1F6F75"
     },
     {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#FFFFFF"
+    },
+    {
       "type": "range",
       "id": "border_radius",
       "min": 0,
@@ -253,24 +271,9 @@
           "content": "Featured product card"
         },
         {
-          "type": "image_picker",
-          "id": "product_image",
-          "label": "Product thumbnail"
-        },
-        {
-          "type": "text",
-          "id": "product_title",
-          "label": "Product title"
-        },
-        {
-          "type": "text",
-          "id": "product_price",
-          "label": "Product price"
-        },
-        {
-          "type": "url",
-          "id": "product_link",
-          "label": "Product link"
+          "type": "product",
+          "id": "featured_product",
+          "label": "Featured product"
         },
         {
           "type": "range",

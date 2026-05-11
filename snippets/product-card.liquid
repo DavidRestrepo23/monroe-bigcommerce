@@ -1,0 +1,81 @@
+{% doc %}
+  @param {object} product - Product object to render.
+  @param {string} [badge_label] - Optional badge label shown on top of image.
+  @param {boolean} [show_badge] - Whether to render the badge.
+  @param {string} [cart_label] - Label for the add-to-cart button.
+  @example
+    {% render 'product-card', product: product, show_badge: true, badge_label: 'Top Seller' %}
+{% enddoc %}
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign final_cart_label = cart_label | default: 'Cart'
+-%}
+
+<article class="product-card">
+  <a
+    class="product-card__media"
+    href="{{ product.url }}"
+    aria-label="{{ product.title | escape }}"
+  >
+    {%- if show_badge and badge_label != blank -%}
+      <span class="product-card__badge">{{ badge_label }}</span>
+    {%- endif -%}
+    {%- if product.featured_media -%}
+      {{
+        product.featured_media
+        | image_url: width: 600
+        | image_tag:
+          loading: 'lazy',
+          widths: '240, 360, 480, 600, 800',
+          sizes: '(min-width: 990px) 30vw, (min-width: 750px) 33vw, 50vw',
+          alt: product.featured_media.alt
+      }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </a>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title | escape }}</a>
+    </h3>
+    <div class="product-card__row">
+      <span class="product-card__price">
+        {%- if product.compare_at_price > product.price -%}
+          <del>{{ product.compare_at_price | money }}</del>
+        {%- endif -%}
+        {{ product.price | money }}
+      </span>
+      <button
+        class="product-card__cart"
+        type="button"
+        data-add-to-cart
+        data-variant-id="{{ variant.id }}"
+        data-product-url="{{ product.url }}"
+        {% if variant.available == false %}
+          disabled
+        {% endif %}
+        aria-label="{{ 'products.product.add_to_cart' | t }}"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>
+          {%- if variant.available -%}
+            {{ final_cart_label }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </span>
+      </button>
+    </div>
+  </div>
+</article>

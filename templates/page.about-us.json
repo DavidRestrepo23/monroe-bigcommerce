@@ -1,0 +1,153 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-about-us",
+      "blocks": {
+        "pill_1": {
+          "type": "pill",
+          "settings": {
+            "label": "Founded: 1912"
+          }
+        },
+        "pill_2": {
+          "type": "pill",
+          "settings": {
+            "label": "Headquarters: Bristol, PA"
+          }
+        },
+        "pill_3": {
+          "type": "pill",
+          "settings": {
+            "label": "Availability: USA (all states)"
+          }
+        },
+        "founder_1": {
+          "type": "founder",
+          "settings": {
+            "image": "shopify://shop_images/Frame_1171276856.png",
+            "name": "Jay R. Monroe",
+            "bio": "<p>Jay Monroe was a co-founder of Monroe Systems for Business. With a background in accounting, before starting Monroe, he was employed at Western Electric Company as a general chief clerk. Mr. Monroe was also the president of two subsidiaries, the Gardner Company, an adding machine manufacturer, and the Defiance Manufacturing Company, a check-writing machine manufacturer.</p>"
+          }
+        },
+        "founder_2": {
+          "type": "founder",
+          "settings": {
+            "image": "shopify://shop_images/image_46.png",
+            "name": "Frank S. Baldwin",
+            "bio": "<p>As a co-founder of Monroe Systems for Business, Frank Baldwin patented the Baldwin Computing Engine, which he combined with Jay Monroe to create the first Monroe calculator. Before Monroe, Frank was awarded the John Scott Medal for the \"most meritorious invention\" of the year in 1874.</p>"
+          }
+        },
+        "team_1": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_37.png",
+            "name": "Joseph Spurka",
+            "role": "Vice President of Operations",
+            "linkedin_url": ""
+          }
+        },
+        "team_2": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_38.png",
+            "name": "Jason Marsdale",
+            "role": "Director of Strategy",
+            "linkedin_url": ""
+          }
+        },
+        "team_3": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_39.png",
+            "name": "Jim Ruths",
+            "role": "Warehouse Factory Service Manager",
+            "linkedin_url": ""
+          }
+        },
+        "team_4": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_40.png",
+            "name": "Jonathon Gregull",
+            "role": "Marketing Manager",
+            "linkedin_url": ""
+          }
+        },
+        "team_5": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_41.png",
+            "name": "Nicole Rosenblatt",
+            "role": "Administrative Assistant",
+            "linkedin_url": ""
+          }
+        },
+        "team_6": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_42.png",
+            "name": "Brandon Leip",
+            "role": "Digital Marketer",
+            "linkedin_url": ""
+          }
+        },
+        "team_7": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_43.png",
+            "name": "Maria Haney",
+            "role": "Customer Service Representative",
+            "linkedin_url": ""
+          }
+        },
+        "team_8": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/image_44.png",
+            "name": "Gaby Larco",
+            "role": "Customer Service Representative",
+            "linkedin_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "pill_1",
+        "pill_2",
+        "pill_3",
+        "founder_1",
+        "founder_2",
+        "team_1",
+        "team_2",
+        "team_3",
+        "team_4",
+        "team_5",
+        "team_6",
+        "team_7",
+        "team_8"
+      ],
+      "settings": {
+        "hero_heading": "Monroe's History",
+        "hero_body": "<p>In 1912, Monroe invented the commercial calculator and opened a factory in New Jersey for manufacturing and distribution. Named after the inventor and founder, Monroe was a huge success! Monroe quickly became a household name with accounting and financial service professionals around the world.</p><p>Our commercial calculator went on to win the Franklin Institute's John Price Wetherill Medal for its invention in the physical sciences in 1932. Fifty years later, we grew to over three hundred offices throughout the United States of America and other parts of the world.</p><p>With 110-plus years of being in business, Monroe has since moved its operations to Bristol, PA. The company is now known as Monroe Systems for Business and continues to manufacture and sell the highest-quality calculators and supplies available. As business needs have changed over the years, so has Monroe. We have listened to our loyal customers and have added new products to accommodate their different needs. Now part of Monroe's catalog is Cash management, ink & toners, paper shredders, and more.</p>",
+        "founders_heading": "Founders",
+        "founders_cta_label": "Read More",
+        "founders_cta_url": "#",
+        "growth_heading": "Our Growth and Innovation",
+        "growth_body": "<p>Monroe has experienced strong growth since its founding in 1912, becoming a source of pride and future promise. Built through the efforts of many people, the company has managed to grow while keeping its original spirit of teamwork and unity.</p><p>As the company expanded, it embraced change and formed important partnerships, which helped it reach new markets and opportunities. This growth also allowed Monroe to create more jobs and better respond to the needs of businesses.</p><p>Over time, Monroe adapted its focus, returning to its strength in calculators while adding complementary products. Today, it continues to innovate by offering solutions designed for professionals, especially in accounting and business environments.</p>",
+        "growth_image": "shopify://shop_images/image_36.png",
+        "team_heading": "Our Team"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

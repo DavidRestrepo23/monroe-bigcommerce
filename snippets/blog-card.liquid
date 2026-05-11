@@ -1,0 +1,21 @@
+<article class="blog-card">
+  <a href="{{ article.url }}" class="blog-card__image">
+    {%- if article.image != blank -%}
+      {{ article.image | image_url: width: 600 | image_tag:
+        loading: 'lazy',
+        widths: '300, 400, 600',
+        sizes: '(min-width: 769px) 300px, 100vw',
+        alt: article.title
+      }}
+    {%- endif -%}
+  </a>
+  <div class="blog-meta">
+    <span class="blog-meta__author">
+      {%- render 'icon-blog-book' -%}
+      {{ article.author }}
+    </span>
+    <span class="blog-meta__date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+  </div>
+  <h3 class="blog-card__title">{{ article.title }}</h3>
+  <a href="{{ article.url }}" class="blog-read-more">Read More</a>
+</article>

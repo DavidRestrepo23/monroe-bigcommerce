@@ -1,0 +1,180 @@
+{{ 'section-shop-by-category.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #ShopByCategory-{{ section.id }} {
+    --sbc-accent: {{ section.settings.accent_color }};
+    --sbc-pad-top: {{ section.settings.padding_top }}px;
+    --sbc-pad-bottom: {{ section.settings.padding_bottom }}px;
+    --sbc-radius: {{ section.settings.card_radius }}px;
+    --sbc-cols: {{ section.settings.columns_desktop }};
+  }
+  @media (max-width: 749px) {
+    #ShopByCategory-{{ section.id }} {
+      --sbc-cols: {{ section.settings.columns_mobile }};
+    }
+  }
+{%- endstyle -%}
+
+<section id="ShopByCategory-{{ section.id }}" class="shop-by-category">
+  <div class="shop-by-category__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="shop-by-category__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="shop-by-category__grid list-unstyled" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' -%}
+            {%- liquid
+              assign col = block.settings.collection
+              assign card_image = block.settings.image
+              if card_image == blank and col != blank
+                assign card_image = col.image | default: col.featured_image
+              endif
+              assign card_title = block.settings.title_override | default: col.title
+              assign card_url = col.url | default: '#'
+            -%}
+            <li class="shop-by-category__item" {{ block.shopify_attributes }}>
+              <a class="shop-by-category__card" href="{{ card_url }}" aria-label="{{ card_title | escape }}">
+                <span class="shop-by-category__media">
+                  {%- if card_image != blank -%}
+                    {{
+                      card_image
+                      | image_url: width: 800
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '240, 360, 480, 640, 800',
+                        sizes: '(min-width: 990px) 22vw, 50vw',
+                        alt: card_title,
+                        class: 'shop-by-category__image'
+                    }}
+                  {%- else -%}
+                    {{ 'collection-1' | placeholder_svg_tag: 'shop-by-category__image placeholder-svg' }}
+                  {%- endif -%}
+                  <span class="shop-by-category__arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </span>
+                </span>
+                <h3 class="shop-by-category__title">{{ card_title | escape }}</h3>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by category",
+  "class": "section-shop-by-category page-width",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Shop by Category",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        { "value": "1", "label": "1 column" },
+        { "value": "2", "label": "2 columns" }
+      ],
+      "default": "2",
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 16,
+      "label": "Card radius",
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "default": "#1F7A7A",
+      "label": "Accent color"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "label": "Padding top",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 56,
+      "label": "Padding bottom",
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image override",
+          "info": "Defaults to collection image when empty."
+        },
+        {
+          "type": "text",
+          "id": "title_override",
+          "label": "Title override",
+          "info": "Defaults to collection title when empty."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Shop by category",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

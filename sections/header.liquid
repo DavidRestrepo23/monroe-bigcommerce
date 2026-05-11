@@ -1,6 +1,6 @@
 {{ 'component-header.css' | asset_url | stylesheet_tag }}
 
-<header class="site-header" role="banner">
+<header class="site-header hide-mobile" role="banner">
 
   {%- comment -%} ======== TOP BAR ======== {%- endcomment -%}
   <div class="header__top-bar">
@@ -71,7 +71,12 @@
       </a>
 
       {%- comment -%} Cart {%- endcomment -%}
-      <a href="{{ routes.cart_url }}" class="header__icon-btn" aria-label="Cart ({{ cart.item_count }} items)">
+      <a
+        href="{{ routes.cart_url }}"
+        id="cart-icon-bubble"
+        class="header__icon-btn header__icon-btn--cart"
+        aria-label="Cart ({{ cart.item_count }} items)"
+      >
         {% render 'icon-cart' %}
         <span class="header__cart-badge" data-count="{{ cart.item_count }}" aria-hidden="true">
           {{ cart.item_count }}

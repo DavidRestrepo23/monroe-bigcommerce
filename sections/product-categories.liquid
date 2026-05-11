@@ -7,13 +7,21 @@
     --pc-radius: {{ section.settings.card_radius | default: 20 }}px;
     --pc-gap: {{ section.settings.gap | default: 16 }}px;
     --pc-card-height: {{ section.settings.card_height | default: 520 }}px;
+    --pc-pad-v: {{ section.settings.padding_vertical | default: 48 }}px;
+    --pc-pad-h: {{ section.settings.padding_horizontal | default: 16 }}px;
+  }
+  @media (max-width: 768px) {
+    #ProductCategories-{{ section.id }} {
+      --pc-pad-v: {{ section.settings.padding_vertical_mobile | default: 28 }}px;
+      --pc-pad-h: {{ section.settings.padding_horizontal_mobile | default: 16 }}px;
+    }
   }
 {%- endstyle -%}
 
 <section
   id="ProductCategories-{{ section.id }}"
   class="product-categories"
-  style="padding: {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px;"
+  style="padding: var(--pc-pad-v) var(--pc-pad-h);"
 >
   {%- if section.settings.heading != blank -%}
     <h2 class="product-categories__heading">{{ section.settings.heading }}</h2>
@@ -128,12 +136,32 @@
     },
     {
       "type": "range",
+      "id": "padding_vertical_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical padding (mobile)",
+      "default": 28
+    },
+    {
+      "type": "range",
       "id": "padding_horizontal",
       "min": 0,
       "max": 64,
       "step": 4,
       "unit": "px",
       "label": "Horizontal padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding (mobile)",
       "default": 16
     },
     { "type": "header", "content": "Style" },

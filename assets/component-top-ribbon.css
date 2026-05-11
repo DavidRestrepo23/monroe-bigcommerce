@@ -14,7 +14,7 @@
 
 .top-ribbon__swiper {
     width: calc(100% - 40px);
-    padding: 10px 0 26px 0;
+    padding: 0 0 0 0;
 }
 
 .top-ribbon__slide {

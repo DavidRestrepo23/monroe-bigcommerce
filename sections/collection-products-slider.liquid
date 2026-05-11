@@ -15,6 +15,12 @@
     --cps-pad-top: {{ section.settings.padding_top }}px;
     --cps-pad-bottom: {{ section.settings.padding_bottom }}px;
   }
+  @media (max-width: 749px) {
+    #CollectionProductsSlider-{{ section.id }} {
+      --cps-pad-top: {{ section.settings.padding_top_mobile | default: 32 }}px;
+      --cps-pad-bottom: {{ section.settings.padding_bottom_mobile | default: 32 }}px;
+    }
+  }
 {%- endstyle -%}
 
 <section
@@ -26,9 +32,14 @@
 >
   <div class="collection-products-slider__container">
     <div class="collection-products-slider__header">
-      {%- if section.settings.heading != blank -%}
-        <h2 class="collection-products-slider__heading">{{ section.settings.heading }}</h2>
-      {%- endif -%}
+      <div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="collection-products-slider__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="collection-products-slider__subheading">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
 
       <div class="collection-products-slider__nav">
         <button
@@ -187,7 +198,7 @@
       var loop = root.dataset.loop === 'true';
 
       new Swiper(root.querySelector('.collection-products-slider__swiper'), {
-        slidesPerView: 1.4,
+        slidesPerView: 1.75,
         spaceBetween: 16,
         slidesOffsetAfter: 70,
         loop: loop,
@@ -271,10 +282,19 @@
               });
             }
 
-            if (cartNotification && typeof cartNotification.renderContents === 'function') {
-              cartNotification.renderContents(data);
-            } else if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
-              cartDrawer.renderContents(data);
+            if (cartDrawer && data.sections && data.sections['cart-drawer']) {
+              var parsed = new DOMParser().parseFromString(data.sections['cart-drawer'], 'text/html');
+              var src = parsed.querySelector('#CartDrawer');
+              var dst = document.querySelector('#CartDrawer');
+              if (src && dst) dst.innerHTML = src.innerHTML;
+              cartDrawer.classList.remove('is-empty');
+            }
+
+            if (typeof window.openCartDrawer === 'function') {
+              window.openCartDrawer();
+            } else if (cartDrawer) {
+              cartDrawer.classList.add('animate', 'active');
+              document.body.classList.add('overflow-hidden');
             }
           })
           .catch(function () {
@@ -313,6 +333,11 @@
       "id": "heading",
       "label": "Heading",
       "default": "PRINTING CALCULATORS"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
     },
     {
       "type": "collection",
@@ -431,6 +456,16 @@
     },
     {
       "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
       "id": "padding_bottom",
       "min": 0,
       "max": 160,
@@ -438,6 +473,16 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 32
     }
   ],
   "presets": [

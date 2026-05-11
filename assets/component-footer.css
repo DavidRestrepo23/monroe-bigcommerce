@@ -351,6 +351,45 @@
 }
 
 @media (max-width: 700px) {
+  .site-footer__main {
+    padding: 32px 20px;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 32px;
+  }
+
+  .site-footer__brand {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .site-footer__columns {
+    grid-column: 1;
+    grid-row: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .site-footer__media {
+    grid-column: 1;
+    grid-row: auto;
+    align-items: flex-start;
+  }
+
+  .site-footer__social,
+  .site-footer__payments {
+    justify-content: flex-start;
+  }
+
+  .site-footer__payments {
+    margin-top: 0;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
   .site-footer__newsletter-inner {
     flex-direction: column;
     align-items: stretch;
@@ -367,10 +406,6 @@
 
   .site-footer__submit {
     width: 100%;
-  }
-
-  .site-footer__columns {
-    grid-template-columns: 1fr 1fr;
   }
 
   .site-footer__bottom {

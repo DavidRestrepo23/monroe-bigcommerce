@@ -31,6 +31,9 @@
     {%- endif -%}
   {%- endfor -%}
   @media (max-width: 768px) {
+    #HeroBanner-{{ section.id }} {
+      --hb-pad-top: {{ section.settings.padding_top_mobile | default: 24 }}px;
+    }
     #HeroBanner-{{ section.id }} .hero-banner__heading {
       font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
     }
@@ -89,12 +92,20 @@
   {%- endif -%}
 
   {%- comment -%} Product image {%- endcomment -%}
-  {%- if section.settings.product_image != blank -%}
+  {%- if section.settings.product_image != blank or section.settings.product_image_mobile != blank -%}
     <div class="hero-banner__product">
-      {{- section.settings.product_image | image_url: height: section.settings.product_height | image_tag:
-        height: section.settings.product_height,
-        alt: section.settings.heading
-      -}}
+      {%- if section.settings.product_image != blank -%}
+        {{- section.settings.product_image | image_url: width: 1000 | image_tag:
+          alt: section.settings.heading,
+          class: 'hero-banner__product-img hero-banner__product-img--desktop'
+        -}}
+      {%- endif -%}
+      {%- if section.settings.product_image_mobile != blank -%}
+        {{- section.settings.product_image_mobile | image_url: width: 800 | image_tag:
+          alt: section.settings.heading,
+          class: 'hero-banner__product-img hero-banner__product-img--mobile'
+        -}}
+      {%- endif -%}
     </div>
   {%- endif -%}
 
@@ -175,6 +186,12 @@
     },
     {
       "type": "image_picker",
+      "id": "product_image_mobile",
+      "label": "Product image (mobile)",
+      "info": "Falls back to desktop image if blank"
+    },
+    {
+      "type": "image_picker",
       "id": "background_image",
       "label": "Background image",
       "info": "Overlays background color when set"
@@ -212,6 +229,16 @@
       "default": 40,
       "unit": "px",
       "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "default": 24,
+      "unit": "px",
+      "label": "Top padding (mobile)"
     },
     {
       "type": "range",

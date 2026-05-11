@@ -1,0 +1,374 @@
+{{ 'section-main-about-us.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<div class="page-width">
+  {%- comment -%} ── Hero Section ── {%- endcomment -%}
+  <div class="about-hero">
+    <div class="about-hero__left">
+      {%- if section.settings.hero_heading != blank -%}
+        <h1 class="about-hero__heading">{{ section.settings.hero_heading }}</h1>
+      {%- endif -%}
+
+      {%- assign pill_blocks = section.blocks | where: 'type', 'pill' -%}
+      {%- if pill_blocks.size > 0 -%}
+        <div class="about-hero__pills">
+          {%- for block in pill_blocks -%}
+            <span class="about-hero__pill" {{ block.shopify_attributes }}>
+              {{ block.settings.label }}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.hero_body != blank -%}
+      <div class="about-hero__body">
+        {{ section.settings.hero_body }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <hr class="about-divider">
+
+  {%- comment -%} ── Founders Section ── {%- endcomment -%}
+  <div class="about-founders">
+    <div class="about-founders__header">
+      {%- if section.settings.founders_heading != blank -%}
+        <h2 class="about-founders__heading">{{ section.settings.founders_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.founders_cta_url != blank -%}
+        <a href="{{ section.settings.founders_cta_url }}" class="button-primary">
+          {{ section.settings.founders_cta_label | default: 'Read More' }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- assign founder_blocks = section.blocks | where: 'type', 'founder' -%}
+    {%- if founder_blocks.size > 0 -%}
+      <div class="about-founders__grid">
+        {%- for block in founder_blocks -%}
+          <div class="about-founders__card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <div class="about-founders__image-wrapper">
+                {{
+                  block.settings.image
+                  | image_url: width: 1264
+                  | image_tag: alt: block.settings.name, loading: 'lazy'
+                }}
+              </div>
+            {%- endif -%}
+            <div class="about-founders__info">
+              {%- if block.settings.name != blank -%}
+                <h3 class="about-founders__name">{{ block.settings.name }}</h3>
+              {%- endif -%}
+              {%- if block.settings.bio != blank -%}
+                <div class="about-founders__bio">
+                  {{ block.settings.bio }}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <hr class="about-divider">
+
+  {%- comment -%} ── Growth & Innovation ── {%- endcomment -%}
+  <div class="about-growth">
+    <div class="about-growth__left">
+      {%- if section.settings.growth_heading != blank -%}
+        <h2 class="about-growth__heading">{{ section.settings.growth_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.growth_body != blank -%}
+        <div class="about-growth__body">
+          {{ section.settings.growth_body }}
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.growth_image != blank -%}
+      <div class="about-growth__image">
+        {{
+          section.settings.growth_image
+          | image_url: width: 1328
+          | image_tag: alt: section.settings.growth_heading, loading: 'lazy'
+        }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} ── Team Section (full-bleed background) ── {%- endcomment -%}
+{%- assign team_blocks = section.blocks | where: 'type', 'team_member' -%}
+{%- if section.settings.team_heading != blank or team_blocks.size > 0 -%}
+  <div class="about-team">
+    <div class="about-team__inner">
+      {%- if section.settings.team_heading != blank -%}
+        <div class="about-team__header">
+          <h2 class="about-team__heading">{{ section.settings.team_heading }}</h2>
+          <div class="about-team__nav" id="team-nav-{{ section.id }}">
+            <button class="about-team__nav-btn" id="team-prev-{{ section.id }}" aria-label="Previous">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M38 24H10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 38L10 24L24 10" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="about-team__nav-btn" id="team-next-{{ section.id }}" aria-label="Next">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M10 24H38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 10L38 24L24 38" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if team_blocks.size > 0 -%}
+        <div class="about-team__grid swiper" id="team-swiper-{{ section.id }}">
+          <div class="swiper-wrapper">
+            {%- for block in team_blocks -%}
+              <div class="about-team__card swiper-slide" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  <div class="about-team__photo">
+                    {{
+                      block.settings.image
+                      | image_url: width: 600
+                      | image_tag: alt: block.settings.name, loading: 'lazy'
+                    }}
+                  </div>
+                {%- endif -%}
+                <div class="about-team__meta">
+                  {%- if block.settings.name != blank -%}
+                    <p class="about-team__member-name">{{ block.settings.name }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.role != blank -%}
+                    <p class="about-team__role">{{ block.settings.role }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.linkedin_url != blank -%}
+                    <a
+                      href="{{ block.settings.linkedin_url }}"
+                      class="about-team__linkedin"
+                      aria-label="{{ block.settings.name }} on LinkedIn"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script>
+  (function () {
+    var el = document.getElementById('team-swiper-{{ section.id }}');
+    if (!el) return;
+    var swiper = null;
+    function sync() {
+      if (window.innerWidth < 990) {
+        if (!swiper) {
+          if (typeof Swiper === 'undefined') return setTimeout(sync, 60);
+          swiper = new Swiper(el, {
+            slidesPerView: 1.2,
+            spaceBetween: 16,
+            grabCursor: true,
+            navigation: {
+              prevEl: '#team-prev-{{ section.id }}',
+              nextEl: '#team-next-{{ section.id }}',
+            },
+          });
+        }
+      } else {
+        if (swiper) {
+          swiper.destroy(true, true);
+          swiper = null;
+        }
+      }
+    }
+    sync();
+    window.addEventListener('resize', sync);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "About Us",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "Monroe's History"
+    },
+    {
+      "type": "richtext",
+      "id": "hero_body",
+      "label": "Body text",
+      "default": "<p>In 1912, Monroe invented the commercial calculator and opened a factory in New Jersey for manufacturing and distribution. Named after the inventor and founder, Monroe was a huge success! Monroe quickly became a household name with accounting and financial service professionals around the world.</p><p>Our commercial calculator went on to win the Franklin Institute's John Price Wetherill Medal for its invention in the physical sciences in 1932. Fifty years later, we grew to over three hundred offices throughout the United States of America and other parts of the world.</p><p>With 110-plus years of being in business, Monroe has since moved its operations to Bristol, PA. The company is now known as Monroe Systems for Business and continues to manufacture and sell the highest-quality calculators and supplies available. As business needs have changed over the years, so has Monroe. We have listened to our loyal customers and have added new products to accommodate their different needs. Now part of Monroe's catalog is Cash management, ink & toners, paper shredders, and more.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Founders"
+    },
+    {
+      "type": "text",
+      "id": "founders_heading",
+      "label": "Heading",
+      "default": "Founders"
+    },
+    {
+      "type": "text",
+      "id": "founders_cta_label",
+      "label": "Button label",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "founders_cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Growth & Innovation"
+    },
+    {
+      "type": "text",
+      "id": "growth_heading",
+      "label": "Heading",
+      "default": "Our Growth and Innovation"
+    },
+    {
+      "type": "richtext",
+      "id": "growth_body",
+      "label": "Body text",
+      "default": "<p>Monroe has experienced strong growth since its founding in 1912, becoming a source of pride and future promise. Built through the efforts of many people, the company has managed to grow while keeping its original spirit of teamwork and unity.</p><p>As the company expanded, it embraced change and formed important partnerships, which helped it reach new markets and opportunities. This growth also allowed Monroe to create more jobs and better respond to the needs of businesses.</p><p>Over time, Monroe adapted its focus, returning to its strength in calculators while adding complementary products. Today, it continues to innovate by offering solutions designed for professionals, especially in accounting and business environments.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "growth_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Team"
+    },
+    {
+      "type": "text",
+      "id": "team_heading",
+      "label": "Heading",
+      "default": "Our Team"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Info Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Founded: 1912"
+        }
+      ]
+    },
+    {
+      "type": "founder",
+      "name": "Founder",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Founder Name"
+        },
+        {
+          "type": "richtext",
+          "id": "bio",
+          "label": "Bio"
+        }
+      ]
+    },
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Team Member"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Role Title"
+        },
+        {
+          "type": "url",
+          "id": "linkedin_url",
+          "label": "LinkedIn URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us",
+      "blocks": [
+        { "type": "pill", "settings": { "label": "Founded: 1912" } },
+        { "type": "pill", "settings": { "label": "Headquarters: Bristol, PA" } },
+        { "type": "pill", "settings": { "label": "Availability: USA (all states)" } },
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Jay R. Monroe",
+            "bio": "<p>Jay Monroe was a co-founder of Monroe Systems for Business. With a background in accounting, before starting Monroe, he was employed at Western Electric Company as a general chief clerk. Mr. Monroe was also the president of two subsidiaries, the Gardner Company, an adding machine manufacturer, and the Defiance Manufacturing Company, a check-writing machine manufacturer.</p>"
+          }
+        },
+        {
+          "type": "founder",
+          "settings": {
+            "name": "Frank S. Baldwin",
+            "bio": "<p>As a co-founder of Monroe Systems for Business, Frank Baldwin patented the Baldwin Computing Engine, which he combined with Jay Monroe to create the first Monroe calculator. Before Monroe, Frank was awarded the John Scott Medal for the \"most meritorious invention\" of the year in 1874.</p>"
+          }
+        },
+        { "type": "team_member", "settings": { "name": "Joseph Spurka", "role": "Vice President of Operations" } },
+        { "type": "team_member", "settings": { "name": "Jason Marsdale", "role": "Director of Strategy" } },
+        { "type": "team_member", "settings": { "name": "Jim Ruths", "role": "Warehouse Factory Service Manager" } },
+        { "type": "team_member", "settings": { "name": "Jonathon Gregull", "role": "Marketing Manager" } },
+        { "type": "team_member", "settings": { "name": "Nicole Rosenblatt", "role": "Administrative Assistant" } },
+        { "type": "team_member", "settings": { "name": "Brandon Leip", "role": "Digital Marketer" } },
+        { "type": "team_member", "settings": { "name": "Maria Haney", "role": "Customer Service Representative" } },
+        { "type": "team_member", "settings": { "name": "Gaby Larco", "role": "Customer Service Representative" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

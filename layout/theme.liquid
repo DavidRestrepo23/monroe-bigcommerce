@@ -2,6 +2,47 @@
 <html>
   <head>
     {{ content_for_header }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script>
+      window.Shopify = window.Shopify || {};
+      window.Shopify.routes = window.Shopify.routes || { root: '{{ routes.root_url }}' };
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}'
+      };
+      window.cartStrings = {
+        error: `{{ 'sections.cart.cart_error' | t }}`,
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+      };
+      window.quickOrderListStrings = {
+        min_error: `{{ 'products.product.quantity.min_of' | t: quantity: '[min]' }}`,
+        max_error: `{{ 'products.product.quantity.max_of' | t: quantity: '[max]' }}`,
+        step_error: `{{ 'products.product.quantity.multiples_of' | t: quantity: '[step]' }}`
+      };
+    </script>
+    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    <script>
+      // cart-drawer.js requests sections=['cart-drawer','cart-icon-bubble'] but
+      // there is no 'cart-icon-bubble' section file → response missing → forEach
+      // throws → publish(cartUpdate) never fires. Restrict to cart-drawer only;
+      // bubble is updated via our own publish handler / response.item_count.
+      document.addEventListener('DOMContentLoaded', function () {
+        if (typeof CartDrawerItems !== 'undefined') {
+          CartDrawerItems.prototype.getSectionsToRender = function () {
+            return [
+              { id: 'CartDrawer', section: 'cart-drawer', selector: '.drawer__inner' }
+            ];
+          };
+        }
+      });
+    </script>
   </head>
   <link rel="stylesheet" href="{{ 'normalize.css' | asset_url }}">
   <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
@@ -11,6 +52,195 @@
 
     {{ content_for_layout }}
 
+    {%- section 'cart-drawer' -%}
+
+    <script>
+      (function () {
+        function getDrawer() {
+          return document.querySelector('cart-drawer');
+        }
+
+        function openDrawer() {
+          var drawer = getDrawer();
+          if (!drawer) return false;
+          if (typeof drawer.open === 'function') {
+            try { drawer.open(); return true; } catch (e) { /* fall through */ }
+          }
+          drawer.classList.add('animate', 'active');
+          document.body.classList.add('overflow-hidden');
+          return true;
+        }
+
+        function closeDrawer() {
+          var drawer = getDrawer();
+          if (!drawer) return;
+          if (typeof drawer.close === 'function') {
+            try { drawer.close(); return; } catch (e) { /* fall through */ }
+          }
+          drawer.classList.remove('active');
+          document.body.classList.remove('overflow-hidden');
+        }
+
+        function rootUrl() {
+          return (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+        }
+
+        function swapDrawerSection(data) {
+          var drawer = getDrawer();
+          if (!drawer || !data || !data.sections || !data.sections['cart-drawer']) return;
+          var parsed = new DOMParser().parseFromString(data.sections['cart-drawer'], 'text/html');
+          var src = parsed.querySelector('#CartDrawer');
+          var dst = document.querySelector('#CartDrawer');
+          if (src && dst) dst.innerHTML = src.innerHTML;
+          drawer.classList.remove('is-empty');
+        }
+
+        function updateCartBubble(count) {
+          if (count == null || isNaN(count)) return;
+          var badge = document.querySelector('.header__cart-badge');
+          if (!badge) return;
+          badge.textContent = count;
+          badge.setAttribute('data-count', count);
+          badge.classList.toggle('is-empty', parseInt(count, 10) === 0);
+          var cartLink = document.querySelector('#cart-icon-bubble');
+          if (cartLink) cartLink.setAttribute('aria-label', 'Cart (' + count + ' items)');
+        }
+
+        function refreshBubble() {
+          fetch(rootUrl() + 'cart.js', { headers: { Accept: 'application/json' } })
+            .then(function (r) { return r.json(); })
+            .then(function (c) { updateCartBubble(c.item_count); })
+            .catch(function () {});
+        }
+
+        window.updateCartBubble = updateCartBubble;
+
+        function addToCart(variantId, quantity, btn) {
+          var labelEl = btn ? btn.querySelector('span') : null;
+          var originalLabel = labelEl ? labelEl.textContent : '';
+          if (btn) btn.classList.add('is-loading');
+
+          return fetch(rootUrl() + 'cart/add.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/javascript' },
+            body: JSON.stringify({
+              items: [{ id: parseInt(variantId, 10), quantity: quantity || 1 }],
+              sections: 'cart-drawer,cart-icon-bubble',
+              sections_url: window.location.pathname,
+            }),
+          })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (btn) btn.classList.remove('is-loading');
+              if (data.status) {
+                if (labelEl) labelEl.textContent = data.message || 'Error';
+                setTimeout(function () { if (labelEl) labelEl.textContent = originalLabel; }, 1800);
+                return data;
+              }
+              swapDrawerSection(data);
+              if (data.item_count != null) {
+                updateCartBubble(data.item_count);
+              } else {
+                refreshBubble();
+              }
+              if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+                publish(PUB_SUB_EVENTS.cartUpdate, { source: 'global-add', cartData: data });
+              }
+              openDrawer();
+              return data;
+            })
+            .catch(function (err) {
+              if (btn) btn.classList.remove('is-loading');
+              console.error('[cart-add]', err);
+            });
+        }
+
+        window.openCartDrawer = openDrawer;
+        window.closeCartDrawer = closeDrawer;
+        window.cartAdd = addToCart;
+
+        document.addEventListener('click', function (e) {
+          var headerCart = e.target.closest('#cart-icon-bubble, .header__icon-btn--cart');
+          if (headerCart) {
+            e.preventDefault();
+            openDrawer();
+            return;
+          }
+
+          if (e.target.closest('.cart-drawer__close') || e.target.closest('#CartDrawer-Overlay')) {
+            e.preventDefault();
+            closeDrawer();
+            return;
+          }
+
+          var card = e.target.closest('.product-card__cart');
+          if (card) {
+            e.preventDefault();
+            if (card.disabled || card.classList.contains('is-loading')) return;
+            var vid = card.getAttribute('data-variant-id');
+            if (!vid) return;
+            addToCart(vid, 1, card);
+            return;
+          }
+
+          var sliderBtn = e.target.closest('.collection-products-slider__cart-btn');
+          if (sliderBtn) {
+            setTimeout(function () {
+              var drawer = getDrawer();
+              if (drawer && !drawer.classList.contains('active')) openDrawer();
+            }, 600);
+            return;
+          }
+        });
+
+        document.addEventListener('keyup', function (e) {
+          if (e.key === 'Escape' || e.code === 'Escape') closeDrawer();
+        });
+
+        function attachPubSub() {
+          if (typeof subscribe !== 'function' || typeof PUB_SUB_EVENTS === 'undefined') return false;
+          subscribe(PUB_SUB_EVENTS.cartUpdate, function (event) {
+            var c = event && event.cartData;
+            if (c && c.item_count != null) {
+              updateCartBubble(c.item_count);
+            } else {
+              refreshBubble();
+            }
+          });
+          return true;
+        }
+
+        if (!attachPubSub()) {
+          document.addEventListener('DOMContentLoaded', function () {
+            if (!attachPubSub()) {
+              setTimeout(attachPubSub, 200);
+            }
+          });
+        }
+      })();
+    </script>
+
     {%- section 'footer' -%}
+
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Apply data-aos BEFORE AOS.init() so it picks them up
+      document.querySelectorAll('.shopify-section').forEach(function(el, i) {
+        var type = el.id || '';
+        if (type.indexOf('header') !== -1 || type.indexOf('footer') !== -1) return;
+        if (!el.hasAttribute('data-aos')) {
+          el.setAttribute('data-aos', 'fade-up');
+          el.setAttribute('data-aos-delay', String(Math.min(i * 40, 200)));
+        }
+      });
+
+      AOS.init({
+        duration: 650,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 60,
+        disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      });
+    </script> {% endcomment %}
   </body>
 </html>

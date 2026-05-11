@@ -1,0 +1,237 @@
+{% doc %}
+  @param {object} results - Collection or search results object exposing filters.
+  @param {string} [heading] - Sidebar heading.
+  @example
+    {% render 'simple-facets', results: collection, heading: 'Refine By' %}
+{% enddoc %}
+
+{%- liquid
+  assign results_url = results.url | default: '/'
+  assign sidebar_heading = heading | default: 'Refine By'
+-%}
+
+<aside class="simple-facets" aria-label="{{ sidebar_heading | escape }}">
+  <div class="simple-facets__head">
+    <h2 class="simple-facets__title">{{ sidebar_heading }}</h2>
+    {%- assign active_count = 0 -%}
+    {%- for f in results.filters -%}
+      {%- assign active_count = active_count | plus: f.active_values.size -%}
+      {%- if f.type == 'price_range' -%}
+        {%- if f.min_value.value != null or f.max_value.value != null -%}
+          {%- assign active_count = active_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if active_count > 0 -%}
+      <a href="{{ results_url }}" class="simple-facets__clear">Clear all</a>
+    {%- endif -%}
+  </div>
+
+  {%- assign has_active_pills = false -%}
+  {%- for f in results.filters -%}
+    {%- if f.active_values.size > 0 -%}{%- assign has_active_pills = true -%}{%- endif -%}
+    {%- if f.type == 'price_range' and f.min_value.value != null or f.max_value.value != null -%}
+      {%- assign has_active_pills = true -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if has_active_pills -%}
+    <ul class="simple-facets__pills list-unstyled" role="list">
+      {%- for f in results.filters -%}
+        {%- for v in f.active_values -%}
+          <li>
+            <a class="simple-facets__pill" href="{{ v.url_to_remove }}">
+              <span>{{ f.label | escape }}: {{ v.label | escape }}</span>
+              <span aria-hidden="true">&times;</span>
+            </a>
+          </li>
+        {%- endfor -%}
+        {%- if f.type == 'price_range' -%}
+          {%- if f.min_value.value != null or f.max_value.value != null -%}
+            <li>
+              <a class="simple-facets__pill" href="{{ f.url_to_remove }}">
+                <span>{{ f.min_value.value | default: 0 | money }} - {{ f.max_value.value | default: f.range_max | money }}</span>
+                <span aria-hidden="true">&times;</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  <form class="simple-facets__form" method="get">
+    {%- if results.terms -%}
+      <input type="hidden" name="q" value="{{ results.terms | escape }}">
+      <input type="hidden" name="options[prefix]" value="last">
+    {%- endif -%}
+    {%- if results.sort_by -%}
+      <input type="hidden" name="sort_by" value="{{ results.sort_by | escape }}">
+    {%- endif -%}
+
+    {%- assign has_vendor = false -%}
+    {%- assign has_type = false -%}
+    {%- for f in results.filters -%}
+      {%- if f.param_name contains 'vendor' -%}{%- assign has_vendor = true -%}{%- endif -%}
+      {%- if f.param_name contains 'product_type' -%}{%- assign has_type = true -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- unless has_vendor -%}
+      {%- assign vendor_list = '' -%}
+      {%- for p in results.products -%}
+        {%- if p.vendor != blank -%}
+          {%- unless vendor_list contains p.vendor -%}
+            {%- assign vendor_list = vendor_list | append: p.vendor | append: '||' -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign vendors = vendor_list | split: '||' | uniq | sort -%}
+      {%- if vendors.size > 0 -%}
+        <details class="simple-facets__group">
+          <summary class="simple-facets__summary">
+            <span>Vendor</span>
+            <svg class="simple-facets__chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="simple-facets__body">
+            <ul class="simple-facets__values list-unstyled" role="list">
+              {%- for v in vendors -%}
+                <li class="simple-facets__value">
+                  <label class="simple-facets__check">
+                    <input
+                      type="checkbox"
+                      name="filter.p.vendor"
+                      value="{{ v | escape }}"
+                    >
+                    <span class="simple-facets__check-label">{{ v | escape }}</span>
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </details>
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- unless has_type -%}
+      {%- assign type_list = '' -%}
+      {%- for p in results.products -%}
+        {%- if p.type != blank -%}
+          {%- unless type_list contains p.type -%}
+            {%- assign type_list = type_list | append: p.type | append: '||' -%}
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign types = type_list | split: '||' | uniq | sort -%}
+      {%- if types.size > 0 -%}
+        <details class="simple-facets__group">
+          <summary class="simple-facets__summary">
+            <span>Product type</span>
+            <svg class="simple-facets__chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="simple-facets__body">
+            <ul class="simple-facets__values list-unstyled" role="list">
+              {%- for t in types -%}
+                <li class="simple-facets__value">
+                  <label class="simple-facets__check">
+                    <input
+                      type="checkbox"
+                      name="filter.p.product_type"
+                      value="{{ t | escape }}"
+                    >
+                    <span class="simple-facets__check-label">{{ t | escape }}</span>
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </details>
+      {%- endif -%}
+    {%- endunless -%}
+
+    {%- for f in results.filters -%}
+      <details class="simple-facets__group" {% if f.active_values.size > 0 or forloop.first %}open{% endif %}>
+        <summary class="simple-facets__summary">
+          <span>{{ f.label | escape }}</span>
+          <svg class="simple-facets__chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 5L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+
+        <div class="simple-facets__body">
+          {%- case f.type -%}
+            {%- when 'price_range' -%}
+              {%- assign cur_min = f.min_value.value | default: 0 -%}
+              {%- assign cur_max = f.max_value.value | default: f.range_max -%}
+              {%- assign rmax = f.range_max -%}
+              {%- if rmax == 0 or rmax == blank -%}{%- assign rmax = 1 -%}{%- endif -%}
+              {%- assign lp = cur_min | times: 100 | divided_by: rmax -%}
+              {%- assign rp = cur_max | times: 100 | divided_by: rmax -%}
+              {%- assign rp = 100 | minus: rp -%}
+              <div class="simple-facets__price-slider"
+                   data-min="0"
+                   data-max="{{ f.range_max }}"
+                   data-cur-min="{{ cur_min }}"
+                   data-cur-max="{{ cur_max }}">
+                <div class="simple-facets__price-track">
+                  <div class="simple-facets__price-fill" style="left: {{ lp }}%; right: {{ rp }}%;"></div>
+                  <input type="range" min="0" max="{{ f.range_max }}" value="{{ cur_min }}" class="simple-facets__price-input simple-facets__price-input--min" aria-label="Minimum price" data-role="min">
+                  <input type="range" min="0" max="{{ f.range_max }}" value="{{ cur_max }}" class="simple-facets__price-input simple-facets__price-input--max" aria-label="Maximum price" data-role="max">
+                </div>
+                <div class="simple-facets__price-values">
+                  <span class="simple-facets__price-label simple-facets__price-label--min">{{ cur_min | money }}</span>
+                  <span class="simple-facets__price-label simple-facets__price-label--max">{{ cur_max | money }}</span>
+                </div>
+                <input type="hidden" name="filter.v.price.gte" value="{{ f.min_value.value }}" data-role="gte">
+                <input type="hidden" name="filter.v.price.lte" value="{{ f.max_value.value }}" data-role="lte">
+              </div>
+
+            {%- when 'list' -%}
+              <ul class="simple-facets__values list-unstyled" role="list">
+                {%- for v in f.values -%}
+                  <li class="simple-facets__value">
+                    <label class="simple-facets__check">
+                      <input
+                        type="checkbox"
+                        name="{{ v.param_name }}"
+                        value="{{ v.value | escape }}"
+                        {% if v.active %}checked{% endif %}
+                        {% if v.count == 0 and v.active == false %}disabled{% endif %}
+                      >
+                      <span class="simple-facets__check-label">{{ v.label | escape }}</span>
+                      <span class="simple-facets__check-count">({{ v.count }})</span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'boolean' -%}
+              <ul class="simple-facets__values list-unstyled" role="list">
+                {%- if f.true_value -%}
+                  <li>
+                    <label class="simple-facets__check">
+                      <input type="checkbox" name="{{ f.true_value.param_name }}" value="{{ f.true_value.value | escape }}" {% if f.true_value.active %}checked{% endif %}>
+                      <span class="simple-facets__check-label">{{ f.true_value.label | escape }}</span>
+                    </label>
+                  </li>
+                {%- endif -%}
+                {%- if f.false_value -%}
+                  <li>
+                    <label class="simple-facets__check">
+                      <input type="checkbox" name="{{ f.false_value.param_name }}" value="{{ f.false_value.value | escape }}" {% if f.false_value.active %}checked{% endif %}>
+                      <span class="simple-facets__check-label">{{ f.false_value.label | escape }}</span>
+                    </label>
+                  </li>
+                {%- endif -%}
+              </ul>
+          {%- endcase -%}
+        </div>
+      </details>
+    {%- endfor -%}
+
+    <button type="submit" class="simple-facets__apply">Apply filters</button>
+  </form>
+</aside>
