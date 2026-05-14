@@ -21,6 +21,7 @@
     {%- if show_badge and badge_label != blank -%}
       <span class="product-card__badge">{{ badge_label }}</span>
     {%- endif -%}
+    {%- render 'wishlist-toggle', product: product -%}
     {%- if product.featured_media -%}
       {{
         product.featured_media

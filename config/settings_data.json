@@ -368,9 +368,25 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "settings": {}
+      },
+      "header-mobile": {
+        "type": "header-mobile",
+        "settings": {
+          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
+          "store_name_image": "shopify://shop_images/logo-typewriters.png",
+          "menu": "main-menu",
+          "wishlist_url": ""
+        }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Dawn": {

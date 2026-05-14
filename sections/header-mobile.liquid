@@ -1,0 +1,240 @@
+{{ 'component-header-mobile.css' | asset_url | stylesheet_tag }}
+
+<header class="mobile-header hide-desktop" data-menu-open="false" role="banner">
+  {%- comment -%} ======== Header Bar ======== {%- endcomment -%}
+  <div class="mobile-header__bar">
+    <a href="{{ routes.root_url }}" class="mobile-header__identity" aria-label="{{ shop.name }} — home">
+      {%- if section.settings.logo != blank -%}
+        <img
+          class="mobile-header__logo"
+          src="{{ section.settings.logo | image_url: width: 200 }}"
+          alt="{{ shop.name }}"
+          loading="eager"
+        >
+      {%- else -%}
+        <span>{{ shop.name }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.store_name_image != blank -%}
+        <span class="mobile-header__divider" aria-hidden="true"></span>
+        <img
+          class="mobile-header__store-name-img"
+          src="{{ section.settings.store_name_image | image_url: width: 300 }}"
+          alt="{{ shop.name }}"
+          loading="eager"
+        >
+      {%- endif -%}
+    </a>
+
+    <button
+      class="mobile-header__toggle"
+      aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu-drawer"
+      data-mobile-menu-toggle
+    >
+      {%- comment -%} Hamburger icon {%- endcomment -%}
+      <svg class="mobile-header__icon-hamburger" width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 8.64551L21 8.64551" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M1 1H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 16.291L21 16.291" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      {%- comment -%} Close (X) icon {%- endcomment -%}
+      <svg
+        class="mobile-header__icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  {%- comment -%} ======== Slide-out Menu ======== {%- endcomment -%}
+  <div id="mobile-menu-drawer" class="mobile-menu" data-open="false" aria-hidden="true">
+    <div class="mobile-menu__inner">
+      {%- comment -%} Search + utility icons {%- endcomment -%}
+      <div class="mobile-menu__toolbar">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form">
+          <input
+            class="mobile-menu__search-input"
+            type="search"
+            name="q"
+            placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
+            aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+            autocomplete="off"
+          >
+          <button type="submit" class="mobile-menu__search-btn" aria-label="Search">
+            {% render 'icon-search' %}
+          </button>
+        </form>
+
+        <div class="mobile-menu__icons">
+          <a href="{{ routes.account_url }}" class="mobile-menu__icon-link" aria-label="Account">
+            {% render 'icon-account' %}
+          </a>
+          <a
+            href="{{ section.settings.wishlist_url | default: '/pages/wishlist' }}"
+            class="mobile-menu__icon-link"
+            aria-label="Wishlist"
+          >
+            {% render 'icon-heart' %}
+          </a>
+          <a href="{{ routes.cart_url }}" class="mobile-menu__icon-link" aria-label="Cart">
+            {% render 'icon-cart' %}
+          </a>
+        </div>
+      </div>
+
+      {%- comment -%} Navigation accordion {%- endcomment -%}
+      {%- assign nav_menu = linklists[section.settings.menu] -%}
+      {%- if nav_menu != blank -%}
+        <nav class="mobile-menu__nav" role="navigation" aria-label="Mobile navigation">
+          {%- for link in nav_menu.links -%}
+            {%- if link.links != blank -%}
+              <details class="mobile-menu__nav-item">
+                <summary class="mobile-menu__nav-summary">
+                  {{ link.title }}
+                  <svg
+                    class="mobile-menu__nav-chevron"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <div class="mobile-menu__dropdown">
+                  {%- for child in link.links -%}
+                    <a href="{{ child.url }}" class="mobile-menu__category-card">
+                      {%- if child.object.image != blank -%}
+                        <div class="mobile-menu__category-thumb">
+                          <img
+                            src="{{ child.object.image | image_url: width: 64 }}"
+                            alt="{{ child.title }}"
+                            loading="lazy"
+                          >
+                        </div>
+                      {%- elsif child.object.featured_image != blank -%}
+                        <div class="mobile-menu__category-thumb">
+                          <img
+                            src="{{ child.object.featured_image | image_url: width: 64 }}"
+                            alt="{{ child.title }}"
+                            loading="lazy"
+                          >
+                        </div>
+                      {%- else -%}
+                        <div class="mobile-menu__category-thumb"></div>
+                      {%- endif -%}
+                      <div class="mobile-menu__category-info">
+                        <p class="mobile-menu__category-title">{{ child.title }}</p>
+                        {%- if child.object.products_count -%}
+                          <p class="mobile-menu__category-count">
+                            {{ child.object.products_count }}
+                            {{ child.object.products_count | pluralize: 'product', 'products' }}
+                          </p>
+                        {%- endif -%}
+                      </div>
+                    </a>
+                  {%- endfor -%}
+                </div>
+              </details>
+
+            {%- else -%}
+              <a href="{{ link.url }}" class="mobile-menu__nav-link">
+                {{ link.title }}
+                <svg
+                  class="mobile-menu__nav-chevron"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+<script>
+  (function () {
+    const header = document.querySelector('.mobile-header');
+    if (!header) return;
+
+    const toggle = header.querySelector('[data-mobile-menu-toggle]');
+    const drawer = header.querySelector('#mobile-menu-drawer');
+
+    toggle.addEventListener('click', function () {
+      const isOpen = header.getAttribute('data-menu-open') === 'true';
+      const next = !isOpen;
+
+      header.setAttribute('data-menu-open', next);
+      drawer.setAttribute('data-open', next);
+      drawer.setAttribute('aria-hidden', !next);
+      toggle.setAttribute('aria-expanded', next);
+      document.body.classList.toggle('mobile-menu-open', next);
+    });
+
+    // Close menu when clicking a nav link (non-details)
+    drawer.querySelectorAll('.mobile-menu__nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        header.setAttribute('data-menu-open', 'false');
+        drawer.setAttribute('data-open', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('mobile-menu-open');
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Mobile Header",
+  "class": "section-header-mobile",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "image_picker",
+      "id": "store_name_image",
+      "label": "Store name image (beside logo)"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "url",
+      "id": "wishlist_url",
+      "label": "Wishlist page URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Header"
+    }
+  ]
+}
+{% endschema %}

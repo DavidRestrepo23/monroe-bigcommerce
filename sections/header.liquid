@@ -1,4 +1,5 @@
 {{ 'component-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
 <header class="site-header hide-mobile" role="banner">
 
@@ -42,19 +43,43 @@
 
     {%- comment -%} Search {%- endcomment -%}
     <div class="header__search-wrap">
-      <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
-        <input
-          class="header__search-input"
-          type="search"
-          name="q"
-          placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
-          aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
-          autocomplete="off"
+      <predictive-search class="header__search" data-loading-text="{{ 'general.search.loading' | t | default: 'Loading...' }}">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form" data-predictive-search-form>
+          <button type="submit" class="header__search-btn header__search-btn--icon" aria-label="{{ 'general.search.search' | t | default: 'Search' }}">
+            {% render 'icon-search' %}
+          </button>
+          <input
+            class="header__search-input"
+            type="search"
+            name="q"
+            placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
+            aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+            aria-controls="predictive-search-results"
+            aria-autocomplete="list"
+            role="combobox"
+            aria-expanded="false"
+            autocomplete="off"
+            spellcheck="false"
+            data-predictive-search-input
+          >
+          <button type="button" class="header__search-clear" aria-label="Reset" hidden data-predictive-search-clear>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+
+        <div
+          id="predictive-search-results"
+          class="header__search-results"
+          role="listbox"
+          aria-label="{{ 'general.search.search' | t | default: 'Search' }} results"
+          hidden
+          data-predictive-search-results
         >
-        <button type="submit" class="header__search-btn" aria-label="{{ 'general.search.search' | t | default: 'Search' }}">
-          {% render 'icon-search' %}
-        </button>
-      </form>
+          <div class="header__search-results-inner" data-predictive-search-content></div>
+        </div>
+      </predictive-search>
     </div>
 
     {%- comment -%} Right icons {%- endcomment -%}
@@ -100,15 +125,46 @@
                   <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </summary>
-              <ul class="header__dropdown" role="list">
+              <div class="header__mega-dropdown">
+                <p class="header__mega-category">{{ link.title }}</p>
+
+                {%- assign has_collections = false -%}
                 {%- for child in link.links -%}
-                  <li>
-                    <a href="{{ child.url }}" class="header__dropdown-link"{{ child.active | json | replace: 'true', ' aria-current="page"' }}>
-                      {{ child.title }}
-                    </a>
-                  </li>
+                  {%- if child.type == 'collection_link' and child.object.image != blank -%}
+                    {%- assign has_collections = true -%}
+                    {%- break -%}
+                  {%- endif -%}
                 {%- endfor -%}
-              </ul>
+
+                <div class="header__mega-grid{% if has_collections %} header__mega-grid--two-col{% endif %}">
+                  {%- for child in link.links -%}
+                    <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
+                      <div class="header__mega-card-inner">
+                        {%- if child.type == 'collection_link' and child.object.image != blank -%}
+                          <div class="header__mega-card-thumb">
+                            <img
+                              src="{{ child.object.image | image_url: width: 120 }}"
+                              alt=""
+                              width="60"
+                              height="56"
+                              loading="lazy"
+                            >
+                          </div>
+                        {%- endif -%}
+                        <div class="header__mega-card-text">
+                          <span class="header__mega-card-title">{{ child.title }}</span>
+                          {%- if child.type == 'collection_link' and child.object.description != blank -%}
+                            <span class="header__mega-card-desc">{{ child.object.description | strip_html | truncate: 40 }}</span>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                      <svg class="header__mega-card-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M7.5 4l5.5 6-5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  {%- endfor -%}
+                </div>
+              </div>
             </details>
           {%- else -%}
             <div class="header__nav-item">
@@ -118,9 +174,6 @@
                 {% if link.active %}aria-current="page"{% endif %}
               >
                 {{ link.title }}
-                <svg class="header__nav-caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
               </a>
             </div>
           {%- endif -%}
@@ -130,6 +183,7 @@
   {%- endif -%}
 
 </header>
+
 
 <script>
   // Close open <details> nav dropdowns when clicking outside

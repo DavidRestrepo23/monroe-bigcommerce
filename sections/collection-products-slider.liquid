@@ -97,6 +97,7 @@
                   {%- if show_badge and badge_label != blank -%}
                     <span class="collection-products-slider__badge">{{ badge_label }}</span>
                   {%- endif -%}
+                  {%- render 'wishlist-toggle', product: product -%}
                   {%- if product.featured_media -%}
                     {{
                       product.featured_media

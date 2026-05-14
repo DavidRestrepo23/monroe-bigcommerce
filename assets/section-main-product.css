@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
-  max-width: 1280px;
+  padding: 0 80px;
   margin: 0 auto;
 }
 
@@ -34,6 +34,7 @@
   gap: 12px;
   width: 100%;
   max-width: 700px;
+  overflow: hidden;
 }
 
 .product-gallery .swiper {
@@ -90,9 +91,15 @@
 }
 
 .product-gallery__slide img {
-  width: 100% !important;
-  height: auto !important;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  margin: auto;
+  position: absolute;
+  inset: 0;
 }
 
 .product-gallery__wishlist {
@@ -115,6 +122,12 @@
 .product-gallery__wishlist svg {
   width: 22px;
   height: 22px;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.product-gallery__wishlist.is-active svg path {
+  fill: #e53e3e;
+  stroke: #e53e3e;
 }
 
 .product-gallery__thumbs {
@@ -308,7 +321,7 @@
   font-size: 13px;
   color: #1a1a1a;
   border: 2px solid #D5D5D5;
-  
+
 }
 
 .variant-option__value:hover {
@@ -480,14 +493,14 @@
 .main-product__accordions {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
-  gap:16px;
+  margin-top: 40px;
+  gap: 16px;
 }
 
 .accordion {
- background-color: #F7FBFA;
- padding: 32px;
- border-radius: 8px;
+  background-color: #F7FBFA;
+  padding: 32px;
+  border-radius: 8px;
 }
 
 .accordion[open] .accordion__content {
@@ -537,4 +550,40 @@
 .accordion__content ul,
 .accordion__content ol {
   padding-left: 20px;
+}
+
+.hide--on-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .main-product__container {
+    display: block;
+    padding: 0 0;
+  }
+
+  .hide--on-desktop {
+    display: flex;
+  }
+
+  .hide--on-mobile {
+    display: none;
+  }
+
+  .main-product__info {
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .main-product__accordions {
+    margin-top: 24px;
+  }
+
+  .main-product__price {
+    margin: 0 0 32px;
+  }
+
+  .price-financing {
+    font-size: 14px;
+  }
 }

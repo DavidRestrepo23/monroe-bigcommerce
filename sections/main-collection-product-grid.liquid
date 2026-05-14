@@ -40,17 +40,25 @@
 
       <div class="collection-grid__controls">
         {%- if section.settings.show_search -%}
-          <form action="{{ routes.search_url }}" method="get" role="search" class="collection-grid__search">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="collection-grid__search" data-collection-grid-search>
             <input type="hidden" name="type" value="product">
+            <button type="submit" class="collection-grid__search-btn" aria-label="{{ 'general.search.search' | t }}">
+              {%- render 'icon-search' -%}
+            </button>
             <input
               type="search"
               name="q"
               placeholder="{{ 'general.search.placeholder' | t }}"
               aria-label="{{ 'general.search.search' | t }}"
               class="collection-grid__search-input"
+              data-collection-grid-search-input
+              autocomplete="off"
+              spellcheck="false"
             >
-            <button type="submit" class="collection-grid__search-btn" aria-label="{{ 'general.search.search' | t }}">
-              {%- render 'icon-search' -%}
+            <button type="button" class="collection-grid__search-clear" aria-label="Clear" hidden data-collection-grid-search-clear>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
             </button>
           </form>
         {%- endif -%}
@@ -109,6 +117,10 @@
             </li>
           {%- endfor -%}
         </ul>
+
+        <p class="collection-grid__filter-empty" hidden data-collection-grid-filter-empty>
+          No products match <strong data-collection-grid-filter-term></strong> on this page.
+        </p>
 
         {%- if paginate.pages > 1 -%}
           <nav class="collection-grid__pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
@@ -331,6 +343,82 @@
 
     window.addEventListener('popstate', function () {
       loadSection(window.location.pathname + window.location.search, { skipPushState: true, scroll: false });
+    });
+
+    /* ---------- Client-side grid filter ---------- */
+    var filterDebounce = null;
+
+    function applyGridFilter(term) {
+      var root = getRoot();
+      if (!root) return;
+      var items = root.querySelectorAll('.collection-grid__item');
+      var pagination = root.querySelector('.collection-grid__pagination');
+      var emptyMsg = root.querySelector('[data-collection-grid-filter-empty]');
+      var emptyTerm = root.querySelector('[data-collection-grid-filter-term]');
+      var visibleCount = 0;
+      var normalized = term.trim().toLowerCase();
+
+      items.forEach(function (item) {
+        if (!normalized) {
+          item.hidden = false;
+          visibleCount++;
+          return;
+        }
+        var titleEl = item.querySelector('.product-card__title');
+        var text = (titleEl ? titleEl.textContent : '').toLowerCase();
+        var match = text.indexOf(normalized) !== -1;
+        item.hidden = !match;
+        if (match) visibleCount++;
+      });
+
+      if (emptyMsg) {
+        if (normalized && visibleCount === 0) {
+          emptyMsg.hidden = false;
+          if (emptyTerm) emptyTerm.textContent = '"' + term + '"';
+        } else {
+          emptyMsg.hidden = true;
+        }
+      }
+
+      if (pagination) pagination.hidden = !!normalized;
+      root.classList.toggle('collection-grid--filtering', !!normalized);
+    }
+
+    document.addEventListener('input', function (e) {
+      if (!e.target.matches('[data-collection-grid-search-input]')) return;
+      var input = e.target;
+      var clearBtn = input.parentElement.querySelector('[data-collection-grid-search-clear]');
+      if (clearBtn) clearBtn.hidden = input.value.length === 0;
+      clearTimeout(filterDebounce);
+      filterDebounce = setTimeout(function () {
+        applyGridFilter(input.value);
+      }, 80);
+    });
+
+    document.addEventListener('click', function (e) {
+      var clearBtn = e.target.closest('[data-collection-grid-search-clear]');
+      if (!clearBtn) return;
+      var input = clearBtn.parentElement.querySelector('[data-collection-grid-search-input]');
+      if (input) {
+        input.value = '';
+        clearBtn.hidden = true;
+        applyGridFilter('');
+        input.focus();
+      }
+    });
+
+    document.addEventListener('submit', function (e) {
+      if (!e.target.matches('[data-collection-grid-search]')) return;
+      e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (!e.target.matches('[data-collection-grid-search-input]')) return;
+      e.target.value = '';
+      var clearBtn = e.target.parentElement.querySelector('[data-collection-grid-search-clear]');
+      if (clearBtn) clearBtn.hidden = true;
+      applyGridFilter('');
     });
   })();
 </script>

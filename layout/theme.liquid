@@ -28,6 +28,8 @@
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    {{ 'wishlist-toggle.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'wishlist-toggle.js' | asset_url }}" defer="defer"></script>
     <script>
       // cart-drawer.js requests sections=['cart-drawer','cart-icon-bubble'] but
       // there is no 'cart-icon-bubble' section file → response missing → forEach
@@ -49,6 +51,7 @@
   <body>
     {%- section 'top-ribbon' -%}
     {%- section 'header' -%}
+    {%- section 'header-mobile' -%}
 
     {{ content_for_layout }}
 

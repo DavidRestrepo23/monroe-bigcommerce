@@ -1,0 +1,328 @@
+/* ============================================================
+   Mobile Header & Slide-Out Menu
+   Only visible below 769px (controlled by .hide-desktop)
+   ============================================================ */
+
+/* ---------- Header bar ---------- */
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--color-white);
+}
+
+.mobile-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+/* Logo cluster */
+.mobile-header__identity {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mobile-header__logo {
+  width: 99px;
+  height: 26px;
+  display: block;
+  object-fit: contain;
+}
+
+.mobile-header__divider {
+  width: 1px;
+  height: 31px;
+  background: #ccc;
+  flex-shrink: 0;
+}
+
+.mobile-header__store-name-img {
+  width: 142px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Hamburger / Close toggle */
+.mobile-header__toggle {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-header__toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* X icon hidden by default, shown when menu open */
+.mobile-header__toggle .mobile-header__icon-close {
+  display: none;
+}
+.mobile-header[data-menu-open="true"] .mobile-header__toggle .mobile-header__icon-close {
+  display: block;
+}
+.mobile-header[data-menu-open="true"] .mobile-header__toggle .mobile-header__icon-hamburger {
+  display: none;
+}
+
+/* ---------- Menu drawer ---------- */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background: var(--color-white);
+  z-index: 499;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu[data-open="true"] {
+  transform: translateX(0);
+  top: 100px;
+}
+
+/* Spacer to push content below sticky header */
+.mobile-menu__spacer {
+  height: 55px;
+  flex-shrink: 0;
+}
+
+.mobile-menu__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px;
+}
+
+/* ---------- Search + icons row ---------- */
+.mobile-menu__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.mobile-menu__search-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  overflow: hidden;
+  padding: 12px 16px;
+}
+
+.mobile-menu__search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: 16px;
+  color: var(--color-text);
+  outline: none;
+  min-width: 0;
+}
+
+.mobile-menu__search-input::placeholder {
+  color: var(--color-text);
+  opacity: 0.48;
+}
+
+.mobile-menu__search-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.mobile-menu__search-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Utility icons */
+.mobile-menu__icons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.mobile-menu__icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.mobile-menu__icon-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- Nav accordion ---------- */
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Each nav item */
+.mobile-menu__nav-item {
+  list-style: none;
+  border-radius: 999px;
+  background: #F7FBFA;
+  overflow: hidden;
+  transition: border-radius 0.2s;
+}
+
+.mobile-menu__nav-item[open] {
+  border-radius: 17px;
+}
+
+.mobile-menu__nav-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  height: 54px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.mobile-menu__nav-summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu__nav-summary::marker {
+  display: none;
+  content: "";
+}
+
+.mobile-menu__nav-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.mobile-menu__nav-item[open] .mobile-menu__nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* Nav item that is a plain link (no children) */
+.mobile-menu__nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  height: 54px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: 999px;
+  background: #F7FBFA;
+  box-sizing: border-box;
+}
+
+/* ---------- Dropdown content (category cards) ---------- */
+.mobile-menu__dropdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px 19px;
+}
+
+/* Individual category card */
+.mobile-menu__category-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-white);
+  border-radius: 17px;
+  padding: 7px 6px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mobile-menu__category-thumb {
+  width: 60px;
+  height: 56px;
+  border-radius: 16px;
+  background: #E3E6E6;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.mobile-menu__category-thumb img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.mobile-menu__category-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mobile-menu__category-title {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 0.96;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.mobile-menu__category-count {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 0.96;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ---------- Body scroll lock ---------- */
+body.mobile-menu-open {
+  overflow: hidden;
+}
