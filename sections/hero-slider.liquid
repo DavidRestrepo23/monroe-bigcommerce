@@ -27,7 +27,7 @@
           <div
             class="swiper-slide hero-slider__slide{% if block.settings.main_image != blank %} hero-slider__slide--has-bg{% endif %}"
             {% if block.settings.main_image != blank %}
-              style="background-image: url('{{ block.settings.main_image | image_url: width: 1400 }}');background-repeat: no-repeat;background-position: center;background-size: cover;"
+              style="background-image: url('{{ block.settings.main_image | image_url: width: 1920 }}');background-repeat: no-repeat;background-position: center;background-size: cover;"
             {% endif %}
             {{ block.shopify_attributes }}
           >
