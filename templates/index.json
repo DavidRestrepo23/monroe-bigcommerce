@@ -19,7 +19,7 @@
             "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
             "button_text": "Shop Our Calculators",
             "button_link": "",
-            "main_image": "shopify://shop_images/img-hero-1.png",
+            "main_image": "shopify://shop_images/hero-image-1920px.png",
             "featured_product": "monroe-8130x",
             "rating": 5
           }
@@ -31,7 +31,6 @@
             "subtext": "Compare features, print speeds, and workloads",
             "button_text": "Compare Models",
             "button_link": "#",
-            "main_image": "shopify://shop_images/img-hero-2.png",
             "featured_product": "copy-of-monroe-8130x-12-digit-basic-function-heavy-duty-accounting-printing-calculator",
             "rating": 5
           }
@@ -43,7 +42,6 @@
             "subtext": "From typewriters and toner to shredders, paper handling equipment, and everyday business essentials.",
             "button_text": "Shop Our Partners Brands",
             "button_link": "#",
-            "main_image": "shopify://shop_images/img-hero-3.png",
             "featured_product": "brother-brougham-10-printwheel-by-rarotype",
             "rating": 5
           }
@@ -55,7 +53,6 @@
             "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
             "button_text": "Shop Our Calculators",
             "button_link": "",
-            "main_image": "shopify://shop_images/img-hero-1.png",
             "featured_product": "monroe-8130x",
             "rating": 5
           }
@@ -86,7 +83,6 @@
         "brand_Yx7tQG": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_2_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -94,7 +90,6 @@
         "brand_RmNP9m": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_3_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -102,7 +97,6 @@
         "brand_KBJK8j": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_4_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -110,7 +104,6 @@
         "brand_Tj7iUc": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_6_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -118,7 +111,6 @@
         "brand_Ec4hKi": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -126,7 +118,6 @@
         "brand_MREBJe": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_8_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -134,7 +125,6 @@
         "brand_MF4QW9": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -142,7 +132,6 @@
         "brand_zkiJnB": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_10_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -150,7 +139,6 @@
         "brand_ytceRJ": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_11_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -210,7 +198,6 @@
         "category_nLWVg6": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171276606.png",
             "title": "Printing Calculators",
             "link": ""
           }
@@ -218,7 +205,6 @@
         "category_KJhVQC": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171276607.png",
             "title": "Calculator Tape Rolls",
             "link": ""
           }
@@ -226,7 +212,6 @@
         "category_jBPDhY": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/freepik__replace-the-product-from-img1-with-this-typewriter__70875_1.png",
             "title": "Office Equipment",
             "link": ""
           }
@@ -234,7 +219,6 @@
         "category_b7BER4": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/image_26.png",
             "title": "Calculator Ink Ribbons",
             "link": ""
           }
@@ -267,37 +251,29 @@
         "item_q93bJB": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Calculator.svg",
             "title": "Accounting Offices",
-            "description": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
-            "image": "shopify://shop_images/businessman-using-calculator-calculate-numbers-company-s-financial-documents-he-is-analyzing-historical-financial-data-plan-how-grow-company-financial-concept_1.png"
+            "description": "Trusted by professionals since 1912 for accuracy, durability, and reliability."
           }
         },
         "item_tPHGLV": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/CashRegister.svg",
             "title": "Retail and POS",
-            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support.",
-            "image": "shopify://shop_images/Frame_1171276554.png"
+            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support."
           }
         },
         "item_3dQ9Ak": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/GraduationCap.svg",
             "title": "Government & Education",
-            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces",
-            "image": "shopify://shop_images/Frame_1171276554_2.png"
+            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces"
           }
         },
         "item_4KA8b7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Briefcase.svg",
             "title": "Small Business Owner",
-            "description": "Small business owners need versatile products that support multiple roles and daily operations.",
-            "image": "shopify://shop_images/Frame_1171276554.png"
+            "description": "Small business owners need versatile products that support multiple roles and daily operations."
           }
         }
       },
@@ -313,7 +289,6 @@
         "heading_size": 64,
         "button_label": "View All Solutions",
         "button_url": "#",
-        "testimonial_avatar": "shopify://shop_images/Ellipse_1.svg",
         "testimonial_quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
         "testimonial_author": "NICOLA T.",
         "background_color": "#ffffff",
@@ -357,26 +332,19 @@
       "blocks": {
         "avatar_ddTbgj": {
           "type": "avatar",
-          "settings": {
-            "image": "shopify://shop_images/Ellipse_1.png"
-          }
+          "settings": {}
         },
         "avatar_MWWynr": {
           "type": "avatar",
-          "settings": {
-            "image": "shopify://shop_images/Ellipse_2.png"
-          }
+          "settings": {}
         },
         "avatar_X4tWnk": {
           "type": "avatar",
-          "settings": {
-            "image": "shopify://shop_images/Ellipse_3.png"
-          }
+          "settings": {}
         },
         "floating_key_wzTmG8": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6.png",
             "label": "E",
             "size": 60,
             "pos_top": 35,
@@ -389,7 +357,6 @@
         "floating_key_9in7Hm": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6_1.png",
             "label": "A",
             "size": 60,
             "pos_top": 25,
@@ -402,7 +369,6 @@
         "floating_key_afqcqK": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_2.png",
             "label": "S",
             "size": 60,
             "pos_top": 60,
@@ -415,7 +381,6 @@
         "floating_key_Wj7AGj": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_6.png",
             "label": "O",
             "size": 60,
             "pos_top": 50,
@@ -428,7 +393,6 @@
         "floating_key_KP9k7a": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_4.png",
             "label": "L",
             "size": 60,
             "pos_top": 70,
@@ -441,7 +405,6 @@
         "floating_key_YY8a3L": {
           "type": "floating_key",
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_7.png",
             "label": "2",
             "size": 60,
             "pos_top": 45,
@@ -470,8 +433,6 @@
         "users_text": "+100K Users Active",
         "cta_url": "",
         "cta_label": "Learn more",
-        "product_image": "shopify://shop_images/img-banner-with-shadow.png",
-        "product_image_mobile": "shopify://shop_images/Group_2362.png",
         "product_height": 540,
         "min_height": 620,
         "padding_top": 40,
@@ -497,9 +458,7 @@
         },
         "image_yzrcG3": {
           "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
-          }
+          "settings": {}
         },
         "testimonial_mRbxYJ": {
           "type": "testimonial",
@@ -511,9 +470,7 @@
         },
         "image_ReDykW": {
           "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
-          }
+          "settings": {}
         }
       },
       "block_order": [
