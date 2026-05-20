@@ -49,6 +49,7 @@
         "team_1": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_37.png",
             "name": "Joseph Spurka",
             "role": "Vice President of Operations",
             "linkedin_url": ""
@@ -57,6 +58,7 @@
         "team_2": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_38.png",
             "name": "Jason Marsdale",
             "role": "Director of Strategy",
             "linkedin_url": ""
@@ -65,6 +67,7 @@
         "team_3": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_39.png",
             "name": "Jim Ruths",
             "role": "Warehouse Factory Service Manager",
             "linkedin_url": ""
@@ -73,6 +76,7 @@
         "team_4": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_40.png",
             "name": "Jonathon Gregull",
             "role": "Marketing Manager",
             "linkedin_url": ""
@@ -81,6 +85,7 @@
         "team_5": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_41.png",
             "name": "Nicole Rosenblatt",
             "role": "Administrative Assistant",
             "linkedin_url": ""
@@ -89,6 +94,7 @@
         "team_6": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_42.png",
             "name": "Brandon Leip",
             "role": "Digital Marketer",
             "linkedin_url": ""
@@ -97,6 +103,7 @@
         "team_7": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_43.png",
             "name": "Maria Haney",
             "role": "Customer Service Representative",
             "linkedin_url": ""
@@ -105,6 +112,7 @@
         "team_8": {
           "type": "team_member",
           "settings": {
+            "image": "shopify://shop_images/image_44.png",
             "name": "Gaby Larco",
             "role": "Customer Service Representative",
             "linkedin_url": ""
