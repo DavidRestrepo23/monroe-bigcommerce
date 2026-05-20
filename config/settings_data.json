@@ -319,7 +319,7 @@
             "type": "link_column",
             "settings": {
               "heading": "Popular Brands",
-              "menu": "",
+              "menu": "popular-brands",
               "links_text": ""
             }
           }
