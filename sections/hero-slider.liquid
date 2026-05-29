@@ -9,6 +9,24 @@
     --hero-heading: {{ section.settings.heading_color | default: '#000000' }};
     --hero-subtext: {{ section.settings.subtext_color | default: '#000000' }};
     --hero-radius: {{ section.settings.border_radius | default: 24 }}px;
+    --button-radius: {{ section.settings.button_border_radius | default: 8 }}px;
+    {%- if section.settings.product_card_variant == '2' -%}
+      --hero-card-bg: rgba(255, 255, 255, 0.15);
+      --hero-card-text: #ffffff;
+      --hero-card-star-empty: rgba(255, 255, 255, 0.4);
+      --hero-card-star-filled: #F8E623;
+      --hero-card-arrow-color: #ffffff;
+      --hero-card-arrow-opacity: 1;
+      --hero-card-shadow: none;
+    {%- else -%}
+      --hero-card-bg: #ffffff;
+      --hero-card-text: inherit;
+      --hero-card-star-empty: #d8d8d8;
+      --hero-card-star-filled: #C0B000;
+      --hero-card-arrow-color: currentColor;
+      --hero-card-arrow-opacity: 0.5;
+      --hero-card-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    {%- endif -%}
   }
 {%- endstyle -%}
 
@@ -223,6 +241,26 @@
       "unit": "px",
       "label": "Corner radius",
       "default": 24
+    },
+    {
+      "type": "select",
+      "id": "product_card_variant",
+      "label": "Product card style",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "Default (white card)" },
+        { "value": "2", "label": "Glassmorphism (translucent)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
     }
   ],
   "blocks": [

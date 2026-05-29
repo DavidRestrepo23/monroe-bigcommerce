@@ -47,12 +47,25 @@
             "featured_product": "brother-brougham-10-printwheel-by-rarotype",
             "rating": 5
           }
+        },
+        "slide_RNJy6g": {
+          "type": "slide",
+          "settings": {
+            "heading": "Industry-Leading Printing Calculators and Business Supplies",
+            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
+            "button_text": "Shop Our Calculators",
+            "button_link": "",
+            "main_image": "shopify://shop_images/hero-image-1920px.png",
+            "featured_product": "monroe-8130x",
+            "rating": 5
+          }
         }
       },
       "block_order": [
         "slide_dVPqr6",
         "slide_mmUFYz",
-        "slide_CcjC8d"
+        "slide_CcjC8d",
+        "slide_RNJy6g"
       ],
       "settings": {
         "autoplay": true,
@@ -61,10 +74,12 @@
         "show_arrows": false,
         "background_color": "#ededed",
         "text_color": "#0a0a0a",
-        "accent_color": "#1f6f75",
+        "accent_color": "#d24742",
         "heading_color": "#ffffff",
         "subtext_color": "#ffffff",
-        "border_radius": 24
+        "border_radius": 32,
+        "product_card_variant": "2",
+        "button_border_radius": 12
       }
     },
     "brands_slider_xNRMmQ": {
@@ -89,7 +104,7 @@
         "brand_KBJK8j": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_8_1.png",
+            "logo": "shopify://shop_images/image_4_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -97,7 +112,7 @@
         "brand_Tj7iUc": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_10_1.png",
+            "logo": "shopify://shop_images/image_6_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -105,7 +120,7 @@
         "brand_Ec4hKi": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
+            "logo": "shopify://shop_images/image_7_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -113,7 +128,7 @@
         "brand_MREBJe": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1.png",
+            "logo": "shopify://shop_images/image_8_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -121,7 +136,7 @@
         "brand_MF4QW9": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_4_1.png",
+            "logo": "shopify://shop_images/image_9_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -129,7 +144,7 @@
         "brand_zkiJnB": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_11_1.png",
+            "logo": "shopify://shop_images/image_10_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -137,7 +152,7 @@
         "brand_ytceRJ": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_6_1.png",
+            "logo": "shopify://shop_images/image_11_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -184,7 +199,8 @@
         "background_color": "#ffffff",
         "card_background": "#f1f1f1",
         "text_color": "#0a0a0a",
-        "accent_color": "#1f6f75",
+        "accent_color": "#d24742",
+        "cart_btn_background": "#ffffff",
         "padding_top": 64,
         "padding_top_mobile": 32,
         "padding_bottom": 48,
@@ -244,7 +260,7 @@
         "padding_vertical_mobile": 28,
         "padding_horizontal": 0,
         "padding_horizontal_mobile": 16,
-        "accent_color": "#1f6f75",
+        "accent_color": "#d24742",
         "text_color": "#ffffff"
       }
     },
@@ -300,12 +316,13 @@
         "heading_size": 64,
         "button_label": "View All Solutions",
         "button_url": "#",
+        "testimonial_avatar": "shopify://shop_images/Ellipse_1.svg",
         "testimonial_quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
         "testimonial_author": "NICOLA T.",
         "background_color": "#ffffff",
         "text_color": "#1c1c1c",
         "icon_background": "#e6f3f4",
-        "button_color": "#007681",
+        "button_color": "#d24742",
         "stars_color": "#0a0a0a",
         "padding_top": 120,
         "padding_top_mobile": 32,
@@ -319,7 +336,7 @@
       "settings": {
         "heading": "Monroe Ink Ribbons & Paper Tape Rolls",
         "subheading": "Our paper tape rolls and ink ribbons are engineered to work as a system, delivering the darkest print and extending the life of your calculator.",
-        "collection": "frontpage",
+        "collection": "ink-ribbons-paper-tape-rolls",
         "product_limit": 12,
         "cart_label": "Cart",
         "badge_source": "first_n",
@@ -331,7 +348,8 @@
         "background_color": "#ffffff",
         "card_background": "#f1f1f1",
         "text_color": "#0a0a0a",
-        "accent_color": "#1f6f75",
+        "accent_color": "#d24742",
+        "cart_btn_background": "#ffffff",
         "padding_top": 64,
         "padding_top_mobile": 32,
         "padding_bottom": 60,
@@ -341,6 +359,19 @@
     "hero_banner_fjiQJQ": {
       "type": "hero-banner",
       "blocks": {
+        "floating_label_TpeVRU": {
+          "type": "floating_label",
+          "settings": {
+            "richtext": "<p>Find typewriters, ribbons, printwheels, and parts - <br/>new or refurbished. Everything you need to keep <br/>your machine running, fast and easy.</p>",
+            "text": "Shop Our Products",
+            "url": "shopify://collections",
+            "text_color": "#ffffff",
+            "font_size": 16,
+            "font_weight": "400",
+            "pos_top": 64,
+            "pos_left": 72
+          }
+        },
         "avatar_ddTbgj": {
           "type": "avatar",
           "settings": {
@@ -361,6 +392,7 @@
         },
         "floating_key_wzTmG8": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6.png",
             "label": "E",
@@ -374,6 +406,7 @@
         },
         "floating_key_9in7Hm": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6_1.png",
             "label": "A",
@@ -387,6 +420,7 @@
         },
         "floating_key_afqcqK": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_2.png",
             "label": "S",
@@ -400,6 +434,7 @@
         },
         "floating_key_Wj7AGj": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_6.png",
             "label": "O",
@@ -413,6 +448,7 @@
         },
         "floating_key_KP9k7a": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_4.png",
             "label": "L",
@@ -426,6 +462,7 @@
         },
         "floating_key_YY8a3L": {
           "type": "floating_key",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_7.png",
             "label": "2",
@@ -439,6 +476,7 @@
         }
       },
       "block_order": [
+        "floating_label_TpeVRU",
         "avatar_ddTbgj",
         "avatar_MWWynr",
         "avatar_X4tWnk",
@@ -451,21 +489,21 @@
       ],
       "name": "Hero Banner",
       "settings": {
-        "heading": "Industry-Leading Business Supplies",
+        "heading": "Everything for Your Typewriter, in One Place",
         "heading_size": 74,
         "users_text": "+100K Users Active",
         "cta_url": "",
         "cta_label": "Learn more",
-        "product_image": "shopify://shop_images/img-banner-with-shadow.png",
-        "product_image_mobile": "shopify://shop_images/Group_2362.png",
-        "product_height": 540,
-        "min_height": 620,
+        "background_image": "shopify://shop_images/Group_2363.png",
+        "background_size": "contain",
+        "product_height": 700,
+        "min_height": 600,
         "padding_top": 40,
         "padding_top_mobile": 0,
         "margin_vertical": 16,
         "margin_horizontal": 16,
         "border_radius": 32,
-        "background_color": "#111111",
+        "background_color": "#ffffff",
         "heading_color": "#ffffff",
         "stars_color": "#ffffff"
       }
@@ -484,7 +522,7 @@
         "image_yzrcG3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1_1.png"
+            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
           }
         },
         "testimonial_mRbxYJ": {
@@ -498,7 +536,7 @@
         "image_ReDykW": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1_1.png"
+            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
           }
         }
       },
@@ -518,7 +556,7 @@
         "background_color": "#ffffff",
         "card_background": "#e6eded",
         "text_color": "#0a0a0a",
-        "accent_color": "#1f6f75",
+        "accent_color": "#d24742",
         "card_radius": 16,
         "padding_top": 160,
         "padding_top_mobile": 32,
@@ -547,7 +585,7 @@
         "background_color": "#ffffff",
         "card_background": "#ffffff",
         "text_color": "#1c1c1c",
-        "button_color": "#007681"
+        "button_color": "#d24742"
       }
     }
   },

@@ -2,7 +2,7 @@
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
-  color: var(--ft-text);
+  color: var(--ft-text) !important;
 }
 
 .visually-hidden {
@@ -135,17 +135,17 @@
   margin: 0;
   font-weight: 700;
   font-size: 0.95rem;
+  color: var(--ft-text) !important;
 }
 
-.site-footer__description {
-  color: var(--ft-muted);
+.site-footer__description p {
+  color: var(--ft-text) !important;
   font-size: 1rem;
   line-height: 1.6;
 }
 
 .site-footer__description p {
   margin: 0;
-  opacity: 0.6;
 }
 
 .site-footer__contact {
@@ -168,14 +168,19 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: var(--ft-text);
+  color: var(--ft-text) !important;
   flex-shrink: 0;
 }
 
-.site-footer__contact-text {
+.site-footer__contact-icon svg {
+  fill: var(--ft-text);
+}
+
+.site-footer__contact-text p {
   font-size: 1rem;
   line-height: 1.5;
   font-family: var(--font-family);
+  color: var(--ft-text) !important;
 }
 
 .site-footer__contact-label {
@@ -203,6 +208,7 @@
   margin: 0 0 16px;
   font-size: 1rem;
   font-weight: 700;
+  color: var(--ft-text) !important;
 }
 
 .site-footer__links {
@@ -215,7 +221,7 @@
 }
 
 .site-footer__links a {
-  color: var(--ft-muted);
+  color: var(--ft-text);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.15s ease;
@@ -224,7 +230,7 @@
 }
 
 .site-footer__links a:hover {
-  color: var(--ft-text);
+  color: var(--ft-text) !important;
 }
 
 /* Media column */
@@ -250,7 +256,7 @@
 .site-footer__social a {
   width: 48px;
   height: 48px;
-  background: linear-gradient(90deg, #007681 0%, #71BAC0 100%);
+  background: var(--ft-social-bg, linear-gradient(90deg, #007681 0%, #71BAC0 100%));
   color: #fff;
   border-radius: 50%;
   display: inline-flex;
@@ -317,9 +323,17 @@
 }
 
 .site-footer__legal a {
-  color: var(--ft-text);
+  color: var(--ft-text) !important;
   font-size: 1rem;
   font-family: var(--font-family);
+}
+
+
+@media screen and (min-width: 800px) and (max-width: 1099px) {
+  .site-footer__grid {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* Responsive */

@@ -6,5 +6,69 @@
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "font_family",
+        "label": "Primary font (body)",
+        "default": "Roboto Condensed, Roboto, sans-serif",
+        "options": [
+          { "value": "Roboto Condensed, Roboto, sans-serif", "label": "Roboto Condensed" },
+          { "value": "Roboto, sans-serif", "label": "Roboto" },
+          { "value": "Archivo, sans-serif", "label": "Archivo" },
+          { "value": "Prata, serif", "label": "Prata" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_family_h1",
+        "label": "H1 font",
+        "default": "Roboto Condensed, Roboto, sans-serif",
+        "options": [
+          { "value": "Roboto Condensed, Roboto, sans-serif", "label": "Roboto Condensed" },
+          { "value": "Roboto, sans-serif", "label": "Roboto" },
+          { "value": "Archivo, sans-serif", "label": "Archivo" },
+          { "value": "Prata, serif", "label": "Prata" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_family_h2",
+        "label": "H2 font",
+        "default": "Roboto Condensed, Roboto, sans-serif",
+        "options": [
+          { "value": "Roboto Condensed, Roboto, sans-serif", "label": "Roboto Condensed" },
+          { "value": "Roboto, sans-serif", "label": "Roboto" },
+          { "value": "Archivo, sans-serif", "label": "Archivo" },
+          { "value": "Prata, serif", "label": "Prata" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_family_h3",
+        "label": "H3 font",
+        "default": "Roboto Condensed, Roboto, sans-serif",
+        "options": [
+          { "value": "Roboto Condensed, Roboto, sans-serif", "label": "Roboto Condensed" },
+          { "value": "Roboto, sans-serif", "label": "Roboto" },
+          { "value": "Archivo, sans-serif", "label": "Archivo" },
+          { "value": "Prata, serif", "label": "Prata" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#007681"
+      }
+    ]
   }
 ]

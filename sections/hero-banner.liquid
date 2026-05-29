@@ -10,6 +10,7 @@
     --hb-heading-color: {{ section.settings.heading_color }};
     --hb-stars: {{ section.settings.stars_color }};
     --hb-product-height: {{ section.settings.product_height }}px;
+    --hb-bg-size: {{ section.settings.background_size }};
     {%- if section.settings.background_image != blank -%}
       --hb-bg-image: url({{ section.settings.background_image | image_url: width: 1800 }});
     {%- else -%}
@@ -27,6 +28,22 @@
         transform: rotate({{ block.settings.rotation }}deg);
         animation-duration: {{ block.settings.float_duration }}s;
         animation-delay: {{ block.settings.float_delay }}s;
+      }
+    {%- endif -%}
+    {%- if block.type == 'floating_label' -%}
+      #HeroBanner-{{ section.id }} .hero-banner__label--{{ forloop.index }} {
+        top: {{ block.settings.pos_top }}%;
+        left: {{ block.settings.pos_left }}%;
+        color: {{ block.settings.text_color | default: '#ffffff' }};
+        font-size: {{ block.settings.font_size | default: 16 }}px;
+        font-weight: {{ block.settings.font_weight }};
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      #HeroBanner-{{ section.id }} .hero-banner__label-richtext p {
+        color: {{ block.settings.text_color | default: '#ffffff' }};
       }
     {%- endif -%}
   {%- endfor -%}
@@ -88,7 +105,7 @@
 
   {%- comment -%} Heading {%- endcomment -%}
   {%- if section.settings.heading != blank -%}
-    <h1 class="hero-banner__heading">{{ section.settings.heading }}</h1>
+    <h2 class="hero-banner__heading">{{ section.settings.heading }}</h2>
   {%- endif -%}
 
   {%- comment -%} Product image {%- endcomment -%}
@@ -106,6 +123,32 @@
           class: 'hero-banner__product-img hero-banner__product-img--mobile'
         -}}
       {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Floating labels {%- endcomment -%}
+  {%- assign label_blocks = section.blocks | where: 'type', 'floating_label' -%}
+  {%- if label_blocks.size > 0 -%}
+    <div class="hero-banner__labels">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'floating_label' and block.settings.text != blank -%}
+          {%- if block.settings.url != blank -%}
+            <a href="{{ block.settings.url }}" class="hero-banner__label hero-banner__label--{{ forloop.index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.richtext != blank -%}
+                <div class="hero-banner__label-richtext">{{ block.settings.richtext }}</div>
+              {%- endif -%}
+              <span class="button-primary">{{ block.settings.text }}</span>
+            </a>
+          {%- else -%}
+            <span class="hero-banner__label hero-banner__label--{{ forloop.index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.richtext != blank -%}
+                <div class="hero-banner__label-richtext">{{ block.settings.richtext }}</div>
+              {%- endif -%}
+              <span class="button-primary">{{ block.settings.text }}</span>
+            </span>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   {%- endif -%}
 
@@ -195,6 +238,16 @@
       "id": "background_image",
       "label": "Background image",
       "info": "Overlays background color when set"
+    },
+    {
+      "type": "select",
+      "id": "background_size",
+      "label": "Background image size",
+      "default": "cover",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ]
     },
     {
       "type": "range",
@@ -303,6 +356,77 @@
           "type": "image_picker",
           "id": "image",
           "label": "Avatar image"
+        }
+      ]
+    },
+    {
+      "type": "floating_label",
+      "name": "Floating Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "richtext",
+          "label": "Rich text",
+          "info": "Shown below button text if set"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 64,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size",
+          "default": 16
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "default": "400",
+          "options": [
+            { "value": "300", "label": "Light" },
+            { "value": "400", "label": "Regular" },
+            { "value": "600", "label": "Semibold" },
+            { "value": "700", "label": "Bold" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "pos_top",
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "default": 50,
+          "unit": "%",
+          "label": "Position top"
+        },
+        {
+          "type": "range",
+          "id": "pos_left",
+          "min": 0,
+          "max": 95,
+          "step": 1,
+          "default": 10,
+          "unit": "%",
+          "label": "Position left"
         }
       ]
     },

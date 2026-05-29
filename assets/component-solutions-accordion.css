@@ -199,7 +199,6 @@
 }
 
 .solutions__heading {
-  font-family: var(--font-family);
   font-size: var(--sol-heading-size);
   font-weight: 500;
   color: var(--sol-text);

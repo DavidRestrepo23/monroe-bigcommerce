@@ -9,11 +9,16 @@
  */
 {
   "current": {
+    "font_family": "Archivo, sans-serif",
+    "font_family_h1": "Prata, serif",
+    "font_family_h2": "Prata, serif",
+    "font_family_h3": "Prata, serif",
+    "color_primary": "#d24742",
+    "type_body_font": "roboto_condensed_n4",
     "logo": "shopify://shop_images/monroe_logo.png",
     "logo_width": 120,
     "type_header_font": "roboto_condensed_n5",
     "heading_scale": 100,
-    "type_body_font": "roboto_condensed_n4",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -222,7 +227,8 @@
           "slide_JptPU7"
         ],
         "settings": {
-          "autoplay_speed": 4,
+          "background_color": "#d24742",
+          "autoplay_speed": 10,
           "show_close_button": true
         }
       },
@@ -344,7 +350,7 @@
           "newsletter_heading": "Subscribe to Our Newsletter",
           "newsletter_placeholder": "Enter your email",
           "newsletter_button": "Subscribe",
-          "newsletter_bg": "#0a0a0a",
+          "newsletter_bg": "#d24742",
           "newsletter_text": "#ffffff",
           "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
           "tagline": "Inventor of the commercial printing calculator in 1912",
@@ -353,11 +359,12 @@
           "phone_label": "Call us at",
           "phone": "(267) 580-2600",
           "copyright": "Monroe Systems for Business",
-          "legal_menu": "footer-menu",
-          "background_color": "#f7fbfa",
-          "text_color": "#0a0a0a",
-          "muted_color": "#5a6566",
-          "accent_color": "#1f6f75",
+          "legal_menu": "footer",
+          "background_color": "#000000",
+          "text_color": "#ffffff",
+          "muted_color": "#ffffff",
+          "accent_color": "#d24742",
+          "social_bg": "#d24742",
           "radius": 24,
           "padding_top": 100,
           "padding_top_mobile": 0,
@@ -372,6 +379,8 @@
       "header-mobile": {
         "type": "header-mobile",
         "settings": {
+          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
+          "store_name_image": "shopify://shop_images/logo-typewriters.png",
           "menu": "main-menu",
           "wishlist_url": ""
         }

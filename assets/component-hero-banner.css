@@ -16,8 +16,9 @@
   inset: 0;
   z-index: 0;
   background-image: var(--hb-bg-image);
-  background-size: cover;
+  background-size: var(--hb-bg-size, cover);
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* ── Top bar ── */
@@ -107,7 +108,6 @@
 
 /* ── Heading ── */
 .hero-banner__heading {
-  font-family: var(--font-family);
   font-size: var(--hb-heading-size);
   font-weight: 500;
   color: var(--hb-heading-color);
@@ -171,6 +171,32 @@
 @keyframes key-float {
   0%   { transform: translateY(0px) rotate(var(--rot, 0deg)); }
   100% { transform: translateY(-14px) rotate(var(--rot, 0deg)); }
+}
+
+/* ── Floating labels ── */
+.hero-banner__labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-banner__label {
+  position: absolute;
+  pointer-events: auto;
+  text-decoration: none;
+  font-family: var(--font-family);
+  line-height: 1.2;
+}
+
+.hero-banner__label-richtext p {
+  font-size: 0.9em;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.hero-banner__label-richtext p {
+  margin: 0;
 }
 
 @media (max-width: 768px) {

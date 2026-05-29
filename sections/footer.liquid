@@ -1,13 +1,25 @@
 {{ 'component-footer.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign bg_color = section.settings.background_color | default: '#F4F6F6'
+  assign bg_brightness = section.settings.background_color | color_brightness
+  if bg_brightness < 128
+    assign auto_text = '#FFFFFF'
+    assign auto_muted = 'rgba(255,255,255,0.6)'
+  else
+    assign auto_text = section.settings.text_color | default: '#0A0A0A'
+    assign auto_muted = section.settings.muted_color | default: '#5A6566'
+  endif
+-%}
 {%- style -%}
   #SiteFooter-{{ section.id }} {
-    --ft-bg: {{ section.settings.background_color | default: '#F4F6F6' }};
-    --ft-text: {{ section.settings.text_color | default: '#0A0A0A' }};
-    --ft-muted: {{ section.settings.muted_color | default: '#5A6566' }};
+    --ft-bg: {{ bg_color }};
+    --ft-text: {{ auto_text }};
+    --ft-muted: {{ auto_muted }};
     --ft-accent: {{ section.settings.accent_color | default: '#1F6F75' }};
     --ft-newsletter-bg: {{ section.settings.newsletter_bg | default: '#0A0A0A' }};
     --ft-newsletter-text: {{ section.settings.newsletter_text | default: '#FFFFFF' }};
+    --ft-social-bg: {{ section.settings.social_bg | default: '#FFFFFF' }};
     --ft-radius: {{ section.settings.radius | default: 32 }}px;
     --ft-pad-top: {{ section.settings.padding_top | default: 64 }}px;
     --ft-pad-bottom: {{ section.settings.padding_bottom | default: 64 }}px;
@@ -347,6 +359,12 @@
       "id": "accent_color",
       "label": "Accent (icons)",
       "default": "#1F6F75"
+    },
+    {
+      "type": "color",
+      "id": "social_bg",
+      "label": "Social icons background",
+      "default": "#FFFFFF"
     },
     {
       "type": "range",

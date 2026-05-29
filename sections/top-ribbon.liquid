@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ 'component-top-ribbon.css' | asset_url }}">
 
 {%- if section.blocks.size > 0 -%}
-  <div class="top-ribbon" id="top-ribbon-{{ section.id }}">
+  <div class="top-ribbon" id="top-ribbon-{{ section.id }}" {% if section.settings.background_color != blank %}style="background: {{ section.settings.background_color }};"{% endif %}>
     <div class="swiper top-ribbon__swiper" id="top-ribbon-swiper-{{ section.id }}">
       <div class="swiper-wrapper">
         {%- for block in section.blocks -%}
@@ -70,6 +70,12 @@
   "class": "top-ribbon-section",
   "limit": 1,
   "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#007681"
+    },
     {
       "type": "range",
       "id": "autoplay_speed",

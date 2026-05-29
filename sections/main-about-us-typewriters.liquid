@@ -1,0 +1,297 @@
+{{ 'component-about-us-typewriters.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #AboutUsTypewriters-{{ section.id }} {
+    --aut-accent: {{ section.settings.accent_color | default: '#d24742' }};
+    --aut-text: {{ section.settings.text_color | default: '#1C1C1C' }};
+    --aut-pad-v: {{ section.settings.padding_vertical | default: 80 }}px;
+    --aut-pad-h: {{ section.settings.padding_horizontal | default: 72 }}px;
+  }
+{%- endstyle -%}
+
+<div id="AboutUsTypewriters-{{ section.id }}" class="about-us-typewriters">
+
+  {%- comment -%} 1 — Typewriter's History intro {%- endcomment -%}
+  <div class="aut-intro">
+    <div class="aut-intro__left">
+      {%- if section.settings.intro_heading != blank -%}
+        <h1 class="aut-intro__heading">{{ section.settings.intro_heading }}</h1>
+      {%- endif -%}
+      <div class="aut-intro__tags">
+        {%- if section.settings.tag_1 != blank -%}
+          <span class="aut-tag">{{ section.settings.tag_1 }}</span>
+        {%- endif -%}
+        {%- if section.settings.tag_2 != blank -%}
+          <span class="aut-tag">{{ section.settings.tag_2 }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- if section.settings.intro_body != blank -%}
+      <div class="aut-intro__body">{{ section.settings.intro_body }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="aut-divider"></div>
+
+  {%- comment -%} 2 — Our Founder {%- endcomment -%}
+  <div class="aut-founder">
+    <div class="aut-founder__header">
+      {%- if section.settings.founder_section_heading != blank -%}
+        <h2 class="aut-founder__section-heading">{{ section.settings.founder_section_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.founder_btn_text != blank -%}
+        <a
+          href="{{ section.settings.founder_btn_url | default: '#' }}"
+          class="aut-btn-accent"
+        >{{ section.settings.founder_btn_text }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="aut-founder__banner">
+      {%- if section.settings.founder_banner != blank -%}
+        {{
+          section.settings.founder_banner
+          | image_url: width: 1400
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.founder_name | default: '',
+            class: 'aut-founder__banner-img'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg aut-founder__banner-img' }}
+      {%- endif -%}
+    </div>
+
+    <div class="aut-founder__bio">
+      {%- if section.settings.founder_name != blank -%}
+        <h3 class="aut-founder__name">{{ section.settings.founder_name }}</h3>
+      {%- endif -%}
+      {%- if section.settings.founder_bio != blank -%}
+        <p class="aut-founder__bio-text">{{ section.settings.founder_bio }}</p>
+      {%- endif -%}
+      {%- if section.settings.founder_quote != blank -%}
+        <p class="aut-founder__quote">{{ section.settings.founder_quote }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="aut-divider"></div>
+
+  {%- comment -%} 3 — Our Reconditioned Typewriters (text left, image right) {%- endcomment -%}
+  <div class="aut-split aut-split--text-left">
+    <div class="aut-split__text">
+      {%- if section.settings.recon_heading != blank -%}
+        <h2 class="aut-split__heading">{{ section.settings.recon_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.recon_body != blank -%}
+        <div class="aut-split__body">{{ section.settings.recon_body }}</div>
+      {%- endif -%}
+    </div>
+    <div class="aut-split__image">
+      {%- if section.settings.recon_image != blank -%}
+        {{
+          section.settings.recon_image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.recon_heading | default: '',
+            class: 'aut-split__img'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg aut-split__img' }}
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} 4 — Experience Unparalleled Quality (image left, text right) {%- endcomment -%}
+  <div class="aut-split aut-split--image-left">
+    <div class="aut-split__image">
+      {%- if section.settings.quality_image != blank -%}
+        {{
+          section.settings.quality_image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            alt: section.settings.quality_heading | default: '',
+            class: 'aut-split__img'
+        }}
+      {%- else -%}
+        {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg aut-split__img' }}
+      {%- endif -%}
+    </div>
+    <div class="aut-split__text">
+      {%- if section.settings.quality_heading != blank -%}
+        <h2 class="aut-split__heading">{{ section.settings.quality_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.quality_body != blank -%}
+        <div class="aut-split__body">{{ section.settings.quality_body }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "About Us — Typewriters",
+  "tag": "section",
+  "class": "section-about-us-typewriters page-width",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Heading",
+      "default": "Typewriter's History"
+    },
+    {
+      "type": "text",
+      "id": "tag_1",
+      "label": "Tag 1",
+      "default": "Founded: 1958"
+    },
+    {
+      "type": "text",
+      "id": "tag_2",
+      "label": "Tag 2",
+      "default": "Availability: USA (all states)"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_body",
+      "label": "Body text",
+      "default": "<p>Starting in 1958, we have specialized in the sale of new and reconditioned typewriters for businesses and consumers around the world.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Our Founder"
+    },
+    {
+      "type": "text",
+      "id": "founder_section_heading",
+      "label": "Section heading",
+      "default": "Our Founder"
+    },
+    {
+      "type": "text",
+      "id": "founder_btn_text",
+      "label": "Button text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "founder_btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "founder_banner",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "founder_name",
+      "label": "Founder name",
+      "default": "Jim Riegert"
+    },
+    {
+      "type": "textarea",
+      "id": "founder_bio",
+      "label": "Short bio",
+      "default": "Jim Riegert never dreamed of having a successful career in the typewriter business; he had very different plans growing up."
+    },
+    {
+      "type": "textarea",
+      "id": "founder_quote",
+      "label": "Quote",
+      "default": "\"I wanted to be a nuclear physicist and was enrolled as a physics major at Georgia Tech,\" he recalls. But when life dealt Jim a different hand, he decided to pursue a full-time role in the typewriter business."
+    },
+    {
+      "type": "header",
+      "content": "Reconditioned Typewriters"
+    },
+    {
+      "type": "text",
+      "id": "recon_heading",
+      "label": "Heading",
+      "default": "Our Reconditioned Typewriters"
+    },
+    {
+      "type": "richtext",
+      "id": "recon_body",
+      "label": "Body text",
+      "default": "<p>When it comes to our technician's reconditioning process for typewriters, quality and experience speak volumes. All of our reconditioned typewriters go through an extensive 21-step reconditioning process before they are shipped to our customers.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "recon_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Unparalleled Quality"
+    },
+    {
+      "type": "text",
+      "id": "quality_heading",
+      "label": "Heading",
+      "default": "Experience Unparalleled Quality with Typewriters.com"
+    },
+    {
+      "type": "richtext",
+      "id": "quality_body",
+      "label": "Body text",
+      "default": "<p>At Typewriters.com, we're not just selling typewriters; we're delivering a legacy of precision engineering and timeless value. Our meticulous 21-Step Reconditioning Process is a testament to our unwavering commitment to excellence.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "quality_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#d24742"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1C1C1C"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us — Typewriters"
+    }
+  ]
+}
+{% endschema %}

@@ -33,7 +33,7 @@
         "founder_1": {
           "type": "founder",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171276856.webp",
+            "image": "shopify://shop_images/Frame_1171276856.png",
             "name": "Jay R. Monroe",
             "bio": "<p>Jay Monroe was a co-founder of Monroe Systems for Business. With a background in accounting, before starting Monroe, he was employed at Western Electric Company as a general chief clerk. Mr. Monroe was also the president of two subsidiaries, the Gardner Company, an adding machine manufacturer, and the Defiance Manufacturing Company, a check-writing machine manufacturer.</p>"
           }
@@ -41,7 +41,7 @@
         "founder_2": {
           "type": "founder",
           "settings": {
-            "image": "shopify://shop_images/image_46.webp",
+            "image": "shopify://shop_images/image_46.png",
             "name": "Frank S. Baldwin",
             "bio": "<p>As a co-founder of Monroe Systems for Business, Frank Baldwin patented the Baldwin Computing Engine, which he combined with Jay Monroe to create the first Monroe calculator. Before Monroe, Frank was awarded the John Scott Medal for the \"most meritorious invention\" of the year in 1874.</p>"
           }
@@ -142,7 +142,7 @@
         "founders_cta_url": "#",
         "growth_heading": "Our Growth and Innovation",
         "growth_body": "<p>Monroe has experienced strong growth since its founding in 1912, becoming a source of pride and future promise. Built through the efforts of many people, the company has managed to grow while keeping its original spirit of teamwork and unity.</p><p>As the company expanded, it embraced change and formed important partnerships, which helped it reach new markets and opportunities. This growth also allowed Monroe to create more jobs and better respond to the needs of businesses.</p><p>Over time, Monroe adapted its focus, returning to its strength in calculators while adding complementary products. Today, it continues to innovate by offering solutions designed for professionals, especially in accounting and business environments.</p>",
-        "growth_image": "shopify://shop_images/image_36.webp",
+        "growth_image": "shopify://shop_images/image_36.png",
         "team_heading": "Our Team"
       }
     }

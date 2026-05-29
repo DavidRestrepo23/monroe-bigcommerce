@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Prata&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* body,html {
   overflow-x: hidden;
 } */
 
 :root {
-  --font-family: "Roboto Condensed", "Roboto", sans-serif;
+  /* --font-family: "Roboto Condensed", "Roboto", sans-serif; */
   --color-text: #1C1C1C;
   --color-white: #FFF;
-  --color-primary: #007681;
-
   --font-size-h1: 78px;
   --font-size-h2: 26px;
   --font-size-h2-xl: 64px;
@@ -32,7 +30,7 @@
 
 h1 {
   color: var(--color-text);
-  font-family: var(--font-family);
+  font-family: var(--font-family-h1, var(--font-family));
   font-size: var(--font-size-h1);
   font-style: normal;
   font-weight: var(--font-weight-medium);
@@ -41,7 +39,7 @@ h1 {
 
 h2 {
   color: var(--color-text);
-  font-family: var(--font-family);
+  font-family: var(--font-family-h2, var(--font-family));
   font-size: var(--font-size-h2);
   font-style: normal;
   font-weight: var(--font-weight-semibold);
@@ -50,7 +48,7 @@ h2 {
 
 h2.xl {
   color: var(--color-text);
-  font-family: var(--font-family);
+  font-family: var(--font-family-h2, var(--font-family));
   font-size: var(--font-size-h2-xl);
   font-style: normal;
   font-weight: var(--font-weight-medium);
@@ -59,7 +57,7 @@ h2.xl {
 
 h3 {
   color: var(--color-text);
-  font-family: var(--font-family);
+  font-family: var(--font-family-h3, var(--font-family));
   font-size: var(--font-size-h3);
   font-style: normal;
   font-weight: var(--font-weight-medium);
@@ -76,6 +74,24 @@ p {
 }
 
 a.button-primary {
+  display: inline-block;
+  padding: var(--button-padding);
+  justify-content: center;
+  align-items: center;
+  gap: var(--button-gap);
+  border-radius: var(--button-radius);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  font-size: var(--font-size-button);
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-loose);
+  text-decoration: none;
+  width: max-content;
+}
+
+.button-primary {
   display: inline-block;
   padding: var(--button-padding);
   justify-content: center;

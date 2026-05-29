@@ -462,7 +462,7 @@
   height: 50px;
   border: 0;
   border-radius: 999px;
-  background: #007a87;
+  background: var(--color-primary);
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -471,11 +471,11 @@
 }
 
 .btn-add-to-cart:hover:not(:disabled) {
-  background: #006570;
+  background: var(--color-primary-hover);
 }
 
 .btn-add-to-cart:disabled {
-  background: #b6b9bd;
+  background: var(--color-primary-disabled);
   cursor: not-allowed;
 }
 

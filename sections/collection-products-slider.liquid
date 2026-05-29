@@ -12,6 +12,8 @@
     --cps-text: {{ section.settings.text_color }};
     --cps-accent: {{ section.settings.accent_color }};
     --cps-accent-hover: {{ section.settings.accent_color | color_darken: 8 }};
+    --cps-cart-btn-bg: {{ section.settings.cart_btn_background }};
+    --cps-cart-btn-bg-hover: {{ section.settings.cart_btn_background | color_darken: 8 }};
     --cps-pad-top: {{ section.settings.padding_top }}px;
     --cps-pad-bottom: {{ section.settings.padding_bottom }}px;
   }
@@ -115,7 +117,7 @@
                 </a>
                 <div class="collection-products-slider__info">
                   <h3 class="collection-products-slider__title">
-                    <a href="{{ product.url }}">{{ product.title | escape }}</a>
+                    <a href="{{ product.url }}">{{ product.title | escape | truncate: 30, '...' }}</a>
                   </h3>
                   <div class="collection-products-slider__row">
                     <span class="collection-products-slider__price">
@@ -444,6 +446,12 @@
       "id": "accent_color",
       "label": "Cart button color",
       "default": "#1F6F75"
+    },
+    {
+      "type": "color",
+      "id": "cart_btn_background",
+      "label": "Cart button background",
+      "default": "#FFFFFF"
     },
     {
       "type": "range",
