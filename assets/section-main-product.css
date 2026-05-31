@@ -560,6 +560,11 @@
   padding-left: 20px;
 }
 
+.accordion__content h2 {
+  text-decoration: none !important;
+  line-height: 130% !important;
+}
+
 .accordion__content h3 {
   font-size: 20px !important;
 }
