@@ -568,6 +568,10 @@
   font-size: 16px;
 }
 
+.accordion__content center {
+  overflow: scroll !important;
+}
+
 .hide--on-desktop {
   display: none;
 }
