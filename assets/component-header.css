@@ -521,7 +521,7 @@ predictive-search.is-open .header__search-form {
   align-items: center;
   gap: 4px;
   padding: 14px 14px;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 500;
   color: var(--color-text);
   cursor: pointer;

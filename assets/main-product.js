@@ -55,6 +55,28 @@ function initProductSection(section) {
 
   initSwiper();
 
+  section.querySelectorAll('.read-more').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href') || '';
+      var id = href.indexOf('#') === 0 ? href.slice(1) : '';
+      if (!id) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var startY = window.pageYOffset;
+      var endY = target.getBoundingClientRect().top + startY;
+      var duration = 1500;
+      var startT = performance.now();
+      function ease(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+      function step(now) {
+        var p = Math.min(1, (now - startT) / duration);
+        window.scrollTo(0, startY + (endY - startY) * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  });
+
   section.querySelectorAll('[data-raw-desc]').forEach(function (rawDesc) {
     var tmp = document.createElement('textarea');
     tmp.innerHTML = rawDesc.innerHTML;

@@ -143,11 +143,10 @@
 .product-gallery__thumb {
   width: 100px;
   height: 100px;
-  background: #f4f5f6;
+  border: 1px solid #c1c1c1;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  border: 2px solid transparent;
   transition: border-color .15s ease;
 }
 
@@ -241,7 +240,8 @@
   color: #6b6b6b;
 }
 
-.main-product__short {
+.main-product__short,
+.read-more {
   font-size: 1rem;
   line-height: 120%;
   color: #000;
@@ -505,6 +505,14 @@
 
 .accordion[open] .accordion__content {
   padding-top: 16px;
+  width: 645px; 
+}
+
+@media screen and (max-width: 768px) {
+  .accordion[open] .accordion__content {
+    width: 100% !important;
+  }
+  
 }
 
 .accordion__summary {
