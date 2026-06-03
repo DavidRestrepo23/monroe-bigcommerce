@@ -59,7 +59,7 @@
 }
 
 .solutions__item-title {
-  /* font-family: var(--font-family); */
+  font-family: var(--font-family);
   font-size: 16px;
   font-weight: 600;
   color: var(--sol-text);
