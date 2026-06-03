@@ -1,6 +1,13 @@
 {{ 'component-header.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --h-logo-w: {{ section.settings.logo_width | default: 120 }}px;
+    --h-store-w: {{ section.settings.store_name_width | default: 200 }}px;
+  }
+{%- endstyle -%}
+
 <header class="site-header hide-mobile" role="banner">
 
   {%- comment -%} ======== TOP BAR ======== {%- endcomment -%}
@@ -11,7 +18,7 @@
       {%- if section.settings.logo != blank -%}
         <img
           class="header__logo-img"
-          src="{{ section.settings.logo | image_url: width: 200 }}"
+          src="{{ section.settings.logo | image_url: width: 480 }}"
           alt="{{ shop.name }}"
           width="{{ section.settings.logo.width }}"
           height="{{ section.settings.logo.height }}"

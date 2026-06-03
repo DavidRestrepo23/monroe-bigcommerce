@@ -45,13 +45,13 @@
 }
 
 .header__logo-img {
-  width: 120px;
+  width: var(--h-logo-w, 120px);
   display: block;
   height: auto;
 }
 
 .header__store-name-img {
-  width: 200px;
+  width: var(--h-store-w, 200px);
   display: block;
   height: auto
 }
