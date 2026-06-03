@@ -106,7 +106,7 @@
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr;
+  grid-template-columns: 1.5fr 2fr;
   grid-template-rows: auto auto;
   gap: 48px;
   align-items: start;
