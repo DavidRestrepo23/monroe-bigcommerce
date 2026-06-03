@@ -20,7 +20,6 @@
   position: relative;
   display: block;
   height: var(--pc-card-height);
-  border-radius: var(--pc-radius);
   overflow: hidden;
   text-decoration: none;
   color: var(--pc-text);
@@ -31,7 +30,7 @@
 }
 
 .product-categories__card:first-child {
-  border-radius: var(--pc-radius);
+  border-radius: var(--pc-radius) var(--pc-radius) 0 0;
 }
 
 .product-categories__card:hover {
