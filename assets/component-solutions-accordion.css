@@ -143,7 +143,6 @@
 }
 
 .solutions__item-overlay-title {
-  font-family: var(--font-family);
   font-size: 28px;
   font-weight: 700;
   color: #fff;
