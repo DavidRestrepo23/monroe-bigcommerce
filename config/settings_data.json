@@ -240,24 +240,28 @@
           "payment_fxwLWi": {
             "type": "payment",
             "settings": {
+              "image": "shopify://shop_images/icon-logo-paypal.svg",
               "label": ""
             }
           },
           "payment_immDdJ": {
             "type": "payment",
             "settings": {
+              "image": "shopify://shop_images/icon-logo-visa.svg",
               "label": ""
             }
           },
           "payment_BHQzNH": {
             "type": "payment",
             "settings": {
+              "image": "shopify://shop_images/icon-logo-american-express.svg",
               "label": ""
             }
           },
           "payment_BQUfji": {
             "type": "payment",
             "settings": {
+              "image": "shopify://shop_images/icon-logo-mastercard.svg",
               "label": ""
             }
           },
