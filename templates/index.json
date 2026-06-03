@@ -15,57 +15,18 @@
         "slide_dVPqr6": {
           "type": "slide",
           "settings": {
-            "heading": "Industry-Leading Printing Calculators and Business Supplies",
-            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
-            "button_text": "Shop Our Calculators",
+            "heading": "Write Without Distractions.",
+            "subtext": "Trusted by professionals for accuracy, durability, and reliability.",
+            "button_text": "Shop Our Typewriters",
             "button_link": "",
-            "main_image": "shopify://shop_images/hero-image-1920px.png",
-            "featured_product": "monroe-8130x",
-            "rating": 5
-          }
-        },
-        "slide_mmUFYz": {
-          "type": "slide",
-          "settings": {
-            "heading": "Not Sure Which Monroe Calculator Is Right For You?",
-            "subtext": "Compare features, print speeds, and workloads",
-            "button_text": "Compare Models",
-            "button_link": "#",
-            "main_image": "shopify://shop_images/img-hero-2.png",
-            "featured_product": "copy-of-monroe-8130x-12-digit-basic-function-heavy-duty-accounting-printing-calculator",
-            "rating": 5
-          }
-        },
-        "slide_CcjC8d": {
-          "type": "slide",
-          "settings": {
-            "heading": "Your Office. Fully Equipped",
-            "subtext": "From typewriters and toner to shredders, paper handling equipment, and everyday business essentials.",
-            "button_text": "Shop Our Partners Brands",
-            "button_link": "#",
-            "main_image": "shopify://shop_images/img-hero-3.png",
-            "featured_product": "brother-brougham-10-printwheel-by-rarotype",
-            "rating": 5
-          }
-        },
-        "slide_RNJy6g": {
-          "type": "slide",
-          "settings": {
-            "heading": "Industry-Leading Printing Calculators and Business Supplies",
-            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
-            "button_text": "Shop Our Calculators",
-            "button_link": "",
-            "main_image": "shopify://shop_images/hero-image-1920px.png",
+            "main_image": "shopify://shop_images/Hero-Section.png",
             "featured_product": "monroe-8130x",
             "rating": 5
           }
         }
       },
       "block_order": [
-        "slide_dVPqr6",
-        "slide_mmUFYz",
-        "slide_CcjC8d",
-        "slide_RNJy6g"
+        "slide_dVPqr6"
       ],
       "settings": {
         "autoplay": true,
@@ -88,7 +49,7 @@
         "brand_Yx7tQG": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_2_1.png",
+            "logo": "shopify://shop_images/image_9_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -96,7 +57,7 @@
         "brand_RmNP9m": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_3_1.png",
+            "logo": "shopify://shop_images/image_5_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -104,7 +65,7 @@
         "brand_KBJK8j": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_4_1.png",
+            "logo": "shopify://shop_images/image_13_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -112,7 +73,7 @@
         "brand_Tj7iUc": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_6_1.png",
+            "logo": "shopify://shop_images/image_7_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -120,39 +81,7 @@
         "brand_Ec4hKi": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_MREBJe": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_8_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_MF4QW9": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_zkiJnB": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_10_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_ytceRJ": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_11_1.png",
+            "logo": "shopify://shop_images/image_3_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -163,11 +92,7 @@
         "brand_RmNP9m",
         "brand_KBJK8j",
         "brand_Tj7iUc",
-        "brand_Ec4hKi",
-        "brand_MREBJe",
-        "brand_MF4QW9",
-        "brand_zkiJnB",
-        "brand_ytceRJ"
+        "brand_Ec4hKi"
       ],
       "name": "Brands Slider",
       "settings": {
@@ -214,31 +139,31 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/Frame_1171276606.png",
-            "title": "Printing Calculators",
+            "title": "New Typewriters",
             "link": ""
           }
         },
         "category_KJhVQC": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/Frame_1171276607.png",
-            "title": "Calculator Tape Rolls",
+            "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69367_1.png",
+            "title": "Supplies",
             "link": ""
           }
         },
         "category_jBPDhY": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/freepik__replace-the-product-from-img1-with-this-typewriter__70875_1.png",
-            "title": "Office Equipment",
+            "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69366_1.png",
+            "title": "IBM Parts",
             "link": ""
           }
         },
         "category_b7BER4": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/image_26.png",
-            "title": "Calculator Ink Ribbons",
+            "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-e-remova-a-mo-da-imag__37827_1.png",
+            "title": "Reconditioned Typewriters",
             "link": ""
           }
         }
@@ -251,7 +176,7 @@
       ],
       "name": "Product Categories",
       "settings": {
-        "heading": "OUR TOP PRODUCT CATEGORIES",
+        "heading": "What Are You Looking For Today?",
         "columns_desktop": 4,
         "gap": 2,
         "card_height": 520,
@@ -270,37 +195,34 @@
         "item_q93bJB": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Calculator.svg",
-            "title": "Accounting Offices",
-            "description": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
-            "image": "shopify://shop_images/businessman-using-calculator-calculate-numbers-company-s-financial-documents-he-is-analyzing-historical-financial-data-plan-how-grow-company-financial-concept_1.png"
+            "icon": "shopify://shop_images/Group_3.png",
+            "title": "New and Reconditioned Typewriters",
+            "description": "From classic IBM Wheelwriters to modern portables. Every machine we sell is built to last and ready to work from day one",
+            "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-da-imagem-img1-para-a__37829_1.png"
           }
         },
         "item_tPHGLV": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/CashRegister.svg",
+            "icon": "shopify://shop_images/Group_3_0c8e5d56-ead0-44dc-af57-5e9617e66696.png",
             "title": "Retail and POS",
-            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support.",
-            "image": "shopify://shop_images/Frame_1171276554.png"
+            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support."
           }
         },
         "item_3dQ9Ak": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/GraduationCap.svg",
+            "icon": "shopify://shop_images/Group_3-1.png",
             "title": "Government & Education",
-            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces",
-            "image": "shopify://shop_images/Frame_1171276554_2.png"
+            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces"
           }
         },
         "item_4KA8b7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Briefcase.svg",
+            "icon": "shopify://shop_images/Group_3-2.png",
             "title": "Small Business Owner",
-            "description": "Small business owners need versatile products that support multiple roles and daily operations.",
-            "image": "shopify://shop_images/Frame_1171276554.png"
+            "description": "Small business owners need versatile products that support multiple roles and daily operations."
           }
         }
       },
@@ -316,8 +238,8 @@
         "heading_size": 64,
         "button_label": "View All Solutions",
         "button_url": "#",
-        "testimonial_avatar": "shopify://shop_images/Ellipse_1.svg",
-        "testimonial_quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+        "testimonial_avatar": "shopify://shop_images/Ellipse_1.png",
+        "testimonial_quote": "I was skeptical about buying a reconditioned typewriter online, but the IBM Wheelwriter I received looked and worked like new. You could tell it went through a serious process before shipping. Exactly what I needed for my legal office — and at a fraction of the price of a new unit.",
         "testimonial_author": "NICOLA T.",
         "background_color": "#ffffff",
         "text_color": "#1c1c1c",
@@ -327,32 +249,6 @@
         "padding_top": 120,
         "padding_top_mobile": 32,
         "padding_bottom": 120,
-        "padding_bottom_mobile": 32
-      }
-    },
-    "collection_products_slider_X77pVX": {
-      "type": "collection-products-slider",
-      "name": "Collection Products Slider",
-      "settings": {
-        "heading": "Monroe Ink Ribbons & Paper Tape Rolls",
-        "subheading": "Our paper tape rolls and ink ribbons are engineered to work as a system, delivering the darkest print and extending the life of your calculator.",
-        "collection": "ink-ribbons-paper-tape-rolls",
-        "product_limit": 12,
-        "cart_label": "Cart",
-        "badge_source": "first_n",
-        "badge_text": "Top Seller",
-        "badge_count": 5,
-        "autoplay": false,
-        "autoplay_delay": 5000,
-        "loop": false,
-        "background_color": "#ffffff",
-        "card_background": "#f1f1f1",
-        "text_color": "#0a0a0a",
-        "accent_color": "#d24742",
-        "cart_btn_background": "#ffffff",
-        "padding_top": 64,
-        "padding_top_mobile": 32,
-        "padding_bottom": 60,
         "padding_bottom_mobile": 32
       }
     },
@@ -375,26 +271,25 @@
         "avatar_ddTbgj": {
           "type": "avatar",
           "settings": {
-            "image": "shopify://shop_images/Ellipse_1.png"
+            "image": "shopify://shop_images/Ellipse_1_c28e72d0-fd90-4117-a003-cfcdce083948.png"
           }
         },
         "avatar_MWWynr": {
           "type": "avatar",
           "settings": {
-            "image": "shopify://shop_images/Ellipse_2.png"
+            "image": "shopify://shop_images/Ellipse_3.png"
           }
         },
         "avatar_X4tWnk": {
           "type": "avatar",
           "settings": {
-            "image": "shopify://shop_images/Ellipse_3.png"
+            "image": "shopify://shop_images/Ellipse_2.png"
           }
         },
         "floating_key_wzTmG8": {
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6.png",
             "label": "E",
             "size": 60,
             "pos_top": 35,
@@ -408,7 +303,6 @@
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_6_1.png",
             "label": "A",
             "size": 60,
             "pos_top": 25,
@@ -422,7 +316,6 @@
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_2.png",
             "label": "S",
             "size": 60,
             "pos_top": 60,
@@ -436,7 +329,6 @@
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_6.png",
             "label": "O",
             "size": 60,
             "pos_top": 50,
@@ -450,7 +342,6 @@
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-sale-isolated-white_4.png",
             "label": "L",
             "size": 60,
             "pos_top": 70,
@@ -464,7 +355,6 @@
           "type": "floating_key",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/keyboard-keys-saying-2013-isolated-white_7.png",
             "label": "2",
             "size": 60,
             "pos_top": 45,
@@ -514,7 +404,8 @@
         "testimonial_8LJH3m": {
           "type": "testimonial",
           "settings": {
-            "quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+            "quote": "I've been using IBM Wheelwriters for over 20 years, and finding reliable supplies was always a headache — until I found Typewriters.com. Fast shipping, the right parts every time, and their team actually knows what they're talking about. This is the only place I order from now.",
+            "avatar": "shopify://shop_images/Ellipse_1_c28e72d0-fd90-4117-a003-cfcdce083948.png",
             "author": "NICOLA T.",
             "rating": 5
           }
@@ -522,22 +413,21 @@
         "image_yzrcG3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
+            "image": "shopify://shop_images/retro-typewriter-with-piece-paper_1.png"
           }
         },
         "testimonial_mRbxYJ": {
           "type": "testimonial",
           "settings": {
-            "quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
+            "quote": "I was skeptical about buying a reconditioned typewriter online, but the IBM Wheelwriter I received looked and worked like new. You could tell it went through a serious process before shipping. Exactly what I needed for my legal office — and at a fraction of the price of a new unit.",
+            "avatar": "shopify://shop_images/Ellipse_3.png",
             "author": "JEFF H.",
             "rating": 5
           }
         },
         "image_ReDykW": {
           "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/shoulder-view-businesswoman-using-calculator_1.png"
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -548,7 +438,7 @@
       ],
       "name": "Reviews Slider",
       "settings": {
-        "heading": "See what our \ncustomers \nare saying",
+        "heading": "See what our customers are saying",
         "subtext": "Big brands, rising stars, and local businesses. Hear what those who have partnered with us have to say.",
         "autoplay": false,
         "autoplay_delay": 6000,
@@ -595,7 +485,6 @@
     "collection_products_slider_4Bwh3a",
     "product_categories_Qa9TxM",
     "solutions_accordion_twFWJJ",
-    "collection_products_slider_X77pVX",
     "hero_banner_fjiQJQ",
     "reviews_slider_WNYF6r",
     "recent_posts_HPJpBd"

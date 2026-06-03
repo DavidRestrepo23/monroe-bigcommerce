@@ -204,8 +204,8 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
-          "store_name_image": "shopify://shop_images/logo-typewriters.png",
+          "logo": "shopify://shop_images/typewriters_logo.png",
+          "store_name_image": "shopify://shop_images/monroe_logo.png",
           "store_tagline": "",
           "menu": "main-menu",
           "wishlist_url": ""
@@ -238,28 +238,24 @@
           "payment_fxwLWi": {
             "type": "payment",
             "settings": {
-              "image": "shopify://shop_images/icon-logo-paypal.svg",
               "label": ""
             }
           },
           "payment_immDdJ": {
             "type": "payment",
             "settings": {
-              "image": "shopify://shop_images/icon-logo-visa.svg",
               "label": ""
             }
           },
           "payment_BHQzNH": {
             "type": "payment",
             "settings": {
-              "image": "shopify://shop_images/icon-logo-american-express.svg",
               "label": ""
             }
           },
           "payment_BQUfji": {
             "type": "payment",
             "settings": {
-              "image": "shopify://shop_images/icon-logo-mastercard.svg",
               "label": ""
             }
           },
@@ -309,7 +305,7 @@
             "type": "link_column",
             "settings": {
               "heading": "Navigate",
-              "menu": "navigate",
+              "menu": "",
               "links_text": ""
             }
           },
@@ -317,7 +313,7 @@
             "type": "link_column",
             "settings": {
               "heading": "Categories",
-              "menu": "categories",
+              "menu": "",
               "links_text": ""
             }
           },
@@ -325,7 +321,7 @@
             "type": "link_column",
             "settings": {
               "heading": "Popular Brands",
-              "menu": "popular-brands",
+              "menu": "",
               "links_text": ""
             }
           }
@@ -352,7 +348,6 @@
           "newsletter_button": "Subscribe",
           "newsletter_bg": "#d24742",
           "newsletter_text": "#ffffff",
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
           "tagline": "Inventor of the commercial printing calculator in 1912",
           "description": "<p>Monroe Systems for Business supplies professionals with printing <br/>calculators, paper tape rolls, ink ribbons, and office equipment built for <br/>daily accuracy and long-term reliability. From accounting and <br/>bookkeeping to retail environments and administrative offices, our <br/>products support fast totals, clear audit trails, and consistent <br/>performance.</p>",
           "address": "<p>511 William Leigh Drive <br/>Suite 15 - Tullytown, PA 19007</p>",
@@ -379,21 +374,12 @@
       "header-mobile": {
         "type": "header-mobile",
         "settings": {
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
-          "store_name_image": "shopify://shop_images/logo-typewriters.png",
           "menu": "main-menu",
           "wishlist_url": ""
         }
       }
     },
-    "content_for_index": [],
-    "blocks": {
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      }
-    }
+    "content_for_index": []
   },
   "presets": {
     "Dawn": {
