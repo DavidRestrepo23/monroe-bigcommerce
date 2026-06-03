@@ -89,6 +89,7 @@
   line-height: 1.6;
   opacity: 0.8;
   color: var(--aut-text, #1C1C1C);
+  margin-top: 32px;
 }
 
 .aut-intro__body p {
