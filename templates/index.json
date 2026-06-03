@@ -106,6 +106,32 @@
         "grayscale": false
       }
     },
+    "collection_products_slider_gyGGay": {
+      "type": "collection-products-slider",
+      "name": "Collection Products Slider",
+      "settings": {
+        "heading": "Best Selling Typewriters",
+        "subheading": "",
+        "collection": "frontpage",
+        "product_limit": 12,
+        "cart_label": "Cart",
+        "badge_source": "first_n",
+        "badge_text": "Top Seller",
+        "badge_count": 5,
+        "autoplay": false,
+        "autoplay_delay": 5000,
+        "loop": false,
+        "background_color": "#FFFFFF",
+        "card_background": "#F1F1F1",
+        "text_color": "#0A0A0A",
+        "accent_color": "#d24742",
+        "cart_btn_background": "#FFFFFF",
+        "padding_top": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom": 64,
+        "padding_bottom_mobile": 32
+      }
+    },
     "product_categories_Qa9TxM": {
       "type": "product-categories",
       "blocks": {
@@ -456,6 +482,7 @@
   "order": [
     "hero_slider_main",
     "brands_slider_xNRMmQ",
+    "collection_products_slider_gyGGay",
     "product_categories_Qa9TxM",
     "solutions_accordion_twFWJJ",
     "hero_banner_fjiQJQ",
