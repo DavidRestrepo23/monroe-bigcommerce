@@ -169,7 +169,7 @@
         "item_q93bJB": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/01.png",
+            "icon": "shopify://shop_images/01.svg",
             "title": "New and Reconditioned Typewriters",
             "description": "From classic IBM Wheelwriters to modern portables. Every machine we sell is built to last and ready to work from day one",
             "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-da-imagem-img1-para-a__37829_1.png"
@@ -178,7 +178,7 @@
         "item_tPHGLV": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/02.png",
+            "icon": "shopify://shop_images/02.svg",
             "title": "Typewriter Supplies",
             "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support."
           }
@@ -186,7 +186,7 @@
         "item_3dQ9Ak": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/03.png",
+            "icon": "shopify://shop_images/03.svg",
             "title": "IBM Parts",
             "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces"
           }
@@ -194,7 +194,7 @@
         "item_4KA8b7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/04.png",
+            "icon": "shopify://shop_images/04.svg",
             "title": "Printwheels",
             "description": "Small business owners need versatile products that support multiple roles and daily operations."
           }
