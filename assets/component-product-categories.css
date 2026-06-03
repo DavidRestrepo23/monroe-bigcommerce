@@ -95,6 +95,7 @@
   color: var(--pc-text);
   z-index: 2;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 112%;
 }
 
 @media (max-width: 990px) {
