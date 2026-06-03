@@ -189,9 +189,10 @@
 
 /* ── Sections 3 & 4: Split (text+image) ── */
 .aut-split {
-  display: flex;
+  display: grid;
   gap: 64px;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
 }
 
 .aut-split--text-left {
