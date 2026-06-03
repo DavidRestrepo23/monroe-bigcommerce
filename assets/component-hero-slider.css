@@ -84,6 +84,7 @@
 
 .hero-slider__button {
   transition: transform 0.15s ease, opacity 0.15s ease;
+  margin-top: 40px;
 }
 
 .hero-slider__button:hover {
