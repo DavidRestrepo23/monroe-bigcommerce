@@ -33,6 +33,10 @@
   border-radius: var(--pc-radius) 0 0 var(--pc-radius);
 }
 
+.product-categories__card:last-child {
+  border-radius: 0 0 var(--pc-radius) var(--pc-radius);
+}
+
 .product-categories__card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
