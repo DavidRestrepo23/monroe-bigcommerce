@@ -34,7 +34,7 @@
           {%- if section.settings.store_name_image != blank -%}
             <img
               class="header__store-name-img"
-              src="{{ section.settings.store_name_image | image_url: width: 300 }}"
+              src="{{ section.settings.store_name_image | image_url: width: 800 }}"
               alt="{{ shop.name }}"
               width="{{ section.settings.store_name_image.width }}"
               height="{{ section.settings.store_name_image.height }}"
@@ -213,9 +213,29 @@
       "label": "Logo image"
     },
     {
+      "type": "range",
+      "id": "logo_width",
+      "min": 40,
+      "max": 240,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 120
+    },
+    {
       "type": "image_picker",
       "id": "store_name_image",
       "label": "Store name image (beside logo)"
+    },
+    {
+      "type": "range",
+      "id": "store_name_width",
+      "min": 40,
+      "max": 400,
+      "step": 5,
+      "unit": "px",
+      "label": "Store name image width",
+      "default": 200
     },
     {
       "type": "text",
