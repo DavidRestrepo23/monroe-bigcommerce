@@ -205,7 +205,9 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/typewriters_logo.png",
+          "logo_width": 200,
           "store_name_image": "shopify://shop_images/monroe_logo.png",
+          "store_name_width": 120,
           "store_tagline": "",
           "menu": "main-menu",
           "wishlist_url": ""
@@ -374,6 +376,8 @@
       "header-mobile": {
         "type": "header-mobile",
         "settings": {
+          "logo_width": 100,
+          "store_name_width": 140,
           "menu": "main-menu",
           "wishlist_url": ""
         }
