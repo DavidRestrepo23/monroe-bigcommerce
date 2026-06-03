@@ -228,6 +228,7 @@
   transition: color 0.15s ease;
   font-family: var(--font-family);
   font-weight: 400;
+  opacity: 0.6;
 }
 
 .site-footer__links a:hover {
