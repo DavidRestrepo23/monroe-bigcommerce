@@ -121,11 +121,11 @@
         "autoplay": false,
         "autoplay_delay": 5000,
         "loop": false,
-        "background_color": "#FFFFFF",
-        "card_background": "#F1F1F1",
-        "text_color": "#0A0A0A",
+        "background_color": "#ffffff",
+        "card_background": "#f1f1f1",
+        "text_color": "#0a0a0a",
         "accent_color": "#d24742",
-        "cart_btn_background": "#FFFFFF",
+        "cart_btn_background": "#ffffff",
         "padding_top": 64,
         "padding_top_mobile": 32,
         "padding_bottom": 64,
@@ -198,7 +198,7 @@
             "icon": "shopify://shop_images/01.svg",
             "title": "New and Reconditioned Typewriters",
             "description": "From classic IBM Wheelwriters to modern portables. Every machine we sell is built to last and ready to work from day one",
-            "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-da-imagem-img1-para-a__37829_1.png"
+            "image": "shopify://shop_images/Reconditioned_Typewriters.png"
           }
         },
         "item_tPHGLV": {
@@ -206,7 +206,8 @@
           "settings": {
             "icon": "shopify://shop_images/02.svg",
             "title": "Typewriter Supplies",
-            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support."
+            "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support.",
+            "image": "shopify://shop_images/Supplies.png"
           }
         },
         "item_3dQ9Ak": {
@@ -214,7 +215,8 @@
           "settings": {
             "icon": "shopify://shop_images/03.svg",
             "title": "IBM Parts",
-            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces"
+            "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces",
+            "image": "shopify://shop_images/IBM_Parts.png"
           }
         },
         "item_4KA8b7": {
@@ -222,7 +224,8 @@
           "settings": {
             "icon": "shopify://shop_images/04.svg",
             "title": "Printwheels",
-            "description": "Small business owners need versatile products that support multiple roles and daily operations."
+            "description": "Small business owners need versatile products that support multiple roles and daily operations.",
+            "image": "shopify://shop_images/Printwheels.png"
           }
         }
       },
