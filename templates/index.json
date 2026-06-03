@@ -106,32 +106,6 @@
         "grayscale": false
       }
     },
-    "collection_products_slider_4Bwh3a": {
-      "type": "collection-products-slider",
-      "name": "Collection Products Slider",
-      "settings": {
-        "heading": "Best Selling Typewritters",
-        "subheading": "",
-        "collection": "frontpage",
-        "product_limit": 12,
-        "cart_label": "Cart",
-        "badge_source": "first_n",
-        "badge_text": "Top Seller",
-        "badge_count": 5,
-        "autoplay": false,
-        "autoplay_delay": 5000,
-        "loop": false,
-        "background_color": "#ffffff",
-        "card_background": "#f1f1f1",
-        "text_color": "#0a0a0a",
-        "accent_color": "#d24742",
-        "cart_btn_background": "#ffffff",
-        "padding_top": 64,
-        "padding_top_mobile": 32,
-        "padding_bottom": 48,
-        "padding_bottom_mobile": 0
-      }
-    },
     "product_categories_Qa9TxM": {
       "type": "product-categories",
       "blocks": {
@@ -482,7 +456,6 @@
   "order": [
     "hero_slider_main",
     "brands_slider_xNRMmQ",
-    "collection_products_slider_4Bwh3a",
     "product_categories_Qa9TxM",
     "solutions_accordion_twFWJJ",
     "hero_banner_fjiQJQ",
