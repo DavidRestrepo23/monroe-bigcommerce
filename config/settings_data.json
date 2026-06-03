@@ -352,7 +352,7 @@
           "newsletter_text": "#ffffff",
           "logo": "shopify://shop_images/typewriters_logo_47ec4bfd-7e74-40f2-969f-5aee2669153c.png",
           "tagline": "",
-          "description": "<p>Typewriters.com is a division of Monroe Systems for Business, based in Tucker, GA. We specialize in new and reconditioned typewriters, supplies, printwheels, and IBM parts — offering expert support to help you find the right fit for your machine. Whether you're replacing a ribbon or sourcing a hard-to-find part, we're here to help.</p>",
+          "description": "<p>Typewriters.com is a division of Monroe Systems for Business, <br/>based in Tucker, GA. We specialize in new and reconditioned <br/>typewriters, supplies, printwheels, and IBM parts — offering <br/>expert support to help you find the right fit for your machine. <br/>Whether you're replacing a ribbon or sourcing a hard-to-find part, <br/>we're here to help.</p>",
           "address": "<p>5357 Royal Woods Parkway <br/>Tucker, GA 30084</p>",
           "phone_label": "Call us at",
           "phone": "(404) 377-1884",
