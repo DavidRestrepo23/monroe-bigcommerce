@@ -195,7 +195,7 @@
         "item_q93bJB": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_3.png",
+            "icon": "shopify://shop_images/01.png",
             "title": "New and Reconditioned Typewriters",
             "description": "From classic IBM Wheelwriters to modern portables. Every machine we sell is built to last and ready to work from day one",
             "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-da-imagem-img1-para-a__37829_1.png"
@@ -204,24 +204,24 @@
         "item_tPHGLV": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_3_0c8e5d56-ead0-44dc-af57-5e9617e66696.png",
-            "title": "Retail and POS",
+            "icon": "shopify://shop_images/02.png",
+            "title": "Typewriter Supplies",
             "description": "Retail and point of sale environments require speed, accuracy, and dependable back office support."
           }
         },
         "item_3dQ9Ak": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_3-1.png",
-            "title": "Government & Education",
+            "icon": "shopify://shop_images/03.png",
+            "title": "IBM Parts",
             "description": "Government offices and educational institutions depend on standardized, durable products that support administrative tasks, record-keeping, and shared workspaces"
           }
         },
         "item_4KA8b7": {
           "type": "item",
           "settings": {
-            "icon": "shopify://shop_images/Group_3-2.png",
-            "title": "Small Business Owner",
+            "icon": "shopify://shop_images/04.png",
+            "title": "Printwheels",
             "description": "Small business owners need versatile products that support multiple roles and daily operations."
           }
         }
@@ -243,7 +243,7 @@
         "testimonial_author": "NICOLA T.",
         "background_color": "#ffffff",
         "text_color": "#1c1c1c",
-        "icon_background": "#e6f3f4",
+        "icon_background": "#d24742",
         "button_color": "#d24742",
         "stars_color": "#0a0a0a",
         "padding_top": 120,
