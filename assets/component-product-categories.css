@@ -31,7 +31,7 @@
 }
 
 .product-categories__card:first-child {
-  border-radius: var(--pc-radius) var(--pc-radius) 0 0;
+  border-radius: var(--pc-radius);
 }
 
 .product-categories__card:hover {

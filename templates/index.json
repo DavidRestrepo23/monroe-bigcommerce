@@ -180,7 +180,7 @@
         "columns_desktop": 4,
         "gap": 2,
         "card_height": 520,
-        "card_radius": 0,
+        "card_radius": 14,
         "padding_vertical": 48,
         "padding_vertical_mobile": 28,
         "padding_horizontal": 0,
