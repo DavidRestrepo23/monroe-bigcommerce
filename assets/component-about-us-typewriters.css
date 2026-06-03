@@ -1,6 +1,5 @@
 .about-us-typewriters {
   color: var(--aut-text, #1C1C1C);
-  padding: var(--aut-pad-v, 80px) var(--aut-pad-h, 72px);
   display: flex;
   flex-direction: column;
   gap: 80px;
