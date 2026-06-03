@@ -35,11 +35,10 @@
   </div>
 
   {%- if blog_handle != blank and blogs[blog_handle] != blank -%}
-    {%- assign articles = blogs[blog_handle].articles | limit: post_limit -%}
+    {%- assign articles = blogs[blog_handle].articles -%}
     <div class="recent-posts__grid">
-      {%- for article in articles -%}
+      {%- for article in articles limit: post_limit -%}
         <article class="recent-posts__card">
-
           <div class="recent-posts__card-image-wrap">
             {%- if article.image != blank -%}
               {{- article.image | image_url: width: 1000 | image_tag:
