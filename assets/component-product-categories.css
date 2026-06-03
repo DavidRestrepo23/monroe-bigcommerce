@@ -30,6 +30,10 @@
   height: 646px;
 }
 
+.product-categories__card:first-child {
+  border-radius: var(--pc-radius) var(--pc-radius) 0 0;
+}
+
 .product-categories__card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
