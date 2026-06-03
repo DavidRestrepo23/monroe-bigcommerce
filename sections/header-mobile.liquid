@@ -1,5 +1,12 @@
 {{ 'component-header-mobile.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    --mh-logo-w: {{ section.settings.logo_width | default: 99 }}px;
+    --mh-store-w: {{ section.settings.store_name_width | default: 142 }}px;
+  }
+{%- endstyle -%}
+
 <header class="mobile-header hide-desktop" data-menu-open="false" role="banner">
   {%- comment -%} ======== Header Bar ======== {%- endcomment -%}
   <div class="mobile-header__bar">
@@ -7,7 +14,7 @@
       {%- if section.settings.logo != blank -%}
         <img
           class="mobile-header__logo"
-          src="{{ section.settings.logo | image_url: width: 200 }}"
+          src="{{ section.settings.logo | image_url: width: 400 }}"
           alt="{{ shop.name }}"
           loading="eager"
         >
@@ -19,7 +26,7 @@
         <span class="mobile-header__divider" aria-hidden="true"></span>
         <img
           class="mobile-header__store-name-img"
-          src="{{ section.settings.store_name_image | image_url: width: 300 }}"
+          src="{{ section.settings.store_name_image | image_url: width: 600 }}"
           alt="{{ shop.name }}"
           loading="eager"
         >
