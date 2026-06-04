@@ -73,7 +73,7 @@
             {%- render 'icon-arrow-down' -%}
           </summary>
           <div class="accordion__content" >
-            {{ product.description | strip_html | escape }}
+            {{ product.description  }}
           </div>
         </details>
 
@@ -146,7 +146,7 @@
       </div>
 
       {%- if product.description != blank -%}
-        <div class="main-product__short">
+        <div class="main-product__short" data-raw-desc>
           {{ product.description | strip_html | truncatewords: 60 }}
         </div>
       {%- endif -%}
