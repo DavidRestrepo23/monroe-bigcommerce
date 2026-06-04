@@ -283,6 +283,10 @@
   font-weight: 400;
 }
 
+.shopify-payment-button__more-options {
+  display: none;
+}
+
 .variant-option {
   display: flex;
   gap: 8px;
