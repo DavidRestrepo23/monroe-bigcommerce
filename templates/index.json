@@ -339,7 +339,7 @@
             "font_size": 16,
             "font_weight": "400",
             "pos_top": 64,
-            "pos_left": 72
+            "pos_left": 62
           }
         },
         "avatar_ddTbgj": {
@@ -458,8 +458,8 @@
         "users_text": "+100K Users Active",
         "cta_url": "",
         "cta_label": "Learn more",
-        "background_image": "shopify://shop_images/Group_2363.png",
-        "background_size": "contain",
+        "background_image": "shopify://shop_images/img.png",
+        "background_size": "cover",
         "product_height": 700,
         "min_height": 600,
         "padding_top": 40,
