@@ -189,6 +189,32 @@
         "text_color": "#ffffff"
       }
     },
+    "collection_products_slider_nxFeP8": {
+      "type": "collection-products-slider",
+      "name": "Collection Products Slider",
+      "settings": {
+        "heading": "Best Selling Typewriter Supplies",
+        "subheading": "",
+        "collection": "best-selling-typewriter-supplies",
+        "product_limit": 12,
+        "cart_label": "Cart",
+        "badge_source": "first_n",
+        "badge_text": "Top Seller",
+        "badge_count": 5,
+        "autoplay": false,
+        "autoplay_delay": 5000,
+        "loop": false,
+        "background_color": "#FFFFFF",
+        "card_background": "#ffffff",
+        "text_color": "#0A0A0A",
+        "accent_color": "#d24742",
+        "cart_btn_background": "#FFFFFF",
+        "padding_top": 64,
+        "padding_top_mobile": 32,
+        "padding_bottom": 64,
+        "padding_bottom_mobile": 32
+      }
+    },
     "solutions_accordion_twFWJJ": {
       "type": "solutions-accordion",
       "blocks": {
@@ -487,6 +513,7 @@
     "brands_slider_xNRMmQ",
     "collection_products_slider_aLpFDr",
     "product_categories_Qa9TxM",
+    "collection_products_slider_nxFeP8",
     "solutions_accordion_twFWJJ",
     "hero_banner_fjiQJQ",
     "reviews_slider_WNYF6r",
