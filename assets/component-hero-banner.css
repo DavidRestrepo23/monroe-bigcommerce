@@ -126,6 +126,7 @@
   z-index: 2;
   display: flex;
   justify-content: center;
+  font-family: var(--font-family);
   width: 100%;
   transform: translate(var(--hb-product-x, 0%), var(--hb-product-y, 0%));
 }
