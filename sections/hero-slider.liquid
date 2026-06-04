@@ -92,7 +92,7 @@
                         </div>
                       {%- endif -%}
 
-                      <p class="hero-slider__product-title">{{ fp.title | escape }}</p>
+                      <p class="hero-slider__product-title">{{ fp.title | escape | truncate: 20, '...' }}</p>
                       <p class="hero-slider__product-price">{{ fp.price | money }}</p>
                     </div>
                   </a>
