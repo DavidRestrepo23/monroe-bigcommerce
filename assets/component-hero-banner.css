@@ -19,6 +19,7 @@
   background-size: var(--hb-bg-size, cover);
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 40px;
 }
 
 /* ── Top bar ── */
