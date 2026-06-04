@@ -10,6 +10,10 @@
     --hb-heading-color: {{ section.settings.heading_color }};
     --hb-stars: {{ section.settings.stars_color }};
     --hb-product-height: {{ section.settings.product_height }}px;
+    --hb-product-x: {{ section.settings.product_offset_x | default: 0 }}%;
+    --hb-product-y: {{ section.settings.product_offset_y | default: 0 }}%;
+    --hb-product-x-mobile: {{ section.settings.product_offset_x_mobile | default: 0 }}%;
+    --hb-product-y-mobile: {{ section.settings.product_offset_y_mobile | default: 0 }}%;
     --hb-bg-size: {{ section.settings.background_size }};
     {%- if section.settings.background_image != blank -%}
       --hb-bg-image: url({{ section.settings.background_image | image_url: width: 1800 }});
