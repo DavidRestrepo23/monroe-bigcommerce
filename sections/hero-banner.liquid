@@ -58,6 +58,19 @@
     #HeroBanner-{{ section.id }} .hero-banner__heading {
       font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
     }
+    #HeroBanner-{{ section.id }} .hero-banner__labels {
+      position: static;
+      inset: auto;
+    }
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'floating_label' -%}
+        #HeroBanner-{{ section.id }} .hero-banner__label--{{ forloop.index }} {
+          position: static;
+          top: auto;
+          left: auto;
+        }
+      {%- endif -%}
+    {%- endfor -%}
   }
 {%- endstyle -%}
 

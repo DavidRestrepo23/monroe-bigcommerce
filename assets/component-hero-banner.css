@@ -224,6 +224,13 @@
     top: 120px;
   }
 
+  .hero-banner__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
   .hero-banner__key {
     display: none;
   }
