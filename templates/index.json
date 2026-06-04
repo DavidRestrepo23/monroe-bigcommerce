@@ -20,7 +20,7 @@
             "button_text": "Shop Our Typewriters",
             "button_link": "",
             "main_image": "shopify://shop_images/Hero-Section.png",
-            "featured_product": "monroe-8130x",
+            "featured_product": "ibm-lexmark-wheelwriter-1000-electric-typewriter-reconditioned",
             "rating": 5
           }
         }
@@ -204,11 +204,11 @@
         "autoplay": false,
         "autoplay_delay": 5000,
         "loop": false,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "card_background": "#ffffff",
-        "text_color": "#0A0A0A",
+        "text_color": "#0a0a0a",
         "accent_color": "#d24742",
-        "cart_btn_background": "#FFFFFF",
+        "cart_btn_background": "#ffffff",
         "padding_top": 64,
         "padding_top_mobile": 32,
         "padding_bottom": 64,
