@@ -202,6 +202,7 @@
   text-transform: uppercase;
   letter-spacing: .5px;
   color: #000;
+  font-family: var(--font-family-h1);
 }
 
 .main-product__meta {
