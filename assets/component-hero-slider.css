@@ -118,6 +118,11 @@
   flex-shrink: 0;
 }
 
+.hero-slider__featured-product {
+  position: relative;
+  top: -30px;
+}
+
 .hero-slider__product-thumb img {
   width: 100%;
   height: 100%;
