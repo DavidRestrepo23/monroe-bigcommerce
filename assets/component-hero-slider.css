@@ -136,6 +136,7 @@
   justify-content: space-between;
   gap: 1px;
   font-size: 0.8rem;
+  margin-bottom: 10px;
 }
 
 .hero-slider__star {
