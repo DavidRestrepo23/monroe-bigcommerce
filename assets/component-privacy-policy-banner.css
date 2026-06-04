@@ -35,7 +35,7 @@
 
 .policy-banner__image {
   position: absolute;
-  top: -25px;
+  top: 0;
   right: 0;
   width: 548px;
   max-width: 55%;
