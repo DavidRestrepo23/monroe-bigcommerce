@@ -459,9 +459,9 @@
       "type": "collection-products-slider",
       "name": "Collection Products Slider",
       "settings": {
-        "heading": "PRINTING CALCULATORS",
+        "heading": "Best Selling Typewriters",
         "subheading": "",
-        "collection": "frontpage",
+        "collection": "best-selling-typewriters",
         "product_limit": 12,
         "cart_label": "Cart",
         "badge_source": "first_n",
