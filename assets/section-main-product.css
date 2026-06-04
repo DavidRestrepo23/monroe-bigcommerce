@@ -143,7 +143,6 @@
 .product-gallery__thumb {
   width: 100px;
   height: 100px;
-  background: #f4f5f6;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
