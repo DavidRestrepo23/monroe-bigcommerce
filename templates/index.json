@@ -85,6 +85,46 @@
             "brand_name": "",
             "link": ""
           }
+        },
+        "brand_W6TVcV": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_9_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_nmBwQW": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_5_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_F6jQaF": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_13_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_PPPK8g": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_7_1.png",
+            "brand_name": "",
+            "link": ""
+          }
+        },
+        "brand_jqdzYD": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/image_3_1.png",
+            "brand_name": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
@@ -92,7 +132,12 @@
         "brand_RmNP9m",
         "brand_KBJK8j",
         "brand_Tj7iUc",
-        "brand_Ec4hKi"
+        "brand_Ec4hKi",
+        "brand_W6TVcV",
+        "brand_nmBwQW",
+        "brand_F6jQaF",
+        "brand_PPPK8g",
+        "brand_jqdzYD"
       ],
       "name": "Brands Slider",
       "settings": {
