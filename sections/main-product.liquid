@@ -72,7 +72,7 @@
             <span>{{ 'products.product.description' | t }}</span>
             {%- render 'icon-arrow-down' -%}
           </summary>
-          <div class="accordion__content" data-raw-desc>
+          <div class="accordion__content">
             {{ product.description | strip_html | escape }}
           </div>
         </details>
@@ -83,7 +83,7 @@
               <span>{{ 'products.product.warranty_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
+            <div class="accordion__content">
               {%- if product.metafields.custom.warranty_information.value != blank -%}
                 {{ product.metafields.custom.warranty_information.value }}
               {%- else -%}
@@ -99,7 +99,7 @@
               <span>{{ 'products.product.additional_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
+            <div class="accordion__content">
               {%- if product.metafields.custom.additional_information.value != blank -%}
                 {{ product.metafields.custom.additional_information.value }}
               {%- else -%}
@@ -146,7 +146,7 @@
       </div>
 
       {%- if product.description != blank -%}
-        <div class="main-product__short" data-raw-desc>
+        <div class="main-product__short">
           {{ product.description | strip_html | truncatewords: 60 }}
         </div>
       {%- endif -%}
@@ -275,7 +275,7 @@
             <span>{{ 'products.product.description' | t }}</span>
             {%- render 'icon-arrow-down' -%}
           </summary>
-          <div class="accordion__content" data-raw-desc>
+          <div class="accordion__content">
             {{ product.description | strip_html | escape }}
           </div>
         </details>
@@ -286,7 +286,7 @@
               <span>{{ 'products.product.warranty_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
+            <div class="accordion__content">
               {%- if product.metafields.custom.warranty_information.value != blank -%}
                 {{ product.metafields.custom.warranty_information.value }}
               {%- else -%}
@@ -302,7 +302,7 @@
               <span>{{ 'products.product.additional_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
+            <div class="accordion__content">
               {%- if product.metafields.custom.additional_information.value != blank -%}
                 {{ product.metafields.custom.additional_information.value }}
               {%- else -%}
