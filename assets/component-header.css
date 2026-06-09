@@ -500,12 +500,18 @@ predictive-search.is-open .header__search-form {
 /* ---------- Navigation Bar ---------- */
 
 .header__nav-bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 32px;
   gap: 8px;
   margin: 20px 0;
+}
+
+/* Wide nav item: drop positioning so its dropdown anchors to nav-bar */
+.header__nav-item--wide {
+  position: static;
 }
 
 /* Each nav item uses <details> for dropdown */
@@ -596,6 +602,22 @@ predictive-search.is-open .header__search-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-width: 560px;
+}
+
+/* Wide dropdown (>6 links): span full nav-bar width */
+.header__mega-dropdown--wide {
+  left: 32px;   /* matches nav-bar horizontal padding */
+  right: 32px;
+  transform: none;
+  width: auto;
+}
+
+/* Four-column grid for wide dropdowns */
+.header__mega-grid--four-col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  min-width: 0;
 }
 
 /* Card */
