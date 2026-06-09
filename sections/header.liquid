@@ -172,7 +172,7 @@
                         <ul class="header__mega-sublist" role="list">
                           <li>
                             <a href="{{ child.url }}" class="header__mega-subitem header__mega-subitem--all"{% if child.active %} aria-current="page"{% endif %}>
-                              {{ 'general.menu.view_all' | t: default: 'Ver todo' }} {{ child.title }}
+                              Ver todo {{ child.title }}
                             </a>
                           </li>
                           {%- for grandchild in child.links -%}
