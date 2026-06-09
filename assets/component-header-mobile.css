@@ -28,8 +28,8 @@
 }
 
 .mobile-header__logo {
-  width: 99px;
-  height: 26px;
+  width: var(--mh-logo-w, 99px);
+  height: auto;
   display: block;
   object-fit: contain;
 }
@@ -42,8 +42,8 @@
 }
 
 .mobile-header__store-name-img {
-  width: 142px;
-  height: 24px;
+  width: var(--mh-store-w, 142px);
+  height: auto;
   display: block;
   object-fit: contain;
 }

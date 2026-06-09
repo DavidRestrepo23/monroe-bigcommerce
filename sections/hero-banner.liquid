@@ -10,6 +10,10 @@
     --hb-heading-color: {{ section.settings.heading_color }};
     --hb-stars: {{ section.settings.stars_color }};
     --hb-product-height: {{ section.settings.product_height }}px;
+    --hb-product-x: {{ section.settings.product_offset_x | default: 0 }}%;
+    --hb-product-y: {{ section.settings.product_offset_y | default: 0 }}%;
+    --hb-product-x-mobile: {{ section.settings.product_offset_x_mobile | default: 0 }}%;
+    --hb-product-y-mobile: {{ section.settings.product_offset_y_mobile | default: 0 }}%;
     --hb-bg-size: {{ section.settings.background_size }};
     {%- if section.settings.background_image != blank -%}
       --hb-bg-image: url({{ section.settings.background_image | image_url: width: 1800 }});
@@ -54,6 +58,19 @@
     #HeroBanner-{{ section.id }} .hero-banner__heading {
       font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
     }
+    #HeroBanner-{{ section.id }} .hero-banner__labels {
+      position: static;
+      inset: auto;
+    }
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'floating_label' -%}
+        #HeroBanner-{{ section.id }} .hero-banner__label--{{ forloop.index }} {
+          position: static;
+          top: auto;
+          left: auto;
+        }
+      {%- endif -%}
+    {%- endfor -%}
   }
 {%- endstyle -%}
 
@@ -258,6 +275,46 @@
       "default": 460,
       "unit": "px",
       "label": "Product image height"
+    },
+    {
+      "type": "range",
+      "id": "product_offset_x",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "%",
+      "label": "Product image X offset"
+    },
+    {
+      "type": "range",
+      "id": "product_offset_y",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "%",
+      "label": "Product image Y offset"
+    },
+    {
+      "type": "range",
+      "id": "product_offset_x_mobile",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "%",
+      "label": "Product image X offset (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "product_offset_y_mobile",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "default": 0,
+      "unit": "%",
+      "label": "Product image Y offset (mobile)"
     },
     {
       "type": "header",

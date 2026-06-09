@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 1440px) {
   .hero-slider__swiper {
-    height: 980px;
+    height: 710px;
   }
 
   .hero-slider__inner {
@@ -84,6 +84,7 @@
 
 .hero-slider__button {
   transition: transform 0.15s ease, opacity 0.15s ease;
+  margin-top: 40px;
 }
 
 .hero-slider__button:hover {
@@ -101,12 +102,13 @@
   text-decoration: none;
   color: var(--hero-card-text, inherit);
   box-shadow: var(--hero-card-shadow, 0 6px 20px rgba(0, 0, 0, 0.06));
-  width: 290px;
+  width: 275px;
+  justify-content: space-between;
 }
 
 .hero-slider__product-thumb {
-  width: 56px;
-  height: 56px;
+  width: 104px;
+  height: 96px;
   border-radius: 10px;
   background: #f3f3f3;
   overflow: hidden;
@@ -114,6 +116,11 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.hero-slider__featured-product {
+  position: relative;
+  top: -30px;
 }
 
 .hero-slider__product-thumb img {
@@ -134,6 +141,7 @@
   justify-content: space-between;
   gap: 1px;
   font-size: 0.8rem;
+  margin-bottom: 10px;
 }
 
 .hero-slider__star {

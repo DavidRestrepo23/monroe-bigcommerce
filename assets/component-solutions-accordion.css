@@ -1,6 +1,6 @@
 .solutions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 48px;
   align-items: start;
   background-color: var(--sol-bg);
@@ -44,7 +44,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #007681 0%, #71BAC0 100%);
+  background: var(--sol-icon-bg, linear-gradient(90deg, #007681 0%, #71BAC0 100%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +106,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .solutions__item-overlay-top {
@@ -118,7 +118,8 @@
 
 .solutions__item-overlay-left {
   display: flex;
-  align-items: center;
+  align-items: start;
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -142,8 +143,7 @@
 }
 
 .solutions__item-overlay-title {
-  font-family: var(--font-family);
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
   color: #fff;
   margin: 0;

@@ -1,0 +1,76 @@
+/* ── Privacy Policy Banner ── */
+.policy-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-height: var(--pb-min-height, 270px);
+  padding: 20px 64px;
+  border-radius: var(--pb-radius, 55px);
+  background: var(--pb-bg, #d24742);
+}
+
+.policy-banner__title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-size: var(--pb-title-size, 72px);
+  line-height: 1.1;
+  color: var(--pb-title-color, #ffffff);
+}
+
+.policy-banner__subtitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--pb-subtitle-size, 24px);
+  line-height: 1.6;
+  color: var(--pb-subtitle-color, #eeeeee);
+}
+
+.policy-banner__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 548px;
+  max-width: 55%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 990px) {
+  .policy-banner {
+    padding: 20px 40px;
+    border-radius: 32px;
+  }
+  .policy-banner__title {
+    font-size: clamp(40px, 8vw, 72px);
+  }
+  .policy-banner__image {
+    width: 360px;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 600px) {
+  .policy-banner {
+    padding: 24px;
+    min-height: 180px;
+    border-radius: 24px;
+  }
+  .policy-banner__subtitle {
+    font-size: 16px;
+  }
+  .policy-banner__image {
+    top: -20px;
+    width: 240px;
+    opacity: 0.35;
+  }
+}

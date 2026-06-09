@@ -19,6 +19,7 @@
   background-size: var(--hb-bg-size, cover);
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 40px;
 }
 
 /* ── Top bar ── */
@@ -121,11 +122,12 @@
 
 /* ── Product image ── */
 .hero-banner__product {
-  position: relative;
+  position: absolute;
   z-index: 2;
   display: flex;
   justify-content: center;
   width: 100%;
+  transform: translate(var(--hb-product-x, 0%), var(--hb-product-y, 0%));
 }
 
 .hero-banner__product img {
@@ -204,6 +206,10 @@
     padding: 32px;
   }
 
+  .hero-banner__product {
+    transform: translate(var(--hb-product-x-mobile, 0%), var(--hb-product-y-mobile, 0%));
+  }
+
   .hero-banner__product img {
     width: 100%;
   }
@@ -216,6 +222,13 @@
     display: block;
     position: relative;
     top: 120px;
+  }
+
+  .hero-banner__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
   }
 
   .hero-banner__key {

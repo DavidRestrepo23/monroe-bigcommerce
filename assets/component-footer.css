@@ -106,7 +106,7 @@
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1.5fr;
+  grid-template-columns: 1.5fr 2fr;
   grid-template-rows: auto auto;
   gap: 48px;
   align-items: start;
@@ -142,6 +142,7 @@
   color: var(--ft-text) !important;
   font-size: 1rem;
   line-height: 1.6;
+  opacity: 0.6;
 }
 
 .site-footer__description p {
@@ -206,7 +207,7 @@
 
 .site-footer__column-title {
   margin: 0 0 16px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--ft-text) !important;
 }
@@ -227,6 +228,7 @@
   transition: color 0.15s ease;
   font-family: var(--font-family);
   font-weight: 400;
+  opacity: 0.6;
 }
 
 .site-footer__links a:hover {

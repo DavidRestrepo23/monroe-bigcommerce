@@ -1,0 +1,138 @@
+{{ 'component-privacy-policy-banner.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #PolicyBanner-{{ section.id }} {
+    --pb-bg: {{ section.settings.background_color | default: '#d24742' }};
+    --pb-radius: {{ section.settings.border_radius | default: 55 }}px;
+    --pb-min-height: {{ section.settings.min_height | default: 270 }}px;
+    --pb-title-size: {{ section.settings.title_size | default: 72 }}px;
+    --pb-title-color: {{ section.settings.title_color | default: '#ffffff' }};
+    --pb-subtitle-size: {{ section.settings.subtitle_size | default: 24 }}px;
+    --pb-subtitle-color: {{ section.settings.subtitle_color | default: '#eeeeee' }};
+  }
+{%- endstyle -%}
+
+<div class="page-width">
+  <div id="PolicyBanner-{{ section.id }}" class="policy-banner">
+    {%- if section.settings.title != blank -%}
+      <h1 class="policy-banner__title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="policy-banner__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.image != blank -%}
+      {{- section.settings.image | image_url: width: 1100 | image_tag:
+        class: 'policy-banner__image',
+        alt: section.settings.title,
+        loading: 'lazy'
+      -}}
+    {%- else -%}
+      <img
+        class="policy-banner__image"
+        src="{{ 'privacy-policy-banner-typewriter.png' | asset_url }}"
+        alt=""
+        loading="lazy"
+      >
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Policy Banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Last updated: May 7, 2026"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right-side image",
+      "info": "Falls back to bundled typewriter image"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#D24742"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#EEEEEE"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 32,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "min": 160,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Min height",
+      "default": 270
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 55
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy Banner"
+    }
+  ]
+}
+{% endschema %}

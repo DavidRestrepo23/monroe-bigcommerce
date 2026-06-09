@@ -9,12 +9,20 @@
  */
 {
   "sections": {
+    "policy_banner": {
+      "type": "policy-banner",
+      "settings": {
+        "title": "Privacy Policy",
+        "subtitle": "Last updated: May 7, 2026"
+      }
+    },
     "main": {
       "type": "main-privacy-policy",
       "settings": {}
     }
   },
   "order": [
+    "policy_banner",
     "main"
   ]
 }

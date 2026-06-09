@@ -204,8 +204,10 @@
       "header": {
         "type": "header",
         "settings": {
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
-          "store_name_image": "shopify://shop_images/logo-typewriters.png",
+          "logo": "shopify://shop_images/logo-typewriters.webp",
+          "logo_width": 200,
+          "store_name_image": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
+          "store_name_width": 120,
           "store_tagline": "",
           "menu": "main-menu",
           "wishlist_url": ""
@@ -217,7 +219,7 @@
           "slide_JptPU7": {
             "type": "slide",
             "settings": {
-              "text": "Enjoy a flat shipping rate of $9.99 at checkout! We welcome you to call us at 267-580-2600, Monday through Friday 8 AM - 5PM EST.",
+              "text": "Browse our extensive collection of typewriters, supplies, parts, and manuals, or feel free to call us at (404) 377-1884 Mon-Fri 9 AM - 5 PM ET",
               "link_text": "",
               "link_url": ""
             }
@@ -308,24 +310,24 @@
           "link_column_nay8jW": {
             "type": "link_column",
             "settings": {
-              "heading": "Navigate",
-              "menu": "navigate",
+              "heading": "Our Webpages",
+              "menu": "our-webpages",
               "links_text": ""
             }
           },
           "link_column_P9NJqq": {
             "type": "link_column",
             "settings": {
-              "heading": "Categories",
-              "menu": "categories",
+              "heading": "Our Categories",
+              "menu": "our-typewriter-categories",
               "links_text": ""
             }
           },
           "link_column_t3icYA": {
             "type": "link_column",
             "settings": {
-              "heading": "Popular Brands",
-              "menu": "popular-brands",
+              "heading": "Our Partner Brands",
+              "menu": "our-partner-brands",
               "links_text": ""
             }
           }
@@ -352,13 +354,13 @@
           "newsletter_button": "Subscribe",
           "newsletter_bg": "#d24742",
           "newsletter_text": "#ffffff",
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
-          "tagline": "Inventor of the commercial printing calculator in 1912",
-          "description": "<p>Monroe Systems for Business supplies professionals with printing <br/>calculators, paper tape rolls, ink ribbons, and office equipment built for <br/>daily accuracy and long-term reliability. From accounting and <br/>bookkeeping to retail environments and administrative offices, our <br/>products support fast totals, clear audit trails, and consistent <br/>performance.</p>",
-          "address": "<p>511 William Leigh Drive <br/>Suite 15 - Tullytown, PA 19007</p>",
+          "logo": "shopify://shop_images/typewriters_logo_47ec4bfd-7e74-40f2-969f-5aee2669153c.png",
+          "tagline": "",
+          "description": "<p>Typewriters.com is a division of Monroe Systems for Business, <br/>based in Tucker, GA. We specialize in new and reconditioned <br/>typewriters, supplies, printwheels, and IBM parts — offering <br/>expert support to help you find the right fit for your machine. <br/>Whether you're replacing a ribbon or sourcing a hard-to-find part, <br/>we're here to help.</p>",
+          "address": "<p>5357 Royal Woods Parkway <br/>Tucker, GA 30084</p>",
           "phone_label": "Call us at",
-          "phone": "(267) 580-2600",
-          "copyright": "Monroe Systems for Business",
+          "phone": "(404) 377-1884",
+          "copyright": "Typewriters.com, a division of Monroe Systems for Business.",
           "legal_menu": "footer",
           "background_color": "#000000",
           "text_color": "#ffffff",
@@ -379,8 +381,8 @@
       "header-mobile": {
         "type": "header-mobile",
         "settings": {
-          "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
-          "store_name_image": "shopify://shop_images/logo-typewriters.png",
+          "logo_width": 100,
+          "store_name_width": 140,
           "menu": "main-menu",
           "wishlist_url": ""
         }
@@ -388,8 +390,8 @@
     },
     "content_for_index": [],
     "blocks": {
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       }

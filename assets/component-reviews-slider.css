@@ -173,6 +173,10 @@
   border-radius: 2px;
 }
 
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background-color: #D24742 !important;
+}
+
 @media (max-width: 990px) {
   .reviews-slider__container {
     grid-template-columns: 1fr;

@@ -1,6 +1,5 @@
 .about-us-typewriters {
   color: var(--aut-text, #1C1C1C);
-  padding: var(--aut-pad-v, 80px) var(--aut-pad-h, 72px);
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -90,6 +89,7 @@
   line-height: 1.6;
   opacity: 0.8;
   color: var(--aut-text, #1C1C1C);
+  margin-top: 32px;
 }
 
 .aut-intro__body p {
@@ -190,9 +190,10 @@
 
 /* ── Sections 3 & 4: Split (text+image) ── */
 .aut-split {
-  display: flex;
+  display: grid;
   gap: 64px;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
 }
 
 .aut-split--text-left {
@@ -245,6 +246,12 @@
 .aut-split__image {
   flex: 1;
   min-width: 0;
+}
+
+.aut-split__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .aut-split__img {
