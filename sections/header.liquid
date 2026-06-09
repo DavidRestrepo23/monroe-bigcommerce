@@ -138,7 +138,7 @@
 
                 <div class="header__mega-grid{% if has_collections %} header__mega-grid--two-col{% endif %}">
                   {%- for child in link.links -%}
-                    <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
+                    {%- capture mega_card_inner -%}
                       <div class="header__mega-card-inner">
                         {%- if child.type == 'collection_link' and child.object.image != blank -%}
                           <div class="header__mega-card-thumb">
@@ -161,7 +161,28 @@
                       <svg class="header__mega-card-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M7.5 4l5.5 6-5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                    </a>
+                    {%- endcapture -%}
+
+                    {%- if child.links != blank -%}
+                      <div class="header__mega-card header__mega-card--group">
+                        <a href="{{ child.url }}" class="header__mega-card-head"{% if child.active %} aria-current="page"{% endif %}>
+                          {{ mega_card_inner }}
+                        </a>
+                        <ul class="header__mega-sublist" role="list">
+                          {%- for grandchild in child.links -%}
+                            <li>
+                              <a href="{{ grandchild.url }}" class="header__mega-subitem"{% if grandchild.active %} aria-current="page"{% endif %}>
+                                {{ grandchild.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {%- else -%}
+                      <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
+                        {{ mega_card_inner }}
+                      </a>
+                    {%- endif -%}
                   {%- endfor -%}
                 </div>
               </div>

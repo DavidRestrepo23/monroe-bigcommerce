@@ -674,6 +674,65 @@ predictive-search.is-open .header__search-form {
   color: var(--color-primary);
 }
 
+/* Card with third-level sublinks */
+.header__mega-card--group {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* Parent link inside a group card */
+.header__mega-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  transition: color 0.15s;
+}
+
+.header__mega-card-head:hover {
+  color: var(--color-primary);
+}
+
+.header__mega-card-head:hover .header__mega-card-chevron {
+  color: var(--color-primary);
+}
+
+/* Grandchild list */
+.header__mega-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 70px; /* align under text, clears thumb width + gap */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__mega-grid:not(.header__mega-grid--two-col) .header__mega-sublist {
+  padding-left: 0;
+}
+
+.header__mega-subitem {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  opacity: 0.65;
+  line-height: 1.6;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.header__mega-subitem:hover,
+.header__mega-subitem[aria-current='page'] {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
 /* Close dropdown when clicking outside via :focus-within trick */
 .header__nav-item:not(:focus-within)[open] {
   /* stays open — JS handles close or user can click summary again */
