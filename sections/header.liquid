@@ -118,14 +118,15 @@
       <nav class="header__nav-bar" role="navigation" aria-label="Main navigation">
         {%- for link in nav_menu.links -%}
           {%- if link.links != blank -%}
-            <details class="header__nav-item">
+            {%- assign child_count = link.links.size -%}
+            <details class="header__nav-item{% if child_count > 6 %} header__nav-item--wide{% endif %}">
               <summary class="header__nav-summary">
                 {{ link.title }}
                 <svg class="header__nav-caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </summary>
-              <div class="header__mega-dropdown">
+              <div class="header__mega-dropdown{% if child_count > 6 %} header__mega-dropdown--wide{% endif %}">
                 <p class="header__mega-category">{{ link.title }}</p>
 
                 {%- assign has_collections = false -%}
@@ -136,7 +137,7 @@
                   {%- endif -%}
                 {%- endfor -%}
 
-                <div class="header__mega-grid{% if has_collections %} header__mega-grid--two-col{% endif %}">
+                <div class="header__mega-grid{% if child_count > 6 %} header__mega-grid--four-col{% elsif has_collections %} header__mega-grid--two-col{% endif %}">
                   {%- for child in link.links -%}
                     {%- capture mega_card_inner -%}
                       <div class="header__mega-card-inner">
