@@ -165,11 +165,16 @@
                     {%- endcapture -%}
 
                     {%- if child.links != blank -%}
-                      <div class="header__mega-card header__mega-card--group">
-                        <a href="{{ child.url }}" class="header__mega-card-head"{% if child.active %} aria-current="page"{% endif %}>
+                      <details class="header__mega-card header__mega-card--group"{% if child.active %} open{% endif %}>
+                        <summary class="header__mega-card-head">
                           {{ mega_card_inner }}
-                        </a>
+                        </summary>
                         <ul class="header__mega-sublist" role="list">
+                          <li>
+                            <a href="{{ child.url }}" class="header__mega-subitem header__mega-subitem--all"{% if child.active %} aria-current="page"{% endif %}>
+                              {{ 'general.menu.view_all' | t: default: 'Ver todo' }} {{ child.title }}
+                            </a>
+                          </li>
                           {%- for grandchild in child.links -%}
                             <li>
                               <a href="{{ grandchild.url }}" class="header__mega-subitem"{% if grandchild.active %} aria-current="page"{% endif %}>
@@ -178,7 +183,7 @@
                             </li>
                           {%- endfor -%}
                         </ul>
-                      </div>
+                      </details>
                     {%- else -%}
                       <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
                         {{ mega_card_inner }}
