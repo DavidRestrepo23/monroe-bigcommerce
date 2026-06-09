@@ -733,23 +733,32 @@ predictive-search.is-open .header__search-form {
   color: var(--color-primary);
 }
 
-/* Card with third-level sublinks */
+/* Card with third-level sublinks — now a <details> accordion */
 .header__mega-card--group {
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  gap: 8px;
+  display: block; /* override .header__mega-card flex */
+  padding: 0;
 }
 
-/* Parent link inside a group card */
+/* Parent toggle = <summary>, no native marker */
 .header__mega-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-decoration: none;
+  padding: 16px;
   color: inherit;
-  border-radius: 12px;
-  transition: color 0.15s;
+  border-radius: 16px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.15s, background 0.15s;
+}
+
+.header__mega-card-head::-webkit-details-marker {
+  display: none;
+}
+
+.header__mega-card-head::marker {
+  display: none;
 }
 
 .header__mega-card-head:hover {
@@ -758,6 +767,33 @@ predictive-search.is-open .header__search-form {
 
 .header__mega-card-head:hover .header__mega-card-chevron {
   color: var(--color-primary);
+}
+
+/* Chevron points right when closed, down when open */
+.header__mega-card--group .header__mega-card-chevron {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.header__mega-card--group[open] > .header__mega-card-head .header__mega-card-chevron {
+  transform: rotate(90deg);
+}
+
+/* Re-show chevron for group cards even in narrow four-col layout */
+.header__mega-grid--four-col .header__mega-card--group .header__mega-card-chevron {
+  display: block;
+}
+
+/* Spacing once expanded */
+.header__mega-card--group[open] > .header__mega-sublist {
+  margin-top: 4px;
+  padding-bottom: 8px;
+}
+
+/* "Ver todo" parent link — emphasized first item */
+.header__mega-subitem--all {
+  font-weight: 600;
+  opacity: 0.85;
 }
 
 /* Grandchild list */
