@@ -509,8 +509,9 @@ predictive-search.is-open .header__search-form {
   margin: 20px 0;
 }
 
-/* Wide nav item: drop positioning so its dropdown anchors to nav-bar */
-.header__nav-item--wide {
+/* Wide nav item: drop positioning so its dropdown anchors to nav-bar.
+   Higher specificity than .header__nav-item so static wins. */
+.header__nav-bar .header__nav-item--wide {
   position: static;
 }
 
