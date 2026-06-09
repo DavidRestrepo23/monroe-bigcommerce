@@ -643,6 +643,19 @@ predictive-search.is-open .header__search-form {
   padding-left: 0;
 }
 
+/* Reclaim space: drop chevron, tighten padding in narrow columns */
+.header__mega-grid--four-col .header__mega-card-chevron {
+  display: none;
+}
+
+.header__mega-grid--four-col .header__mega-card {
+  padding: 10px 12px;
+}
+
+.header__mega-grid--four-col .header__mega-card-head {
+  padding: 0;
+}
+
 /* Card */
 .header__mega-card {
   display: flex;
