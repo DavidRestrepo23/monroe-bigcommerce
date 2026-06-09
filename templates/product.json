@@ -19,9 +19,28 @@
         "warranty_text": "<p>All products come with a 30-day satisfaction guarantee. If you're not completely happy with your purchase, we'll make it right. Contact our customer service team for returns, exchanges, or refunds — no questions asked.</p>",
         "additional_text": "<p>I need more information to generate text. Please provide:<br/><br/>- What type of block is this? (heading, body text, product description, etc.)<br/>- What should the text be about?<br/>- Any specific tone or style preferences?<br/>- Any key details to include?</p>"
       }
+    },
+    "17810382055ab4d2c2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_QXdjMB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_QXdjMB"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "17810382055ab4d2c2"
   ]
 }
