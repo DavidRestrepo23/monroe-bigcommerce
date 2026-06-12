@@ -46,98 +46,98 @@
     "brands_slider_xNRMmQ": {
       "type": "brands-slider",
       "blocks": {
-        "brand_Yx7tQG": {
+        "brand_UD4BKw": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
+            "logo": "shopify://shop_images/image.jpg",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_RmNP9m": {
+        "brand_eednFq": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_5_1.png",
+            "logo": "shopify://shop_images/image_14.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_KBJK8j": {
+        "brand_ndeapn": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_13_1.png",
+            "logo": "shopify://shop_images/image_13.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_Tj7iUc": {
+        "brand_4bmykQ": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1.png",
+            "logo": "shopify://shop_images/image_11.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_Ec4hKi": {
+        "brand_tp9dWF": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_3_1.png",
+            "logo": "shopify://shop_images/image_7.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_W6TVcV": {
+        "brand_N3wm8J": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
+            "logo": "shopify://shop_images/image_8.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_nmBwQW": {
+        "brand_DwNHE6": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_5_1.png",
+            "logo": "shopify://shop_images/image.jpg",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_F6jQaF": {
+        "brand_FKJRgK": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_13_1.png",
+            "logo": "shopify://shop_images/image_14.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_PPPK8g": {
+        "brand_3hXMTn": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1.png",
+            "logo": "shopify://shop_images/image_13.png",
             "brand_name": "",
             "link": ""
           }
         },
-        "brand_jqdzYD": {
+        "brand_cUYibe": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_3_1.png",
+            "logo": "shopify://shop_images/image_7.png",
             "brand_name": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "brand_Yx7tQG",
-        "brand_RmNP9m",
-        "brand_KBJK8j",
-        "brand_Tj7iUc",
-        "brand_Ec4hKi",
-        "brand_W6TVcV",
-        "brand_nmBwQW",
-        "brand_F6jQaF",
-        "brand_PPPK8g",
-        "brand_jqdzYD"
+        "brand_UD4BKw",
+        "brand_eednFq",
+        "brand_ndeapn",
+        "brand_4bmykQ",
+        "brand_tp9dWF",
+        "brand_N3wm8J",
+        "brand_DwNHE6",
+        "brand_FKJRgK",
+        "brand_3hXMTn",
+        "brand_cUYibe"
       ],
       "name": "Brands Slider",
       "settings": {
