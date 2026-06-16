@@ -206,11 +206,13 @@
         "settings": {
           "logo": "shopify://shop_images/logo-typewriters.webp",
           "logo_width": 200,
+          "logo_url": "/",
           "store_name_image": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
           "store_name_width": 120,
+          "store_name_url": "https://monroe-systems-for-business-inc-2.myshopify.com/",
           "store_tagline": "",
           "menu": "main-menu",
-          "wishlist_url": ""
+          "wishlist_url": "shopify://pages/wishlist"
         }
       },
       "top-ribbon": {
