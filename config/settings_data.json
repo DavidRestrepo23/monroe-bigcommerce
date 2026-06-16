@@ -212,7 +212,7 @@
           "store_name_url": "https://monroe-systems-for-business-inc-2.myshopify.com/",
           "store_tagline": "",
           "menu": "main-menu",
-          "wishlist_url": ""
+          "wishlist_url": "shopify://pages/wishlist"
         }
       },
       "top-ribbon": {
