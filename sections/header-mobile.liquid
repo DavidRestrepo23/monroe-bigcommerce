@@ -69,19 +69,43 @@
     <div class="mobile-menu__inner">
       {%- comment -%} Search + utility icons {%- endcomment -%}
       <div class="mobile-menu__toolbar">
-        <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form">
-          <input
-            class="mobile-menu__search-input"
-            type="search"
-            name="q"
-            placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
-            aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
-            autocomplete="off"
+        <predictive-search class="mobile-menu__search" data-loading-text="{{ 'general.search.loading' | t | default: 'Loading...' }}">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form" data-predictive-search-form>
+            <input
+              class="mobile-menu__search-input"
+              type="search"
+              name="q"
+              placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
+              aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+              aria-controls="mobile-predictive-search-results"
+              aria-autocomplete="list"
+              role="combobox"
+              aria-expanded="false"
+              autocomplete="off"
+              spellcheck="false"
+              data-predictive-search-input
+            >
+            <button type="button" class="mobile-menu__search-clear" aria-label="Reset" hidden data-predictive-search-clear>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <button type="submit" class="mobile-menu__search-btn" aria-label="Search">
+              {% render 'icon-search' %}
+            </button>
+          </form>
+
+          <div
+            id="mobile-predictive-search-results"
+            class="header__search-results mobile-menu__search-results"
+            role="listbox"
+            aria-label="{{ 'general.search.search' | t | default: 'Search' }} results"
+            hidden
+            data-predictive-search-results
           >
-          <button type="submit" class="mobile-menu__search-btn" aria-label="Search">
-            {% render 'icon-search' %}
-          </button>
-        </form>
+            <div class="header__search-results-inner" data-predictive-search-content></div>
+          </div>
+        </predictive-search>
 
         <div class="mobile-menu__icons">
           <a href="{{ routes.account_url }}" class="mobile-menu__icon-link" aria-label="Account">
