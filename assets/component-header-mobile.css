@@ -120,15 +120,49 @@
   width: 100%;
 }
 
+/* Predictive-search wrapper = flex item; anchors the results panel */
+.mobile-menu__search {
+  display: block;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
 .mobile-menu__search-form {
   display: flex;
   align-items: center;
-  flex: 1;
+  width: 100%;
   min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   overflow: hidden;
   padding: 12px 16px;
+}
+
+/* Clear (X) button — shown by JS when input has text */
+.mobile-menu__search-clear {
+  border: none;
+  background: transparent;
+  padding: 0 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.mobile-menu__search-clear svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Results panel reuses .header__search-results look; widen to full drawer */
+.mobile-menu__search-results {
+  left: 0;
+  right: auto;
+  width: calc(100vw - 40px); /* drawer inner padding 20px each side */
+  max-height: 60vh;
 }
 
 .mobile-menu__search-input {
@@ -320,6 +354,80 @@
   line-height: 0.96;
   color: var(--color-text);
   margin: 0;
+}
+
+/* ---------- Third-level: category card with sublinks ---------- */
+/* Group card is a <details> that spans the full dropdown width */
+.mobile-menu__category-card--group {
+  grid-column: 1 / -1;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Toggle row = <summary>, mirrors the card layout + chevron */
+.mobile-menu__category-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 6px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.mobile-menu__category-head::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu__category-head::marker {
+  display: none;
+  content: "";
+}
+
+.mobile-menu__category-chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: transform 0.25s ease;
+}
+
+.mobile-menu__category-card--group[open] > .mobile-menu__category-head .mobile-menu__category-chevron {
+  transform: rotate(180deg);
+}
+
+/* Grandchild list */
+.mobile-menu__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0 16px 12px 76px; /* align under title: thumb 60 + gap 10 + card pad 6 */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-menu__subitem {
+  display: block;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  opacity: 0.65;
+  text-decoration: none;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.mobile-menu__subitem--all {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.mobile-menu__subitem:hover,
+.mobile-menu__subitem[aria-current='page'] {
+  opacity: 1;
+  color: var(--color-primary);
 }
 
 /* ---------- Body scroll lock ---------- */
