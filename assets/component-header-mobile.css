@@ -320,6 +320,7 @@
   line-height: 0.96;
   color: var(--color-text);
   margin: 0;
+  display: none;
 }
 
 /* ---------- Third-level: category card with sublinks ---------- */
