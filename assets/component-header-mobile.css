@@ -96,7 +96,7 @@
 
 .mobile-menu[data-open="true"] {
   transform: translateX(0);
-  top: 100px;
+  top: 115px;
 }
 
 /* Spacer to push content below sticky header */
