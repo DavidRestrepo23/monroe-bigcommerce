@@ -269,6 +269,7 @@ predictive-search.is-open .header__search-form {
   text-decoration: none;
   border-radius: 8px;
   transition: color 0.15s, background 0.15s, padding-left 0.15s;
+  font-family: var(--font-family);
 }
 
 .header__search-suggestion:hover,
