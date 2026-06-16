@@ -13,24 +13,26 @@
   {%- comment -%} ======== TOP BAR ======== {%- endcomment -%}
   <div class="header__top-bar">
 
-    {%- comment -%} Logo + store identity {%- endcomment -%}
-    <a href="{{ routes.root_url }}" class="header__identity" aria-label="{{ shop.name }} — home">
-      {%- if section.settings.logo != blank -%}
-        <img
-          class="header__logo-img"
-          src="{{ section.settings.logo | image_url: width: 480 }}"
-          alt="{{ shop.name }}"
-          width="{{ section.settings.logo.width }}"
-          height="{{ section.settings.logo.height }}"
-          loading="eager"
-        >
-      {%- else -%}
-        <span class="header__logo-placeholder">{{ shop.name }}</span>
-      {%- endif -%}
+    {%- comment -%} Logo + store identity (independent links) {%- endcomment -%}
+    <div class="header__identity">
+      <a href="{{ section.settings.logo_url | default: routes.root_url }}" class="header__identity-link header__identity-link--logo" aria-label="{{ shop.name }} — home">
+        {%- if section.settings.logo != blank -%}
+          <img
+            class="header__logo-img"
+            src="{{ section.settings.logo | image_url: width: 480 }}"
+            alt="{{ shop.name }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            loading="eager"
+          >
+        {%- else -%}
+          <span class="header__logo-placeholder">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
 
       {%- if section.settings.store_name_image != blank or section.settings.store_tagline != blank -%}
         <div class="header__identity-divider" aria-hidden="true"></div>
-        <div class="header__store-name-wrap">
+        <a href="{{ section.settings.store_name_url | default: routes.root_url }}" class="header__identity-link header__store-name-wrap" aria-label="{{ shop.name }}">
           {%- if section.settings.store_name_image != blank -%}
             <img
               class="header__store-name-img"
@@ -44,9 +46,9 @@
           {%- if section.settings.store_tagline != blank -%}
             <span class="header__store-tagline">{{ section.settings.store_tagline }}</span>
           {%- endif -%}
-        </div>
+        </a>
       {%- endif -%}
-    </a>
+    </div>
 
     {%- comment -%} Search {%- endcomment -%}
     <div class="header__search-wrap">
@@ -223,6 +225,11 @@
       "default": 120
     },
     {
+      "type": "url",
+      "id": "logo_url",
+      "label": "Logo link (defaults to home)"
+    },
+    {
       "type": "image_picker",
       "id": "store_name_image",
       "label": "Store name image (beside logo)"
@@ -236,6 +243,11 @@
       "unit": "px",
       "label": "Store name image width",
       "default": 200
+    },
+    {
+      "type": "url",
+      "id": "store_name_url",
+      "label": "Store name image link (defaults to home)"
     },
     {
       "type": "text",
