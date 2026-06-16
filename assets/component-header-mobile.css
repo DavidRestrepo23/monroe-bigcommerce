@@ -131,7 +131,7 @@
 .mobile-menu__search-form {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 86%;
   min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 100px;
