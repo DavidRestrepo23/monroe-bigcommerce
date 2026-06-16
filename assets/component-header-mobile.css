@@ -120,15 +120,49 @@
   width: 100%;
 }
 
+/* Predictive-search wrapper = flex item; anchors the results panel */
+.mobile-menu__search {
+  display: block;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
 .mobile-menu__search-form {
   display: flex;
   align-items: center;
-  flex: 1;
+  width: 100%;
   min-width: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   overflow: hidden;
   padding: 12px 16px;
+}
+
+/* Clear (X) button — shown by JS when input has text */
+.mobile-menu__search-clear {
+  border: none;
+  background: transparent;
+  padding: 0 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.mobile-menu__search-clear svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Results panel reuses .header__search-results look; widen to full drawer */
+.mobile-menu__search-results {
+  left: 0;
+  right: auto;
+  width: calc(100vw - 40px); /* drawer inner padding 20px each side */
+  max-height: 60vh;
 }
 
 .mobile-menu__search-input {
