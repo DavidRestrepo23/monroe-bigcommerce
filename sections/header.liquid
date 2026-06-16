@@ -25,7 +25,8 @@
         <div class="header__identity-divider" aria-hidden="true"></div>
         <div class="header__store-name-wrap">
           {%- if section.settings.store_name_image != blank -%}
-           <img
+            <a href="https://typewriterscom.myshopify.com/" target="_blank">
+              <img
                 class="header__store-name-img"
                 src="{{ section.settings.store_name_image | image_url: width: 300 }}"
                 alt="{{ shop.name }}"
@@ -33,6 +34,7 @@
                 height="{{ section.settings.store_name_image.height }}"
                 loading="eager"
               >
+            </a>
           {%- endif -%}
           {%- if section.settings.store_tagline != blank -%}
             <span class="header__store-tagline">{{ section.settings.store_tagline }}</span>
