@@ -318,7 +318,7 @@
   border-radius: 16px;
   background: #E3E6E6;
   flex-shrink: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -354,6 +354,7 @@
   line-height: 0.96;
   color: var(--color-text);
   margin: 0;
+  display: none;
 }
 
 /* ---------- Third-level: category card with sublinks ---------- */
@@ -401,7 +402,7 @@
 .mobile-menu__sublist {
   list-style: none;
   margin: 0;
-  padding: 0 16px 12px 76px; /* align under title: thumb 60 + gap 10 + card pad 6 */
+  padding: 0 16px 12px 12px; /* align under title: thumb 60 + gap 10 + card pad 6 */
   display: flex;
   flex-direction: column;
   gap: 4px;
