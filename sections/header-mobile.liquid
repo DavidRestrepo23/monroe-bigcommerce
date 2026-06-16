@@ -235,16 +235,20 @@
       document.body.classList.toggle('mobile-menu-open', next);
     });
 
-    // Close menu when clicking a nav link (non-details)
-    drawer.querySelectorAll('.mobile-menu__nav-link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        header.setAttribute('data-menu-open', 'false');
-        drawer.setAttribute('data-open', 'false');
-        drawer.setAttribute('aria-hidden', 'true');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('mobile-menu-open');
+    // Close menu when clicking any link that navigates (not <summary> toggles)
+    function closeMenu() {
+      header.setAttribute('data-menu-open', 'false');
+      drawer.setAttribute('data-open', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    drawer
+      .querySelectorAll('a.mobile-menu__nav-link, a.mobile-menu__category-card, a.mobile-menu__subitem')
+      .forEach(function (link) {
+        link.addEventListener('click', closeMenu);
       });
-    });
   })();
 </script>
 
