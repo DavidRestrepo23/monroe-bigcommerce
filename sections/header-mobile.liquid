@@ -122,7 +122,7 @@
                 </summary>
                 <div class="mobile-menu__dropdown">
                   {%- for child in link.links -%}
-                    <a href="{{ child.url }}" class="mobile-menu__category-card">
+                    {%- capture mobile_card_inner -%}
                       {%- if child.object.image != blank -%}
                         <div class="mobile-menu__category-thumb">
                           <img
@@ -151,7 +151,44 @@
                           </p>
                         {%- endif -%}
                       </div>
-                    </a>
+                    {%- endcapture -%}
+
+                    {%- if child.links != blank -%}
+                      <details class="mobile-menu__category-card mobile-menu__category-card--group"{% if child.active %} open{% endif %}>
+                        <summary class="mobile-menu__category-head">
+                          {{ mobile_card_inner }}
+                          <svg
+                            class="mobile-menu__category-chevron"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </summary>
+                        <ul class="mobile-menu__sublist" role="list">
+                          <li>
+                            <a href="{{ child.url }}" class="mobile-menu__subitem mobile-menu__subitem--all"{% if child.active %} aria-current="page"{% endif %}>
+                              See all {{ child.title }}
+                            </a>
+                          </li>
+                          {%- for grandchild in child.links -%}
+                            <li>
+                              <a href="{{ grandchild.url }}" class="mobile-menu__subitem"{% if grandchild.active %} aria-current="page"{% endif %}>
+                                {{ grandchild.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <a href="{{ child.url }}" class="mobile-menu__category-card">
+                        {{ mobile_card_inner }}
+                      </a>
+                    {%- endif -%}
                   {%- endfor -%}
                 </div>
               </details>
