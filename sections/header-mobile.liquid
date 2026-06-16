@@ -1,4 +1,5 @@
 {{ 'component-header-mobile.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
@@ -68,19 +69,43 @@
     <div class="mobile-menu__inner">
       {%- comment -%} Search + utility icons {%- endcomment -%}
       <div class="mobile-menu__toolbar">
-        <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form">
-          <input
-            class="mobile-menu__search-input"
-            type="search"
-            name="q"
-            placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
-            aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
-            autocomplete="off"
+        <predictive-search class="mobile-menu__search" data-loading-text="{{ 'general.search.loading' | t | default: 'Loading...' }}">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="mobile-menu__search-form" data-predictive-search-form>
+            <input
+              class="mobile-menu__search-input"
+              type="search"
+              name="q"
+              placeholder="{{ 'general.search.placeholder' | t | default: 'Search...' }}"
+              aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+              aria-controls="mobile-predictive-search-results"
+              aria-autocomplete="list"
+              role="combobox"
+              aria-expanded="false"
+              autocomplete="off"
+              spellcheck="false"
+              data-predictive-search-input
+            >
+            <button type="button" class="mobile-menu__search-clear" aria-label="Reset" hidden data-predictive-search-clear>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <button type="submit" class="mobile-menu__search-btn" aria-label="Search">
+              {% render 'icon-search' %}
+            </button>
+          </form>
+
+          <div
+            id="mobile-predictive-search-results"
+            class="header__search-results mobile-menu__search-results"
+            role="listbox"
+            aria-label="{{ 'general.search.search' | t | default: 'Search' }} results"
+            hidden
+            data-predictive-search-results
           >
-          <button type="submit" class="mobile-menu__search-btn" aria-label="Search">
-            {% render 'icon-search' %}
-          </button>
-        </form>
+            <div class="header__search-results-inner" data-predictive-search-content></div>
+          </div>
+        </predictive-search>
 
         <div class="mobile-menu__icons">
           <a href="{{ routes.account_url }}" class="mobile-menu__icon-link" aria-label="Account">
@@ -122,7 +147,7 @@
                 </summary>
                 <div class="mobile-menu__dropdown">
                   {%- for child in link.links -%}
-                    <a href="{{ child.url }}" class="mobile-menu__category-card">
+                    {%- capture mobile_card_inner -%}
                       {%- if child.object.image != blank -%}
                         <div class="mobile-menu__category-thumb">
                           <img
@@ -151,7 +176,44 @@
                           </p>
                         {%- endif -%}
                       </div>
-                    </a>
+                    {%- endcapture -%}
+
+                    {%- if child.links != blank -%}
+                      <details class="mobile-menu__category-card mobile-menu__category-card--group"{% if child.active %} open{% endif %}>
+                        <summary class="mobile-menu__category-head">
+                          {{ mobile_card_inner }}
+                          <svg
+                            class="mobile-menu__category-chevron"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                          >
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </summary>
+                        <ul class="mobile-menu__sublist" role="list">
+                          <li>
+                            <a href="{{ child.url }}" class="mobile-menu__subitem mobile-menu__subitem--all"{% if child.active %} aria-current="page"{% endif %}>
+                              See all {{ child.title }}
+                            </a>
+                          </li>
+                          {%- for grandchild in child.links -%}
+                            <li>
+                              <a href="{{ grandchild.url }}" class="mobile-menu__subitem"{% if grandchild.active %} aria-current="page"{% endif %}>
+                                {{ grandchild.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <a href="{{ child.url }}" class="mobile-menu__category-card">
+                        {{ mobile_card_inner }}
+                      </a>
+                    {%- endif -%}
                   {%- endfor -%}
                 </div>
               </details>
@@ -198,16 +260,20 @@
       document.body.classList.toggle('mobile-menu-open', next);
     });
 
-    // Close menu when clicking a nav link (non-details)
-    drawer.querySelectorAll('.mobile-menu__nav-link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        header.setAttribute('data-menu-open', 'false');
-        drawer.setAttribute('data-open', 'false');
-        drawer.setAttribute('aria-hidden', 'true');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('mobile-menu-open');
+    // Close menu when clicking any link that navigates (not <summary> toggles)
+    function closeMenu() {
+      header.setAttribute('data-menu-open', 'false');
+      drawer.setAttribute('data-open', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-menu-open');
+    }
+
+    drawer
+      .querySelectorAll('a.mobile-menu__nav-link, a.mobile-menu__category-card, a.mobile-menu__subitem')
+      .forEach(function (link) {
+        link.addEventListener('click', closeMenu);
       });
-    });
   })();
 </script>
 

@@ -13,12 +13,22 @@
       "type": "policy-banner",
       "settings": {
         "title": "Privacy Policy",
-        "subtitle": "Last updated: May 7, 2026"
+        "subtitle": "Last updated: May 7, 2026",
+        "image": "shopify://shop_images/magnific_troque-a-cor-da-maqunia-d_UyFSiebwny_1.png",
+        "background_color": "#d24742",
+        "title_color": "#ffffff",
+        "subtitle_color": "#eeeeee",
+        "title_size": 72,
+        "subtitle_size": 24,
+        "min_height": 270,
+        "border_radius": 55
       }
     },
     "main": {
       "type": "main-privacy-policy",
-      "settings": {}
+      "settings": {
+        "last_updated": "May 7, 2026"
+      }
     }
   },
   "order": [
