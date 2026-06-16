@@ -6,24 +6,26 @@
   {%- comment -%} ======== TOP BAR ======== {%- endcomment -%}
   <div class="header__top-bar">
 
-    {%- comment -%} Logo + store identity {%- endcomment -%}
-    <a href="{{ routes.root_url }}" class="header__identity" aria-label="{{ shop.name }} — home">
-      {%- if section.settings.logo != blank -%}
-        <img
-          class="header__logo-img"
-          src="{{ section.settings.logo | image_url: width: 200 }}"
-          alt="{{ shop.name }}"
-          width="{{ section.settings.logo.width }}"
-          height="{{ section.settings.logo.height }}"
-          loading="eager"
-        >
-      {%- else -%}
-        <span class="header__logo-placeholder">{{ shop.name }}</span>
-      {%- endif -%}
+    {%- comment -%} Logo + store identity (independent links) {%- endcomment -%}
+    <div class="header__identity">
+      <a href="{{ section.settings.logo_url | default: routes.root_url }}" class="header__identity-link header__identity-link--logo" aria-label="{{ shop.name }} — home">
+        {%- if section.settings.logo != blank -%}
+          <img
+            class="header__logo-img"
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="{{ shop.name }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            loading="eager"
+          >
+        {%- else -%}
+          <span class="header__logo-placeholder">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
 
       {%- if section.settings.store_name_image != blank or section.settings.store_tagline != blank -%}
         <div class="header__identity-divider" aria-hidden="true"></div>
-        <div class="header__store-name-wrap">
+        <a href="{{ section.settings.store_name_url | default: routes.root_url }}" class="header__identity-link header__store-name-wrap" aria-label="{{ shop.name }}">
           {%- if section.settings.store_name_image != blank -%}
             <img
               class="header__store-name-img"
@@ -37,9 +39,9 @@
           {%- if section.settings.store_tagline != blank -%}
             <span class="header__store-tagline">{{ section.settings.store_tagline }}</span>
           {%- endif -%}
-        </div>
+        </a>
       {%- endif -%}
-    </a>
+    </div>
 
     {%- comment -%} Search {%- endcomment -%}
     <div class="header__search-wrap">
@@ -118,14 +120,15 @@
       <nav class="header__nav-bar" role="navigation" aria-label="Main navigation">
         {%- for link in nav_menu.links -%}
           {%- if link.links != blank -%}
-            <details class="header__nav-item">
+            {%- assign child_count = link.links.size -%}
+            <details class="header__nav-item{% if child_count > 6 %} header__nav-item--wide{% endif %}">
               <summary class="header__nav-summary">
                 {{ link.title }}
                 <svg class="header__nav-caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                   <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </summary>
-              <div class="header__mega-dropdown">
+              <div class="header__mega-dropdown{% if child_count > 6 %} header__mega-dropdown--wide{% endif %}">
                 <p class="header__mega-category">{{ link.title }}</p>
 
                 {%- assign has_collections = false -%}
@@ -136,9 +139,9 @@
                   {%- endif -%}
                 {%- endfor -%}
 
-                <div class="header__mega-grid{% if has_collections %} header__mega-grid--two-col{% endif %}">
+                <div class="header__mega-grid{% if child_count > 6 %} header__mega-grid--four-col{% elsif has_collections %} header__mega-grid--two-col{% endif %}">
                   {%- for child in link.links -%}
-                    <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
+                    {%- capture mega_card_inner -%}
                       <div class="header__mega-card-inner">
                         {%- if child.type == 'collection_link' and child.object.image != blank -%}
                           <div class="header__mega-card-thumb">
@@ -161,7 +164,33 @@
                       <svg class="header__mega-card-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <path d="M7.5 4l5.5 6-5.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                    </a>
+                    {%- endcapture -%}
+
+                    {%- if child.links != blank -%}
+                      <details class="header__mega-card header__mega-card--group"{% if child.active %} open{% endif %}>
+                        <summary class="header__mega-card-head">
+                          {{ mega_card_inner }}
+                        </summary>
+                        <ul class="header__mega-sublist" role="list">
+                          <li>
+                            <a href="{{ child.url }}" class="header__mega-subitem header__mega-subitem--all"{% if child.active %} aria-current="page"{% endif %}>
+                             <strong> See all {{ child.title }}</strong>
+                            </a>
+                          </li>
+                          {%- for grandchild in child.links -%}
+                            <li>  
+                              <a href="{{ grandchild.url }}" class="header__mega-subitem"{% if grandchild.active %} aria-current="page"{% endif %}>
+                                {{ grandchild.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <a href="{{ child.url }}" class="header__mega-card"{% if child.active %} aria-current="page"{% endif %}>
+                        {{ mega_card_inner }}
+                      </a>
+                    {%- endif -%}
                   {%- endfor -%}
                 </div>
               </div>
@@ -206,9 +235,19 @@
       "label": "Logo image"
     },
     {
+      "type": "url",
+      "id": "logo_url",
+      "label": "Logo link (defaults to home)"
+    },
+    {
       "type": "image_picker",
       "id": "store_name_image",
       "label": "Store name image (beside logo)"
+    },
+    {
+      "type": "url",
+      "id": "store_name_url",
+      "label": "Store name image link (defaults to home)"
     },
     {
       "type": "text",

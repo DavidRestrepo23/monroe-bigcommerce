@@ -200,10 +200,12 @@
         "type": "header",
         "settings": {
           "logo": "shopify://shop_images/358c1c5d36d93a523ee3f6d0e7fd6c342f7bb271.png",
+          "logo_url": "/",
           "store_name_image": "shopify://shop_images/logo-typewriters.png",
+          "store_name_url": "https://typewriterscom.myshopify.com/",
           "store_tagline": "",
           "menu": "main-menu",
-          "wishlist_url": ""
+          "wishlist_url": "shopify://pages/wishlist"
         }
       },
       "top-ribbon": {

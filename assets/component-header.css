@@ -44,6 +44,13 @@
   flex-shrink: 0;
 }
 
+.header__identity-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
 .header__logo-img {
   width: 120px;
   display: block;
@@ -500,12 +507,19 @@ predictive-search.is-open .header__search-form {
 /* ---------- Navigation Bar ---------- */
 
 .header__nav-bar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 32px;
   gap: 8px;
   margin: 20px 0;
+}
+
+/* Wide nav item: drop positioning so its dropdown anchors to nav-bar.
+   Higher specificity than .header__nav-item so static wins. */
+.header__nav-bar .header__nav-item--wide {
+  position: static;
 }
 
 /* Each nav item uses <details> for dropdown */
@@ -598,6 +612,58 @@ predictive-search.is-open .header__search-form {
   min-width: 560px;
 }
 
+/* Wide dropdown (>6 links): span full nav-bar width */
+.header__mega-dropdown--wide {
+  left: 32px;   /* matches nav-bar horizontal padding */
+  right: 32px;
+  transform: none;
+  width: auto;
+}
+
+/* Four-column grid for wide dropdowns */
+.header__mega-grid--four-col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  min-width: 0;
+  align-items: start;
+  gap: 8px;
+}
+
+/* Narrow columns: let content shrink + wrap instead of overflowing */
+.header__mega-grid--four-col .header__mega-card,
+.header__mega-grid--four-col .header__mega-card-head,
+.header__mega-grid--four-col .header__mega-card-inner,
+.header__mega-grid--four-col .header__mega-card-text {
+  min-width: 0;
+}
+
+.header__mega-grid--four-col .header__mega-card-title,
+.header__mega-grid--four-col .header__mega-card-desc,
+.header__mega-grid--four-col .header__mega-subitem {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+/* Sublist aligns to card edge in narrow columns (no thumb indent) */
+.header__mega-grid--four-col .header__mega-sublist {
+  padding-left: 0;
+}
+
+/* Reclaim space: drop chevron, tighten padding in narrow columns */
+.header__mega-grid--four-col .header__mega-card-chevron {
+  display: none;
+}
+
+.header__mega-grid--four-col .header__mega-card {
+  padding: 10px 12px;
+}
+
+.header__mega-grid--four-col .header__mega-card-head {
+  padding: 0;
+}
+
 /* Card */
 .header__mega-card {
   display: flex;
@@ -671,6 +737,101 @@ predictive-search.is-open .header__search-form {
 }
 
 .header__mega-card:hover .header__mega-card-chevron {
+  color: var(--color-primary);
+}
+
+/* Card with third-level sublinks — now a <details> accordion */
+.header__mega-card--group {
+  display: block; /* override .header__mega-card flex */
+  padding: 0;
+}
+
+/* Parent toggle = <summary>, no native marker */
+.header__mega-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  color: inherit;
+  border-radius: 16px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: color 0.15s, background 0.15s;
+}
+
+.header__mega-card-head::-webkit-details-marker {
+  display: none;
+}
+
+.header__mega-card-head::marker {
+  display: none;
+}
+
+.header__mega-card-head:hover {
+  color: var(--color-primary);
+}
+
+.header__mega-card-head:hover .header__mega-card-chevron {
+  color: var(--color-primary);
+}
+
+/* Chevron points right when closed, down when open */
+.header__mega-card--group .header__mega-card-chevron {
+  display: block;
+  transition: transform 0.2s;
+}
+
+.header__mega-card--group[open] > .header__mega-card-head .header__mega-card-chevron {
+  transform: rotate(90deg);
+}
+
+/* Re-show chevron for group cards even in narrow four-col layout */
+.header__mega-grid--four-col .header__mega-card--group .header__mega-card-chevron {
+  display: block;
+}
+
+/* Spacing once expanded */
+.header__mega-card--group[open] > .header__mega-sublist {
+  margin-top: 4px;
+  padding-bottom: 8px;
+}
+
+/* "Ver todo" parent link — emphasized first item */
+.header__mega-subitem--all {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* Grandchild list */
+.header__mega-sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 70px; /* align under text, clears thumb width + gap */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header__mega-grid:not(.header__mega-grid--two-col) .header__mega-sublist {
+  padding-left: 0;
+}
+
+.header__mega-subitem {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  opacity: 0.65;
+  line-height: 1.6;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.header__mega-subitem:hover,
+.header__mega-subitem[aria-current='page'] {
+  opacity: 1;
   color: var(--color-primary);
 }
 
