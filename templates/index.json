@@ -20,6 +20,7 @@
             "button_text": "Order Today!",
             "button_link": "shopify://products/monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator",
             "main_image": "shopify://shop_images/6120X_Price_Drop_1.png",
+            "slide_link": "shopify://products/monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator",
             "featured_product": "monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator",
             "rating": 5
           }
@@ -32,6 +33,7 @@
             "button_text": "Compare Models",
             "button_link": "#",
             "main_image": "shopify://shop_images/img-hero-2_e5b6aa89-c6a4-4132-afbc-b2a895b56e33.png",
+            "slide_link": "",
             "featured_product": "",
             "rating": 0
           }
@@ -44,6 +46,7 @@
             "button_text": "Shop Our Partners Brands",
             "button_link": "#",
             "main_image": "shopify://shop_images/Frame_1171276530.png",
+            "slide_link": "",
             "featured_product": "brother-brougham-10-printwheel-by-rarotype",
             "rating": 5
           }
