@@ -103,7 +103,8 @@
 
 @media (max-width: 749px) {
 
-  .shop-by-category__item:first-child .shop-by-category__media {
+  .shop-by-category__item:first-child .shop-by-category__media,
+  .shop-by-category__item:last-child .shop-by-category__media {
     border-radius: 0;
   }
 
