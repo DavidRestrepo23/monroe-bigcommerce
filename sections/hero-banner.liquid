@@ -33,9 +33,6 @@
   @media (max-width: 768px) {
     #HeroBanner-{{ section.id }} {
       --hb-pad-top: {{ section.settings.padding_top_mobile | default: 24 }}px;
-      width: 768px;
-        height: 450px;
-    }
     #HeroBanner-{{ section.id }} .hero-banner__heading {
       font-size: {{ section.settings.heading_size | times: 0.6 | round }}px;
     }
