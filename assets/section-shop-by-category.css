@@ -108,6 +108,10 @@
     border-radius: 0;
   }
 
+  .shop-by-category {
+    padding-bottom: 0;
+  }
+
   .shop-by-category__title {
     display: none;
   }
