@@ -4,11 +4,33 @@
 {%- style -%}
   #HeroSlider-{{ section.id }} {
     --hero-bg: {{ section.settings.background_color | default: '#EDEDED' }};
-    --hero-text: {{ section.settings.text_color | default: '#0A0A0A' }};
-    --hero-accent: {{ section.settings.accent_color | default: '#1F6F75' }};
+    --hero-text: {{ section.settings.text_color | default: '#000000' }};
+    --hero-accent: {{ section.settings.accent_color | default: '#007681' }};
     --hero-heading: {{ section.settings.heading_color | default: '#000000' }};
     --hero-subtext: {{ section.settings.subtext_color | default: '#000000' }};
     --hero-radius: {{ section.settings.border_radius | default: 24 }}px;
+  }
+  #HeroSlider-{{ section.id }} .hero-slider__slide {
+    position: relative;
+  }
+
+  #HeroSlider-{{ section.id }} .hero-slider__full-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+
+  #HeroSlider-{{ section.id }} .hero-slider__inner {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #HeroSlider-{{ section.id }} .hero-slider__inner a,
+  #HeroSlider-{{ section.id }} .hero-slider__button,
+  #HeroSlider-{{ section.id }} .hero-slider__product-card {
+    pointer-events: auto;
   }
 {%- endstyle -%}
 
@@ -31,6 +53,13 @@
             {% endif %}
             {{ block.shopify_attributes }}
           >
+              {%- if block.settings.slide_link != blank -%}
+    <a
+      class="hero-slider__full-link"
+      href="{{ block.settings.slide_link }}"
+      aria-label="{% if block.settings.heading != blank %}{{ block.settings.heading | escape }}{% else %}View slide{% endif %}"
+    ></a>
+  {%- endif -%}
             <div class="hero-slider__inner">
               <div class="hero-slider__content">
                 {%- if block.settings.heading != blank -%}
@@ -194,13 +223,13 @@
       "type": "color",
       "id": "text_color",
       "label": "Text",
-      "default": "#0A0A0A"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "accent_color",
       "label": "Accent (button/active dot)",
-      "default": "#1F6F75"
+      "default": "#007681"
     },
     {
       "type": "color",
@@ -266,6 +295,12 @@
           "id": "main_image",
           "label": "Main image (right side)"
         },
+        {
+  "type": "url",
+  "id": "slide_link",
+  "label": "Full hero image link",
+  "info": "Optional. Makes the full hero slide clickable. Can link to a product, collection, page, or external URL."
+},
         {
           "type": "header",
           "content": "Featured product card"
