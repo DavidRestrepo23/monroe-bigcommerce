@@ -104,7 +104,7 @@
 @media (max-width: 749px) {
 
   .shop-by-category {
-    display: none;
+    display: block;
   }
 
   .shop-by-category__grid {
