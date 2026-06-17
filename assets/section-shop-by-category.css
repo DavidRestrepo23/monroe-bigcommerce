@@ -112,6 +112,10 @@
     padding-bottom: 0;
   }
 
+  .collection-grid {
+    padding:0;
+  }
+
   .shop-by-category__title {
     display: none;
   }
