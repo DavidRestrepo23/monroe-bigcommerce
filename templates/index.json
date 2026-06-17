@@ -28,12 +28,12 @@
         "slide_mmUFYz": {
           "type": "slide",
           "settings": {
-            "heading": "Not Sure Which Monroe Calculator Is Right For You?",
-            "subtext": "Compare features, print speeds, and workloads",
-            "button_text": "Compare Models",
+            "heading": "",
+            "subtext": "",
+            "button_text": "",
             "button_link": "#",
-            "main_image": "shopify://shop_images/img-hero-2_e5b6aa89-c6a4-4132-afbc-b2a895b56e33.png",
-            "slide_link": "",
+            "main_image": "shopify://shop_images/toner-finder-homepage-image-1.png",
+            "slide_link": "https://monroe-systems.com/printer-toner-compatibility-chart/",
             "featured_product": "",
             "rating": 0
           }
