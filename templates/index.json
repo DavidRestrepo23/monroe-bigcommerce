@@ -41,12 +41,12 @@
         "slide_CcjC8d": {
           "type": "slide",
           "settings": {
-            "heading": "Your Office. Fully Equipped",
-            "subtext": "From typewriters and toner to shredders, paper handling equipment, and everyday business essentials.",
-            "button_text": "Shop Our Partners Brands",
+            "heading": "",
+            "subtext": "",
+            "button_text": "",
             "button_link": "#",
-            "main_image": "shopify://shop_images/Frame_1171276530.png",
-            "slide_link": "",
+            "main_image": "shopify://shop_images/Printing_Calculator_Comparison_Chart_2088_x_1065_px.png",
+            "slide_link": "https://monroe-systems.com/monroe-heavy-duty-calculator-chart/",
             "featured_product": "brother-brougham-10-printwheel-by-rarotype",
             "rating": 5
           }
