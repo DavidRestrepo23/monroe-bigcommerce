@@ -108,6 +108,10 @@
     border-radius: 0;
   }
 
+  .shop-by-category__title {
+    display: none;
+  }
+
   .shop-by-category__grid {
     grid-template-columns: repeat(var(--sbc-cols, 2), minmax(0, 1fr));
   }
