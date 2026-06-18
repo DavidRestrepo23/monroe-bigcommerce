@@ -910,3 +910,419 @@
 
   <div class="ms-hd__bar" aria-hidden="true"></div>
 </section>
+
+<script>
+(function () {
+  function qs(root, sel) { return root.querySelector(sel); }
+  function qsa(root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function txt(el) { return (el && el.textContent ? el.textContent : "").trim(); }
+  function norm(v) { return String(v || "").trim().toLowerCase(); }
+  function setHidden(el, hidden) { if (!el) return; hidden ? el.setAttribute("hidden","") : el.removeAttribute("hidden"); }
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  function num(v) { var m = String(v || "").match(/(\d+(\.\d+)?)/); return m ? parseFloat(m[1]) : 0; }
+
+  function init() {
+    var root = document.querySelector(".ms-hd");
+    if (!root) return;
+
+    var table = qs(root, "#ms-hd-table");
+    if (!table) return;
+
+    var tbody = table.querySelector("tbody");
+    if (!tbody) return;
+
+    var pickInputs = qsa(root, 'input[data-pick]');
+    var tray = qs(root, ".ms-hd__tray");
+    var traySlots = qsa(root, ".ms-hd__traySlot");
+    var trayRemoves = qsa(root, ".ms-hd__trayRemove");
+
+    var viewBtn = qs(root, '[data-action="view"]');
+    var clearBtn = qs(root, '[data-action="clear"]');
+
+    var btnFunctions = qs(root, 'button[data-action="toggle-functions"]');
+    var btnSpecs = qs(root, 'button[data-action="toggle-specs"]');
+
+    var modal = qs(root, ".ms-hd__modal");
+    var modalGrid = qs(root, ".ms-hd__modalGrid");
+    var modalClose = qs(root, ".ms-hd__modalClose");
+
+    var bench = {
+      monSpeed: qs(root, '[data-bench="monroe-speed"]'),
+      monFeatures: qs(root, '[data-bench="monroe-features"]'),
+      monWork: qs(root, '[data-bench="monroe-workload"]'),
+      tSpeed: qs(root, '[data-bench-text="speed"]'),
+      tFeat: qs(root, '[data-bench-text="features"]'),
+      tWork: qs(root, '[data-bench-text="workload"]')
+    };
+
+    var selectedCols = []; // 1..4
+    var sectionState = { functions: true, specs: true };
+    var lastFocusEl = null;
+
+    function getColName(col) {
+      var a = table.querySelector('thead th[data-col="' + col + '"] .ms-hd__modelName');
+      return a ? txt(a) : ("Model " + col);
+    }
+
+    function getColLink(col) {
+      var a = table.querySelector('thead th[data-col="' + col + '"] a.ms-hd__modelName');
+      return a ? a.getAttribute("href") : "";
+    }
+
+    function getColImg(col) {
+      var img = table.querySelector('thead th[data-col="' + col + '"] img');
+      return img ? { src: img.getAttribute("src") || "", alt: img.getAttribute("alt") || "" } : { src:"", alt:"" };
+    }
+
+    function cellValue(row, col) {
+      var td = row.querySelector('td[data-col="' + col + '"]');
+      return td ? txt(td) : "";
+    }
+
+    function getRowByLabel(label) {
+      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
+      var want = norm(label);
+      for (var i = 0; i < rows.length; i++) {
+        var th = rows[i].querySelector('th[scope="row"]');
+        if (th && norm(txt(th)) === want) return rows[i];
+      }
+      return null;
+    }
+
+    function setPickUI() {
+      pickInputs.forEach(function (inp) {
+        var col = parseInt(inp.getAttribute("data-pick"), 10);
+        inp.checked = selectedCols.indexOf(col) !== -1;
+      });
+    }
+
+    function updateTray() {
+      setHidden(tray, selectedCols.length === 0);
+
+      traySlots.forEach(function (slot, idx) {
+        var nameEl = slot.querySelector(".ms-hd__trayName");
+        var rm = slot.querySelector(".ms-hd__trayRemove");
+        var col = selectedCols[idx];
+
+        if (!col) {
+          if (nameEl) nameEl.textContent = "None selected";
+          if (rm) rm.style.visibility = "hidden";
+          return;
+        }
+
+        if (nameEl) nameEl.textContent = getColName(col);
+        if (rm) rm.style.visibility = "visible";
+      });
+
+      if (viewBtn) viewBtn.disabled = selectedCols.length !== 2;
+    }
+
+    function clearHighlights() {
+      qsa(table, ".ms-hd__colSelected").forEach(function (el) { el.classList.remove("ms-hd__colSelected"); });
+      qsa(table, ".ms-hd__colSelected2").forEach(function (el) { el.classList.remove("ms-hd__colSelected2"); });
+    }
+
+    function highlightSelected() {
+      clearHighlights();
+      if (selectedCols.length === 0) return;
+
+      var c1 = selectedCols[0];
+      var c2 = selectedCols[1];
+
+      function mark(col, cls) {
+        if (!col) return;
+        var th = table.querySelector('thead th[data-col="' + col + '"]');
+        if (th) th.classList.add(cls);
+        qsa(tbody, 'td[data-col="' + col + '"]').forEach(function (td) { td.classList.add(cls); });
+      }
+
+      mark(c1, "ms-hd__colSelected");
+      mark(c2, "ms-hd__colSelected2");
+    }
+
+    function updateSectionHeadersVisibility() {
+      ["functions", "specs"].forEach(function (sec) {
+        var header = tbody.querySelector('tr.ms-hd__sectionRow[data-section="' + sec + '"]');
+        if (!header) return;
+
+        if (!sectionState[sec]) {
+          header.setAttribute("hidden", "");
+          return;
+        }
+
+        var rows = qsa(tbody, 'tr[data-section="' + sec + '"]');
+        var anyVisible = rows.some(function (r) { return !r.hasAttribute("hidden"); });
+        if (anyVisible) header.removeAttribute("hidden");
+        else header.setAttribute("hidden", "");
+      });
+    }
+
+    function applySectionVisibility() {
+      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
+      rows.forEach(function (r) {
+        var sec = r.getAttribute("data-section");
+        if (sectionState[sec]) r.removeAttribute("hidden");
+        else r.setAttribute("hidden", "");
+      });
+      updateSectionHeadersVisibility();
+    }
+
+    function toggleSection(section, on) {
+      sectionState[section] = on;
+      if (section === "functions" && btnFunctions) btnFunctions.setAttribute("aria-pressed", on ? "true" : "false");
+      if (section === "specs" && btnSpecs) btnSpecs.setAttribute("aria-pressed", on ? "true" : "false");
+
+      qsa(tbody, 'tr[data-section="' + section + '"]').forEach(function (r) {
+        if (on) r.removeAttribute("hidden");
+        else r.setAttribute("hidden", "");
+      });
+
+      var header = tbody.querySelector('tr.ms-hd__sectionRow[data-section="' + section + '"]');
+      if (header) {
+        if (on) header.removeAttribute("hidden");
+        else header.setAttribute("hidden", "");
+      }
+
+      updateSectionHeadersVisibility();
+      highlightSelected();
+    }
+
+    function resetBenchmarkToEmpty() {
+      if (bench.monSpeed) bench.monSpeed.style.width = "0%";
+      if (bench.monFeatures) bench.monFeatures.style.width = "0%";
+      if (bench.monWork) bench.monWork.style.width = "0%";
+
+      if (bench.tSpeed) bench.tSpeed.textContent = "Select a model to see a comparison.";
+      if (bench.tFeat) bench.tFeat.textContent = "Select a model to see a comparison.";
+      if (bench.tWork) bench.tWork.textContent = "Select a model to see a comparison.";
+    }
+
+    function updateBenchmark() {
+      if (selectedCols.length === 0) {
+        resetBenchmarkToEmpty();
+        return;
+      }
+
+      // Generic competitor baselines (intentionally vague)
+      var compSpeed = 3.0;
+      var compFeat = 3.0;
+      var compWork = 55;
+
+      var col = selectedCols[0];
+
+      var digitsRow = getRowByLabel("Digits");
+      var speedRow = getRowByLabel("Print speed (lines per second)");
+      var memRow = getRowByLabel("4 Key independent memories");
+      var vatRow = getRowByLabel("VAT Tax");
+      var repRow = getRowByLabel("Reprint and editing capability");
+
+      var digits = digitsRow ? num(cellValue(digitsRow, col)) : 0;
+      var speed = speedRow ? num(cellValue(speedRow, col)) : 0;
+      var mem = memRow ? num(cellValue(memRow, col)) : 0;
+
+      var feat = 0;
+      if (digits >= 14) feat += 2;
+      else if (digits >= 12) feat += 1;
+
+      if (mem >= 2) feat += 2;
+      else if (mem >= 1) feat += 1;
+
+      function isStandard(row) {
+        if (!row) return false;
+        var v = norm(cellValue(row, col));
+        return v === "standard" || v === "yes" || v === "true";
+      }
+
+      if (isStandard(vatRow)) feat += 1;
+      if (isStandard(repRow)) feat += 1;
+
+      var work = clamp((speed / 5.0) * 60 + (feat / 6.0) * 40, 0, 100);
+
+      if (bench.monSpeed) bench.monSpeed.style.width = clamp((speed / 5.0) * 100, 0, 100) + "%";
+      if (bench.monFeatures) bench.monFeatures.style.width = clamp((feat / 6.0) * 100, 0, 100) + "%";
+      if (bench.monWork) bench.monWork.style.width = clamp(work, 0, 100) + "%";
+
+      var modelName = getColName(col);
+
+      if (bench.tSpeed) bench.tSpeed.textContent =
+        modelName + " runs at " + (speed ? speed.toFixed(1) : "0.0") + " lines per second versus a typical competing calculator around " + compSpeed.toFixed(1) + ".";
+
+      if (bench.tFeat) bench.tFeat.textContent =
+        modelName + " scores " + feat + " of 6 for feature depth. Typical competing calculators are closer to " + compFeat + " of 6.";
+
+      if (bench.tWork) bench.tWork.textContent =
+        modelName + " estimates at " + Math.round(work) + " of 100 for workload readiness versus a typical competing calculator around " + compWork + " of 100.";
+    }
+
+    function openModal() {
+      if (!modal || !modalGrid) return;
+      lastFocusEl = document.activeElement;
+      setHidden(modal, false);
+      document.body.style.overflow = "hidden";
+      renderModal();
+      if (modalClose) setTimeout(function () { modalClose.focus(); }, 0);
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      setHidden(modal, true);
+      document.body.style.overflow = "";
+      if (lastFocusEl && typeof lastFocusEl.focus === "function") {
+        setTimeout(function () { lastFocusEl.focus(); }, 0);
+      }
+    }
+
+    function renderModal() {
+      if (selectedCols.length !== 2) return;
+
+      var c1 = selectedCols[0], c2 = selectedCols[1];
+      var name1 = getColName(c1), name2 = getColName(c2);
+      var link1 = getColLink(c1), link2 = getColLink(c2);
+      var img1 = getColImg(c1), img2 = getColImg(c2);
+
+      function cell(html, cls) {
+        var d = document.createElement("div");
+        d.className = "ms-hd__modalCell" + (cls ? " " + cls : "");
+        d.innerHTML = html;
+        return d;
+      }
+
+      modalGrid.innerHTML = "";
+
+      modalGrid.appendChild(cell("Feature", "ms-hd__modalHead"));
+      modalGrid.appendChild(cell(
+        '<a class="ms-hd__modalLink" href="' + (link1 || "#") + '" target="_blank" rel="noopener">' + name1 + '</a><br />' +
+        (img1.src ? '<img src="' + img1.src + '" alt="' + (img1.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
+        "ms-hd__modalHead"
+      ));
+      modalGrid.appendChild(cell(
+        '<a class="ms-hd__modalLink" href="' + (link2 || "#") + '" target="_blank" rel="noopener">' + name2 + '</a><br />' +
+        (img2.src ? '<img src="' + img2.src + '" alt="' + (img2.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
+        "ms-hd__modalHead"
+      ));
+
+      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
+      rows.forEach(function (r) {
+        var sec = r.getAttribute("data-section");
+        if (!sectionState[sec]) return;
+        if (r.hasAttribute("hidden")) return;
+
+        var key = r.querySelector('th[scope="row"]');
+        if (!key) return;
+
+        var v1 = cellValue(r, c1);
+        var v2 = cellValue(r, c2);
+
+        modalGrid.appendChild(cell('<span class="ms-hd__modalKey">' + txt(key) + "</span>"));
+        modalGrid.appendChild(cell(v1));
+        modalGrid.appendChild(cell(v2));
+      });
+    }
+
+    // Events
+    pickInputs.forEach(function (inp) {
+      inp.addEventListener("change", function () {
+        var col = parseInt(inp.getAttribute("data-pick"), 10);
+        var idx = selectedCols.indexOf(col);
+
+        if (inp.checked) {
+          if (selectedCols.length >= 2) { inp.checked = false; return; }
+          if (idx === -1) selectedCols.push(col);
+        } else {
+          if (idx !== -1) selectedCols.splice(idx, 1);
+        }
+
+        setPickUI();
+        updateTray();
+        highlightSelected();
+        updateBenchmark();
+      });
+    });
+
+    trayRemoves.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var slotIndex = parseInt(btn.getAttribute("data-remove"), 10);
+        if (isNaN(slotIndex)) return;
+
+        var col = selectedCols[slotIndex];
+        if (!col) return;
+
+        selectedCols = selectedCols.filter(function (x) { return x !== col; });
+
+        setPickUI();
+        updateTray();
+        highlightSelected();
+        updateBenchmark();
+      });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", function () {
+        selectedCols = [];
+        setPickUI();
+        updateTray();
+        highlightSelected();
+        updateBenchmark();
+      });
+    }
+
+    if (viewBtn) {
+      viewBtn.addEventListener("click", function () {
+        if (selectedCols.length !== 2) return;
+        openModal();
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        var close = e.target && e.target.getAttribute && e.target.getAttribute("data-close");
+        if (close === "true") closeModal();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (modal.hasAttribute("hidden")) return;
+        if (e.key === "Escape") closeModal();
+      });
+    }
+
+    if (btnFunctions) {
+      btnFunctions.addEventListener("click", function () {
+        var currentlyOn = btnFunctions.getAttribute("aria-pressed") === "true";
+        toggleSection("functions", !currentlyOn);
+      });
+    }
+
+    if (btnSpecs) {
+      btnSpecs.addEventListener("click", function () {
+        var currentlyOn = btnSpecs.getAttribute("aria-pressed") === "true";
+        toggleSection("specs", !currentlyOn);
+      });
+    }
+
+    // Init
+    applySectionVisibility();
+    setPickUI();
+    updateTray();
+    highlightSelected();
+    updateBenchmark();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Monroe heavy-duty chart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Monroe heavy-duty chart"
+    }
+  ]
+}
+{% endschema %}
