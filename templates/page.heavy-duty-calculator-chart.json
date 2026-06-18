@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_heavy_duty_chart": {
+      "type": "monroe-heavy-duty-calculator-chart",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_heavy_duty_chart"
   ]
 }
