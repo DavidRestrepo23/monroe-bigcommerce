@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_growth_innovation": {
+      "type": "monroe-growth-and-innovation",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_growth_innovation"
   ]
 }
