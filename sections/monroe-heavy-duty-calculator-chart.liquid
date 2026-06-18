@@ -1,946 +1,912 @@
-<!-- Monroe Heavy-Duty Calculator Chart Shopify Section
-  File: sections/monroe-heavy-duty-calculator-chart.liquid
--->
 <style>
-  .ms-hd, .ms-hd *{
-    box-sizing:border-box;
-  }
+/* =====================================================
+   MONROE HEAVY DUTY SPEC CHART (Interactive) – FULL BUILD
+   Scoped: .ms-hd
+   Accent: #007681
+   Included fixes:
+   - Differences only REMOVED
+   - Theme-proof row hiding for section toggles (hidden attribute)
+   - Hard width fix so chart spans full content width
+   - All buttons styled with 5px solid #000000 + bold white text
+   ===================================================== */
 
-  .ms-hd{
-    --ms-hd-teal:#007681;
-    --ms-hd-gray:#666666;
-    --ms-hd-black:#000000;
-    --ms-hd-text:#0b1b1c;
-    --ms-hd-muted:rgba(0,0,0,.68);
-    --ms-hd-soft:rgba(0,118,129,.08);
-    --ms-hd-border:rgba(0,0,0,.18);
-    --ms-hd-shadow:0 14px 34px rgba(0,0,0,.10);
-    --ms-hd-radius:18px;
-    width:100%;
-    max-width:1240px;
-    margin:0 auto;
-    padding:24px 16px 56px;
-    color:var(--ms-hd-text);
-    font-family:inherit;
-    font-size:16px;
-    line-height:1.5;
-  }
+.ms-hd{
+  --ms-accent:#007681;
+  --ms-soft: rgba(0,118,129,.10);
+  --ms-soft2: rgba(0,118,129,.06);
+  font-family: Arial, sans-serif;
+  font-size: 15pt;
+  line-height: 1.6;
+  color:#000;
+}
 
-  .ms-hd__bar{
-    height:24px;
-    background:var(--ms-hd-teal);
-    border-radius:999px;
-    margin:16px 0 22px;
-  }
+.ms-hd *, .ms-hd *::before, .ms-hd *::after{ box-sizing:border-box; }
 
-  .ms-hd__intro{
-    max-width:980px;
-    margin:0 auto 18px;
-    text-align:center;
-    font-size:18px;
-    color:var(--ms-hd-text);
-  }
+.ms-hd__bar{
+  background: var(--ms-accent);
+  height: 35px;
+  width: 100%;
+  margin: 0 0 18px 0;
+}
 
-  .ms-hd__intro p{ margin:0 0 10px; }
+.ms-hd__title{
+  font-size: 40px;
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+  text-align: center;
+  text-decoration: underline;
+  color: #000000;
+}
 
-  .ms-hd__title{
-    margin:0 0 22px;
-    text-align:center;
-    font-size:clamp(28px, 4vw, 44px);
-    line-height:1.1;
-    text-decoration:underline;
-    text-underline-offset:8px;
-    color:#000;
-  }
+.ms-hd__intro{ margin: 0 0 18px 0; }
 
-  .ms-hd__link{
-    color:var(--ms-hd-teal);
-    font-weight:800;
-    text-decoration:underline;
-    text-underline-offset:3px;
-  }
+.ms-hd__link{
+  color: var(--ms-accent);
+  text-decoration: underline;
+}
 
-  .ms-hd__controls,
-  .ms-hd__tray,
-  .ms-hd__wrap{
-    border:1px solid var(--ms-hd-border);
-    border-radius:var(--ms-hd-radius);
-    background:#fff;
-    box-shadow:var(--ms-hd-shadow);
-    margin:18px 0;
-  }
+/* Controls */
+.ms-hd__controls{
+  border: 2px solid var(--ms-accent);
+  padding: 12px;
+  margin: 0 0 12px 0;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
 
-  .ms-hd__controls{ padding:18px; }
+.ms-hd__controlsTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:0 0 12px 0;
+}
 
-  .ms-hd__controlsTop{
-    display:flex;
-    justify-content:space-between;
-    gap:18px;
-    align-items:flex-start;
-    margin-bottom:16px;
-  }
+.ms-hd__controlsTitle{
+  margin:0;
+  font-weight:650;
+  font-size:12pt;
+}
 
-  .ms-hd__controlsTitle,
-  .ms-hd__benchTitle,
-  .ms-hd__trayTitle{
-    margin:0 0 6px;
-    font-weight:900;
-    font-size:20px;
-    color:#000;
-  }
+.ms-hd__controlsHint{
+  margin:0;
+  font-size:10.5pt;
+  opacity:.85;
+  max-width: 720px;
+}
 
-  .ms-hd__controlsHint,
-  .ms-hd__benchNote,
-  .ms-hd__benchVisualText{
-    margin:0;
-    color:var(--ms-hd-muted);
-  }
+.ms-hd__btnRow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
 
-  .ms-hd__btnRow,
-  .ms-hd__trayActions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    justify-content:flex-end;
-  }
+/* =====================================================
+   BUTTON DESIGN REQUIREMENT
+   - 5px solid #000000 border
+   - Bold white text
+   ===================================================== */
+.ms-hd__btn,
+.ms-hd__trayRemove,
+.ms-hd__modalClose{
+  border: 5px solid #000000 !important;
+  background: var(--ms-accent) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 11pt;
+  text-decoration: none !important;
+  line-height: 1.1;
+}
 
-  .ms-hd__btn,
-  .ms-hd__modalClose,
-  .ms-hd__trayRemove{
-    appearance:none;
-    border:5px solid #000;
-    border-radius:14px;
-    background:#fff;
-    color:#000;
-    min-height:44px;
-    padding:8px 14px;
-    font-weight:900;
-    cursor:pointer;
-    font-family:inherit;
-    line-height:1.1;
-  }
+.ms-hd__btn[disabled]{
+  opacity:.55;
+  cursor:not-allowed;
+}
 
-  .ms-hd__btn:hover,
-  .ms-hd__modalClose:hover,
-  .ms-hd__trayRemove:hover{
-    box-shadow:0 0 0 3px rgba(0,118,129,.18);
-  }
+/* Keep pressed-state obvious */
+.ms-hd__btn[aria-pressed="true"]{
+  filter: brightness(0.95);
+}
 
-  .ms-hd__btn[aria-pressed="true"],
-  .ms-hd__btn:not([disabled])[data-action="view"]{
-    background:var(--ms-hd-teal);
-    color:#fff;
-  }
+/* Make Remove a bit tighter (still matches border + text requirements) */
+.ms-hd__trayRemove{
+  padding: 6px 10px;
+  font-size: 10pt;
+}
 
-  .ms-hd__btn[disabled]{
-    opacity:.5;
-    cursor:not-allowed;
-    box-shadow:none;
-  }
+/* Benchmark panel with competitor visual */
+.ms-hd__bench{
+  border: 1px solid var(--ms-accent);
+  border-radius: 14px;
+  padding: 12px;
+}
 
-  .ms-hd__bench{
-    border:1px solid rgba(0,0,0,.12);
-    border-radius:16px;
-    background:var(--ms-hd-soft);
-    padding:16px;
-  }
+.ms-hd__benchTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:0 0 10px 0;
+}
 
-  .ms-hd__benchTop{
-    display:flex;
-    justify-content:space-between;
-    gap:14px;
-    align-items:flex-start;
-    margin-bottom:14px;
-  }
+.ms-hd__benchTitle{
+  margin:0;
+  font-weight:650;
+  font-size:12pt;
+}
 
-  .ms-hd__benchGrid{
-    display:grid;
-    grid-template-columns:1.1fr repeat(3, 1fr);
-    gap:14px;
-  }
+.ms-hd__benchNote{
+  margin:0;
+  font-size:10.5pt;
+  opacity:.85;
+}
 
-  .ms-hd__benchVisual,
-  .ms-hd__benchCard{
-    border:1px solid rgba(0,0,0,.12);
-    border-radius:14px;
-    background:#fff;
-    padding:14px;
-  }
+.ms-hd__benchGrid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+}
 
-  .ms-hd__benchIcon{
-    width:58px;
-    height:58px;
-    border-radius:999px;
-    background:rgba(0,0,0,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:10px;
-  }
+@media (min-width:900px){
+  .ms-hd__benchGrid{ grid-template-columns: 300px 1fr 1fr 1fr; }
+}
 
-  .ms-hd__benchLabel{
-    margin:0 0 10px;
-    font-weight:900;
-    color:#000;
-  }
+.ms-hd__benchVisual{
+  border: 1px solid rgba(0,118,129,.45);
+  border-radius: 14px;
+  padding: 10px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
 
-  .ms-hd__benchBar{
-    height:13px;
-    border-radius:999px;
-    overflow:hidden;
-    background:rgba(0,0,0,.10);
-  }
+.ms-hd__benchIcon{
+  width:64px;
+  height:64px;
+  border-radius:14px;
+  background: rgba(0,0,0,.06);
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+}
 
-  .ms-hd__benchFill{
-    height:100%;
-    width:0;
-    background:var(--ms-hd-teal);
-    border-radius:999px;
-    transition:width 220ms ease;
-  }
+.ms-hd__benchVisualText{
+  margin:0;
+  font-size:10.5pt;
+  line-height:1.35;
+}
 
-  .ms-hd__benchFill--comp{ background:rgba(0,0,0,.35); }
+.ms-hd__benchCard{
+  border: 1px solid rgba(0,118,129,.45);
+  border-radius: 14px;
+  padding: 10px;
+}
 
-  .ms-hd__benchValue{
-    margin:10px 0 0;
-    color:var(--ms-hd-muted);
-    font-weight:700;
-  }
+.ms-hd__benchLabel{
+  margin:0 0 6px 0;
+  font-size:10pt;
+  font-weight:650;
+}
 
-  .ms-hd__tray{ padding:14px; }
-  .ms-hd__trayInner{ display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:center; }
-  .ms-hd__traySlots{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
-  .ms-hd__traySlot{ border:1px solid rgba(0,0,0,.14); border-radius:14px; padding:12px; background:#fff; }
-  .ms-hd__traySlotTop{ display:flex; justify-content:space-between; gap:10px; align-items:center; margin-bottom:6px; }
-  .ms-hd__traySlotLabel{ font-weight:900; color:#000; }
-  .ms-hd__trayName{ font-weight:800; color:var(--ms-hd-teal); }
-  .ms-hd__trayRemove{ border-width:2px; min-height:32px; padding:6px 9px; font-size:13px; }
+.ms-hd__benchBar{
+  height:10px;
+  border-radius:999px;
+  background: rgba(0,0,0,.10);
+  overflow:hidden;
+}
 
-  .ms-hd__wrap{
-    overflow:auto;
-    -webkit-overflow-scrolling:touch;
-  }
+.ms-hd__benchFill{
+  height:100%;
+  width:0%;
+  background: var(--ms-accent);
+}
 
-  .ms-hd__table{
-    width:100%;
-    min-width:980px;
-    border-collapse:separate;
-    border-spacing:0;
-    font-size:16px;
-  }
+.ms-hd__benchFill--comp{
+  background: rgba(0,0,0,.25);
+}
 
-  .ms-hd__table th,
-  .ms-hd__table td{
-    border-right:1px solid rgba(0,0,0,.12);
-    border-bottom:1px solid rgba(0,0,0,.12);
-    padding:14px 12px;
-    vertical-align:top;
-    text-align:center;
-  }
+.ms-hd__benchValue{
+  margin:8px 0 0 0;
+  font-size:10.5pt;
+}
 
+/* Table wrapper */
+.ms-hd__wrap{
+  border: 3px solid var(--ms-accent);
+  padding: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.ms-hd__wrap::before,
+.ms-hd__wrap::after{
+  content:"";
+  position:sticky;
+  top:0;
+  width:22px;
+  height:100%;
+  pointer-events:none;
+  display:block;
+}
+
+.ms-hd__wrap::before{
+  left:0;
+  background:linear-gradient(to right, rgba(0,118,129,.18), transparent);
+  float:left;
+}
+
+.ms-hd__wrap::after{
+  right:0;
+  background:linear-gradient(to left, rgba(0,118,129,.18), transparent);
+  float:right;
+}
+
+/* Table */
+.ms-hd__table{
+  width:100%;
+  border-collapse:collapse;
+  min-width: 1100px;
+}
+
+.ms-hd__table th,
+.ms-hd__table td{
+  border: 1px solid var(--ms-accent);
+  padding: 10px;
+  text-align:center;
+  font-size: 14pt;
+  background:#fff;
+  vertical-align:middle;
+}
+
+.ms-hd__table thead th{
+  background:#fff;
+}
+
+@media (min-width:751px){
   .ms-hd__table thead th{
     position:sticky;
     top:0;
-    z-index:2;
-    background:#fff;
-    color:#000;
-  }
-
-  .ms-hd__table thead th:first-child,
-  .ms-hd__rowLabel{
-    text-align:left;
-  }
-
-  .ms-hd__table thead th:first-child,
-  .ms-hd__rowLabel,
-  .ms-hd__sectionRow th{
-    position:sticky;
-    left:0;
     z-index:3;
-    background:#fff;
   }
+}
 
-  .ms-hd__sectionRow th{
-    background:var(--ms-hd-teal);
-    color:#fff;
-    text-align:left;
-    font-size:20px;
-    letter-spacing:.2px;
-  }
+.ms-hd__rowLabel{
+  text-align:left !important;
+  font-weight:650;
+}
 
-  .ms-hd__rowLabel{
-    width:260px;
-    font-weight:900;
-    color:#000;
-  }
+.ms-hd__modelHead{
+  min-width: 210px;
+}
 
-  .ms-hd__modelHead{
-    min-width:180px;
-  }
+.ms-hd__modelName{
+  display:block;
+  font-weight:650;
+  margin-top:8px;
+}
 
-  .ms-hd__modelImg{
-    min-height:185px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:10px;
-  }
+.ms-hd__modelImg img{
+  max-width:150px;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
 
-  .ms-hd__modelImg img{
-    max-width:150px;
-    height:auto;
-    object-fit:contain;
-  }
+.ms-hd__pick{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid var(--ms-accent);
+  border-radius:999px;
+  padding:6px 10px;
+  margin-top:10px;
+  font-size:11pt;
+  cursor:pointer;
+  user-select:none;
+}
 
-  .ms-hd__modelName{
-    display:block;
-    margin-bottom:10px;
-    font-size:18px;
-  }
+.ms-hd__pick input{
+  width:16px;
+  height:16px;
+}
 
-  .ms-hd__pick{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    cursor:pointer;
-    font-weight:900;
-    color:#000;
-  }
+/* Section rows */
+.ms-hd__sectionRow th{
+  text-align:left;
+  font-size: 20pt;
+  background: #fff;
+}
 
-  .ms-hd__pick input{
-    width:20px;
-    height:20px;
-    accent-color:var(--ms-hd-teal);
-  }
+/* Selected column highlighting */
+.ms-hd__colSelected{
+  background: var(--ms-soft) !important;
+}
 
-  .ms-hd__isHidden{ display:none !important; }
+.ms-hd__colSelected2{
+  background: var(--ms-soft2) !important;
+}
 
-  .ms-hd__modal[hidden],
-  .ms-hd__tray[hidden]{ display:none !important; }
+/* Tray */
+.ms-hd__tray{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#fff;
+  border:2px solid var(--ms-accent);
+  margin:0 0 12px 0;
+}
 
-  .ms-hd__modal{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:18px;
-  }
+.ms-hd__trayInner{
+  display:grid;
+  grid-template-columns: 160px 1fr 240px;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+}
 
-  .ms-hd__modalBackdrop{
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.55);
-  }
+.ms-hd__trayTitle{
+  font-weight:650;
+  font-size:12pt;
+}
 
-  .ms-hd__modalPanel{
-    position:relative;
-    width:min(980px, 96vw);
-    max-height:88vh;
-    overflow:auto;
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 22px 70px rgba(0,0,0,.32);
-  }
+.ms-hd__traySlots{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
 
-  .ms-hd__modalHeader{
-    position:sticky;
-    top:0;
-    display:flex;
-    justify-content:space-between;
-    gap:14px;
-    align-items:center;
-    padding:16px;
-    background:#fff;
-    border-bottom:1px solid rgba(0,0,0,.12);
-    z-index:1;
-  }
+.ms-hd__traySlot{
+  border:1px solid var(--ms-accent);
+  border-radius:12px;
+  padding:10px;
+  min-height:64px;
+}
 
-  .ms-hd__modalTitle{
-    font-size:22px;
-    line-height:1.2;
-    font-weight:900;
-    color:#000;
-  }
+.ms-hd__traySlotTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:0 0 6px 0;
+}
 
-  .ms-hd__modalBody{ padding:16px; }
+.ms-hd__traySlotLabel{
+  font-size:10pt;
+  font-weight:650;
+}
 
-  .ms-hd__modalGrid{
-    display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    gap:14px;
-  }
+.ms-hd__trayName{
+  font-size:11pt;
+  line-height:1.3;
+}
 
-  .ms-hd__compareCard{
-    border:1px solid rgba(0,0,0,.14);
-    border-radius:16px;
-    overflow:hidden;
-    background:#fff;
-  }
+.ms-hd__trayActions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
 
-  .ms-hd__compareTitle{
-    margin:0;
-    padding:14px;
-    background:var(--ms-hd-teal);
-    color:#fff;
-    font-size:20px;
-    font-weight:900;
-  }
+@media (max-width:980px){
+  .ms-hd__trayInner{ grid-template-columns:1fr; }
+  .ms-hd__trayActions{ justify-content:flex-start; }
+}
 
-  .ms-hd__compareList{
-    margin:0;
-    padding:0;
-    list-style:none;
-  }
+/* Modal */
+.ms-hd__modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+}
 
-  .ms-hd__compareList li{
-    display:grid;
-    grid-template-columns:1.25fr 1fr;
-    gap:10px;
-    padding:10px 14px;
-    border-bottom:1px solid rgba(0,0,0,.10);
-  }
+.ms-hd__modalBackdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.55);
+}
 
-  .ms-hd__compareKey{ font-weight:900; color:#000; }
-  .ms-hd__compareVal{ color:var(--ms-hd-text); }
+.ms-hd__modalPanel{
+  position:relative;
+  max-width:1100px;
+  width:calc(100% - 24px);
+  margin:24px auto;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  border:2px solid var(--ms-accent);
+  max-height:calc(100% - 48px);
+  display:flex;
+  flex-direction:column;
+}
 
-  @media (max-width: 960px){
-    .ms-hd__controlsTop,
-    .ms-hd__benchTop,
-    .ms-hd__trayInner{ grid-template-columns:1fr; display:grid; }
-    .ms-hd__btnRow,
-    .ms-hd__trayActions{ justify-content:flex-start; }
-    .ms-hd__benchGrid{ grid-template-columns:1fr 1fr; }
-  }
+.ms-hd__modalHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid var(--ms-accent);
+}
 
-  @media (max-width: 640px){
-    .ms-hd{ padding-left:12px; padding-right:12px; }
-    .ms-hd__intro{ font-size:16px; }
-    .ms-hd__controls{ padding:14px; }
-    .ms-hd__benchGrid,
-    .ms-hd__traySlots,
-    .ms-hd__modalGrid{ grid-template-columns:1fr; }
-    .ms-hd__table{ font-size:15px; }
-    .ms-hd__rowLabel{ width:220px; }
-    .ms-hd__modal{ padding:10px; }
+.ms-hd__modalTitle{
+  font-size:13pt;
+  font-weight:650;
+}
+
+.ms-hd__modalBody{
+  padding:14px 16px;
+  overflow:auto;
+}
+
+.ms-hd__modalGrid{
+  display:grid;
+  grid-template-columns: 280px 1fr 1fr;
+  border:1px solid var(--ms-accent);
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.ms-hd__modalCell{
+  border-right:1px solid var(--ms-accent);
+  border-bottom:1px solid var(--ms-accent);
+  padding:10px;
+  font-size:11pt;
+  line-height:1.35;
+  background:#fff;
+}
+
+.ms-hd__modalCell:nth-child(3n){ border-right:0; }
+
+.ms-hd__modalHead{
+  font-weight:650;
+  background: var(--ms-soft);
+}
+
+.ms-hd__modalKey{ font-weight:650; }
+
+.ms-hd__modalLink{
+  color:var(--ms-accent);
+  text-decoration:underline;
+}
+
+/* Mobile */
+@media (max-width:750px){
+  .ms-hd{ font-size:12pt; }
+  .ms-hd__wrap{ padding:6px; overflow:hidden; }
+  .ms-hd__table{ min-width:0; }
+}
+
+/* =====================================================
+   Theme-proof row hiding (for section toggles)
+   ===================================================== */
+.ms-hd tr[hidden]{ display:none !important; }
+
+/* =====================================================
+   HARD WIDTH FIX: Force chart to span full content width
+   ===================================================== */
+.ms-hd{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  clear:both !important;
+}
+
+.ms-hd__controls,
+.ms-hd__wrap,
+.ms-hd__bench{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+}
+
+.ms-hd__wrap{
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+.ms-hd__table{
+  width:100% !important;
+  max-width:none !important;
+  table-layout:auto !important;
+}
+  /* =====================================================
+   TIGHT MODE: Reduce width so table fits without scroll
+   Paste at VERY END of CSS
+   ===================================================== */
+
+/* Slightly smaller base type for the module */
+.ms-hd{
+  font-size: 13pt !important;
+  line-height: 1.35 !important;
+}
+
+/* Tighten controls + benchmark spacing */
+.ms-hd__controls{ padding: 10px !important; }
+.ms-hd__controlsTop{ gap: 10px !important; margin: 0 0 10px 0 !important; }
+.ms-hd__bench{ padding: 10px !important; }
+.ms-hd__benchGrid{ gap: 8px !important; }
+.ms-hd__benchVisual{ padding: 8px !important; gap: 10px !important; }
+.ms-hd__benchCard{ padding: 8px !important; }
+
+/* Tighten table wrapper */
+.ms-hd__wrap{ padding: 8px !important; }
+
+/* Reduce table padding + font sizes */
+.ms-hd__table th,
+.ms-hd__table td{
+  padding: 6px 6px !important;
+  font-size: 12pt !important;
+  line-height: 1.2 !important;
+}
+
+/* Narrow the model columns */
+.ms-hd__modelHead{
+  min-width: 170px !important;
+  width: 170px !important;
+}
+
+/* Reduce image size inside headers */
+.ms-hd__modelImg img{
+  max-width: 105px !important;
+  height: auto !important;
+}
+
+/* Tighten model name spacing */
+.ms-hd__modelName{ margin-top: 6px !important; }
+
+/* Make Select pills smaller */
+.ms-hd__pick{
+  padding: 4px 8px !important;
+  font-size: 10pt !important;
+  margin-top: 8px !important;
+}
+
+/* Make row labels slightly smaller and allow wrapping */
+.ms-hd__rowLabel{
+  font-size: 12pt !important;
+  white-space: normal !important;
+}
+
+/* Reduce overall table minimum width so it can fit */
+.ms-hd__table{
+  min-width: 0 !important;
+  table-layout: fixed !important; /* enables predictable fitting */
+}
+
+/* Let cells wrap instead of forcing width */
+.ms-hd__table td{
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+/* Optional: reduce title spacing */
+.ms-hd__title{
+  font-size: 26pt !important;
+  margin-bottom: 10px !important;
+}
+  .page-heading{
+    color: #000000;
   }
 </style>
 
-<!-- Monroe Toner Finder Tool | Final Combined HTML + CSS + JS -->
-<section class="msf-tool" id="msfTool">
+<section class="ms-hd" aria-labelledby="ms-hd-title">
+  <div class="ms-hd__bar" aria-hidden="true"></div>
 
-  <!-- Top Accent Bar -->
-  <div class="msf-topbar" aria-hidden="true"></div>
+  <div class="ms-hd__intro">
+    <p>
+      Compare Monroe Heavy-Duty printing calculators side by side. Select up to two models to compare, benchmark against a typical competing calculator, and open a clean side by side view.
+    </p>
+    <p>
+      Questions. Call <a class="ms-hd__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.
+    </p>
+  </div>
 
-  <div class="msf-wrap">
+  <h2 id="ms-hd-title" class="ms-hd__title">Monroe Heavy-Duty Calculator Spec Chart</h2>
 
-    <!-- Hero -->
-    <header class="msf-hero" id="toner-finder-top">
-      <div class="msf-hero-inner">
-        <div class="msf-hero-copy">
-          <h1 class="msf-title">Printer Toner Supply Finder</h1>
-          <p class="msf-subtitle">
-            Find the right toner fast. Filter by printer brand and model or search by SKU. Results stay hidden until you filter or search to keep the page fast.
-          </p>
-
-          <!-- Quick Jump Links -->
-          <nav class="msf-jumps" aria-label="Page sections">
-            <a class="msf-jump" href="#toner-finder-tool">Use the Finder</a>
-            <a class="msf-jump" href="#toner-finder-results">View Results</a>
-            <a class="msf-jump" href="#toner-compatibility-chart-anchor">Compatibility Chart</a>
-            <a class="msf-jump" href="#toner-resources">Shop by Brand</a>
-            <a class="msf-jump" href="#toner-finder-faq">FAQs</a>
-          </nav>
-        </div>
-
-        <div class="msf-hero-side">
-          <div class="msf-hero-card">
-            <div class="msf-hero-card-title">Need an exact match</div>
-            <ul class="msf-hero-list">
-              <li>Printer brand and model</li>
-              <li>Toner part number or SKU</li>
-              <li>Color and yield preference</li>
-            </ul>
-            <div class="msf-hero-actions">
-              <a class="msf-btn msf-btn-primary" href="mailto:csr@monroe-systems.com?subject=Toner%20Compatibility%20Request">Email Us</a>
-              <a class="msf-btn" href="tel:+12675802600">Call (267) 580-2600</a>
-            </div>
-            <div class="msf-hero-fine">
-              If your toner does not appear here, it does not mean we do not carry it. Our sourcing options change frequently.
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Finder -->
-    <section class="msf-card" id="toner-finder-tool" aria-label="Finder filters">
-      <div class="msf-card-head">
-        <h2 class="msf-h2">Search Your Printer Supplies</h2>
-        <p class="msf-muted">
-          Start with Printer Brand and Model for the most accurate matches. You can also search by SKU or toner name.
+  <div class="ms-hd__controls" role="region" aria-label="Heavy Duty chart controls">
+    <div class="ms-hd__controlsTop">
+      <div>
+        <p class="ms-hd__controlsTitle">Interactive controls</p>
+        <p class="ms-hd__controlsHint">
+          Use the buttons to expand or collapse sections. Select up to two models to compare and view a clean side by side summary.
         </p>
       </div>
 
-      <div class="msf-controls-grid">
-        <div class="msf-field">
-          <label class="msf-label" for="msfBrand">Printer Brand</label>
-          <select class="msf-select" id="msfBrand" disabled>
-            <option value="">All</option>
-          </select>
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfModel">Printer Model</label>
-          <select class="msf-select" id="msfModel" disabled>
-            <option value="">All</option>
-          </select>
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfSearch">Search Supplies</label>
-          <input class="msf-input" id="msfSearch" type="text" placeholder="Search by SKU or toner name" autocomplete="off" />
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfColor">Color</label>
-          <select class="msf-select" id="msfColor" disabled>
-            <option value="">All</option>
-          </select>
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfMinYield">Min Yield</label>
-          <input class="msf-input" id="msfMinYield" type="number" min="0" placeholder="0" inputmode="numeric" />
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfSort">Sort</label>
-          <select class="msf-select" id="msfSort" disabled>
-            <option value="yield_desc">Yield high to low</option>
-            <option value="yield_asc">Yield low to high</option>
-            <option value="name_asc">Name A to Z</option>
-            <option value="name_desc">Name Z to A</option>
-          </select>
-        </div>
+      <div class="ms-hd__btnRow" aria-label="Section controls">
+        <button type="button" class="ms-hd__btn" data-action="toggle-functions" aria-pressed="true">Functions</button>
+        <button type="button" class="ms-hd__btn" data-action="toggle-specs" aria-pressed="true">Specifications</button>
       </div>
-
-      <div class="msf-actions">
-        <button class="msf-btn msf-btn-primary" id="msfDownload" disabled>Download Chart (CSV)</button>
-        <button class="msf-btn" id="msfPrint" disabled>Print Chart</button>
-        <button class="msf-btn msf-btn-ghost" id="msfReset">Reset</button>
-
-        <div class="msf-status" id="msfStatus" aria-live="polite">Loading toner data</div>
-      </div>
-
-      <div class="msf-callout">
-        <div class="msf-callout-title">Do not see your toner</div>
-        <p class="msf-callout-text">
-          Send your printer brand and model plus the toner part number or SKU, and we will confirm the correct cartridge and best yield option.
-        </p>
-        <div class="msf-callout-actions">
-          <a class="msf-btn msf-btn-primary" href="mailto:sales@monroe-systems.com?subject=Toner%20Finder%20Help">Email Your Model</a>
-          <a class="msf-btn" href="tel:+12675802600">Call Support</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Results -->
-    <section class="msf-card" id="toner-finder-results" aria-label="Results">
-      <div class="msf-meta">
-        <span class="msf-pill" id="msfCount">0 results</span>
-        <span class="msf-muted" id="msfContext"></span>
-      </div>
-
-      <div class="msf-empty" id="msfGate">
-        Use Printer Brand and Model filters or search by SKU to view results.
-      </div>
-
-      <div id="msfResults"></div>
-
-      <div class="msf-loadmore" id="msfLoadMoreWrap" hidden>
-        <button class="msf-btn" id="msfLoadMore">Load More</button>
-      </div>
-    </section>
-
-    <!-- Chart Anchor -->
-    <div id="toner-compatibility-chart-anchor"></div>
-
-    <!-- Compatibility Chart -->
-    <section class="msf-card" id="msfChartCard" hidden aria-label="Compatibility chart">
-      <div class="msf-card-head">
-        <h2 class="msf-h2">Compatibility Chart</h2>
-        <p class="msf-muted" id="msfChartLabel"></p>
-      </div>
-
-      <div class="msf-table-wrap" role="region" aria-label="Chart table" tabindex="0">
-        <table class="msf-table" id="msfChartTable">
-          <thead>
-            <tr>
-              <th>Brand</th>
-              <th>Model</th>
-              <th>Toner</th>
-              <th>SKU</th>
-              <th>Color</th>
-              <th>Yield</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody id="msfChartBody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- SEO + Resource Section -->
-    <div class="msf-seo">
-
-      <div class="msf-seo-grid">
-
-        <!-- Help Card -->
-        <div class="msf-seo-card" id="toner-finder-help">
-          <h3 class="msf-seo-title">Can’t Find Your Toner Here?</h3>
-          <p class="msf-seo-text">
-            If your toner does not appear in the results, it does not mean we do not carry it. Many replacements share multiple part numbers across different printer models and availability can change.
-          </p>
-
-          <div class="msf-seo-callout">
-            <div class="msf-seo-callout-title">Fastest way to get an exact match</div>
-            <ul class="msf-seo-list">
-              <li><strong>Printer Brand and Model</strong> for example HP LaserJet Pro MFP M428fdw</li>
-              <li><strong>Toner Part Number or SKU</strong> for example CF258A or CF258X</li>
-              <li><strong>Color and Yield</strong> standard or high yield</li>
-            </ul>
-          </div>
-
-          <div class="msf-seo-actions">
-            <a class="msf-seo-btn msf-seo-btn-primary" href="mailto:csr@monroe-systems.com?subject=Toner%20Compatibility%20Request">Email Us Your Model</a>
-            <a class="msf-seo-btn" href="tel:+12675802600">Call (267) 580-2600</a>
-          </div>
-
-          <p class="msf-seo-fine">
-            Include as much detail as you can. We will confirm compatibility and help you choose the right yield.
-          </p>
-        </div>
-
-        <!-- Resources Card -->
-        <div class="msf-seo-card" id="toner-resources">
-          <h3 class="msf-seo-title">Shop Toner by Brand and Category</h3>
-          <p class="msf-seo-text">
-            Prefer browsing instead of filtering. Use these quick links to shop toner and supplies by brand or category.
-          </p>
-
-          <ul class="msf-seo-list">
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-toner/smart-print-supplies/">Smart Printer Supplies</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/printer-drums-and-drum-kits/">Printer Drums and Drum Kits</a></li>
-
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/canon/">Canon Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/dell/">Dell Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/hp/">HP Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/kodak/">Kodak Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/kyocera/">Kyocera Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/lexmark/">Lexmark Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/okidata/">Okidata Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/pitney-bowes/">Pitney Bowes Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/ricoh/">Ricoh Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/samsung/">Samsung Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/xerox/">Xerox Toner</a></li>
-          </ul>
-
-          <p class="msf-seo-fine">
-            Not seeing what you need in the Finder. Email or call with your printer model and toner part number, and we will confirm the correct cartridge.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Knowledge Card -->
-      <div class="msf-seo-card" id="toner-finder-kb">
-        <h3 class="msf-seo-title">What This Tool Helps With</h3>
-        <p class="msf-seo-text">
-          Browse toner by brand, model, color, and yield. Compare options, then download or print a compatibility chart to share with your team.
-        </p>
-
-        <div class="msf-kb-grid">
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Standard vs High Yield</div>
-            <div class="msf-kb-text">High yield prints more pages and often lowers cost per page for frequent printing.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Model Variations Matter</div>
-            <div class="msf-kb-text">A single printer series can include sub-models that use different toners. Verify the exact model number.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">SKU Search Works</div>
-            <div class="msf-kb-text">If you have a cartridge box or invoice, searching by SKU is usually the fastest way to match.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Need Confirmation</div>
-            <div class="msf-kb-text">Send your model and part number, and we will confirm compatibility before you order.</div>
-          </div>
-        </div>
-
-        <div class="msf-seo-links">
-          <a class="msf-seo-link" href="https://monroe-systems.com/contact-monroe-printing-calculator-company/">Contact Us</a>
-          <a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/">Shop All Toner</a>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="msf-seo-faq" id="toner-finder-faq">
-        <h3 class="msf-seo-title">Toner Compatibility FAQs</h3>
-
-        <details class="msf-seo-qa">
-          <summary>Why might my toner not show up in the Finder?</summary>
-          <div class="msf-seo-answer">
-            Some listings share multiple part numbers, some models have regional variations, and availability can change. If you do not see it, email or call us with your printer model and toner part number.
-          </div>
-        </details>
-
-        <details class="msf-seo-qa">
-          <summary>What information should I send for the fastest match?</summary>
-          <div class="msf-seo-answer">
-            Send your printer brand and exact model, the toner part number from the box or label, and your preferred color and yield.
-          </div>
-        </details>
-
-        <details class="msf-seo-qa">
-          <summary>Can you help me choose between standard and high yield?</summary>
-          <div class="msf-seo-answer">
-            Yes. Share your approximate monthly print volume, and we will recommend the best value option.
-          </div>
-        </details>
-
-        <details class="msf-seo-qa">
-          <summary>How accurate is the compatibility chart?</summary>
-          <div class="msf-seo-answer">
-            The chart is generated from our published toner list. For edge cases and uncommon sub-models, we can verify compatibility before you buy.
-          </div>
-        </details>
-      </div>
-
     </div>
 
-    <noscript>
-      <div class="msf-card">
-        <h2 class="msf-h2">JavaScript Required</h2>
-        <p class="msf-muted">
-          This Finder requires JavaScript to load toner data and display results. If you need help, call (267) 580-2600 or email sales@monroe-systems.com.
-        </p>
+    <div class="ms-hd__bench" role="region" aria-label="Typical competing calculator comparison">
+      <div class="ms-hd__benchTop">
+        <p class="ms-hd__benchTitle">Typical competing calculator benchmark</p>
+        <p class="ms-hd__benchNote">Generic category baseline only. No brands are named.</p>
       </div>
-    </noscript>
 
+      <div class="ms-hd__benchGrid" aria-live="polite">
+        <div class="ms-hd__benchVisual">
+          <div class="ms-hd__benchIcon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="Generic calculator icon">
+              <rect x="14" y="8" width="36" height="48" rx="6" fill="rgba(0,0,0,.30)"></rect>
+              <rect x="20" y="14" width="24" height="10" rx="2" fill="rgba(255,255,255,.60)"></rect>
+              <g fill="rgba(255,255,255,.55)">
+                <rect x="20" y="28" width="8" height="8" rx="2"></rect>
+                <rect x="30" y="28" width="8" height="8" rx="2"></rect>
+                <rect x="40" y="28" width="4" height="8" rx="2"></rect>
+                <rect x="20" y="38" width="8" height="8" rx="2"></rect>
+                <rect x="30" y="38" width="8" height="8" rx="2"></rect>
+                <rect x="40" y="38" width="4" height="18" rx="2"></rect>
+                <rect x="20" y="48" width="18" height="8" rx="2"></rect>
+              </g>
+            </svg>
+          </div>
+          <p class="ms-hd__benchVisualText">
+            The gray reference below represents a typical competing calculator in this category.
+            Your selected Monroe model is shown in teal.
+          </p>
+        </div>
+
+        <div class="ms-hd__benchCard">
+          <p class="ms-hd__benchLabel">Print speed</p>
+          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
+            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-speed" style="width:60%;"></div>
+          </div>
+          <div class="ms-hd__benchBar">
+            <div class="ms-hd__benchFill" data-bench="monroe-speed" style="width:0%;"></div>
+          </div>
+          <p class="ms-hd__benchValue" data-bench-text="speed">Select a model to see a comparison.</p>
+        </div>
+
+        <div class="ms-hd__benchCard">
+          <p class="ms-hd__benchLabel">Feature depth</p>
+          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
+            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-features" style="width:50%;"></div>
+          </div>
+          <div class="ms-hd__benchBar">
+            <div class="ms-hd__benchFill" data-bench="monroe-features" style="width:0%;"></div>
+          </div>
+          <p class="ms-hd__benchValue" data-bench-text="features">Select a model to see a comparison.</p>
+        </div>
+
+        <div class="ms-hd__benchCard">
+          <p class="ms-hd__benchLabel">Workload readiness</p>
+          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
+            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-workload" style="width:55%;"></div>
+          </div>
+          <div class="ms-hd__benchBar">
+            <div class="ms-hd__benchFill" data-bench="monroe-workload" style="width:0%;"></div>
+          </div>
+          <p class="ms-hd__benchValue" data-bench-text="workload">Select a model to see a comparison.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Compare tray -->
+  <div class="ms-hd__tray" role="region" aria-label="Selected models for comparison" hidden>
+    <div class="ms-hd__trayInner">
+      <div class="ms-hd__trayTitle">Compare (up to 2)</div>
+
+      <div class="ms-hd__traySlots" aria-label="Selected models">
+        <div class="ms-hd__traySlot" data-slot="0" aria-label="Selected model 1">
+          <div class="ms-hd__traySlotTop">
+            <span class="ms-hd__traySlotLabel">Model 1</span>
+            <button type="button" class="ms-hd__trayRemove" data-remove="0" aria-label="Remove model 1">Remove</button>
+          </div>
+          <div class="ms-hd__trayName">None selected</div>
+        </div>
+
+        <div class="ms-hd__traySlot" data-slot="1" aria-label="Selected model 2">
+          <div class="ms-hd__traySlotTop">
+            <span class="ms-hd__traySlotLabel">Model 2</span>
+            <button type="button" class="ms-hd__trayRemove" data-remove="1" aria-label="Remove model 2">Remove</button>
+          </div>
+          <div class="ms-hd__trayName">None selected</div>
+        </div>
+      </div>
+
+      <div class="ms-hd__trayActions">
+        <button type="button" class="ms-hd__btn" data-action="view" disabled>View side by side</button>
+        <button type="button" class="ms-hd__btn" data-action="clear">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="ms-hd__wrap" role="region" aria-label="Heavy Duty calculator comparison table" tabindex="0">
+    <table id="ms-hd-table" class="ms-hd__table">
+      <thead>
+        <tr>
+          <th scope="col">Functions and specs</th>
+
+          <th scope="col" class="ms-hd__modelHead" data-col="1">
+            <div class="ms-hd__modelImg">
+              <a href="https://monroe-systems.com/monroe-classicx-12-digit-heavy-duty-printing-calculator/" target="_blank" rel="noopener" title="Monroe ClassicX">
+                <img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/monroe-classicx-top-cutout.png?t=1686666256" alt="Monroe ClassicX Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
+              </a>
+            </div>
+            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/monroe-classicx-12-digit-heavy-duty-printing-calculator/" target="_blank" rel="noopener">Monroe ClassicX</a>
+            <label class="ms-hd__pick"><input type="checkbox" data-pick="1" /> <span>Select</span></label>
+          </th>
+
+          <th scope="col" class="ms-hd__modelHead" data-col="2">
+            <div class="ms-hd__modelImg">
+              <a href="https://monroe-systems.com/monroe-ultimatex/" target="_blank" rel="noopener" title="Monroe UltimateX">
+                <img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/monroe-ultimatex-top-cutout.png?t=1686666260" alt="Monroe UltimateX Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
+              </a>
+            </div>
+            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/monroe-ultimatex/" target="_blank" rel="noopener">Monroe UltimateX</a>
+            <label class="ms-hd__pick"><input type="checkbox" data-pick="2" /> <span>Select</span></label>
+          </th>
+
+          <th scope="col" class="ms-hd__modelHead" data-col="3">
+            <div class="ms-hd__modelImg">
+              <a href="https://monroe-systems.com/monroe-8145x-printing-calculator/" target="_blank" rel="noopener" title="Monroe 8145X">
+                <img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/monroe-8145x-top-cutout.png?t=1686666259" alt="Monroe 8145X Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
+              </a>
+            </div>
+            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/monroe-8145x-printing-calculator/" target="_blank" rel="noopener">Monroe 8145X</a>
+            <label class="ms-hd__pick"><input type="checkbox" data-pick="3" /> <span>Select</span></label>
+          </th>
+
+          <th scope="col" class="ms-hd__modelHead" data-col="4">
+            <div class="ms-hd__modelImg">
+              <a href="https://monroe-systems.com/monroe-8130x-printing-calculator/" target="_blank" rel="noopener" title="Monroe 8130X">
+                <img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/monroe-8130x-top-cutout.png?t=1686666258" alt="Monroe 8130X Heavy Duty printing calculator" width="130" height="165" loading="lazy" decoding="async" />
+              </a>
+            </div>
+            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/monroe-8130x-printing-calculator/" target="_blank" rel="noopener">Monroe 8130X</a>
+            <label class="ms-hd__pick"><input type="checkbox" data-pick="4" /> <span>Select</span></label>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="ms-hd__sectionRow" data-section="functions">
+          <th scope="rowgroup" colspan="5">Functions</th>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Automatic punctuation and grouping</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Percent (%+ and %- capability)</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Tax (%+ and %- capability)</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Item count (intelligent item count, automatic averaging)</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Change sign</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">VAT Tax</th>
+          <td data-col="1">Not Available</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Financial and time calculations</th>
+          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
+        </tr>
+
+        <tr data-section="functions">
+          <th class="ms-hd__rowLabel" scope="row">Reprint and editing capability</th>
+          <td data-col="1">Not Available</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
+        </tr>
+
+        <tr class="ms-hd__sectionRow" data-section="specs">
+          <th scope="rowgroup" colspan="5">Specifications</th>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Digits</th>
+          <td data-col="1">12</td><td data-col="2">12</td><td data-col="3">14</td><td data-col="4">12</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Print speed (lines per second)</th>
+          <td data-col="1">5.0</td><td data-col="2">5.0</td><td data-col="3">5.0</td><td data-col="4">5.0</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">4 Key independent memories</th>
+          <td data-col="1">2</td><td data-col="2">2</td><td data-col="3">2</td><td data-col="4">1</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Display type and color</th>
+          <td data-col="1">Fluorescent blue</td><td data-col="2">Fluorescent green</td><td data-col="3">Fluorescent green</td><td data-col="4">Fluorescent green</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Product dimensions (in inches)</th>
+          <td data-col="1">15.30 x 9.50 x 3.70</td><td data-col="2">15.30 x 9.50 x 3.70</td><td data-col="3">15.30 x 9.50 x 3.70</td><td data-col="4">15.30 x 9.50 x 3.70</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Weight (in US pounds)</th>
+          <td data-col="1">4.08 lbs.</td><td data-col="2">4.08 lbs.</td><td data-col="3">4.08 lbs.</td><td data-col="4">4.08 lbs.</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Ribbon options</th>
+          <td data-col="1">
+            Uses <a class="ms-hd__link" href="https://monroe-systems.com/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink/" target="_blank" rel="noopener">M33X</a>
+            or <a class="ms-hd__link" href="https://monroe-systems.com/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink/" target="_blank" rel="noopener">P65M</a>
+          </td>
+          <td data-col="2">
+            Uses <a class="ms-hd__link" href="https://monroe-systems.com/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink/" target="_blank" rel="noopener">M33X</a>
+            or <a class="ms-hd__link" href="https://monroe-systems.com/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink/" target="_blank" rel="noopener">P65M</a>
+          </td>
+          <td data-col="3">
+            Uses <a class="ms-hd__link" href="https://monroe-systems.com/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink/" target="_blank" rel="noopener">M33X</a>
+            or <a class="ms-hd__link" href="https://monroe-systems.com/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink/" target="_blank" rel="noopener">P65M</a>
+          </td>
+          <td data-col="4">
+            Uses <a class="ms-hd__link" href="https://monroe-systems.com/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink/" target="_blank" rel="noopener">M33X</a>
+            or <a class="ms-hd__link" href="https://monroe-systems.com/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink/" target="_blank" rel="noopener">P65M</a>
+          </td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Power requirements</th>
+          <td data-col="1">115V AC, 50/60 Hz</td><td data-col="2">115V AC, 50/60 Hz</td><td data-col="3">115V AC, 50/60 Hz</td><td data-col="4">115V AC, 50/60 Hz</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Operational environment (in °F)</th>
+          <td data-col="1">41 to 104</td><td data-col="2">41 to 104</td><td data-col="3">41 to 104</td><td data-col="4">41 to 104</td>
+        </tr>
+
+        <tr data-section="specs">
+          <th class="ms-hd__rowLabel" scope="row">Storage environment (in °F)</th>
+          <td data-col="1">40 to 158</td><td data-col="2">40 to 158</td><td data-col="3">40 to 158</td><td data-col="4">40 to 158</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="ms-hd__modal" role="dialog" aria-modal="true" aria-labelledby="ms-hd-modal-title" hidden>
+    <div class="ms-hd__modalBackdrop" data-close="true" aria-hidden="true"></div>
+
+    <div class="ms-hd__modalPanel" role="document">
+      <div class="ms-hd__modalHeader">
+        <div class="ms-hd__modalTitle" id="ms-hd-modal-title">Side by side comparison</div>
+        <button type="button" class="ms-hd__modalClose" data-close="true" aria-label="Close comparison">Close</button>
+      </div>
+
+      <div class="ms-hd__modalBody">
+        <div class="ms-hd__modalGrid" aria-label="Comparison grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:16px 0 0 0;">
+    If you have additional questions please call us at <a class="ms-hd__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.
+  </p>
+
+  <div class="ms-hd__bar" aria-hidden="true"></div>
 </section>
-
-<script>
-(function(){
-  'use strict';
-
-  function onReady(fn){
-    if(document.readyState === 'loading'){
-      document.addEventListener('DOMContentLoaded', fn);
-    }else{
-      fn();
-    }
-  }
-
-  onReady(function(){
-    document.querySelectorAll('.ms-hd').forEach(function(root){
-      var table = root.querySelector('#ms-hd-table');
-      if(!table) return;
-
-      var selected = [];
-      var modelData = {
-        '1': { name:'Monroe ClassicX', speed:92, features:82, workload:90 },
-        '2': { name:'Monroe UltimateX', speed:92, features:96, workload:94 },
-        '3': { name:'Monroe 8145X', speed:92, features:76, workload:93 },
-        '4': { name:'Monroe 8130X', speed:92, features:68, workload:86 }
-      };
-
-      function q(sel){ return root.querySelector(sel); }
-      function qa(sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
-
-      function setRows(section, show){
-        qa('[data-section="' + section + '"]').forEach(function(row){
-          row.classList.toggle('ms-hd__isHidden', !show);
-        });
-      }
-
-      function setBenchmark(col){
-        var data = modelData[col];
-        var fills = {
-          speed: q('[data-bench="monroe-speed"]'),
-          features: q('[data-bench="monroe-features"]'),
-          workload: q('[data-bench="monroe-workload"]')
-        };
-        var texts = {
-          speed: q('[data-bench-text="speed"]'),
-          features: q('[data-bench-text="features"]'),
-          workload: q('[data-bench-text="workload"]')
-        };
-
-        if(!data){
-          Object.keys(fills).forEach(function(k){ if(fills[k]) fills[k].style.width = '0%'; });
-          Object.keys(texts).forEach(function(k){ if(texts[k]) texts[k].textContent = 'Select a model to see a comparison.'; });
-          return;
-        }
-
-        if(fills.speed) fills.speed.style.width = data.speed + '%';
-        if(fills.features) fills.features.style.width = data.features + '%';
-        if(fills.workload) fills.workload.style.width = data.workload + '%';
-
-        if(texts.speed) texts.speed.textContent = data.name + ' print speed index: ' + data.speed + ' vs category benchmark 60.';
-        if(texts.features) texts.features.textContent = data.name + ' feature depth index: ' + data.features + ' vs category benchmark 50.';
-        if(texts.workload) texts.workload.textContent = data.name + ' workload readiness index: ' + data.workload + ' vs category benchmark 55.';
-      }
-
-      function updateTray(){
-        var tray = q('.ms-hd__tray');
-        var viewBtn = q('[data-action="view"]');
-        if(!tray) return;
-
-        tray.hidden = selected.length === 0;
-
-        for(var i=0; i<2; i++){
-          var slot = q('[data-slot="' + i + '"]');
-          if(!slot) continue;
-          var nameEl = slot.querySelector('.ms-hd__trayName');
-          var remove = slot.querySelector('.ms-hd__trayRemove');
-          var col = selected[i];
-          if(nameEl) nameEl.textContent = col && modelData[col] ? modelData[col].name : 'None selected';
-          if(remove) remove.style.visibility = col ? 'visible' : 'hidden';
-        }
-
-        if(viewBtn) viewBtn.disabled = selected.length === 0;
-        setBenchmark(selected[0]);
-      }
-
-      function syncChecks(){
-        qa('[data-pick]').forEach(function(input){
-          input.checked = selected.indexOf(input.getAttribute('data-pick')) !== -1;
-        });
-      }
-
-      function cellText(cell){
-        return cell ? cell.textContent.replace(/\s+/g, ' ').trim() : '';
-      }
-
-      function buildCompareCard(col){
-        var modelName = modelData[col] ? modelData[col].name : 'Selected model';
-        var html = '<article class="ms-hd__compareCard"><h3 class="ms-hd__compareTitle">' + modelName + '</h3><ul class="ms-hd__compareList">';
-
-        qa('tbody tr').forEach(function(row){
-          if(row.classList.contains('ms-hd__sectionRow')) return;
-          var key = cellText(row.querySelector('.ms-hd__rowLabel'));
-          var val = cellText(row.querySelector('[data-col="' + col + '"]'));
-          if(key && val){
-            html += '<li><span class="ms-hd__compareKey">' + escapeHtml(key) + '</span><span class="ms-hd__compareVal">' + escapeHtml(val) + '</span></li>';
-          }
-        });
-
-        html += '</ul></article>';
-        return html;
-      }
-
-      function escapeHtml(s){
-        return String(s || '').replace(/[&<>"']/g, function(ch){
-          return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[ch];
-        });
-      }
-
-      function openModal(){
-        var modal = q('.ms-hd__modal');
-        var grid = q('.ms-hd__modalGrid');
-        if(!modal || !grid || selected.length === 0) return;
-        grid.innerHTML = selected.map(buildCompareCard).join('');
-        modal.hidden = false;
-        document.documentElement.style.overflow = 'hidden';
-        var close = modal.querySelector('.ms-hd__modalClose');
-        if(close) close.focus();
-      }
-
-      function closeModal(){
-        var modal = q('.ms-hd__modal');
-        if(!modal) return;
-        modal.hidden = true;
-        document.documentElement.style.overflow = '';
-      }
-
-      root.addEventListener('click', function(e){
-        var btn = e.target.closest('[data-action]');
-        if(btn && root.contains(btn)){
-          var action = btn.getAttribute('data-action');
-          if(action === 'toggle-functions'){
-            var pressed = btn.getAttribute('aria-pressed') === 'true';
-            btn.setAttribute('aria-pressed', String(!pressed));
-            setRows('functions', !pressed);
-          }
-          if(action === 'toggle-specs'){
-            var pressed2 = btn.getAttribute('aria-pressed') === 'true';
-            btn.setAttribute('aria-pressed', String(!pressed2));
-            setRows('specs', !pressed2);
-          }
-          if(action === 'view') openModal();
-          if(action === 'clear'){
-            selected = [];
-            syncChecks();
-            updateTray();
-          }
-        }
-
-        var remove = e.target.closest('[data-remove]');
-        if(remove && root.contains(remove)){
-          var idx = parseInt(remove.getAttribute('data-remove'), 10);
-          selected.splice(idx, 1);
-          syncChecks();
-          updateTray();
-        }
-
-        var close = e.target.closest('[data-close]');
-        if(close && root.contains(close)) closeModal();
-      });
-
-      root.addEventListener('change', function(e){
-        var input = e.target.closest('[data-pick]');
-        if(!input) return;
-        var col = input.getAttribute('data-pick');
-        var exists = selected.indexOf(col);
-
-        if(input.checked){
-          if(exists === -1){
-            if(selected.length >= 2){
-              input.checked = false;
-              alert('You can compare up to two models at a time.');
-              return;
-            }
-            selected.push(col);
-          }
-        }else if(exists !== -1){
-          selected.splice(exists, 1);
-        }
-
-        updateTray();
-      });
-
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') closeModal();
-      });
-
-      updateTray();
-    });
-  });
-})();
-</script>
-
-{% schema %}
-{
-  "name": "Monroe heavy-duty chart",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Monroe heavy-duty chart"
-    }
-  ]
-}
-{% endschema %}
