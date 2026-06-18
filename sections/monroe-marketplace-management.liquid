@@ -1,0 +1,1250 @@
+<style>
+    :root{
+      --ms-accent:#007681;
+      --ms-soft: rgba(0,118,129,.10);
+      --ms-soft2: rgba(0,118,129,.06);
+      --ms-border: rgba(0,0,0,.12);
+      --ms-shadow: 0 14px 34px rgba(0,0,0,.10);
+      --ms-radius: 18px;
+      --ms-max: 100%;
+      --ms-text: #000;
+      --ms-muted: rgba(0,0,0,.72);
+      --ms-focus: rgba(0,118,129,.35);
+      --ms-cta: #0b0b0b;
+      --ms-ctaText:#ffffff;
+      --ms-chip:#f2f4f5;
+      --ms-chipBorder: rgba(0,0,0,.10);
+    }
+
+    /* =====================================================
+       SCOPED WRAPPER
+       ===================================================== */
+    .ms-mm{
+      max-width: 100%;
+      font-family: Arial, sans-serif;
+      color: var(--ms-text);
+      font-size: 18px;
+      line-height: 1.65;
+      background: #fff;
+      --ms-modal-top: 140px; /* computed in JS */
+    }
+    .ms-mm *{ box-sizing: border-box; }
+
+    /* Links and buttons should be capitalized per request */
+    .ms-mm a{
+      color: var(--ms-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-transform: capitalize;
+    }
+    .ms-mm__btn,
+    .ms-mm__btnSecondary,
+    .ms-mm__stickyBtn,
+    .ms-mm__tabBtn,
+    .ms-mm__q,
+    .ms-mm__close{
+      text-transform: capitalize;
+    }
+
+    .ms-mm a:focus-visible,
+    .ms-mm button:focus-visible{
+      outline: 3px solid var(--ms-focus);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .ms-mm__topbar{
+      height: 14px;
+      background: var(--ms-accent);
+    }
+
+    .ms-mm__wrap{
+      max-width: var(--ms-max);
+      margin: 0 auto;
+      padding: 22px 16px 64px;
+    }
+
+    .ms-mm__hero{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .ms-mm__heroCard{
+      border: 1px solid var(--ms-border);
+      border-radius: var(--ms-radius);
+      padding: 18px 18px 16px;
+      box-shadow: var(--ms-shadow);
+      background:
+        radial-gradient(800px 220px at 20% 0%, var(--ms-soft), transparent 60%),
+        radial-gradient(600px 240px at 90% 20%, var(--ms-soft2), transparent 55%),
+        #fff;
+    }
+
+    .ms-mm__kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--ms-chipBorder);
+      background: var(--ms-chip);
+      border-radius: 999px;
+      font-size: 14px;
+      line-height: 1;
+      margin-bottom: 12px;
+      text-decoration: none;
+      text-transform: none;
+      color: #000;
+    }
+
+    .ms-mm__dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--ms-accent);
+      flex: 0 0 auto;
+    }
+
+    /* No tags bigger than h2 */
+    .ms-mm h2{
+      font-size: 34px;
+      line-height: 1.15;
+      margin: 8px 0 10px;
+      color: #000;
+      letter-spacing: -0.2px;
+    }
+    .ms-mm h3{
+      font-size: 22px;
+      line-height: 1.25;
+      margin: 0 0 10px;
+      color: #000;
+      font-weight: 700;
+    }
+    .ms-mm h4{
+      font-size: 18px;
+      line-height: 1.25;
+      margin: 0 0 6px;
+      color:#000;
+      font-weight: 700;
+    }
+
+    .ms-mm__lead{
+      color: var(--ms-muted);
+      margin: 0 0 14px;
+    }
+
+    .ms-mm__heroBullets{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .ms-mm__heroBullets li{
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 12px;
+      border: 1px solid var(--ms-border);
+      border-radius: 14px;
+      background: #fff;
+    }
+    .ms-mm__check{
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--ms-soft);
+      border: 1px solid rgba(0,118,129,.30);
+      position: relative;
+    }
+    .ms-mm__check::after{
+      content:"";
+      position:absolute;
+      left: 7px;
+      top: 4px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid var(--ms-accent);
+      border-top: 0;
+      border-left: 0;
+      transform: rotate(45deg);
+    }
+
+    .ms-mm__aside{
+      border: 1px solid var(--ms-border);
+      border-radius: var(--ms-radius);
+      padding: 16px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+      position: sticky;
+      top: 14px;
+    }
+
+    .ms-mm__stats{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 0 0 14px;
+    }
+    .ms-mm__stat{
+      border: 1px solid var(--ms-border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+      min-height: 84px;
+    }
+    .ms-mm__statNum{
+      font-size: 26px;
+      line-height: 1.1;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: #000;
+    }
+    .ms-mm__statLabel{
+      margin: 0;
+      color: var(--ms-muted);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .ms-mm__cta{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .ms-mm__btn{
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 18px;
+      cursor: pointer;
+      background: #0b0b0b;
+      color: #ffffff;
+      font-weight: 700;
+      text-align: center;
+    }
+    .ms-mm__btnSecondary{
+      appearance: none;
+      border: 1px solid rgba(0,0,0,.22);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .ms-mm__smallNote{
+      margin: 10px 0 0;
+      color: var(--ms-muted);
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .ms-mm__nav{
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      list-style: none;
+    }
+    .ms-mm__nav a{
+      text-decoration: none;
+      border: 1px solid var(--ms-border);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .ms-mm__nav a:hover{ background: var(--ms-soft2); }
+
+    .ms-mm__section{
+      margin-top: 22px;
+      border: 1px solid var(--ms-border);
+      border-radius: var(--ms-radius);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    }
+    .ms-mm__sectionHead{
+      padding: 16px 16px 14px;
+      background: linear-gradient(180deg, var(--ms-soft2), #fff);
+      border-bottom: 1px solid var(--ms-border);
+    }
+    .ms-mm__sectionBody{
+      padding: 16px;
+    }
+
+    .ms-mm__grid3{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .ms-mm__card{
+      border: 1px solid var(--ms-border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+      min-height: 140px;
+    }
+    .ms-mm__card p{ margin: 0; color: var(--ms-muted); }
+
+    .ms-mm__serviceList{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .ms-mm__serviceList li{
+      border: 1px solid var(--ms-border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+    .ms-mm__serviceTitle{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: #000;
+    }
+    .ms-mm__serviceTitle span{
+      font-weight: 400;
+      color: var(--ms-muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .ms-mm__tabs{
+      border: 1px solid var(--ms-border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .ms-mm__tabBar{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--ms-border);
+      background: linear-gradient(180deg, var(--ms-soft2), #fff);
+    }
+    .ms-mm__tabBtn{
+      border: 1px solid rgba(0,0,0,.18);
+      background: #fff;
+      color: #000;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .ms-mm__tabBtn[aria-selected="true"]{
+      border-color: rgba(0,118,129,.40);
+      background: var(--ms-soft);
+    }
+    .ms-mm__tabPanel{
+      padding: 14px;
+      display: none;
+    }
+    .ms-mm__tabPanel[aria-hidden="false"]{ display: block; }
+
+    .ms-mm__platformGrid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .ms-mm__platform{
+      border: 1px solid var(--ms-border);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+    .ms-mm__platform p{
+      margin: 0;
+      color: var(--ms-muted);
+    }
+
+    .ms-mm__faq{
+      display: grid;
+      gap: 10px;
+    }
+    .ms-mm__qa{
+      border: 1px solid var(--ms-border);
+      border-radius: 16px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .ms-mm__q{
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: #fff;
+      padding: 14px 44px 14px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      color: #000;
+      position: relative;
+    }
+    .ms-mm__q::after{
+      content:"+";
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.18);
+      background: #fff;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .ms-mm__qa[data-open="true"] .ms-mm__q::after{ content:"–"; }
+    .ms-mm__a{
+      padding: 0 14px 14px;
+      color: var(--ms-muted);
+      display: none;
+    }
+    .ms-mm__qa[data-open="true"] .ms-mm__a{ display: block; }
+
+    .ms-mm__sticky{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,.96);
+      border-top: 1px solid var(--ms-border);
+      backdrop-filter: blur(8px);
+      padding: 10px 12px;
+      display: none;
+      z-index: 9999;
+    }
+    .ms-mm__stickyInner{
+      max-width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .ms-mm__stickyText{
+      margin: 0;
+      color: var(--ms-muted);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .ms-mm__stickyBtn{
+      border: 0;
+      background: #0b0b0b;
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* =====================================================
+       MODAL FIXES FOR BIGCOMMERCE HEADER AND SEARCH
+       ===================================================== */
+    .ms-mm__modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      z-index: 2147483647;
+      padding: 16px;
+      overflow: auto;
+      align-items: flex-start;
+    }
+    .ms-mm__modal[data-open="true"]{
+      display: grid;
+      justify-items: center;
+    }
+    .ms-mm__modalCard{
+      width: 100%;
+      max-width: 700px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: 0 22px 60px rgba(0,0,0,.25);
+      overflow: hidden;
+      margin-top: var(--ms-modal-top);
+      margin-bottom: 24px;
+    }
+    .ms-mm__modalTop{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid var(--ms-border);
+      background: linear-gradient(180deg, var(--ms-soft2), #fff);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .ms-mm__modalTop h3{ margin: 0; }
+    .ms-mm__close{
+      border: 1px solid rgba(0,0,0,.18);
+      background: #fff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1;
+      font-size: 14px;
+    }
+    .ms-mm__modalBody{
+      padding: 14px;
+    }
+    .ms-mm__hint{
+      margin: 0 0 12px;
+      color: var(--ms-muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    /* HubSpot frame polish */
+    .ms-mm .hs-form-frame{
+      width: 100%;
+      min-height: 340px;
+    }
+
+    /* Mobile */
+    @media (max-width: 980px){
+      .ms-mm__hero{ grid-template-columns: 1fr; }
+      .ms-mm__aside{ position: static; }
+      .ms-mm__grid3{ grid-template-columns: 1fr; }
+      .ms-mm__platformGrid{ grid-template-columns: 1fr; }
+      .ms-mm__sticky{ display: block; }
+      .ms-mm__wrap{ padding-bottom: 92px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .ms-mm__sticky{ backdrop-filter: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Marketplace Management Services",
+    "provider":{
+      "@type":"Organization",
+      "name":"Monroe Systems for Business"
+    },
+    "areaServed":"US",
+    "serviceType":"E-commerce marketplace management",
+    "description":"No cost, exclusive marketplace management partnership for growing brands across major marketplaces, including listing optimization, SEO, ads, logistics coordination, customer service, and compliance."
+  }
+  </script>
+
+<section>
+ <main class="ms-mm" id="msMarketplaceManagement">
+    <div class="ms-mm__topbar" aria-hidden="true"></div>
+
+    <div class="ms-mm__wrap">
+      <section class="ms-mm__hero" aria-label="Monroe Marketplace Management Overview">
+        <div class="ms-mm__heroCard">
+          <span class="ms-mm__kicker" aria-label="Program Summary">
+            <span class="ms-mm__dot" aria-hidden="true"></span>
+            Monroe Marketplace Management Services For Growing Brands
+          </span>
+
+          <h2>Expand To Top Marketplaces At No Cost To Your Brand</h2>
+
+          <p class="ms-mm__lead">
+            Partner with Monroe Systems for Business to grow your sales across leading online marketplaces. We handle the heavy lifting, including content creation, marketplace SEO, advertising management, customer service, logistics coordination, and brand protection. This is an exclusive collaboration where we succeed only when you succeed.
+          </p>
+
+          <ul class="ms-mm__heroBullets" aria-label="Program Highlights">
+            <li>
+              <span class="ms-mm__check" aria-hidden="true"></span>
+              <div>
+                <strong>Zero service fees.</strong> We provide marketplace management at no charge through a shared success model.
+              </div>
+            </li>
+            <li>
+              <span class="ms-mm__check" aria-hidden="true"></span>
+              <div>
+                <strong>Full service execution.</strong> Listings, SEO, ads, pricing, inventory coordination, customer support, and compliance.
+              </div>
+            </li>
+            <li>
+              <span class="ms-mm__check" aria-hidden="true"></span>
+              <div>
+                <strong>Omnichannel reach.</strong> Amazon, Walmart, Target+™, TikTok Shop, eBay, Etsy, and more.
+              </div>
+            </li>
+          </ul>
+
+          <ul class="ms-mm__nav" aria-label="Page Navigation">
+            <li><a href="#why">Why Monroe</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#platforms">Platforms</a></li>
+            <li><a href="#partnership">Partnership Model</a></li>
+            <li><a href="#fit">Is It A Fit</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- IMPORTANT STOP 1: PRIMARY CTA IN HERO ASIDE -->
+        <aside class="ms-mm__aside" aria-label="Program Summary And Contact">
+          <div class="ms-mm__stats" aria-label="Key Proof Points">
+            <div class="ms-mm__stat">
+              <p class="ms-mm__statNum"><span class="ms-mm__count" data-count="110" data-suffix="+">110+</span></p>
+              <p class="ms-mm__statLabel">Years Of Business Credibility And Infrastructure</p>
+            </div>
+            <div class="ms-mm__stat">
+              <p class="ms-mm__statNum"><span class="ms-mm__count" data-count="8" data-suffix="+">8+</span></p>
+              <p class="ms-mm__statLabel">Major Marketplaces Supported And Expanding</p>
+            </div>
+          </div>
+
+          <div class="ms-mm__cta" id="contact">
+            <button class="ms-mm__btn" type="button" data-open-modal="true">
+              Request A Partnership Review
+            </button>
+
+            <a class="ms-mm__btnSecondary" href="#fit">
+              See If Your Brand Is A Fit
+            </a>
+
+            <p class="ms-mm__smallNote">
+              This is an exclusive program. We select a limited number of partner brands so we can invest deeply and execute consistently.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="ms-mm__section" id="why" aria-label="Why Partner With Monroe">
+        <header class="ms-mm__sectionHead">
+          <h3>Why Partner With Monroe Systems For Business</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            A century of reliability, paired with modern marketplace execution, built to help growing brands scale without added overhead.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <div class="ms-mm__grid3" role="list" aria-label="Core Partnership Advantages">
+            <article class="ms-mm__card" role="listitem">
+              <h4>A Legacy Of Trust And Innovation</h4>
+              <p>
+                Monroe invented the first commercial printing calculator in 1912 and has been a trusted name in office products for over a century. That legacy now supports proven e commerce marketplace growth on leading platforms.
+              </p>
+            </article>
+
+            <article class="ms-mm__card" role="listitem">
+              <h4>E Commerce Success Record</h4>
+              <p>
+                We operate established storefronts across major platforms, including invite only marketplaces and emerging channels. We understand ranking signals, promotion systems, and operational details that drive sustainable sales.
+              </p>
+            </article>
+
+            <article class="ms-mm__card" role="listitem">
+              <h4>No Cost, Aligned Incentives</h4>
+              <p>
+                Unlike traditional agencies, we provide management services at no charge to exclusive partners. We invest alongside you and earn through product sales, not consulting fees.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" id="services" aria-label="Marketplace Management Services">
+        <header class="ms-mm__sectionHead">
+          <h3>Comprehensive Marketplace Management Services</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            You gain a full service e commerce team dedicated to your brand’s visibility, conversion, customer experience, and compliance across channels.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <ul class="ms-mm__serviceList" aria-label="Service List">
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Product Content Creation And Optimization
+                <span>High converting listings that match each marketplace’s best practices</span>
+              </p>
+              We create high converting product listings with engaging descriptions, professional images, and SEO rich keywords tailored to each marketplace.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Marketplace SEO And Algorithm Expertise
+                <span>Visibility improvements through structured optimization</span>
+              </p>
+              We continuously optimize titles, attributes, tags, and keywords so your listings gain maximum visibility and remain competitive.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Advertising And Promotions Management
+                <span>PPC and deal strategy tuned for profitable growth</span>
+              </p>
+              We manage pay per click advertising and promotional tools on your behalf to boost visibility and improve return on ad spend.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Pricing Strategy And Buy Box Management
+                <span>Competitive pricing without sacrificing margin</span>
+              </p>
+              We use marketplace insights to keep pricing competitive while protecting margins, and we actively manage Buy Box drivers.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Inventory, Fulfillment, And Logistics Coordination
+                <span>Fewer stockouts, faster turnarounds, better customer outcomes</span>
+              </p>
+              We coordinate inventory planning and shipping execution. We have warehouse capabilities in Tullytown, PA, to support fast delivery.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Customer Service And Reputation Management
+                <span>Reviews, returns, and responses handled professionally</span>
+              </p>
+              Our support team handles inquiries, reviews, and returns, helping build trust and maintain strong seller ratings.
+            </li>
+
+            <li>
+              <p class="ms-mm__serviceTitle">
+                Marketplace Compliance And Brand Protection
+                <span>Policy adherence and monitoring across channels</span>
+              </p>
+              We navigate marketplace rules, protect account health, and monitor for unauthorized sellers or listing disruptions.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" id="platforms" aria-label="Supported Marketplaces">
+        <header class="ms-mm__sectionHead">
+          <h3>Sell On Major Platforms Effortlessly</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            Expand without the usual barriers. We manage multiple channels through a centralized approach so your brand voice, pricing, and inventory stay consistent.
+          </p>
+        </header>
+
+        <div class="ms-mm__sectionBody">
+          <div class="ms-mm__tabs" data-tabs>
+            <div class="ms-mm__tabBar" role="tablist" aria-label="Marketplace Tabs">
+              <button class="ms-mm__tabBtn" type="button" role="tab" aria-selected="true" aria-controls="tab-core" id="tabbtn-core" data-tab="core">Core Marketplaces</button>
+              <button class="ms-mm__tabBtn" type="button" role="tab" aria-selected="false" aria-controls="tab-growth" id="tabbtn-growth" data-tab="growth">Growth Channels</button>
+              <button class="ms-mm__tabBtn" type="button" role="tab" aria-selected="false" aria-controls="tab-specialty" id="tabbtn-specialty" data-tab="specialty">Specialty Platforms</button>
+            </div>
+
+            <div class="ms-mm__tabPanel" role="tabpanel" id="tab-core" aria-labelledby="tabbtn-core" aria-hidden="false">
+              <div class="ms-mm__platformGrid" aria-label="Core Marketplaces List">
+                <article class="ms-mm__platform">
+                  <h4>Amazon</h4>
+                  <p>We position products for marketplace success with conversion focused content, disciplined advertising, and consistent optimization.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Walmart.com</h4>
+                  <p>Reach Walmart’s online shoppers with optimized listings, competitive catalog execution, and marketplace advertising management.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Target+™</h4>
+                  <p>Access an invite only marketplace where exclusivity can reduce price wars. We execute with platform compliant content and standards.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>TikTok Shop</h4>
+                  <p>Tap into social commerce with optimized product setup and promotion execution aligned with trend driven discovery.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="ms-mm__tabPanel" role="tabpanel" id="tab-growth" aria-labelledby="tabbtn-growth" aria-hidden="true">
+              <div class="ms-mm__platformGrid" aria-label="Growth Channels List">
+                <article class="ms-mm__platform">
+                  <h4>eBay</h4>
+                  <p>Leverage a global audience with detailed listings and disciplined seller performance standards.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Etsy</h4>
+                  <p>For unique or handcrafted products, we optimize attributes, storytelling, and search relevance to match shopper intent.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Facebook Marketplace</h4>
+                  <p>Reach buyers with consistent product data, clear positioning, and coordinated operations.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Newegg</h4>
+                  <p>For tech aligned categories, we support structured specs, clean catalog data, and marketplace compliance.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="ms-mm__tabPanel" role="tabpanel" id="tab-specialty" aria-labelledby="tabbtn-specialty" aria-hidden="true">
+              <div class="ms-mm__platformGrid" aria-label="Additional Platforms List">
+                <article class="ms-mm__platform">
+                  <h4>Consistency Across Channels</h4>
+                  <p>We help keep messaging, pricing discipline, and inventory availability aligned so your brand remains coherent across platforms.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Additional Marketplace Expansion</h4>
+                  <p>We evaluate new channels based on product fit, margin profile, and operational requirements to scale responsibly.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Advertising Systems</h4>
+                  <p>Sponsored placements and promotional tools are managed with profitability and long term rank improvement in mind.</p>
+                </article>
+                <article class="ms-mm__platform">
+                  <h4>Centralized Execution</h4>
+                  <p>One workflow across platforms helps maintain brand voice and operational standards while reducing complexity.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" id="partnership" aria-label="Exclusive Collaboration Model">
+        <header class="ms-mm__sectionHead">
+          <h3>Exclusive Collaboration For Long Term Growth</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            This is not a one size fits all service. We select a limited number of brand partners so we can represent each partner effectively and execute at a high standard.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <div class="ms-mm__grid3" role="list" aria-label="Partnership Benefits">
+            <article class="ms-mm__card" role="listitem">
+              <h4>Hands Off Growth</h4>
+              <p>You focus on product development and your core operation. We manage marketplace execution day to day.</p>
+            </article>
+            <article class="ms-mm__card" role="listitem">
+              <h4>Shared Success</h4>
+              <p>We earn through product sales, not fees. That alignment keeps strategy focused on sustainable revenue and brand reputation.</p>
+            </article>
+            <article class="ms-mm__card" role="listitem">
+              <h4>Flexibility And Support</h4>
+              <p>We tailor execution and maintain direct communication so strategy can adapt quickly as marketplaces evolve.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" id="fit" aria-label="Is This Program Right For Your Brand">
+        <header class="ms-mm__sectionHead">
+          <h3>Is Monroe’s Marketplace Management Right For Your Brand</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            This program is ideal for small to mid sized brands with strong products and clear ambition to grow across online marketplaces.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <ul class="ms-mm__serviceList" aria-label="Fit Checklist">
+            <li>
+              <p class="ms-mm__serviceTitle">
+                You Have Quality Products, But Limited Online Distribution
+                <span>And Want Help Breaking Into Major Marketplaces</span>
+              </p>
+              If you have strong product market fit and want expanded reach, we can help build marketplace presence with structured execution.
+            </li>
+            <li>
+              <p class="ms-mm__serviceTitle">
+                You Have Sold Online, But Scaling Feels Difficult
+                <span>Due To Time, Expertise, Or Operational Constraints</span>
+              </p>
+              We provide the day to day management, optimization cadence, and systems mindset needed for consistent growth.
+            </li>
+            <li>
+              <p class="ms-mm__serviceTitle">
+                You Want New Channels Without New Overhead
+                <span>And Prefer Aligned Incentives Over Agency Retainers</span>
+              </p>
+              Our no fee partnership approach helps remove up front cost barriers while keeping execution focused on outcomes.
+            </li>
+          </ul>
+
+          <!-- IMPORTANT STOP 2: SECONDARY CTA IN "FIT" SECTION -->
+          <div style="margin-top:14px;">
+            <button class="ms-mm__btn" type="button" data-open-modal="true">
+              Start A Partnership Conversation
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" id="faq" aria-label="Frequently Asked Questions">
+        <header class="ms-mm__sectionHead">
+          <h3>FAQ</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            Quick answers for brand owners evaluating marketplace expansion and management support.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <div class="ms-mm__faq" data-faq>
+            <div class="ms-mm__qa" data-open="true">
+              <button class="ms-mm__q" type="button">How Can This Be No Cost</button>
+              <div class="ms-mm__a">
+                Our model is built on shared success. We invest time and resources into marketplace execution and earn through product sales rather than charging service fees.
+              </div>
+            </div>
+
+            <div class="ms-mm__qa" data-open="false">
+              <button class="ms-mm__q" type="button">Do You Manage Everything Across Marketplaces</button>
+              <div class="ms-mm__a">
+                We manage the key levers that drive marketplace growth, including listings, SEO, ads, pricing discipline, customer support, operational coordination, and compliance.
+              </div>
+            </div>
+
+            <div class="ms-mm__qa" data-open="false">
+              <button class="ms-mm__q" type="button">Is This Partnership Exclusive</button>
+              <div class="ms-mm__a">
+                Yes. We select a limited number of brands so we can represent each partner effectively and execute at a high standard across channels.
+              </div>
+            </div>
+
+            <div class="ms-mm__qa" data-open="false">
+              <button class="ms-mm__q" type="button">What Types Of Brands Are The Best Fit</button>
+              <div class="ms-mm__a">
+                Brands with proven product value, reliable supply, and the desire to expand their online distribution are typically the strongest fit.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ms-mm__section" aria-label="Closing Call To Action" id="final-cta">
+        <header class="ms-mm__sectionHead">
+          <h3>Let’s Grow Your Online Sales Together</h3>
+          <p class="ms-mm__lead" style="margin:0;">
+            Monroe has always been about empowering others with reliable solutions. Today, that includes helping growing brands thrive across leading marketplaces without added cost or stress.
+          </p>
+        </header>
+        <div class="ms-mm__sectionBody">
+          <p style="margin-top:0; color: rgba(0,0,0,.72);">
+            Ready to unlock new sales channels with a team that executes like an extension of your business. Contact us to discuss an exclusive partnership.
+          </p>
+
+          <!-- IMPORTANT STOP 3: FINAL CTA -->
+          <button class="ms-mm__btn" type="button" data-open-modal="true">
+            Contact Monroe About Marketplace Management
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- IMPORTANT STOP 4: STICKY CTA ON MOBILE -->
+    <div class="ms-mm__sticky" aria-label="Sticky Call To Action">
+      <div class="ms-mm__stickyInner">
+        <p class="ms-mm__stickyText">
+          Expand to major marketplaces with no service fees. Exclusive partnerships only.
+        </p>
+        <button class="ms-mm__stickyBtn" type="button" data-open-modal="true">Request Review</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- =====================================================
+       MODAL OUTSIDE MAIN TO AVOID BIGCOMMERCE STACKING CONTEXTS
+       ===================================================== -->
+  <div class="ms-mm__modal" role="dialog" aria-modal="true" aria-labelledby="msModalTitle" aria-hidden="true" data-modal>
+    <div class="ms-mm__modalCard">
+      <div class="ms-mm__modalTop">
+        <h3 id="msModalTitle">Request A Partnership Review</h3>
+        <button class="ms-mm__close" type="button" aria-label="Close" data-close-modal="true">Close</button>
+      </div>
+
+      <div class="ms-mm__modalBody">
+        <p class="ms-mm__hint">
+          Submit your information and our team will follow up to evaluate fit and outline next steps.
+        </p>
+        <!-- HubSpot Embedded Form -->
+        <div
+          class="hs-form-frame"
+          data-region="na1"
+          data-form-id="19b46a87-6b19-4760-85f8-d9686cde1afb"
+          data-portal-id="21002942">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://js.hsforms.net/forms/embed/21002942.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"How Can This Be No Cost",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"The model is built on shared success. Monroe invests time and resources into marketplace execution and earns through product sales rather than charging service fees."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Do You Manage Everything Across Marketplaces",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Monroe manages the key levers that drive marketplace growth, including listings, SEO, ads, pricing discipline, customer support, operational coordination, and compliance."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Is This Partnership Exclusive",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Yes. Monroe selects a limited number of brands so each partner can be represented effectively and executed at a high standard across channels."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What Types Of Brands Are The Best Fit",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Brands with proven product value, reliable supply, and the desire to expand online distribution are typically the strongest fit."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>
+    (function(){
+      "use strict";
+
+      var root = document.getElementById("msMarketplaceManagement");
+      if(!root) return;
+
+      var modal = document.querySelector("[data-modal]");
+      var body = document.body;
+
+      /* Ensure modal is attached to <body> to avoid theme stacking contexts */
+      if(modal && modal.parentNode !== body){
+        body.appendChild(modal);
+      }
+
+      /* Compute a safe top offset so modal never hides under sticky header/search */
+      function setModalTopOffset(){
+        var selectors = [
+          "header",
+          "#header",
+          ".header",
+          ".siteHeader",
+          ".headerWrap",
+          ".header--fixed",
+          ".is-sticky",
+          ".sticky",
+          ".navUser",
+          ".navPages-container"
+        ];
+
+        var maxBottom = 0;
+
+        for(var i=0;i<selectors.length;i++){
+          var el = document.querySelector(selectors[i]);
+          if(!el) continue;
+
+          var cs = window.getComputedStyle(el);
+          if(cs.position !== "fixed" && cs.position !== "sticky") continue;
+
+          var r = el.getBoundingClientRect();
+          if(r.height < 40) continue;
+
+          maxBottom = Math.max(maxBottom, Math.ceil(r.bottom));
+        }
+
+        if(maxBottom < 80) maxBottom = 140;
+        root.style.setProperty("--ms-modal-top", (maxBottom + 16) + "px");
+      }
+
+      setModalTopOffset();
+      window.addEventListener("resize", setModalTopOffset, { passive: true });
+
+      /* Count up */
+      var counters = root.querySelectorAll(".ms-mm__count");
+      var ranCounts = false;
+
+      function easeOutQuad(t){ return t * (2 - t); }
+
+      function runCounters(){
+        if(ranCounts) return;
+        ranCounts = true;
+
+        counters.forEach(function(el){
+          var target = parseInt(el.getAttribute("data-count") || "0", 10);
+          var suffix = el.getAttribute("data-suffix") || "";
+          var duration = 700;
+          var start = performance.now();
+
+          function tick(now){
+            var p = Math.min(1, (now - start) / duration);
+            var v = Math.round(target * easeOutQuad(p));
+            el.textContent = String(v) + suffix;
+            if(p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }
+
+      if("IntersectionObserver" in window && counters.length){
+        var io = new IntersectionObserver(function(entries){
+          for(var i=0;i<entries.length;i++){
+            if(entries[i].isIntersecting){
+              runCounters();
+              io.disconnect();
+              break;
+            }
+          }
+        }, { rootMargin: "0px 0px -20% 0px" });
+
+        io.observe(counters[0]);
+      } else if(counters.length){
+        runCounters();
+      }
+
+      /* Tabs */
+      var tabsWrap = root.querySelector("[data-tabs]");
+      if(tabsWrap){
+        var tabButtons = tabsWrap.querySelectorAll(".ms-mm__tabBtn");
+        var panels = {
+          core: tabsWrap.querySelector("#tab-core"),
+          growth: tabsWrap.querySelector("#tab-growth"),
+          specialty: tabsWrap.querySelector("#tab-specialty")
+        };
+
+        function setTab(name){
+          tabButtons.forEach(function(btn){
+            var selected = btn.getAttribute("data-tab") === name;
+            btn.setAttribute("aria-selected", selected ? "true" : "false");
+          });
+          Object.keys(panels).forEach(function(k){
+            if(!panels[k]) return;
+            var hidden = (k !== name);
+            panels[k].setAttribute("aria-hidden", hidden ? "true" : "false");
+          });
+        }
+
+        tabsWrap.addEventListener("click", function(e){
+          var btn = e.target.closest(".ms-mm__tabBtn");
+          if(!btn) return;
+          setTab(btn.getAttribute("data-tab"));
+        });
+      }
+
+      /* FAQ accordion */
+      var faq = root.querySelector("[data-faq]");
+      if(faq){
+        faq.addEventListener("click", function(e){
+          var btn = e.target.closest(".ms-mm__q");
+          if(!btn) return;
+          var item = btn.closest(".ms-mm__qa");
+          if(!item) return;
+
+          var isOpen = item.getAttribute("data-open") === "true";
+          item.setAttribute("data-open", isOpen ? "false" : "true");
+        });
+      }
+
+      /* Modal open/close */
+      function openModal(){
+        if(!modal) return;
+
+        setModalTopOffset();
+
+        modal.setAttribute("data-open", "true");
+        modal.setAttribute("aria-hidden", "false");
+        document.documentElement.style.overflow = "hidden";
+
+        /* Nudge layout so HubSpot embedded frame renders correctly */
+        setTimeout(function(){
+          var frame = modal.querySelector(".hs-form-frame");
+          if(frame){
+            frame.style.display = "none";
+            frame.offsetHeight;
+            frame.style.display = "";
+          }
+        }, 60);
+      }
+
+      function closeModal(){
+        if(!modal) return;
+        modal.setAttribute("data-open", "false");
+        modal.setAttribute("aria-hidden", "true");
+        document.documentElement.style.overflow = "";
+      }
+
+      /* Delegated handler so only important CTA buttons trigger the modal */
+      document.addEventListener("click", function(e){
+        var opener = e.target.closest("[data-open-modal='true']");
+        if(opener){
+          e.preventDefault();
+          openModal();
+          return;
+        }
+
+        if(modal && e.target === modal){
+          closeModal();
+          return;
+        }
+
+        var closeBtn = e.target.closest("[data-close-modal='true']");
+        if(closeBtn){
+          e.preventDefault();
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", function(e){
+        if(!modal) return;
+        if(e.key === "Escape" && modal.getAttribute("data-open") === "true"){
+          closeModal();
+        }
+      });
+
+      /* Smooth in-page navigation */
+      root.addEventListener("click", function(e){
+        var a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+
+        var id = a.getAttribute("href");
+        if(!id || id.length < 2) return;
+
+        var target = document.querySelector(id);
+        if(!target) return;
+
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", id);
+      });
+    })();
+  </script>
+
+{% schema %}
+{
+  "name": "Marketplace management",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Marketplace management"
+    }
+  ]
+}
+{% endschema %}

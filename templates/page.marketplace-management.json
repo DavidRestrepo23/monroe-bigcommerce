@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_marketplace_management": {
+      "type": "monroe-marketplace-management",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_marketplace_management"
   ]
 }
