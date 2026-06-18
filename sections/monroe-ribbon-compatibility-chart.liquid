@@ -1,0 +1,1384 @@
+<style>
+/* =====================================================
+   MONROE RIBBON COMPATIBILITY CHART (Interactive) – FULL CSS
+   Scoped: .ms-rib
+   Brand: #007681 accent. All text stays black.
+   Implemented:
+   - 18px body text, H2 max 40px
+   - 5px borders, teal border color everywhere
+   - No horizontal scrolling: desktop fits via fixed layout + wrapping, mobile becomes cards
+   - Search bar overlap protection (theme-proof)
+   - Filter buttons: no visible checkboxes, hover/active teal fill
+   - Group buttons not narrow, consistent padding/min-width
+   - Visual “pop” (soft background panel, shadows, header tint)
+   - Clear button row styles (for JS-controlled visibility)
+   ===================================================== */
+
+.ms-rib{
+  --msr-accent:#007681;
+  --msr-border:#007681;
+  --msr-soft: rgba(0,118,129,.08);
+  --msr-soft2: rgba(0,118,129,.14);
+
+  font-family: Arial, sans-serif;
+  font-size:18px;
+  line-height:1.55;
+  color:#000000;
+
+  display:block;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+
+  /* POP */
+  background-color: rgba(0,118,129,.06);
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.ms-rib *, .ms-rib *::before, .ms-rib *::after{ box-sizing:border-box; }
+
+.ms-rib a{
+  color:#000000;
+  text-decoration:underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.ms-rib a:hover{ text-decoration:underline; }
+
+/* Top/Bottom bars */
+.ms-rib__bar{
+  background: var(--msr-accent);
+  height:35px;
+  width:100%;
+  margin:0 0 18px 0;
+}
+
+/* Title (H2 max 40px) */
+.ms-rib__title{
+  margin: 0 0 16px 0;
+  text-align:center;
+  font-size:40px;
+  line-height:1.15;
+  color:#000000;
+  letter-spacing:.2px;
+}
+
+/* Intro */
+.ms-rib__intro{ margin: 0 0 16px 0; }
+.ms-rib__intro p{ margin: 0 0 12px 0; }
+.ms-rib__intro p:last-child{ margin-bottom:0; }
+
+/* SR helper */
+.ms-rib__srOnly{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* =====================================================
+   Controls
+   ===================================================== */
+.ms-rib__controls{
+  border:5px solid var(--msr-border);
+  padding:14px;
+  margin:0 0 14px 0;
+  background:#ffffff;
+
+  /* Theme-proof + overlap fixes */
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+
+  /* POP */
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.10);
+}
+
+.ms-rib__controlsRow{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  align-items:stretch;
+
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+
+/* Theme-proof label wrapper ONLY for the search field container */
+.ms-rib__controls > .ms-rib__controlsRow > label{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+  margin:0 !important;
+  padding:0 !important;
+  position:static !important;
+  float:none !important;
+  transform:none !important;
+}
+
+.ms-rib__fieldLabel{
+  display:block;
+  font-weight:700;
+  margin:0 0 6px 0;
+  font-size:18px;
+  color:#000000;
+}
+
+.ms-rib__search{
+  display:block;
+  width:100%;
+  max-width:100%;
+  font-size:18px;
+  padding:12px 14px;
+  border:5px solid var(--msr-border);
+  border-radius:14px;
+  color:#000000;
+  background:#ffffff;
+  box-sizing:border-box;
+  margin:0;
+
+  /* Extra theme-proofing */
+  position:relative !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none !important;
+}
+
+.ms-rib input[type="search"],
+.ms-rib input[type="text"]{
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+
+/* =====================================================
+   Filter buttons
+   - No visible checkboxes
+   - Hover/active teal fill
+   - Comfortable width for all pills
+   ===================================================== */
+.ms-rib__filters{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  box-sizing:border-box !important;
+}
+
+.ms-rib__filter{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+
+  border:5px solid var(--msr-border);
+  border-radius:999px;
+  background:#ffffff;
+  color:#000000;
+
+  /* Size + spacing */
+  font-size:16px;
+  line-height:1.15;
+  padding:12px 28px;
+  min-height:52px;
+  min-width:180px;
+
+  cursor:pointer;
+  box-sizing:border-box;
+  overflow:hidden;
+
+  transition:
+    transform .15s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+/* Hide checkbox input but keep functionality for JS */
+.ms-rib__filter input{
+  position:absolute !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+  width:1px !important;
+  height:1px !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+/* Hover state */
+.ms-rib__filter:hover{
+  background-color: var(--msr-accent);
+  color:#ffffff;
+  transform: translateY(-1px);
+}
+.ms-rib__filter:hover span{ color:#ffffff; }
+
+/* Checked state mirrors hover */
+.ms-rib__filter:has(input:checked){
+  background-color: var(--msr-accent);
+  color:#ffffff;
+}
+.ms-rib__filter:has(input:checked) span{ color:#ffffff; }
+
+/* Mobile safety */
+@media (max-width:520px){
+  .ms-rib__filter{
+    min-width:auto;
+    padding:12px 18px;
+    justify-content:flex-start;
+  }
+}
+
+/* Slightly wider on desktop */
+@media (min-width:980px){
+  .ms-rib__filter{ min-width:200px; }
+}
+
+/* =====================================================
+   Chips (quick picks)
+   ===================================================== */
+.ms-rib__chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+
+.ms-rib__chip{
+  appearance:none;
+  border:5px solid var(--msr-border);
+  background:#ffffff;
+  color:#000000;
+  border-radius:999px;
+
+  font-size:16px;
+  line-height:1.15;
+  padding:12px 22px;
+  min-height:52px;
+  cursor:pointer;
+
+  transition:
+    transform .15s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.ms-rib__chip:hover{
+  background-color: var(--msr-accent);
+  color:#ffffff;
+  transform: translateY(-1px);
+}
+
+.ms-rib__chip[aria-pressed="true"]{
+  background-color: var(--msr-accent);
+  color:#ffffff;
+}
+
+/* Status line */
+.ms-rib__status{
+  margin:10px 0 0 0;
+  font-size:18px;
+  color:#000000;
+}
+
+/* Clear button row (appears via JS when filtering active) */
+.ms-rib__actions{
+  margin-top:12px;
+  display:flex;
+  justify-content:flex-start;
+}
+
+/* Button base */
+.ms-rib__btn,
+.ms-rib__trayRemove,
+.ms-rib__modalClose{
+  border:5px solid var(--msr-border) !important;
+  background:#ffffff !important;
+  color:#000000 !important;
+  font-weight:800 !important;
+  border-radius:14px;
+  padding:12px 16px;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1.1;
+  text-decoration:none !important;
+
+  transition:
+    transform .15s ease,
+    background-color .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.ms-rib__btn:hover,
+.ms-rib__trayRemove:hover,
+.ms-rib__modalClose:hover{
+  background: var(--msr-accent) !important;
+  color:#ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   Results wrapper
+   - NO horizontal scrolling: overflow hidden
+   ===================================================== */
+.ms-rib__wrap{
+  border:5px solid var(--msr-border);
+  padding:12px;
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+  background:#ffffff;
+
+  /* POP */
+  border-radius: 18px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.10);
+}
+
+/* =====================================================
+   Table (desktop)
+   - fixed layout to fit container
+   - wrap content
+   ===================================================== */
+.ms-rib__table{
+  width:100%;
+  max-width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+.ms-rib__table th,
+.ms-rib__table td{
+  border:5px solid var(--msr-border);
+  padding:10px;
+  text-align:center;
+  vertical-align:middle;
+  font-size:18px;
+  color:#000000;
+  background:#ffffff;
+
+  white-space:normal;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+
+/* Column sizing: gives model column more room */
+.ms-rib__table col.ms-rib__colModel{ width: 44%; }
+.ms-rib__table col.ms-rib__colRibbon{ width: 14%; }
+
+/* Header row tint */
+.ms-rib__headRow th{
+  font-weight:800;
+  background: rgba(0,118,129,.10);
+}
+
+/* Group rows */
+.ms-rib__groupRow th{
+  background: rgba(0,118,129,.14);
+  font-weight:800;
+  text-align:center;
+}
+
+/* Optional zebra (your HTML uses this class on some rows) */
+.ms-rib__zebra{ background: rgba(0,0,0,.03); }
+
+/* Desktop hover aid */
+@media (hover:hover){
+  .ms-rib__row:hover{
+    outline: 3px solid rgba(0,118,129,.35);
+    outline-offset: 2px;
+    border-radius: 14px;
+  }
+}
+
+/* Checkmarks */
+.ms-rib__yes{
+  font-weight:900;
+  font-size:20px;
+  line-height:1;
+}
+.ms-rib__no{ opacity:.35; }
+
+/* =====================================================
+   Mobile: stacked cards (eliminates horizontal scrolling)
+   ===================================================== */
+@media (max-width: 860px){
+  .ms-rib__wrap{ padding:10px; }
+
+  .ms-rib__table,
+  .ms-rib__table thead,
+  .ms-rib__table tbody,
+  .ms-rib__table tr,
+  .ms-rib__table th,
+  .ms-rib__table td{
+    display:block;
+    width:100%;
+  }
+
+  .ms-rib__table thead{ display:none; }
+
+  .ms-rib__groupRow th{
+    border:5px solid var(--msr-border);
+    border-radius:14px;
+    padding:12px;
+    margin:12px 0 10px 0;
+  }
+
+  .ms-rib__row{
+    border:5px solid var(--msr-border);
+    border-radius:14px;
+    padding:12px;
+    margin:12px 0;
+    background:#ffffff;
+  }
+
+  .ms-rib__table th,
+  .ms-rib__table td{
+    border:0;
+    padding:10px 0;
+    text-align:left;
+  }
+
+  .ms-rib__table td[data-label]{
+    display:grid;
+    grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
+    gap:12px;
+    align-items:start;
+  }
+
+  .ms-rib__table td[data-label]::before{
+    content: attr(data-label);
+    font-weight:800;
+    color:#000000;
+  }
+}
+
+/* =====================================================
+   Motion safety
+   ===================================================== */
+@media (prefers-reduced-motion: reduce){
+  .ms-rib *{
+    scroll-behavior:auto !important;
+    transition:none !important;
+    animation:none !important;
+  }
+}
+  .page-heading{
+    color: #000000;
+  }
+  /* Toggle button accessibility: visible focus ring on the label-button */
+.ms-rib__toggle:focus{
+  outline: 3px solid rgba(0,118,129,.45);
+  outline-offset: 3px;
+}
+
+/* Slightly stronger pressed styling for the “button” state */
+.ms-rib__toggle[aria-pressed="true"]{
+  background-color: var(--msr-accent);
+  color:#ffffff;
+}
+
+.ms-rib__toggle[aria-pressed="true"] span{
+  color:#ffffff;
+}
+</style>
+
+<section class="ms-rib" aria-labelledby="ms-rib-title">
+  <div class="ms-rib__bar" aria-hidden="true"></div>
+
+  <div class="ms-rib__intro">
+    <p>
+      Use this interactive ribbon compatibility chart to quickly find the correct Monroe ribbon for your printing calculator.
+      Search by model name, then use the filter buttons to narrow results.
+    </p>
+    <p>
+      If you do not see your model listed, call <a href="tel:2675802600">267-580-2600</a> and our team will help you find the right ribbon.
+    </p>
+  </div>
+
+  <h2 id="ms-rib-title" class="ms-rib__title">Monroe Ribbon Compatibility Chart</h2>
+
+  <!-- Accessibility helper -->
+  <p id="ms-rib-help" class="ms-rib__srOnly">
+    Use the search field to filter models. Use the filter buttons to show models compatible with specific ribbon types.
+    Use Clear Filters to reset. Results update automatically.
+  </p>
+
+  <!-- Controls -->
+  <div class="ms-rib__controls" role="region" aria-label="Ribbon compatibility chart controls" aria-describedby="ms-rib-help">
+    <div class="ms-rib__controlsRow">
+      <label>
+        <span class="ms-rib__fieldLabel">Search by model</span>
+        <input
+          class="ms-rib__search"
+          type="search"
+          placeholder="Example: 8145X, 122PDX, 7150, UltimateX"
+          autocomplete="off"
+        />
+      </label>
+
+<div class="ms-rib__filters" aria-label="Compatibility filters">
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-ribbon="P65M" />
+    <span>P65M</span>
+  </label>
+
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-ribbon="M33X" />
+    <span>M33X</span>
+  </label>
+
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-ribbon="P51S" />
+    <span>P51S</span>
+  </label>
+
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-ribbon="P71M" />
+    <span>P71M</span>
+  </label>
+
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-group="current" />
+    <span>Current Models</span>
+  </label>
+
+  <label class="ms-rib__filter ms-rib__toggle" role="button" tabindex="0" aria-pressed="false">
+    <input type="checkbox" class="ms-rib__filterInput" data-group="previous" />
+    <span>Previous Models</span>
+  </label>
+</div>
+
+    <!-- Quick picks -->
+    <div class="ms-rib__chips" role="group" aria-label="Quick picks">
+      <button type="button" class="ms-rib__chip" data-chip="8145" aria-pressed="false">8145</button>
+      <button type="button" class="ms-rib__chip" data-chip="8130" aria-pressed="false">8130</button>
+      <button type="button" class="ms-rib__chip" data-chip="6120" aria-pressed="false">6120</button>
+      <button type="button" class="ms-rib__chip" data-chip="2020" aria-pressed="false">2020</button>
+      <button type="button" class="ms-rib__chip" data-chip="122" aria-pressed="false">122</button>
+      <button type="button" class="ms-rib__chip" data-chip="Ultimate" aria-pressed="false">Ultimate</button>
+      <button type="button" class="ms-rib__chip" data-chip="Classic" aria-pressed="false">Classic</button>
+    </div>
+
+    <!-- Clear button (JS toggles hidden attribute) -->
+    <div class="ms-rib__actions" aria-label="Filter actions" hidden>
+      <button type="button" class="ms-rib__btn" data-action="clear-filters">Clear Filters</button>
+    </div>
+
+    <p class="ms-rib__status" role="status" aria-live="polite"></p>
+  </div>
+
+  <!-- Results -->
+  <div class="ms-rib__wrap" role="region" aria-label="Ribbon compatibility results">
+    <table class="ms-rib__table" aria-label="Monroe ribbon compatibility table">
+      <colgroup>
+        <col class="ms-rib__colModel" />
+        <col class="ms-rib__colRibbon" />
+        <col class="ms-rib__colRibbon" />
+        <col class="ms-rib__colRibbon" />
+        <col class="ms-rib__colRibbon" />
+      </colgroup>
+
+      <thead>
+        <tr class="ms-rib__headRow">
+          <th scope="col">Calculator Model</th>
+          <th scope="col">
+            <a href="https://www.monroe-systems.com/product/monroe-p65m-universal-ribbon-spools-12-pack/" target="_blank" rel="noopener">P65M</a>
+          </th>
+          <th scope="col">
+            <a href="https://www.monroe-systems.com/product/monroe-m33x-ribbon-cartridges/" target="_blank" rel="noopener">M33X</a>
+          </th>
+          <th scope="col">
+            <a href="https://www.monroe-systems.com/product/monroe-p51s-black-red-ribbon-cartridges/" target="_blank" rel="noopener">P51S</a>
+          </th>
+          <th scope="col">
+            <a href="https://www.monroe-systems.com/product/monroe-p71-black-red-ribbon-cartridges/" target="_blank" rel="noopener">P71M</a>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- CURRENT MODELS -->
+        <tr class="ms-rib__groupRow" data-group-row="current">
+          <th scope="rowgroup" colspan="5">Current Monroe Models</th>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-classicx-12-digit-heavy-duty-printing-calculator/" target="_blank" rel="noopener">Monroe ClassicX</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-ultimatex-12-digit-programmable-heavy-duty-accounting-printing-calculator-with-edit-reprint-capabilities/" target="_blank" rel="noopener">Monroe UltimateX</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-8145x-printing-calculator/" target="_blank" rel="noopener">Monroe 8145X</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-8130x-printing-calculator/" target="_blank" rel="noopener">Monroe 8130X</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-6120x-printing-calculator/" target="_blank" rel="noopener">Monroe 6120X</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-2020plusx-printing-calculator/" target="_blank" rel="noopener">Monroe 2020PlusX</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="current">
+          <th scope="row">
+            <a href="https://monroe-systems.com/monroe-122pdx-printing-calculator/" target="_blank" rel="noopener">Monroe 122PDX</a>
+          </th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <!-- PREVIOUS MODELS -->
+        <tr class="ms-rib__groupRow" data-group-row="previous">
+          <th scope="rowgroup" colspan="5">Previous Monroe Models</th>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 122PD</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe Ultimate</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe Pro</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe Classic</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 8145</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 8130</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 7150</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 7140</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 7130</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 5140</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 5130</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 121PD</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 8125</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 6120</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2020Plus II</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2020Plus</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2020Plus III</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe SB 2012</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe One</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe Classmate 88</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 5150</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 4150</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 4140</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 4130</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 3190</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 3150</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 3140</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2890</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2880</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2870</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2865</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2860</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2850</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2830</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2820</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2810</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2805</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2802</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2801</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2735</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2725</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2715</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2145</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2125</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 2120</em></th>
+          <td data-label="P65M"><span class="ms-rib__no">—</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__yes">✔</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 2020</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 1450</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 1430</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 1420</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 1410</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row" data-group="previous">
+          <th scope="row"><em>Monroe 1405</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+
+        <tr class="ms-rib__row ms-rib__zebra" data-group="previous">
+          <th scope="row"><em>Monroe 122PD II</em></th>
+          <td data-label="P65M"><span class="ms-rib__yes">✔</span></td>
+          <td data-label="M33X"><span class="ms-rib__no">—</span></td>
+          <td data-label="P51S"><span class="ms-rib__no">—</span></td>
+          <td data-label="P71M"><span class="ms-rib__no">—</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ms-rib__intro" style="margin-top:16px;">
+    <p>
+      <em>Monroe P65M ribbon spools are universal ribbons.
+      <a href="https://www.monroe-systems.com/product/monroe-p65m-universal-ribbon-spools-12-pack/" target="_blank" rel="noopener">Click here</a>
+      for full compatibility charts.</em>
+      <br />
+      <em>Compatible with Monroe 122PD calculators after serial number HK10XXXX.</em>
+    </p>
+
+    <p>
+      <em>New style Monroe 7150 calculators are units with serial numbers starting with FL11 through FM.
+      These calculators use Monroe P51S ribbon cartridges, whereas the older style is not compatible.</em>
+    </p>
+
+    <p>
+      <em>Monroe 8125 calculators with serial numbers beginning with TS will only use a spool ribbon
+      (<a href="https://www.monroe-systems.com/product/monroe-p65m-universal-ribbon-spools-12-pack/" target="_blank" rel="noopener">Monroe P65M</a>).</em>
+    </p>
+
+    <p>
+      If you do not see a ribbon listed for your machine, call <a href="tel:2675802600">267-580-2600</a>.
+    </p>
+  </div>
+
+  <div class="ms-rib__bar" aria-hidden="true"></div>
+</section>
+
+<script>
+/* =====================================================
+   MONROE RIBBON COMPATIBILITY CHART (Interactive) – FULL JS
+   Scoped: .ms-rib
+   ===================================================== */
+(function () {
+  function qs(root, sel){ return root.querySelector(sel); }
+  function qsa(root, sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function normalize(v){ return String(v || "").trim().toLowerCase(); }
+  function setHidden(el, hidden){
+    if(!el) return;
+    if(hidden) el.setAttribute("hidden","");
+    else el.removeAttribute("hidden");
+  }
+
+  function init(){
+    var root = document.querySelector(".ms-rib");
+    if(!root) return;
+
+    var search = qs(root, ".ms-rib__search");
+    var status = qs(root, ".ms-rib__status");
+    var table  = qs(root, ".ms-rib__table");
+    if(!table) return;
+
+    var modelRows = qsa(table, "tbody tr.ms-rib__row");
+    var groupRows = qsa(table, "tbody tr.ms-rib__groupRow");
+
+    var filterInputs = qsa(root, ".ms-rib__filterInput");
+    var ribbonFilters = filterInputs.filter(function(i){ return i.hasAttribute("data-ribbon"); });
+    var groupFilters  = filterInputs.filter(function(i){ return i.hasAttribute("data-group"); });
+
+    var chips = qsa(root, ".ms-rib__chip");
+
+    var actionsWrap = qs(root, ".ms-rib__actions");
+    var clearBtn = qs(root, '[data-action="clear-filters"]');
+
+    /* ---------- Toggle button behavior (checkbox under hood) ---------- */
+    var toggleLabels = qsa(root, ".ms-rib__toggle");
+
+    function syncToggleAria(label){
+      if(!label) return;
+      var input = label.querySelector(".ms-rib__filterInput");
+      if(!input) return;
+      label.setAttribute("aria-pressed", input.checked ? "true" : "false");
+    }
+
+    toggleLabels.forEach(function(label){
+      syncToggleAria(label);
+
+      var input = label.querySelector(".ms-rib__filterInput");
+      if(!input) return;
+
+      /* Keep aria-pressed synced when checkbox changes */
+      input.addEventListener("change", function(){
+        syncToggleAria(label);
+      });
+
+      /* Enter / Space toggles like a button */
+      label.addEventListener("keydown", function(e){
+        var key = e.key || e.code;
+        if(key === "Enter" || key === " " || key === "Spacebar"){
+          e.preventDefault();
+          input.checked = !input.checked;
+          input.dispatchEvent(new Event("change", { bubbles:true }));
+        }
+      });
+
+      /* If someone clicks the label, default behavior toggles the checkbox.
+         After click, ensure aria updates even if browser timing differs. */
+      label.addEventListener("click", function(){
+        setTimeout(function(){ syncToggleAria(label); }, 0);
+      });
+    });
+
+    function rowModelText(tr){
+      var th = tr.querySelector("th");
+      return normalize(th ? th.textContent : "");
+    }
+
+    function rowHasRibbon(tr, ribbon){
+      var td = tr.querySelector('td[data-label="' + ribbon + '"]');
+      if(!td) return false;
+      var v = normalize(td.textContent);
+      return v.indexOf("✔") !== -1 || v.indexOf("yes") !== -1;
+    }
+
+    function rowGroup(tr){
+      return tr.getAttribute("data-group") || "";
+    }
+
+    function updateStatus(shown, total){
+      if(!status) return;
+      status.textContent = shown + " of " + total + " models shown";
+    }
+
+    function updateGroupHeaders(){
+      groupRows.forEach(function(gr){
+        var g = gr.getAttribute("data-group-row");
+        if(!g) return;
+        var anyVisible = modelRows.some(function(r){
+          return rowGroup(r) === g && !r.hasAttribute("hidden");
+        });
+        setHidden(gr, !anyVisible);
+      });
+    }
+
+    function activeRibbonFilters(){
+      return ribbonFilters
+        .filter(function(i){ return i.checked; })
+        .map(function(i){ return i.getAttribute("data-ribbon"); });
+    }
+
+    function activeGroups(){
+      var active = groupFilters
+        .filter(function(i){ return i.checked; })
+        .map(function(i){ return i.getAttribute("data-group"); });
+      return active.length ? active : ["current","previous"];
+    }
+
+    function clearChipPressed(){
+      chips.forEach(function(btn){ btn.setAttribute("aria-pressed","false"); });
+    }
+
+    function anyFilteringActive(){
+      var hasSearch = search && normalize(search.value).length > 0;
+      var hasFilters = filterInputs.some(function(i){ return i.checked; });
+      var hasChip = chips.some(function(btn){ return btn.getAttribute("aria-pressed") === "true"; });
+      return hasSearch || hasFilters || hasChip;
+    }
+
+    function updateClearButtonVisibility(){
+      if(!actionsWrap) return;
+      setHidden(actionsWrap, !anyFilteringActive());
+    }
+
+    function apply(){
+      var q = search ? normalize(search.value) : "";
+      var ribbons = activeRibbonFilters();
+      var groups  = activeGroups();
+
+      var shown = 0;
+
+      modelRows.forEach(function(tr){
+        var modelOk = !q || rowModelText(tr).indexOf(q) !== -1;
+        var groupOk = groups.indexOf(rowGroup(tr)) !== -1;
+
+        var ribbonsOk = true;
+        for(var i = 0; i < ribbons.length; i++){
+          if(!rowHasRibbon(tr, ribbons[i])){ ribbonsOk = false; break; }
+        }
+
+        var visible = modelOk && groupOk && ribbonsOk;
+        setHidden(tr, !visible);
+        if(visible) shown++;
+      });
+
+      updateGroupHeaders();
+      updateStatus(shown, modelRows.length);
+      updateClearButtonVisibility();
+    }
+
+    chips.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var token = (btn.getAttribute("data-chip") || "").trim();
+        if(!token) return;
+
+        var pressed = btn.getAttribute("aria-pressed") === "true";
+        clearChipPressed();
+
+        if(pressed){
+          btn.setAttribute("aria-pressed","false");
+          if(search) search.value = "";
+        }else{
+          btn.setAttribute("aria-pressed","true");
+          if(search) search.value = token;
+        }
+
+        apply();
+        if(search) search.focus();
+      });
+    });
+
+    if(search){
+      search.addEventListener("input", function(){
+        clearChipPressed();
+        apply();
+      });
+    }
+
+    filterInputs.forEach(function(i){
+      i.addEventListener("change", function(){
+        /* keep aria pressed synced for any toggle label */
+        var label = i.closest(".ms-rib__toggle");
+        if(label) syncToggleAria(label);
+        apply();
+      });
+    });
+
+    if(clearBtn){
+      clearBtn.addEventListener("click", function(){
+        if(search) search.value = "";
+        clearChipPressed();
+        filterInputs.forEach(function(i){ i.checked = false; });
+
+        /* reset aria-pressed on toggles */
+        toggleLabels.forEach(function(label){ syncToggleAria(label); });
+
+        apply();
+        if(search) search.focus();
+      });
+    }
+
+    root.addEventListener("keydown", function(e){
+      if(e.key !== "Escape") return;
+      if(search) search.value = "";
+      clearChipPressed();
+      filterInputs.forEach(function(i){ i.checked = false; });
+      toggleLabels.forEach(function(label){ syncToggleAria(label); });
+      apply();
+    });
+
+    apply();
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", init);
+  }else{
+    init();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Monroe ribbon chart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Monroe ribbon chart"
+    }
+  ]
+}
+{% endschema %}
