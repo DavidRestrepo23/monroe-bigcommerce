@@ -1,0 +1,223 @@
+<!-- Monroe Medium-Duty Calculator Chart Shopify Section -->
+<style>
+  .ms-md{
+    --ms-accent:#007681;
+    --ms-soft:rgba(0,118,129,.10);
+    --ms-soft2:rgba(0,118,129,.06);
+    font-family:Arial,sans-serif;
+    font-size:18px;
+    line-height:1.55;
+    color:#000;
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    clear:both!important;
+  }
+  .ms-md *, .ms-md *::before, .ms-md *::after{box-sizing:border-box;}
+  .ms-md__bar{background:var(--ms-accent);height:35px;width:100%;margin:0 0 18px 0;}
+  .ms-md__title{font-size:40px;line-height:1.2;margin:0 0 12px;text-align:center;text-decoration:underline;color:#000;}
+  .ms-md__intro{margin:0 0 18px;}
+  .ms-md__link{color:var(--ms-accent);text-decoration:underline;}
+  .ms-md__btn,.ms-md__trayRemove,.ms-md__modalClose{border:5px solid #000!important;background:var(--ms-accent)!important;color:#fff!important;font-weight:800!important;border-radius:12px;padding:10px 12px;cursor:pointer;font-size:16px;text-decoration:none!important;line-height:1.1;}
+  .ms-md__btn[disabled]{opacity:.55;cursor:not-allowed;}
+  .ms-md__btn[aria-pressed="true"]{filter:brightness(.95);}
+  .ms-md__trayRemove{padding:6px 10px;font-size:14px;}
+  .ms-md__controls{border:2px solid var(--ms-accent);padding:12px;margin:0 0 12px;position:relative!important;isolation:isolate!important;display:block!important;width:100%!important;max-width:100%!important;overflow:visible!important;}
+  .ms-md__controlsTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 12px;}
+  .ms-md__controlsTitle{margin:0;font-weight:700;font-size:16px;color:#000;}
+  .ms-md__controlsHint{margin:0;font-size:14px;opacity:.9;max-width:820px;color:#000;}
+  .ms-md__btnRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .ms-md__searchRow{display:block!important;width:100%!important;max-width:100%!important;margin:0 0 12px!important;position:relative!important;z-index:2!important;overflow:visible!important;clear:both!important;}
+  .ms-md__fieldLabel{display:block;font-size:14px;font-weight:700;margin:0 0 6px;color:#000;}
+  .ms-md__search{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;font-size:18px;color:#000;padding:10px 12px;border:2px solid var(--ms-accent);border-radius:12px;margin:0!important;box-sizing:border-box!important;position:relative!important;z-index:2!important;}
+  .ms-md__status{margin:8px 0 0;font-size:14px;color:#000;}
+  .ms-md__bench{border:1px solid var(--ms-accent);border-radius:14px;padding:12px;display:block!important;width:100%!important;max-width:100%!important;overflow:visible!important;}
+  .ms-md__benchTop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 10px;}
+  .ms-md__benchTitle{margin:0;font-weight:700;font-size:16px;color:#000;}
+  .ms-md__benchNote{margin:0;font-size:14px;opacity:.85;color:#000;}
+  .ms-md__benchGrid{display:grid;grid-template-columns:1fr;gap:10px;}
+  @media (min-width:900px){.ms-md__benchGrid{grid-template-columns:300px 1fr 1fr 1fr;}}
+  .ms-md__benchVisual{border:1px solid rgba(0,118,129,.45);border-radius:14px;padding:10px;display:flex;gap:12px;align-items:center;}
+  .ms-md__benchIcon{width:64px;height:64px;border-radius:14px;background:rgba(0,0,0,.06);display:grid;place-items:center;flex:0 0 auto;}
+  .ms-md__benchVisualText{margin:0;font-size:14px;line-height:1.35;color:#000;}
+  .ms-md__benchCard{border:1px solid rgba(0,118,129,.45);border-radius:14px;padding:10px;}
+  .ms-md__benchLabel{margin:0 0 6px;font-size:14px;font-weight:700;color:#000;}
+  .ms-md__benchBar{height:10px;border-radius:999px;background:rgba(0,0,0,.10);overflow:hidden;}
+  .ms-md__benchFill{height:100%;width:0%;background:var(--ms-accent);}
+  .ms-md__benchFill--comp{background:rgba(0,0,0,.25);}
+  .ms-md__benchValue{margin:8px 0 0;font-size:14px;color:#000;}
+  .ms-md__wrap{border:3px solid var(--ms-accent);padding:10px;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;position:relative;display:block!important;width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;clip-path:inset(0 0 0 0);}
+  .ms-md__table{width:100%!important;border-collapse:collapse;min-width:0!important;max-width:none!important;table-layout:fixed!important;}
+  .ms-md__table th,.ms-md__table td{border:1px solid var(--ms-accent);padding:8px;text-align:center;font-size:18px!important;background:#fff;vertical-align:middle;color:#000;white-space:normal!important;word-break:break-word!important;overflow-wrap:anywhere!important;}
+  @media (min-width:751px){.ms-md__table thead th{position:sticky;top:0;z-index:3;background:#fff;}}
+  .ms-md__rowLabel{text-align:left!important;font-weight:700;}
+  .ms-md__modelHead{min-width:190px!important;width:190px!important;}
+  .ms-md__modelName{display:block;font-weight:700;margin-top:8px;color:#000!important;text-decoration:underline;}
+  .ms-md__modelImg img{max-width:120px!important;height:auto;display:block;margin:0 auto;}
+  .ms-md__pick{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ms-accent);border-radius:999px;padding:5px 9px!important;margin-top:10px;font-size:14px!important;cursor:pointer;user-select:none;color:#000;background:#fff;}
+  .ms-md__pick input{width:16px;height:16px;}
+  .ms-md__sectionRow th{text-align:left;font-size:22px;background:#fff;color:#000;}
+  .ms-md__colSelected{background:var(--ms-soft)!important;}
+  .ms-md__colSelected2{background:var(--ms-soft2)!important;}
+  .ms-md__tray{position:sticky;top:0;z-index:5;background:#fff;border:2px solid var(--ms-accent);margin:0 0 12px;display:block!important;width:100%!important;max-width:100%!important;overflow:visible!important;}
+  .ms-md__trayInner{display:grid;grid-template-columns:160px 1fr 240px;gap:12px;align-items:center;padding:12px;}
+  .ms-md__trayTitle{font-weight:700;font-size:16px;color:#000;}
+  .ms-md__traySlots{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .ms-md__traySlot{border:1px solid var(--ms-accent);border-radius:12px;padding:10px;min-height:64px;background:#fff;}
+  .ms-md__traySlotTop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 6px;}
+  .ms-md__traySlotLabel{font-size:14px;font-weight:700;color:#000;}
+  .ms-md__trayName{font-size:14px;line-height:1.3;color:#000;}
+  .ms-md__trayActions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;}
+  @media (max-width:980px){.ms-md__trayInner{grid-template-columns:1fr;}.ms-md__trayActions{justify-content:flex-start;}}
+  .ms-md__modal{position:fixed;inset:0;z-index:9999;}
+  .ms-md__modal[hidden],.ms-md__tray[hidden]{display:none!important;}
+  .ms-md__modalBackdrop{position:absolute;inset:0;background:rgba(0,0,0,.55);}
+  .ms-md__modalPanel{position:relative;max-width:1100px;width:calc(100% - 24px);margin:24px auto;background:#fff;border-radius:16px;overflow:hidden;border:2px solid var(--ms-accent);max-height:calc(100% - 48px);display:flex;flex-direction:column;}
+  .ms-md__modalHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--ms-accent);}
+  .ms-md__modalTitle{font-size:18px;font-weight:700;color:#000;}
+  .ms-md__modalBody{padding:14px 16px;overflow:auto;}
+  .ms-md__modalGrid{display:grid;grid-template-columns:280px 1fr 1fr;border:1px solid var(--ms-accent);border-radius:14px;overflow:hidden;}
+  .ms-md__modalCell{border-right:1px solid var(--ms-accent);border-bottom:1px solid var(--ms-accent);padding:10px;font-size:14px;line-height:1.35;background:#fff;color:#000;}
+  .ms-md__modalCell:nth-child(3n){border-right:0;}
+  .ms-md__modalHead{font-weight:700;background:var(--ms-soft);}
+  .ms-md__modalKey{font-weight:700;}
+  .ms-md__modalLink{color:var(--ms-accent);text-decoration:underline;}
+  @media (max-width:750px){.ms-md__wrap{padding:6px;}.ms-md__table{min-width:980px!important;}.ms-md__modalGrid{grid-template-columns:180px 1fr 1fr;}}
+  .ms-md tr[hidden]{display:none!important;}
+  .page-heading{color:#000;}
+</style>
+
+<section class="ms-md" aria-labelledby="ms-md-title">
+  <div class="ms-md__bar" aria-hidden="true"></div>
+  <div class="ms-md__intro">
+    <p>Compare Monroe Medium Duty printing calculators side by side. Use the section buttons to focus the chart, search for a specific feature, and select up to two models to compare in a clean side by side view.</p>
+    <p>Questions. Call <a class="ms-md__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.</p>
+  </div>
+  <h2 id="ms-md-title" class="ms-md__title">Monroe Medium Duty Calculator Spec Chart</h2>
+  <div class="ms-md__controls" role="region" aria-label="Medium Duty chart controls">
+    <div class="ms-md__controlsTop">
+      <div><p class="ms-md__controlsTitle">Interactive controls</p><p class="ms-md__controlsHint">Use the buttons to expand or collapse sections. Use search to quickly find a function or spec. Select up to two models to compare.</p></div>
+      <div class="ms-md__btnRow" aria-label="Section controls"><button type="button" class="ms-md__btn" data-action="toggle-functions" aria-pressed="true">Functions</button><button type="button" class="ms-md__btn" data-action="toggle-specs" aria-pressed="true">Specifications</button></div>
+    </div>
+    <div class="ms-md__searchRow" role="search" aria-label="Feature search"><span class="ms-md__fieldLabel">Search features</span><input class="ms-md__search" type="search" placeholder="Search by feature name" autocomplete="off" /><p class="ms-md__status" role="status" aria-live="polite"></p></div>
+    <div class="ms-md__bench" role="region" aria-label="Typical competing calculator comparison">
+      <div class="ms-md__benchTop"><p class="ms-md__benchTitle">Typical competing calculator benchmark</p><p class="ms-md__benchNote">Generic category baseline only. No brands are named.</p></div>
+      <div class="ms-md__benchGrid" aria-live="polite">
+        <div class="ms-md__benchVisual"><div class="ms-md__benchIcon" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="Generic calculator icon"><rect x="14" y="8" width="36" height="48" rx="6" fill="rgba(0,0,0,.30)"></rect><rect x="20" y="14" width="24" height="10" rx="2" fill="rgba(255,255,255,.60)"></rect><g fill="rgba(255,255,255,.55)"><rect x="20" y="28" width="8" height="8" rx="2"></rect><rect x="30" y="28" width="8" height="8" rx="2"></rect><rect x="40" y="28" width="4" height="8" rx="2"></rect><rect x="20" y="38" width="8" height="8" rx="2"></rect><rect x="30" y="38" width="8" height="8" rx="2"></rect><rect x="40" y="38" width="4" height="18" rx="2"></rect><rect x="20" y="48" width="18" height="8" rx="2"></rect></g></svg></div><p class="ms-md__benchVisualText">The gray reference below represents a typical competing calculator in this category. Your selected Monroe model is shown in teal.</p></div>
+        <div class="ms-md__benchCard"><p class="ms-md__benchLabel">Print speed</p><div class="ms-md__benchBar" style="margin-bottom:8px;"><div class="ms-md__benchFill ms-md__benchFill--comp" data-bench="comp-speed" style="width:62%;"></div></div><div class="ms-md__benchBar"><div class="ms-md__benchFill" data-bench="monroe-speed" style="width:0%;"></div></div><p class="ms-md__benchValue" data-bench-text="speed">Select a model to see a comparison.</p></div>
+        <div class="ms-md__benchCard"><p class="ms-md__benchLabel">Feature depth</p><div class="ms-md__benchBar" style="margin-bottom:8px;"><div class="ms-md__benchFill ms-md__benchFill--comp" data-bench="comp-features" style="width:52%;"></div></div><div class="ms-md__benchBar"><div class="ms-md__benchFill" data-bench="monroe-features" style="width:0%;"></div></div><p class="ms-md__benchValue" data-bench-text="features">Select a model to see a comparison.</p></div>
+        <div class="ms-md__benchCard"><p class="ms-md__benchLabel">Workload readiness</p><div class="ms-md__benchBar" style="margin-bottom:8px;"><div class="ms-md__benchFill ms-md__benchFill--comp" data-bench="comp-workload" style="width:57%;"></div></div><div class="ms-md__benchBar"><div class="ms-md__benchFill" data-bench="monroe-workload" style="width:0%;"></div></div><p class="ms-md__benchValue" data-bench-text="workload">Select a model to see a comparison.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="ms-md__tray" role="region" aria-label="Selected models for comparison" hidden><div class="ms-md__trayInner"><div class="ms-md__trayTitle">Compare (up to 2)</div><div class="ms-md__traySlots" aria-label="Selected models"><div class="ms-md__traySlot" data-slot="0" aria-label="Selected model 1"><div class="ms-md__traySlotTop"><span class="ms-md__traySlotLabel">Model 1</span><button type="button" class="ms-md__trayRemove" data-remove="0" aria-label="Remove model 1">Remove</button></div><div class="ms-md__trayName">None selected</div></div><div class="ms-md__traySlot" data-slot="1" aria-label="Selected model 2"><div class="ms-md__traySlotTop"><span class="ms-md__traySlotLabel">Model 2</span><button type="button" class="ms-md__trayRemove" data-remove="1" aria-label="Remove model 2">Remove</button></div><div class="ms-md__trayName">None selected</div></div></div><div class="ms-md__trayActions"><button type="button" class="ms-md__btn" data-action="view" disabled>View side by side</button><button type="button" class="ms-md__btn" data-action="clear">Clear</button></div></div></div>
+  <div class="ms-md__wrap" role="region" aria-label="Medium Duty calculator comparison table" tabindex="0">
+    <table id="ms-md-table" class="ms-md__table"><thead><tr><th scope="col">Functions and specs</th>
+      <th scope="col" class="ms-md__modelHead" data-col="1"><div class="ms-md__modelImg"><a href="https://monroe-systems.com/monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator/" target="_blank" rel="noopener" title="Monroe 6120X"><img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/6120x-ivory-transparent.png?t=1751984036" alt="Monroe 6120X Medium Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" /></a></div><a class="ms-md__link ms-md__modelName" href="https://monroe-systems.com/monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator/" target="_blank" rel="noopener">Monroe 6120X</a><label class="ms-md__pick"><input type="checkbox" data-pick="1" /> <span>Select</span></label></th>
+      <th scope="col" class="ms-md__modelHead" data-col="2"><div class="ms-md__modelImg"><a href="https://monroe-systems.com/monroe-2020plusx-12-digit-medium-duty-accounting-desktop-printing-calculator-with-large-display/" target="_blank" rel="noopener" title="Monroe 2020PlusX"><img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/2020plusx-black-transparent.png?t=1751985174" alt="Monroe 2020PlusX Medium Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" /></a></div><a class="ms-md__link ms-md__modelName" href="https://monroe-systems.com/monroe-2020plusx-12-digit-medium-duty-accounting-desktop-printing-calculator-with-large-display/" target="_blank" rel="noopener">Monroe 2020PlusX</a><label class="ms-md__pick"><input type="checkbox" data-pick="2" /> <span>Select</span></label></th>
+      <th scope="col" class="ms-md__modelHead" data-col="3"><div class="ms-md__modelImg"><a href="https://monroe-systems.com/monroe-122pdx-12-digit-medium-duty-accounting-printing-calculator-with-fast-printing/" target="_blank" rel="noopener" title="Monroe 122PDX"><img src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/122pdx-transparent.png?t=1751985379" alt="Monroe 122PDX Medium Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" /></a></div><a class="ms-md__link ms-md__modelName" href="https://monroe-systems.com/monroe-122pdx-12-digit-medium-duty-accounting-printing-calculator-with-fast-printing/" target="_blank" rel="noopener">Monroe 122PDX</a><label class="ms-md__pick"><input type="checkbox" data-pick="3" /> <span>Select</span></label></th>
+    </tr></thead><tbody>
+      <tr class="ms-md__sectionRow" data-section="functions"><th scope="rowgroup" colspan="4">Functions</th></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Automatic punctuation and grouping</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Non-add/date function</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Automatic clearance</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Error indication</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Display only mode capability</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Independent group and grand total</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Square root (entry followed by divide then equals)</th><td data-col="1">Not Available</td><td data-col="2">Not Available</td><td data-col="3">Not Available</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">%+ and %- capability</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Overflow indication</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Markup (computes cost sell and margin)</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Percent change (computes amount and % of change)</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Tax (%+ and %- capability)</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Item count and automatic averaging</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Rounding (truncate 5/4 round off round up)</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Automatic constants</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Repeat addition and subtraction</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Backspace</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Paper saver mode</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Change sign</th><td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">VAT Tax</th><td data-col="1">Standard</td><td data-col="2">Not Available</td><td data-col="3">Not Available</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Financial time calculations</th><td data-col="1">Standard</td><td data-col="2">Not Available</td><td data-col="3">Not Available</td></tr>
+      <tr data-section="functions"><th class="ms-md__rowLabel" scope="row">Reprint editing capability</th><td data-col="1">Not Available</td><td data-col="2">Not Available</td><td data-col="3">Not Available</td></tr>
+      <tr class="ms-md__sectionRow" data-section="specs"><th scope="rowgroup" colspan="4">Specifications</th></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Color s</th><td data-col="1">Black, Ivory</td><td data-col="2">Black, Ivory</td><td data-col="3">Ivory</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Product dimensions (in inches)</th><td data-col="1">11.00 x 8.50 x 2.75</td><td data-col="2">11.00 x 8.50 x 2.75</td><td data-col="3">11.19 x 8.00 x 2.77</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Product dimensions with paper arms (in inches)</th><td data-col="1">14.00 x 8.50 x 2.75</td><td data-col="2">14.00 x 8.50 x 2.75</td><td data-col="3">14.19 x 8.00 x 2.77</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Weight (in US pounds)</th><td data-col="1">3.80 lbs.</td><td data-col="2">3.80 lbs.</td><td data-col="3">4.49 lbs.</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">4 Key independent memories</th><td data-col="1">1</td><td data-col="2">1</td><td data-col="3">1</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Enclosed paper roll</th><td data-col="1">Not Available</td><td data-col="2">Not Available</td><td data-col="3">Not Available</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Decimal settings</th><td data-col="1">+, F, 0, 1, 2, 3, 4</td><td data-col="2">+, F, 0, 2, 3, 4, 6</td><td data-col="3">+, F, 0, 2, 3, 4, 6</td></tr>
+      <tr data-section="specs"><th class="ms-md__rowLabel" scope="row">Print speed (lines per second)</th><td data-col="1">4.3</td><td data-col="2">4.1</td><td data-col="3">4.3</td></tr>
+    </tbody></table>
+  </div>
+  <div class="ms-md__modal" role="dialog" aria-modal="true" aria-labelledby="ms-md-modal-title" hidden><div class="ms-md__modalBackdrop" data-close="true" aria-hidden="true"></div><div class="ms-md__modalPanel" role="document"><div class="ms-md__modalHeader"><div class="ms-md__modalTitle" id="ms-md-modal-title">Side by side comparison</div><button type="button" class="ms-md__modalClose" data-close="true" aria-label="Close comparison">Close</button></div><div class="ms-md__modalBody"><div class="ms-md__modalGrid" aria-label="Comparison grid"></div></div></div></div>
+  <p style="margin:16px 0 0 0; font-size:18px; color:#000000;">If you have additional questions please call us at <a class="ms-md__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.</p>
+  <div class="ms-md__bar" aria-hidden="true"></div>
+</section>
+
+<script>
+(function () {
+  function qs(root, sel) { return root.querySelector(sel); }
+  function qsa(root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function txt(el) { return (el && el.textContent ? el.textContent : "").trim(); }
+  function norm(v) { return String(v || "").trim().toLowerCase(); }
+  function setHidden(el, hidden) { if (!el) return; hidden ? el.setAttribute("hidden","") : el.removeAttribute("hidden"); }
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+  function num(v) { var m = String(v || "").match(/(\d+(\.\d+)?)/); return m ? parseFloat(m[1]) : 0; }
+  function init() {
+    var root = document.querySelector(".ms-md"); if (!root) return;
+    var table = qs(root, "#ms-md-table"); if (!table) return;
+    var tbody = table.querySelector("tbody"); if (!tbody) return;
+    var searchInput = qs(root, ".ms-md__search"); var status = qs(root, ".ms-md__status");
+    var pickInputs = qsa(root, 'input[data-pick]'); var tray = qs(root, ".ms-md__tray"); var traySlots = qsa(root, ".ms-md__traySlot"); var trayRemoves = qsa(root, ".ms-md__trayRemove");
+    var viewBtn = qs(root, '[data-action="view"]'); var clearBtn = qs(root, '[data-action="clear"]');
+    var btnFunctions = qs(root, 'button[data-action="toggle-functions"]'); var btnSpecs = qs(root, 'button[data-action="toggle-specs"]');
+    var modal = qs(root, ".ms-md__modal"); var modalGrid = qs(root, ".ms-md__modalGrid"); var modalClose = qs(root, ".ms-md__modalClose");
+    var bench = {monSpeed:qs(root,'[data-bench="monroe-speed"]'),monFeatures:qs(root,'[data-bench="monroe-features"]'),monWork:qs(root,'[data-bench="monroe-workload"]'),tSpeed:qs(root,'[data-bench-text="speed"]'),tFeat:qs(root,'[data-bench-text="features"]'),tWork:qs(root,'[data-bench-text="workload"]')};
+    var selectedCols = []; var sectionState = { functions:true, specs:true }; var lastFocusEl = null;
+    function allDataRows(){ return qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]'); }
+    function getColName(col){ var a = table.querySelector('thead th[data-col="'+col+'"] .ms-md__modelName'); return a ? txt(a) : ("Model " + col); }
+    function cellValue(row,col){ var td = row.querySelector('td[data-col="'+col+'"]'); return td ? txt(td) : ""; }
+    function getRowByLabel(label){ var rows = allDataRows(); var want = norm(label); for(var i=0;i<rows.length;i++){ var th=rows[i].querySelector('th[scope="row"]'); if(th && norm(txt(th))===want) return rows[i]; } return null; }
+    function isNotAvailable(value){ var v=norm(value); return v==="not available" || v==="na" || v==="n/a"; }
+    function setPickUI(){ pickInputs.forEach(function(inp){ var col=parseInt(inp.getAttribute("data-pick"),10); inp.checked = selectedCols.indexOf(col)!==-1; }); }
+    function updateTray(){ setHidden(tray, selectedCols.length===0); traySlots.forEach(function(slot,idx){ var nameEl=slot.querySelector(".ms-md__trayName"); var rm=slot.querySelector(".ms-md__trayRemove"); var col=selectedCols[idx]; if(!col){ if(nameEl) nameEl.textContent="None selected"; if(rm) rm.style.visibility="hidden"; return; } if(nameEl) nameEl.textContent=getColName(col); if(rm) rm.style.visibility="visible"; }); if(viewBtn) viewBtn.disabled = selectedCols.length !== 2; }
+    function clearHighlights(){ qsa(table,".ms-md__colSelected").forEach(function(el){el.classList.remove("ms-md__colSelected");}); qsa(table,".ms-md__colSelected2").forEach(function(el){el.classList.remove("ms-md__colSelected2");}); }
+    function highlightSelected(){ clearHighlights(); if(selectedCols.length===0) return; function mark(col,cls){ if(!col) return; var th=table.querySelector('thead th[data-col="'+col+'"]'); if(th) th.classList.add(cls); qsa(tbody,'td[data-col="'+col+'"]').forEach(function(td){td.classList.add(cls);}); } mark(selectedCols[0],"ms-md__colSelected"); mark(selectedCols[1],"ms-md__colSelected2"); }
+    function updateSectionHeadersVisibility(){ ["functions","specs"].forEach(function(sec){ var header=tbody.querySelector('tr.ms-md__sectionRow[data-section="'+sec+'"]'); if(!header) return; if(!sectionState[sec]){header.setAttribute("hidden","");return;} var rows=qsa(tbody,'tr[data-section="'+sec+'"]'); var anyVisible=rows.some(function(r){return !r.hasAttribute("hidden");}); if(anyVisible) header.removeAttribute("hidden"); else header.setAttribute("hidden",""); }); }
+    function applySectionVisibility(){ allDataRows().forEach(function(r){ var sec=r.getAttribute("data-section"); if(sectionState[sec]) r.removeAttribute("hidden"); else r.setAttribute("hidden",""); }); updateSectionHeadersVisibility(); }
+    function toggleSection(section,on){ sectionState[section]=on; if(section==="functions"&&btnFunctions) btnFunctions.setAttribute("aria-pressed",on?"true":"false"); if(section==="specs"&&btnSpecs) btnSpecs.setAttribute("aria-pressed",on?"true":"false"); qsa(tbody,'tr[data-section="'+section+'"]').forEach(function(r){ if(on) r.removeAttribute("hidden"); else r.setAttribute("hidden",""); }); var header=tbody.querySelector('tr.ms-md__sectionRow[data-section="'+section+'"]'); if(header){ if(on) header.removeAttribute("hidden"); else header.setAttribute("hidden",""); } updateSectionHeadersVisibility(); highlightSelected(); applySearchFilter(); }
+    function applySearchFilter(){ var q=searchInput ? norm(searchInput.value) : ""; var shown=0; allDataRows().forEach(function(r){ var sec=r.getAttribute("data-section"); if(!sectionState[sec]){r.setAttribute("hidden","");return;} var th=r.querySelector('th[scope="row"]'); var label=th ? norm(txt(th)) : ""; var match=!q || label.indexOf(q)!==-1; if(match){r.removeAttribute("hidden");shown++;} else r.setAttribute("hidden",""); }); updateSectionHeadersVisibility(); if(status) status.textContent = shown + " matching rows shown"; }
+    function resetBenchmarkToEmpty(){ if(bench.monSpeed) bench.monSpeed.style.width="0%"; if(bench.monFeatures) bench.monFeatures.style.width="0%"; if(bench.monWork) bench.monWork.style.width="0%"; if(bench.tSpeed) bench.tSpeed.textContent="Select a model to see a comparison."; if(bench.tFeat) bench.tFeat.textContent="Select a model to see a comparison."; if(bench.tWork) bench.tWork.textContent="Select a model to see a comparison."; }
+    function updateBenchmark(){ if(!bench.monSpeed || !bench.monFeatures || !bench.monWork || !bench.tSpeed || !bench.tFeat || !bench.tWork) return; if(selectedCols.length===0){ resetBenchmarkToEmpty(); return; } var compSpeed=3.5, compFeat=3.0, compWork=57; var col=selectedCols[0]; var modelName=getColName(col); var speedRow=getRowByLabel("Print speed (lines per second)"); var vatRow=getRowByLabel("VAT Tax"); var finRow=getRowByLabel("Financial time calculations"); var sqrtRow=getRowByLabel("Square root entry followed by divide then equals"); var rollRow=getRowByLabel("Enclosed paper roll"); var speed=speedRow?num(cellValue(speedRow,col)):0; var feat=2; if(vatRow && !isNotAvailable(cellValue(vatRow,col)) && norm(cellValue(vatRow,col))==="standard") feat++; if(finRow && !isNotAvailable(cellValue(finRow,col)) && norm(cellValue(finRow,col))==="standard") feat++; if(sqrtRow && !isNotAvailable(cellValue(sqrtRow,col))) feat++; if(rollRow && !isNotAvailable(cellValue(rollRow,col))) feat++; feat=clamp(feat,0,6); var work=clamp((speed/5.0)*55 + (feat/6.0)*45,0,100); bench.monSpeed.style.width=clamp((speed/5.0)*100,0,100)+"%"; bench.monFeatures.style.width=clamp((feat/6.0)*100,0,100)+"%"; bench.monWork.style.width=clamp(work,0,100)+"%"; bench.tSpeed.textContent=modelName+" runs at "+(speed?speed.toFixed(1):"0.0")+" lines per second versus a typical competing calculator around "+compSpeed.toFixed(1)+"."; bench.tFeat.textContent=modelName+" scores "+feat+" of 6 for feature depth. Typical competing calculators are closer to "+compFeat.toFixed(1)+" of 6."; bench.tWork.textContent=modelName+" estimates at "+Math.round(work)+" of 100 for workload readiness versus a typical competing calculator around "+compWork+" of 100."; }
+    function getColLink(col){ var a=table.querySelector('thead th[data-col="'+col+'"] a.ms-md__modelName'); return a?a.getAttribute("href"):""; }
+    function getColImg(col){ var img=table.querySelector('thead th[data-col="'+col+'"] img'); return img?{src:img.getAttribute("src")||"",alt:img.getAttribute("alt")||""}:{src:"",alt:""}; }
+    function openModal(){ if(!modal || !modalGrid) return; lastFocusEl=document.activeElement; setHidden(modal,false); document.body.style.overflow="hidden"; renderModal(); if(modalClose) setTimeout(function(){modalClose.focus();},0); }
+    function closeModal(){ if(!modal) return; setHidden(modal,true); document.body.style.overflow=""; if(lastFocusEl && typeof lastFocusEl.focus==="function") setTimeout(function(){lastFocusEl.focus();},0); }
+    function renderModal(){ if(selectedCols.length!==2) return; var c1=selectedCols[0], c2=selectedCols[1], name1=getColName(c1), name2=getColName(c2), link1=getColLink(c1), link2=getColLink(c2), img1=getColImg(c1), img2=getColImg(c2); function cell(html,cls){ var d=document.createElement("div"); d.className="ms-md__modalCell"+(cls?" "+cls:""); d.innerHTML=html; return d; } modalGrid.innerHTML=""; modalGrid.appendChild(cell("Feature","ms-md__modalHead")); modalGrid.appendChild(cell('<a class="ms-md__modalLink" href="'+(link1||"#")+'" target="_blank" rel="noopener">'+name1+'</a><br />'+(img1.src?'<img src="'+img1.src+'" alt="'+(img1.alt||"")+'" style="max-width:160px; height:auto; margin-top:8px;" />':""),"ms-md__modalHead")); modalGrid.appendChild(cell('<a class="ms-md__modalLink" href="'+(link2||"#")+'" target="_blank" rel="noopener">'+name2+'</a><br />'+(img2.src?'<img src="'+img2.src+'" alt="'+(img2.alt||"")+'" style="max-width:160px; height:auto; margin-top:8px;" />':""),"ms-md__modalHead")); allDataRows().forEach(function(r){ var sec=r.getAttribute("data-section"); if(!sectionState[sec] || r.hasAttribute("hidden")) return; var key=r.querySelector('th[scope="row"]'); if(!key) return; modalGrid.appendChild(cell('<span class="ms-md__modalKey">'+txt(key)+"</span>")); modalGrid.appendChild(cell(cellValue(r,c1))); modalGrid.appendChild(cell(cellValue(r,c2))); }); }
+    if(searchInput) searchInput.addEventListener("input",applySearchFilter);
+    pickInputs.forEach(function(inp){ inp.addEventListener("change",function(){ var col=parseInt(inp.getAttribute("data-pick"),10); var idx=selectedCols.indexOf(col); if(inp.checked){ if(selectedCols.length>=2){inp.checked=false;return;} if(idx===-1) selectedCols.push(col); } else if(idx!==-1) selectedCols.splice(idx,1); setPickUI(); updateTray(); highlightSelected(); updateBenchmark(); }); });
+    trayRemoves.forEach(function(btn){ btn.addEventListener("click",function(){ var slotIndex=parseInt(btn.getAttribute("data-remove"),10); if(isNaN(slotIndex)) return; var col=selectedCols[slotIndex]; if(!col) return; selectedCols=selectedCols.filter(function(x){return x!==col;}); setPickUI(); updateTray(); highlightSelected(); updateBenchmark(); }); });
+    if(clearBtn) clearBtn.addEventListener("click",function(){ selectedCols=[]; setPickUI(); updateTray(); highlightSelected(); updateBenchmark(); });
+    if(viewBtn) viewBtn.addEventListener("click",function(){ if(selectedCols.length!==2) return; openModal(); });
+    if(modal){ modal.addEventListener("click",function(e){ var close=e.target && e.target.getAttribute && e.target.getAttribute("data-close"); if(close==="true") closeModal(); }); document.addEventListener("keydown",function(e){ if(modal.hasAttribute("hidden")) return; if(e.key==="Escape") closeModal(); }); }
+    if(btnFunctions) btnFunctions.addEventListener("click",function(){ var currentlyOn=btnFunctions.getAttribute("aria-pressed")==="true"; toggleSection("functions",!currentlyOn); });
+    if(btnSpecs) btnSpecs.addEventListener("click",function(){ var currentlyOn=btnSpecs.getAttribute("aria-pressed")==="true"; toggleSection("specs",!currentlyOn); });
+    applySectionVisibility(); setPickUI(); updateTray(); highlightSelected(); applySearchFilter(); updateBenchmark();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Monroe medium-duty chart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Monroe medium-duty chart"
+    }
+  ]
+}
+{% endschema %}

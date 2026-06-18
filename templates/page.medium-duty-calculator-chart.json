@@ -9,12 +9,13 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_medium_duty_chart": {
+      "type": "monroe-medium-duty-calculator-chart",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_medium_duty_chart"
   ]
 }
+
