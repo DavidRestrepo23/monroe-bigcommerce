@@ -176,6 +176,7 @@
 @media (max-width: 768px) {
   .hero-banner {
     padding: 32px;
+    height: auto;
   }
 
   .hero-banner__product img {
