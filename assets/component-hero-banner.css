@@ -177,7 +177,7 @@
   .hero-banner {
     height: auto !important;
     min-height: 0 !important;
-    aspect-ratio: 2400 / 900;
+    /* aspect-ratio: 2400 / 900; */
     padding: 0 !important;
     border-radius: 0;
   }
