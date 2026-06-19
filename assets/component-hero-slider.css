@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
   .hero-slider__swiper {
-    height: auto!important;
+    height: 710px;
   }
 
   .hero-slider__inner {
@@ -26,14 +26,11 @@
 
 @media screen and (min-width: 1440px) {
   .hero-slider__swiper {
-    aspect-ratio: 2400 / 900;
-    height: auto!important;
+    height: 980px;
   }
 
   .hero-slider__inner {
-    height: 100% !important;
-    min-height: 0 !important;
-    padding: 0 !important; 
+    height: 90%;
   }
 }
 
@@ -42,9 +39,8 @@
 }
 
 .hero-slider__slide--has-bg {
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center center;
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 .hero-slider__inner {
@@ -52,8 +48,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
-  min-height: 0 !important;
-  padding: 0 !important;
+  padding: 48px 48px 0;
 
 }
 
@@ -238,7 +233,7 @@
   .hero-slider__inner {
     grid-template-columns: 1fr;
     padding: 40px 32px 80px;
-    min-height: auto;
+    min-height: 650px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -283,81 +278,5 @@
 
   .hero-slider__product-card {
     width: 90%;
-  }
-}
-/* ================================
-   HERO CAROUSEL STABILIZER
-   Add this at the very bottom
-================================ */
-
-/* Main hero wrapper */
-.hero-slider {
-  background: transparent !important;
-}
-
-/* Keeps the carousel from collapsing on desktop/tablet/mobile */
-.hero-slider__swiper {
-  height: auto !important;
-  aspect-ratio: 16 / 9 !important;
-  background: transparent !important;
-  overflow: hidden;
-  margin: 0 auto;
-  max-width: 1280px;
-}
-
-/* Ensures the slide fills the carousel area */
-.hero-slider__slide,
-.hero-slider__slide--has-bg,
-.hero-slider__inner {
-  height: 100% !important;
-  min-height: 0 !important;
-}
-
-/* Keeps your full banner image visible without the grey background */
-.hero-slider__slide--has-bg {
-  background-size: contain !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-color: transparent !important;
-}
-
-/* Removes internal spacing that was creating weird sizing */
-.hero-slider__inner {
-  padding: 0 !important;
-  gap: 0 !important;
-}
-
-/* Tablet/mobile cleanup */
-@media screen and (max-width: 990px) {
-  .hero-slider__swiper {
-    aspect-ratio: 16 / 9 !important;
-    max-width: 100% !important;
-    border-radius: 0 !important;
-  }
-
-  .hero-slider__inner {
-    padding: 0 !important;
-    min-height: 0 !important;
-    height: 100% !important;
-  }
-}
-
-/* Small mobile cleanup */
-@media screen and (max-width: 640px) {
-  .hero-slider {
-    padding: 0 !important;
-  }
-
-  .hero-slider__swiper {
-    aspect-ratio: 16 / 9 !important;
-  }
-
-  .hero-slider__inner {
-    padding: 0 !important;
-    gap: 0 !important;
-  }
-
-  .hero-slider__pagination.swiper-pagination {
-    bottom: -28px !important;
   }
 }
