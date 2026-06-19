@@ -1,0 +1,667 @@
+<style>
+.mbt{
+  --monroe-teal:#007681;
+  --ink:#0b1b1c;
+  --muted:#5a6a6b;
+  --card:#ffffff;
+  --bg:#f6faf9;
+  --border:rgba(11,27,28,.14);
+  --shadow:0 14px 34px rgba(0,0,0,.10);
+  --radius:18px;
+
+  font-family: Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.mbt *{ box-sizing: border-box; }
+
+.mbt__bar{ background: var(--monroe-teal); height: 14px; }
+.mbt__wrap{ max-width: 1040px; margin: 0 auto; padding: 22px 18px 26px; }
+
+.mbt__hero{ text-align: center; padding: 10px 0 6px; }
+.mbt__hero img{ width: min(520px, 92%); height: auto; display: block; margin: 0 auto; }
+.mbt__title{ font-size: clamp(22px, 2.6vw, 34px); margin: 14px 0 6px; letter-spacing: .2px; }
+.mbt__sub{ color: var(--muted); margin: 0 auto; max-width: 820px; line-height: 1.55; font-size: 15.5px; }
+
+.mbt__card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.mbt__card h2{ font-size: 18px; margin: 0 0 10px; }
+.mbt__card p{ margin: 0 0 10px; line-height: 1.6; }
+.mbt__card p:last-child{ margin-bottom: 0; }
+
+/* Large Example module */
+.mbt__example{
+  margin-top: 18px;
+  padding: 18px;
+}
+.mbt__exampleGrid{
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 900px){
+  .mbt__exampleGrid{
+    grid-template-columns: 1.2fr .8fr;
+  }
+}
+.mbt__imgLink{ display: block; text-decoration: none; }
+.mbt__img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+.mbt__imgCaption{ margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+.mbt__note{
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,118,129,.22);
+  background: rgba(0,118,129,.06);
+}
+.mbt__note strong{ color: var(--monroe-teal); }
+
+/* Run the test + steps */
+.mbt__run{ margin-top: 14px; }
+.mbt__steps{ display: grid; gap: 10px; margin-top: 8px; }
+.mbt__step{
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.mbt__num{
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: rgba(0,118,129,.10);
+  color: var(--monroe-teal);
+  font-weight: 800;
+}
+.mbt__step strong{ display: block; margin-bottom: 3px; }
+
+/* Buttons */
+.mbt__controls{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.mbt__toggle,
+.mbt__pill{
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform .08s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+  min-height: 44px;
+}
+.mbt__toggle:hover,
+.mbt__pill:hover{ box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+.mbt__toggle:active,
+.mbt__pill:active{ transform: translateY(1px); }
+.mbt__toggle:focus,
+.mbt__pill:focus{ outline: 3px solid rgba(0,118,129,.25); outline-offset: 2px; }
+
+.mbt__pill[aria-pressed="true"]{
+  background: rgba(0,118,129,.10);
+  border-color: rgba(0,118,129,.35);
+  color: var(--monroe-teal);
+}
+
+.mbt__ctaRow{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.mbt__btn{
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+  text-decoration: none;
+  border: 3px solid rgba(0,0,0,.20);
+  transition: transform .08s ease, box-shadow .18s ease;
+  line-height: 1;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.mbt__btnPrimary{
+  background: var(--monroe-teal);
+  color: #fff;
+  border-color: rgba(0,0,0,.28);
+}
+.mbt__btnPrimary:hover{ box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+.mbt__btnSecondary{ background: #fff; color: var(--ink); }
+
+.mbt__sectionTitle{ margin: 22px 0 10px; font-size: 18px; }
+.mbt__compareIntro{ color: var(--muted); margin: 0 0 12px; line-height: 1.6; }
+
+.mbt__filterRow{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0 12px;
+}
+.mbt__filterLabel{ font-weight: 900; }
+
+.mbt__compareGrid{ display: grid; gap: 12px; grid-template-columns: 1fr; }
+@media (min-width: 900px){ .mbt__compareGrid{ grid-template-columns: repeat(3, 1fr); } }
+
+.mbt__model{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 100%;
+}
+.mbt__modelTop{ display: grid; gap: 4px; }
+.mbt__badge{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  background: rgba(0,118,129,.10);
+  color: var(--monroe-teal);
+  border: 1px solid rgba(0,118,129,.20);
+}
+.mbt__modelName{ margin: 0; font-size: 18px; }
+.mbt__modelDesc{ margin: 0; color: var(--muted); line-height: 1.55; font-size: 14.5px; }
+.mbt__modelList{ margin: 0; padding-left: 18px; }
+.mbt__modelList li{ margin: 8px 0; line-height: 1.55; }
+.mbt__modelCtas{ display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.mbt__modelCtas a{ flex: 1 1 auto; }
+
+.mbt__accordion details{
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+.mbt__accordion summary{
+  cursor: pointer;
+  font-weight: 900;
+  color: var(--ink);
+  list-style: none;
+}
+.mbt__accordion summary::-webkit-details-marker{ display:none; }
+.mbt__accordion summary::after{
+  content: "+";
+  float: right;
+  color: var(--monroe-teal);
+  font-weight: 900;
+}
+.mbt__accordion details[open] summary::after{ content: "x"; }
+.mbt__accordion ul{ margin: 10px 0 0 18px; padding: 0; color: var(--ink); }
+.mbt__accordion li{ margin: 8px 0; line-height: 1.55; }
+.mbt__accordion a{ color: var(--monroe-teal); font-weight: 800; text-decoration: none; }
+.mbt__accordion a:hover{ text-decoration: underline; }
+
+.mbt__human{ text-align: center; margin-top: 18px; }
+.mbt__human h3{ margin: 0 0 6px; font-size: 18px; }
+.mbt__human p{ margin: 0; color: var(--muted); line-height: 1.55; }
+.mbt__human a{ color: var(--monroe-teal); font-weight: 900; text-decoration: none; }
+.mbt__human a:hover{ text-decoration: underline; }
+
+.mbt__footerImg{ margin-top: 14px; }
+.mbt__footerImg img{ width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--border); }
+
+.mbt__srOnly{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  border:0;
+}
+
+/* “Pop” effect toggle */
+.mbt--checkOn .mbt__step{ border-color: rgba(0,118,129,.32); }
+.mbt--checkOn .mbt__step::before{
+  content:"";
+  position: absolute;
+  inset: -40% -60%;
+  background: radial-gradient(circle, rgba(0,118,129,.16) 0%, rgba(0,118,129,0) 60%);
+  animation: mbtPulse 1.7s ease-in-out infinite;
+}
+@keyframes mbtPulse{
+  0%{ transform: translateX(-10%) translateY(8%); opacity: .55; }
+  50%{ transform: translateX(8%) translateY(-6%); opacity: .85; }
+  100%{ transform: translateX(-10%) translateY(8%); opacity: .55; }
+}
+.mbt--checkOn .mbt__step > *{ position: relative; z-index: 1; }
+</style>
+
+<section class="mbt" aria-label="Monroe Calculator Brightness Test">
+  <div class="mbt__bar" aria-hidden="true"></div>
+
+  <div class="mbt__wrap">
+    <header class="mbt__hero">
+      <img
+        src="https://gallery.mailchimp.com/de7d3c6ce4864e53af753c0d6/images/d1a675e4-8945-4599-bc50-ff920b1eddfe.gif"
+        alt="Monroe Brightness Test logo animation"
+        loading="lazy"
+      />
+      <h2 class="mbt__title">Brightness Test for Printing Calculators</h2>
+      <p class="mbt__sub">
+        Use this quick check to spot uneven digit brightness across your calculator display. If the digits fade from left to right, it may be time to replace your calculator.
+      </p>
+    </header>
+
+    <section class="mbt__card mbt__example" aria-label="Example brightness check">
+      <h2>Example Brightness Check</h2>
+
+      <div class="mbt__exampleGrid">
+        <a
+          class="mbt__imgLink"
+          href="https://monroe-systems.com/monroe-12-digit-print-display-ultimatex-a-top-of-the-line-heavy-duty-calculator-with-reprint-editing-capabilities/"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            class="mbt__img"
+            src="https://monroewebsiteimages.s3.amazonaws.com/Monroe+Pages/Home+Page/Learn/Monroe+Brightness+Test/73655e10-0e43-4a2c-9969-2d779d16cbbe.jpg"
+            alt="Monroe UltimateX calculator showing digits for a brightness comparison"
+            loading="lazy"
+          />
+        </a>
+
+        <div>
+          <div class="mbt__note">
+            <p style="margin:0;">
+              <strong>Quick tip:</strong> Do the test under your normal desk lighting. Compare the far left digit to the far right digit for any brightness drop.
+            </p>
+          </div>
+
+          <p class="mbt__imgCaption">
+            If the far right digits appear noticeably dimmer than the far left, your display may be worn and harder to read during long sessions.
+          </p>
+
+          <div class="mbt__ctaRow">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">
+              Shop Our Calculators
+            </a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-ultimatex-heavy-duty-12-digit-programmable-accounting-printing-calculator-with-edit-reprint-capabilities/" target="_blank" rel="noopener">
+              View the UltimateX
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mbt__card mbt__run" aria-label="Run the test">
+      <h2>Run the Test</h2>
+
+      <div class="mbt__steps" role="list">
+        <div class="mbt__step" role="listitem">
+          <div class="mbt__num">1</div>
+          <div>
+            <strong>Type the maximum number of digits</strong>
+            Enter as many digits as your calculator supports so the full display is lit.
+          </div>
+        </div>
+
+        <div class="mbt__step" role="listitem">
+          <div class="mbt__num">2</div>
+          <div>
+            <strong>Compare the far left and far right digits</strong>
+            Look for a noticeable brightness drop across the display.
+          </div>
+        </div>
+
+        <div class="mbt__step" role="listitem">
+          <div class="mbt__num">3</div>
+          <div>
+            <strong>If the digits fade, your eyes are working harder</strong>
+            Uneven display brightness can cause strain, especially in daily accounting workflows.
+          </div>
+        </div>
+      </div>
+
+      <div class="mbt__controls">
+        <button class="mbt__toggle" type="button" id="mbtToggle">
+          Toggle Brightness Check Effect
+        </button>
+      </div>
+
+      <div class="mbt__note" style="margin-top:12px;">
+        <p style="margin:0;">
+          <strong>Why does this happen?</strong> Display fading can develop after years of extended use where digits remain illuminated for long periods.
+        </p>
+      </div>
+    </section>
+
+    <section aria-label="Recommended replacement printing calculators">
+      <h2 class="mbt__sectionTitle">Recommended Replacements</h2>
+      <p class="mbt__compareIntro">
+        If your display is fading or your keys and printer are showing wear, upgrading now helps keep totals clear, improves comfort, and reduces workflow slowdowns.
+      </p>
+
+      <div class="mbt__filterRow" role="group" aria-label="Filter recommended calculators">
+        <span class="mbt__filterLabel">Filter:</span>
+        <button class="mbt__pill" type="button" data-filter="heavy" aria-pressed="true">Heavy-Duty</button>
+        <button class="mbt__pill" type="button" data-filter="medium" aria-pressed="false">Medium-Duty</button>
+        <button class="mbt__pill" type="button" data-filter="all" aria-pressed="false">Show All</button>
+        <span class="mbt__srOnly" aria-live="polite" id="mbtLive"></span>
+      </div>
+
+      <div class="mbt__compareGrid" id="mbtGrid">
+        <div class="mbt__model" data-tier="heavy">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">Best Overall</span>
+            <h3 class="mbt__modelName">Monroe UltimateX</h3>
+            <p class="mbt__modelDesc">Premium heavy duty upgrade for daily accounting workflows and long term readability.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Ideal for frequent users who need consistent display clarity</li>
+            <li>Comfort focused keyboard experience for long sessions</li>
+            <li>Strong fit for audit trail and review workflows</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-ultimatex-heavy-duty-12-digit-programmable-accounting-printing-calculator-with-edit-reprint-capabilities/" target="_blank" rel="noopener">Shop UltimateX</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Browse All</a>
+          </div>
+        </div>
+
+        <div class="mbt__model" data-tier="heavy">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">Most Popular</span>
+            <h3 class="mbt__modelName">Monroe 8130X</h3>
+            <p class="mbt__modelDesc">Dependable heavy-duty choice that balances durability, comfort, and everyday performance.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Ideal for steady daily use and clean totals</li>
+            <li>Strong upgrade from aging office calculators</li>
+            <li>Reliable fit for accounting and retail back office</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-classicx/" target="_blank" rel="noopener">Shop 8130X</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Compare Models</a>
+          </div>
+        </div>
+
+        <div class="mbt__model" data-tier="heavy">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">High Volume</span>
+            <h3 class="mbt__modelName">Monroe 8145X</h3>
+            <p class="mbt__modelDesc">Heavy-Duty workhorse for long sessions, repeat entry, and consistent audit trail output.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Great for high repetition entry and totals</li>
+            <li>Built for long sessions and consistent output</li>
+            <li>Strong choice for offices with multiple users</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-8145x/" target="_blank" rel="noopener">Shop 8145X</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">See Lineup</a>
+          </div>
+        </div>
+
+        <div class="mbt__model" data-tier="medium">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">Everyday Office</span>
+            <h3 class="mbt__modelName">Monroe 6120X</h3>
+            <p class="mbt__modelDesc">Medium-Duty option for regular office entry with a practical feature set and consistent output.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Good for general bookkeeping and desk use</li>
+            <li>Solid choice when you want a durable daily driver</li>
+            <li>Ideal for lighter volume teams</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Shop 6120X</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Browse All</a>
+          </div>
+        </div>
+
+        <div class="mbt__model" data-tier="medium">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">Compact Pro</span>
+            <h3 class="mbt__modelName">Monroe 122PDX</h3>
+            <p class="mbt__modelDesc">Medium-Duty footprint with practical functionality for offices that want performance in less space.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Great when desk space is limited</li>
+            <li>Helpful for shared workstations</li>
+            <li>Reliable choice for moderate volume tasks</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Shop 122PDX</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Compare Models</a>
+          </div>
+        </div>
+
+        <div class="mbt__model" data-tier="medium">
+          <div class="mbt__modelTop">
+            <span class="mbt__badge">Retail Ready</span>
+            <h3 class="mbt__modelName">Monroe 2020PlusX</h3>
+            <p class="mbt__modelDesc">Medium-Duty option for frequent totals and everyday transactions with steady print output.</p>
+          </div>
+          <ul class="mbt__modelList">
+            <li>Good fit for retail and POS back office</li>
+            <li>Reliable for everyday totals and balancing</li>
+            <li>Practical upgrade for older units</li>
+          </ul>
+          <div class="mbt__modelCtas">
+            <a class="mbt__btn mbt__btnPrimary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">Shop 2020PlusX</a>
+            <a class="mbt__btn mbt__btnSecondary" href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">See Lineup</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mbt__accordion" aria-label="Brightness Test FAQs">
+      <h2 class="mbt__sectionTitle">Brightness Test FAQs</h2>
+
+      <details>
+        <summary>What is the Monroe Brightness Test?</summary>
+        <ul>
+          <li>It is a quick check that helps you spot uneven digit brightness across a calculator display by comparing the far left and far right digits.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>What does fading from left to right mean?</summary>
+        <ul>
+          <li>It typically indicates display wear from years of extended use where digits stay illuminated for long periods.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Can I fix a dim or uneven display?</summary>
+        <ul>
+          <li>In most cases, display fading is not cost-effective to repair. Replacement is usually the most reliable option for clear readability.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>What other signs tell me it's time to replace my calculator?</summary>
+        <ul>
+          <li>Common indicators include missing digits on the display, blank spaces on the printed audit trail, sticky or unresponsive keys, or worn key symbols.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="mbt__accordion" aria-label="Additional signs your calculator should be replaced">
+      <h2 class="mbt__sectionTitle">Additional Signs Your Calculator Should Be Replaced</h2>
+
+      <details>
+        <summary>Printing and Display Issues</summary>
+        <ul>
+          <li>If a digit or function entry does not appear on the display, the key may not be making proper contact.</li>
+          <li>If the printed audit trail shows a blank space where a digit should be, the printer may be dropping digits and starting to fail.</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Keyboard Issues</summary>
+        <ul>
+          <li>
+            If keys feel flimsy or less responsive, consider upgrading to the
+            <a href="https://monroe-systems.com/monroe-ultimatex-heavy-duty-12-digit-programmable-accounting-printing-calculator-with-edit-reprint-capabilities/" target="_blank" rel="noopener">UltimateX</a>.
+            It uses
+            <a href="https://monroe-systems.com/blog/the-monroe-difference-a-lifelong-investment/" target="_blank" rel="noopener">independent key switch technology (IKT)</a>
+            for a softer, more responsive touch.
+          </li>
+          <li>If key symbols are worn off, it is often a sign the unit has seen heavy use. Monroe heavy duty calculators use long lasting key tops designed for longevity.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="mbt__human">
+      <h3>Want to Talk With a Human?</h3>
+      <p>
+        Call <a href="tel:2675802600" rel="noopener">(267) 580-2600</a>. We are open Monday through Friday, 8 AM to 5 PM ET.
+      </p>
+    </section>
+
+    <div class="mbt__footerImg">
+      <a href="https://monroe-systems.com/monroe-calculator-products/printing-calculators/" target="_blank" rel="noopener">
+        <img
+          src="https://cdn7.bigcommerce.com/s-fp5opfnomp/product_images/uploaded_images/replacingcalculator.jpg"
+          alt="Informational graphic: people typically replace their calculator 5 to 7 years after purchase"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+
+  <div class="mbt__bar" aria-hidden="true"></div>
+
+  <script>
+  (function(){
+  var root = document.querySelector(".mbt");
+  if(!root) return;
+
+  var toggleBtn = document.getElementById("mbtToggle");
+  if(toggleBtn){
+    toggleBtn.addEventListener("click", function(){
+      root.classList.toggle("mbt--checkOn");
+    });
+  }
+
+  var pills = root.querySelectorAll(".mbt__pill[data-filter]");
+  var cards = root.querySelectorAll(".mbt__model[data-tier]");
+  var live = document.getElementById("mbtLive");
+
+  function setPressed(active){
+    pills.forEach(function(p){
+      p.setAttribute("aria-pressed", String(p.getAttribute("data-filter") === active));
+    });
+  }
+
+  function applyFilter(filter){
+    var shown = 0;
+
+    cards.forEach(function(card){
+      var tier = card.getAttribute("data-tier");
+      var show = (filter === "all") || (tier === filter);
+
+      card.style.display = show ? "" : "none";
+      if(show) shown += 1;
+    });
+
+    setPressed(filter);
+
+    if(live){
+      var label = filter === "all" ? "all models" : (filter === "heavy" ? "heavy duty models" : "medium duty models");
+      live.textContent = "Showing " + shown + " " + label + ".";
+    }
+  }
+
+  pills.forEach(function(p){
+    p.addEventListener("click", function(){
+      applyFilter(p.getAttribute("data-filter"));
+    });
+  });
+
+  applyFilter("heavy");
+})();
+
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Monroe brightness test?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The brightness test is a quick check for uneven digit brightness across a calculator display by comparing the far left and far right digits after lighting the full display."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does fading from left to right mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fading from left to right typically indicates display wear that can develop after years of extended use where digits remain illuminated for long periods."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I fix a dim or uneven display?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In most cases, display fading is not cost effective to repair. Replacement is usually the most reliable option for clear readability and comfortable daily use."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What other signs tell me it is time to replace my calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common indicators include missing digits on the display, blank spaces on the printed audit trail, sticky or unresponsive keys, or worn key symbols."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Monroe model should I choose?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a premium heavy duty upgrade, consider the UltimateX. For a durable value focused option, ClassicX is a strong choice. For high volume daily use, consider the 8145X."
+          }
+        }
+      ]
+    }
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Monroe brightness test",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Monroe brightness test"
+    }
+  ]
+}
+{% endschema %}
