@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_brightness_test": {
+      "type": "monroe-brightness-test",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_brightness_test"
   ]
 }
