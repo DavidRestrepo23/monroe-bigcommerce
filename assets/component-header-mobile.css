@@ -27,6 +27,14 @@
   color: inherit;
 }
 
+.mobile-header__logo-link,
+.mobile-header__store-name-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
 .mobile-header__logo {
   width: 99px;
   height: 26px;
