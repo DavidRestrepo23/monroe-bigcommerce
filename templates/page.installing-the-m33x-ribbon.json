@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_installing_ribbon": {
+      "type": "monroe-installing-ribbon",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_installing_ribbon"
   ]
 }
