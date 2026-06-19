@@ -6,9 +6,9 @@
   justify-content: flex-start;
   background-color: var(--hb-bg);
   border-radius: var(--hb-radius);
-  min-height: 0!important;
-  padding: 0!important;
-  height: auto!important;
+  min-height: var(--hb-min-height);
+  padding: var(--hb-pad-top) 40px 0;
+  height: 692px;
 }
 
 .hero-banner__bg-image {
@@ -175,11 +175,7 @@
 
 @media (max-width: 768px) {
   .hero-banner {
-    height: auto !important;
-    min-height: 0 !important;
-    aspect-ratio: 2400 / 900;
-    padding: 0 !important;
-    border-radius: 0;
+    padding: 32px;
   }
 
   .hero-banner__product img {
