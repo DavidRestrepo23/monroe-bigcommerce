@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
   .hero-slider__swiper {
-    height: 710px;
+    height: auto!important;
   }
 
   .hero-slider__inner {
@@ -26,11 +26,14 @@
 
 @media screen and (min-width: 1440px) {
   .hero-slider__swiper {
-    height: 980px;
+    aspect-ratio: 2400 / 900;
+    height: auto!important;
   }
 
   .hero-slider__inner {
-    height: 90%;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 !important; 
   }
 }
 
@@ -39,8 +42,9 @@
 }
 
 .hero-slider__slide--has-bg {
-  background-size: 100% 100%;
-  background-position: center;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center center;
 }
 
 .hero-slider__inner {
@@ -48,7 +52,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
-  padding: 48px 48px 0;
+  min-height: 0 !important;
+  padding: 0 !important;
 
 }
 
@@ -233,7 +238,7 @@
   .hero-slider__inner {
     grid-template-columns: 1fr;
     padding: 40px 32px 80px;
-    min-height: 650px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
