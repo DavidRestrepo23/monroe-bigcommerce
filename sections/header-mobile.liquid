@@ -11,28 +11,40 @@
 <header class="mobile-header hide-desktop" data-menu-open="false" role="banner">
   {%- comment -%} ======== Header Bar ======== {%- endcomment -%}
   <div class="mobile-header__bar">
-    <a href="{{ routes.root_url }}" class="mobile-header__identity" aria-label="{{ shop.name }} — home">
-      {%- if section.settings.logo != blank -%}
-        <img
-          class="mobile-header__logo"
-          src="{{ section.settings.logo | image_url: width: 400 }}"
-          alt="{{ shop.name }}"
-          loading="eager"
-        >
-      {%- else -%}
-        <span>{{ shop.name }}</span>
-      {%- endif -%}
+    <div class="mobile-header__identity">
+      <a
+        href="{{ section.settings.logo_url | default: routes.root_url }}"
+        class="mobile-header__logo-link"
+        aria-label="{{ shop.name }} — home"
+      >
+        {%- if section.settings.logo != blank -%}
+          <img
+            class="mobile-header__logo"
+            src="{{ section.settings.logo | image_url: width: 400 }}"
+            alt="{{ shop.name }}"
+            loading="eager"
+          >
+        {%- else -%}
+          <span>{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
 
       {%- if section.settings.store_name_image != blank -%}
         <span class="mobile-header__divider" aria-hidden="true"></span>
-        <img
-          class="mobile-header__store-name-img"
-          src="{{ section.settings.store_name_image | image_url: width: 600 }}"
-          alt="{{ shop.name }}"
-          loading="eager"
+        <a
+          href="{{ section.settings.store_name_url | default: routes.root_url }}"
+          class="mobile-header__store-name-link"
+          aria-label="{{ shop.name }}"
         >
+          <img
+            class="mobile-header__store-name-img"
+            src="{{ section.settings.store_name_image | image_url: width: 600 }}"
+            alt="{{ shop.name }}"
+            loading="eager"
+          >
+        </a>
       {%- endif -%}
-    </a>
+    </div>
 
     <button
       class="mobile-header__toggle"
@@ -298,6 +310,11 @@
       "default": 100
     },
     {
+      "type": "url",
+      "id": "logo_url",
+      "label": "Logo link (defaults to home)"
+    },
+    {
       "type": "image_picker",
       "id": "store_name_image",
       "label": "Store name image (beside logo)"
@@ -311,6 +328,11 @@
       "unit": "px",
       "label": "Store name image width",
       "default": 140
+    },
+    {
+      "type": "url",
+      "id": "store_name_url",
+      "label": "Store name image link (defaults to home)"
     },
     {
       "type": "link_list",
