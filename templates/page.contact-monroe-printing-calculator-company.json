@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_contact_page": {
+      "type": "monroe-contact-page",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_contact_page"
   ]
 }
