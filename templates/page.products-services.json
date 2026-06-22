@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_products_services": {
+      "type": "monroe-products-services",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_products_services"
   ]
 }
