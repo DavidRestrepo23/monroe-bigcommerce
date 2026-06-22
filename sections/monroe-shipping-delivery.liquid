@@ -1,0 +1,227 @@
+<style>
+/* Shipping & Delivery page - Shopify scoped styling */
+.ms-shipping{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #000000;
+}
+.ms-shipping,
+.ms-shipping *{
+  box-sizing: border-box;
+  font-family: Roboto, Arial, sans-serif !important;
+}
+.ms-shipping p,
+.ms-shipping li,
+.ms-shipping a,
+.ms-shipping span,
+.ms-shipping strong,
+.ms-shipping em{
+  font-size: 18px !important;
+  line-height: 1.65;
+  color: #000000;
+}
+.ms-shipping h2,
+.ms-shipping h2 *{
+  margin: 24px 0 18px;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 40px !important;
+  line-height: 1.2;
+  color: #000000 !important;
+}
+.ms-shipping h3,
+.ms-shipping h3 *{
+  margin: 0 0 10px;
+  font-size: 25px !important;
+  line-height: 1.25;
+  color: #000000 !important;
+}
+.ms-shipping h4,
+.ms-shipping h4 *{
+  font-size: 20px !important;
+  line-height: 1.25;
+  color: #000000 !important;
+}
+.ms-shipping a{
+  color: #007681 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+.ms-shipping__bar{
+  height: 35px;
+  background: #007681;
+  width: 100%;
+}
+.ms-shipping__content{
+  padding: 22px 0;
+}
+.ms-shipping__summary{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0 22px;
+}
+.ms-shipping__card,
+.ms-shipping__faqItem{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 18px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+.ms-shipping__card h3{
+  font-size: 20px !important;
+}
+.ms-shipping__card p,
+.ms-shipping__faqItem p{
+  margin: 0;
+}
+.ms-shipping__faqGrid{
+  display: grid;
+  gap: 14px;
+}
+.ms-shipping__help{
+  margin-top: 18px;
+  border: 1px solid rgba(0,118,129,.25);
+  background: rgba(0,118,129,.06);
+}
+@media (max-width: 899px){
+  .ms-shipping__summary{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 749px){
+  .ms-shipping{
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .ms-shipping h2,
+  .ms-shipping h2 *{
+    font-size: 32px !important;
+  }
+  .ms-shipping__summary{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="ms-shipping" aria-label="Shipping and Delivery">
+  <div class="ms-shipping__bar" aria-hidden="true"></div>
+  <div class="ms-shipping__content">
+    <h2>Shipping &amp; Delivery</h2>
+    <div class="ms-shipping__summary" aria-label="Quick shipping notes">
+      <div class="ms-shipping__card"><h3>Shipping Costs</h3><p>Shipping cost is calculated at checkout based on destination, package dimensions, and package weight.</p></div>
+      <div class="ms-shipping__card"><h3>Delivery Area</h3><p>Monroe primarily ships within the Contiguous United States and does not offer direct shipping to Alaska, Hawaii, or internationally.</p></div>
+      <div class="ms-shipping__card"><h3>Delivery Estimates</h3><p>Estimated delivery dates vary by carrier, location, and the items included in the order.</p></div>
+      <div class="ms-shipping__card"><h3>Need Tracking Help?</h3><p>Call <a href="tel:2675802600">267-580-2600</a> Monday through Friday, 8 AM to 5 PM ET.</p></div>
+    </div>
+    <div class="ms-shipping__faqGrid">
+      <div class="ms-shipping__faqItem">
+        <h3>What is your delivery policy?</h3>
+        <p>An estimated delivery date will be provided after your order is placed. These dates vary due to carrier shipping practices, delivery location, and the items you order.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>How much does it cost to have something delivered?</h3>
+        <p>The cost of delivery depends on the destination, the dimensions, and the weight of the package. Shipping will be determined at checkout.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>How will I know whether my order has shipped?</h3>
+        <p>When you place an order on <a href="https://monroe-systems.com/" title="Monroe Systems for Business Website" target="_blank" rel="noopener">monroe-systems.com</a>, we'll send you an email confirmation to let you know when it has shipped and is headed on its way to you.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What are my delivery options?</h3>
+        <p>You can choose from the following for your delivery: UPS Ground, UPS 3-Day Select, UPS 2nd Day Air AM, UPS 2nd Day Air, or UPS Next Day Air.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What states will Monroe deliver to?</h3>
+        <p>We primarily ship products only within the Contiguous United States of America. We do not offer direct shipping to Alaska, Hawaii, or internationally. If you have any questions, please call us at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> or email your request to <a href="mailto:csr@monroe-systems.com" title="Monroe Systems for Business Customer Service Email Address">csr@monroe-systems.com</a>.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>Does Monroe deliver to &quot;Mail Drop&quot; locations?</h3>
+        <p>A Mail Drop location is an address where a business or service accepts mail deliveries on behalf of a customer. Monroe Systems for Business will deliver to Mail Drop locations such as a UPS® Store, formerly Mail Boxes Etc. However, we are unable to deliver to P.O. Boxes, prisons, or APO/FPO addresses, which are military overseas mail drops.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What if I placed my order with the wrong shipping address? What should I do?</h3>
+        <p>Call us right away Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>. Most orders are transmitted almost immediately to our warehouses, so we'll do what we can to make sure your items make it to the correct destination.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>I received my order, but I am missing an item. What should I do?</h3>
+        <p>First, check your order and shipment confirmation emails to determine if your missing item is scheduled to ship separately. If your missing item was scheduled to arrive with other items but was missing, please contact our customer care team Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> or email us at <a href="mailto:csr@monroe-systems.com" title="Monroe Systems for Business Customer Service Email Address">csr@monroe-systems.com</a> for assistance.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What happens if my item arrives and it&#x27;s defective?</h3>
+        <p>We apologize for the inconvenience and will replace items that are damaged. Please be sure to photograph damages so we can submit a claim to our shipper. Call us Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> to learn about your options for exchanging or returning a damaged item.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>Can I get my order delivered today?</h3>
+        <p>We do not offer same-day delivery at this time.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>How can I check my order(s) delivery status?</h3>
+        <p>Call us Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> for tracking information.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>How do I check if an item is available for pickup?</h3>
+        <p>You can leave a question in the comments for a customer care representative to call you and tell you whether it is available for pickup. You can also call Monroe Systems for Business directly Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>, and a customer care representative will be happy to inform you whether that item is available for pickup at our warehouse.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>Can I specify a delivery date/time for my order?</h3>
+        <p>In the comments section of your order, specify the date and time for your order, and we will relay your request to the delivery service.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What do I do if I lose or forget my tracking number?</h3>
+        <p>Please call us Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> or email us at <a href="mailto:csr@monroe-systems.com" title="Monroe Systems for Business Customer Service Email Address">csr@monroe-systems.com</a>.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>If I place an order online and pick it up from Monroe&#x27;s warehouse is there a fee?</h3>
+        <p>There is no fee to pick up from Monroe's warehouse.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>Can I purchase different items at the same time and have them shipped separately?</h3>
+        <p>Yes. Please note in the comments on your online order which items you want shipped separately and when.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What if I don&#x27;t receive my order by the scheduled delivery date?</h3>
+        <p>If you do not receive your order by 5:00 PM on the scheduled delivery date, please call us Monday through Friday, 8:00 AM to 5:00 PM ET, at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> or email us at <a href="mailto:csr@monroe-systems.com" title="Monroe Systems for Business Customer Service Email Address">csr@monroe-systems.com</a>.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>How long will it take for my order to be delivered?</h3>
+        <p>We'll provide you with an estimated delivery date when you place your order. Estimated delivery dates vary due to carrier shipping practices, delivery location, and the items you order, but are usually between 1–5 business days. When we use independent carriers to deliver orders, we base estimated delivery dates on information provided to us by the independent carriers. Products may be delivered in separate shipments.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>Do I have to wait at my house or office all day for my delivery?</h3>
+        <p>For your security and protection, it is best to have someone available to sign for your order between the hours of 8:00 AM and 5:00 PM, Monday through Friday, excluding holidays, but it is not required. Our drivers' delivery routes change from day to day, so there is no way to determine the exact time your order will be delivered.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>What time can I expect my order to be delivered?</h3>
+        <p>In most cases, our drivers deliver orders between the hours of 9:00 AM and 5:00 PM, Monday through Friday, excluding holidays. Since our drivers' delivery routes change from day to day, we cannot determine an approximate time your order will be delivered.</p>
+      </div>
+      <div class="ms-shipping__faqItem">
+        <h3>I won&#x27;t be available to accept my order. What can I do?</h3>
+        <p>UPS does not require a signature for standard deliveries. They will still make delivery unless the driver feels that the package is not safe to leave. If a driver does not feel your package is safe, your package will go to a UPS pick-up location for you to retrieve it.</p>
+      </div>
+    </div>
+    <div class="ms-shipping__card ms-shipping__help">
+      <h3>Need Help With a Shipping Question?</h3>
+      <p>Have your order number ready and contact our customer care team at <a href="tel:2675802600">267-580-2600</a> or <a href="mailto:csr@monroe-systems.com">csr@monroe-systems.com</a>.</p>
+    </div>
+  </div>
+  <div class="ms-shipping__bar" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Shipping delivery",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Shipping delivery"
+    }
+  ]
+}
+{% endschema %}
