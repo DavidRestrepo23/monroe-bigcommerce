@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_shipping_delivery": {
+      "type": "monroe-shipping-delivery",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_shipping_delivery"
   ]
 }
