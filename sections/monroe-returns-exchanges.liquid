@@ -1,0 +1,160 @@
+<style>
+/* Returns & Exchanges page - Shopify scoped styling */
+.ms-returns{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #000000;
+}
+.ms-returns,
+.ms-returns *{
+  box-sizing: border-box;
+  font-family: Roboto, Arial, sans-serif !important;
+}
+.ms-returns p,
+.ms-returns li,
+.ms-returns a,
+.ms-returns span,
+.ms-returns strong,
+.ms-returns em{
+  font-size: 18px !important;
+  line-height: 1.65;
+  color: #000000;
+}
+.ms-returns h2,
+.ms-returns h2 *{
+  margin: 24px 0 18px;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 40px !important;
+  line-height: 1.2;
+  color: #000000 !important;
+}
+.ms-returns h3,
+.ms-returns h3 *{
+  margin: 0 0 10px;
+  font-size: 25px !important;
+  line-height: 1.25;
+  color: #000000 !important;
+}
+.ms-returns h4,
+.ms-returns h4 *{
+  font-size: 20px !important;
+  line-height: 1.25;
+  color: #000000 !important;
+}
+.ms-returns a{
+  color: #007681 !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+.ms-returns__bar{
+  height: 35px;
+  background: #007681;
+  width: 100%;
+}
+.ms-returns__content{
+  padding: 22px 0;
+}
+.ms-returns__card{
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 18px;
+  margin: 16px 0;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+}
+.ms-returns__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.ms-returns__grid .ms-returns__card{
+  margin: 0;
+}
+.ms-returns ul{
+  margin: 0;
+  padding-left: 24px;
+}
+.ms-returns li{
+  margin: 6px 0;
+}
+.ms-returns__contact p{
+  margin: 8px 0;
+}
+@media (max-width: 749px){
+  .ms-returns{
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .ms-returns h2,
+  .ms-returns h2 *{
+    font-size: 32px !important;
+  }
+  .ms-returns__grid{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<section class="ms-returns" aria-label="Returns and Exchanges">
+  <div class="ms-returns__bar" aria-hidden="true"></div>
+
+  <div class="ms-returns__content">
+    <h2>Returns &amp; Exchanges</h2>
+
+    <div class="ms-returns__card ms-returns__intro">
+      <h3>What is your returns policy?</h3>
+      <p>We accept new, unused returns within 30 days from purchase. Please contact us with your order information so a member of our team can review your return request.</p>
+      <p>There is a 10% restocking fee and buyers are responsible for return shipping expenses. If you prefer an exchange, please include your contact and order information when you reach out. If your item is defective, please call us at <a href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a> for customer service.</p>
+    </div>
+
+    <div class="ms-returns__grid">
+      <div class="ms-returns__card">
+        <h3>Before You Request a Return</h3>
+        <ul>
+          <li>Confirm the item is new and unused.</li>
+          <li>Make sure the purchase was made within the last 30 days.</li>
+          <li>Have your order number and contact information ready.</li>
+          <li>If the item is defective or damaged, call us before sending anything back.</li>
+        </ul>
+      </div>
+
+      <div class="ms-returns__card">
+        <h3>What to Include</h3>
+        <ul>
+          <li>Your order number.</li>
+          <li>The name and email address used on the order.</li>
+          <li>The item or items you want to return or exchange.</li>
+          <li>A brief reason for the return or exchange request.</li>
+          <li>Photos if the item is defective or arrived damaged.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ms-returns__card ms-returns__contact">
+      <h3>Need Help?</h3>
+      <p>Our customer service team is available Monday through Friday, 8 AM to 5 PM ET.</p>
+      <p><strong>Call:</strong> <a href="tel:2675802600">267-580-2600</a></p>
+      <p><strong>Email:</strong> <a href="mailto:csr@monroe-systems.com">csr@monroe-systems.com</a></p>
+    </div>
+  </div>
+
+  <div class="ms-returns__bar" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Returns exchanges",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Returns exchanges"
+    }
+  ]
+}
+{% endschema %}
