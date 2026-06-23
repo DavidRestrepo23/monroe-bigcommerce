@@ -250,7 +250,7 @@
   .hero-slider__inner {
     grid-template-columns: 1fr;
     padding: 40px 32px 80px;
-    min-height: 650px;
+    min-height: 520px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -285,8 +285,9 @@
   }
 
   .hero-slider__inner {
-    padding: 40px 20px 64px;
+    padding: 32px 20px 48px;
     gap: 16px;
+    min-height: 440px;
   }
 
   .hero-slider__heading {
