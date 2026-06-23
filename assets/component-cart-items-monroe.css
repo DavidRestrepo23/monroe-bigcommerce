@@ -181,6 +181,9 @@ cart-items cart-remove-button .button {
   color: rgba(var(--color-foreground), 0.5);
   background: transparent;
   transition: color 0.15s ease, background 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 cart-items cart-remove-button .button:before,
