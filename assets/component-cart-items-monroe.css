@@ -165,6 +165,16 @@ cart-items quantity-input.cart-quantity .quantity__input::-webkit-inner-spin-but
   margin: 0;
 }
 
+cart-items .cart-item__quantity-wrapper {
+  align-items: center;
+}
+
+cart-items cart-remove-button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0 1rem;
+}
+
 cart-items cart-remove-button .button {
   border-radius: 50%;
   border: none;
