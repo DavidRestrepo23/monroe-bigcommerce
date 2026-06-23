@@ -1,0 +1,725 @@
+{% comment %}
+  Typewriters.com scoped Typewriter Manuals page section.
+  Safe for Shopify because every CSS selector is nested under #tw-manuals-{{ section.id }},
+  and the JavaScript only queries elements inside this section root.
+{% endcomment %}
+<div id="tw-manuals-{{ section.id }}" class="tw-manuals-section" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #111;">
+
+  <style>
+    /* Scoped styles for Typewriter Manuals page */
+    #tw-manuals-{{ section.id }}{ --ink:#111; --muted:#4a4a4a; --paper:#fbfaf7; --paper2:#f4f1ea; --accent:#d24742; --line:rgba(0,0,0,.14); }
+    #tw-manuals-{{ section.id }} *{ box-sizing:border-box; }
+    #tw-manuals-{{ section.id }} a{ color:var(--accent); text-decoration:none; text-decoration: underline; }
+    #tw-manuals-{{ section.id }} a:hover{ text-decoration:underline; }
+
+    #tw-manuals-{{ section.id }} .tw-topbar,
+    #tw-manuals-{{ section.id }} .tw-bottombar{
+      height: 14px;
+      background: linear-gradient(90deg, var(--accent), #b83a36);
+      border-radius: 999px;
+      margin: 14px 0 22px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-wrap{
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 14px 28px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-hero{
+      background:
+        radial-gradient(circle at 12px 12px, rgba(0,0,0,.04) 2px, transparent 3px) 0 0/18px 18px,
+        linear-gradient(180deg, var(--paper), var(--paper2));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-hero:after{
+      content:"";
+      position:absolute;
+      inset:auto -40px -70px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(210,71,66,.10);
+      filter: blur(1px);
+    }
+
+    #tw-manuals-{{ section.id }} .tw-title{
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: .2px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      max-width: 75ch;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-heroGrid{
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-image{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      box-shadow: 0 6px 14px rgba(0,0,0,.08);
+      background: #fff;
+      height: auto;
+      display: block;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-helpCard{
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.75);
+      border-radius: 14px;
+      padding: 12px 12px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-helpCard h3{
+      margin: 0 0 6px;
+      font-size: 18px;
+      letter-spacing: .15px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-helpCard p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-helpCard .tw-contact{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(0,0,0,.18);
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-controls{
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-searchRow{
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-search{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.16);
+      background: #fff;
+      font-size: 15px;
+      outline: none;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-search:focus{
+      border-color: rgba(210,71,66,.55);
+      box-shadow: 0 0 0 3px rgba(210,71,66,.16);
+    }
+
+    #tw-manuals-{{ section.id }} .tw-btn{
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.16);
+      background: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-btn:hover{ background: #f2f2f2; }
+
+    #tw-manuals-{{ section.id }} .tw-chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-chip{
+      border: 1px solid rgba(0,0,0,.16);
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-chip[aria-pressed="true"]{
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    #tw-manuals-{{ section.id }} .tw-meta{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-tableWrap{
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.12);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    }
+
+    #tw-manuals-{{ section.id }} table{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 820px;
+    }
+
+    #tw-manuals-{{ section.id }} thead th{
+      text-align: left;
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+      background: linear-gradient(180deg, #ffffff, #f7f7f7);
+      font-size: 18px;
+      letter-spacing: .18px;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    #tw-manuals-{{ section.id }} tbody td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      vertical-align: middle;
+      color: var(--ink);
+      font-size: 18px;
+    }
+
+    #tw-manuals-{{ section.id }} tbody tr:hover{ background: #fafafa; }
+
+    #tw-manuals-{{ section.id }} .tw-brandPill{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.14);
+      background: #fff;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-download{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.16);
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-download:hover{
+      background: #f2f2f2;
+      text-decoration: none;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-download .tw-ico{
+      width: 18px;
+      height: 18px;
+      display:inline-block;
+      border-radius: 4px;
+      background: rgba(210,71,66,.14);
+      border: 1px solid rgba(210,71,66,.26);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-download .tw-ico:after{
+      content:"";
+      position:absolute;
+      inset: 4px 6px;
+      border-left: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      transform: rotate(-45deg);
+    }
+
+    /* Mobile cards */
+    #tw-manuals-{{ section.id }} .tw-cards{
+      display:none;
+      margin-top: 14px;
+      gap: 10px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-card{
+      border: 1px solid rgba(0,0,0,.12);
+      background: linear-gradient(180deg, #ffffff, #fbfbfb);
+      border-radius: 18px;
+      padding: 12px 12px;
+      box-shadow: 0 10px 18px rgba(0,0,0,.05);
+    }
+
+    #tw-manuals-{{ section.id }} .tw-cardTop{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-cardTitle{
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-cardMeta{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    #tw-manuals-{{ section.id }} .tw-note{
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 860px){
+      #tw-manuals-{{ section.id }} .tw-heroGrid{ grid-template-columns: 1fr; }
+      #tw-manuals-{{ section.id }} .tw-searchRow{ grid-template-columns: 1fr; }
+      #tw-manuals-{{ section.id }} .tw-tableWrap{ display:none; }
+      #tw-manuals-{{ section.id }} .tw-cards{ display:grid; }
+      #tw-manuals-{{ section.id }} .tw-title{ font-size: 26px; }
+    }
+  </style>
+
+  <div class="tw-topbar"></div>
+
+  <div class="tw-wrap">
+
+    <div class="tw-hero">
+      <h1 class="tw-title">Typewriter Manuals</h1>
+      <p class="tw-sub">
+        Find your brand and model fast, then download the matching manual. Works best if you copy the model name from the label on your machine.
+      </p>
+
+      <div class="tw-heroGrid">
+        {% if section.settings.hero_image != blank %}
+          <img class="tw-image"
+               src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+               alt="{{ section.settings.hero_image.alt | default: 'Typewriter manuals reference' | escape }}"
+               width="665" height="258"
+               loading="lazy" />
+        {% else %}
+          <img class="tw-image"
+               src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/product_images/uploaded_images/screen-shot-2020-12-29-at-11.59.54-am.png"
+               alt="Typewriter manuals reference"
+               width="665" height="258"
+               loading="lazy" />
+        {% endif %}
+
+        <div class="tw-helpCard">
+          <h3><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#d24742;"></span> Need help identifying your model?</h3>
+          <p>Look for a sticker or plate on the underside or back. Search by brand and model number below.</p>
+          <div class="tw-contact">
+            <strong style="color:#111;">Questions?</strong><br />
+            Live chat is fastest. You can also call <a href="tel:4043771884">404-377-1884</a> or email
+            <a href="mailto:info@typewriters.com" target="_blank" rel="noopener">info@typewriters.com</a>
+            Monday to Friday, 8 AM to 5 PM EST.
+          </div>
+        </div>
+      </div>
+
+      <div class="tw-controls" aria-label="Manual search controls">
+        <div class="tw-searchRow">
+          <input data-tw-search class="tw-search" type="search"
+                 placeholder="Search brand or model (example: Wheelwriter 70, EM-630, WPT-160)"
+                 aria-label="Search manuals" />
+          <button data-tw-clear class="tw-btn" type="button">Clear</button>
+        </div>
+
+        <div data-tw-chips class="tw-chips" role="group" aria-label="Filter by brand">
+          <!-- chips injected by JS -->
+        </div>
+
+        <div class="tw-meta">
+          <div data-tw-count aria-live="polite"></div>
+          <div>Tip: search works on brand + model text</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop table -->
+    <div class="tw-tableWrap" aria-label="Manuals table">
+      <table data-tw-table>
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Model Number</th>
+            <th>Manual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tw-brandPill">Brother</span></td>
+            <td>EM-530</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/Brother+EM-530/em530+manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Brother</span></td>
+            <td>EM-630</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/Brother+EM-630/EM-630+and+CM2000+book.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 1</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/Wheelwriter+1/IBM+Personal+Wheelwriter+Typewriter+6781.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 2</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+2/IBM+Wheelwriter+and+Personal+WW+2+1000.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 3</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/Wheelwriter+3/Wheelwriter+3+Series++2+Typewriter+6782.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 5</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+5/IBM+WW+5+and+6+6747+and+6747+2.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 6</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+5/IBM+WW+5+and+6+6747+and+6747+2.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 6 Series II</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+6+Series+II/IBM+Wheelwriter+6+Series+II+Typewriter+6784.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 10</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+10/IBM+Wheelwriter+10+Series+II+Tyepwriter+6783.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 15</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+15/IBM+Wheelwriter+15+By+Lexmark.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 30</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+30/WW+30+Series+II.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 35</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+35/IBM+Wheelwriter+35+Sereies+II+Typewriter+6787-2+OPerator's+Guide.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 50</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+50/IBM+Wheelwriter+50+Series+II+Typewriter+6788+Operator's+Guide.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 70</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+70/IBM+Wheelwriter+70+Typewriter+6789.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 1000</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+1000/IBM+Wheelwriter+and+Personal+WW+2+1000.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 1500</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+1500/Lexmark+Wheelwriter+1500.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 2000</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+2000/IBM+Lexmark+Wheelwriter+2000.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 3000</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+3000/IBM+WW3000.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 3500</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+3500/Lexmark+IBM+Wheelwriter+3500.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 5000</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+5000/IBM+Wheelwriter+5000+by+Lexmark.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter 7000</td>
+            <td><a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Wheelwriter+7000/IBM+Lexmark+Wheelwriter+7000.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+
+          <tr>
+            <td><span class="tw-brandPill">IBM</span></td>
+            <td>Wheelwriter Parts Manual</td>
+            <td>
+              <a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Parts+Catalogs/IBM+Parts+Catalog+1/Typewriter+part+catalog+Ibm+Book1.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Parts manual one</a>
+              <span style="color:#666;">&nbsp;&nbsp;</span>
+              <a class="tw-download" href="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Downloadable+Typewriter+Manuals/Typewriter+Manuals/IBM+Parts+Catalogs/IBM+Parts+Catalog+2/Typerwriter+Part+catalog+Ibm+Book2.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Parts manual two</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>AE 710</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/AE710_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>AE 740</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/AE740_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>AE 800</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/AE800_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>AE 830</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/AE830_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>WPT-150</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/WPT150_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+          <tr>
+            <td><span class="tw-brandPill">Nakajima</span></td>
+            <td>WPT-160</td>
+            <td><a class="tw-download" href="https://typewritermanuals.s3.us-east-1.amazonaws.com/Nakajima/WPT160_Operation_Manual.pdf" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>Download manual</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards injected by JS -->
+    <div data-tw-cards class="tw-cards" aria-label="Manuals list"></div>
+
+    <div class="tw-note">
+      If you do not see your model, reach out via live chat and we will point you to the closest matching manual.
+    </div>
+  </div>
+
+  <div class="tw-bottombar"></div>
+</div>
+
+
+<script>
+  (function(){
+    function initTypewriterManuals(root){
+      if(!root || root.getAttribute('data-tw-ready') === 'true') return;
+      root.setAttribute('data-tw-ready', 'true');
+
+      var table = root.querySelector('[data-tw-table]');
+      var tbody = table ? table.tBodies[0] : null;
+      if(!tbody) return;
+
+      var search = root.querySelector('[data-tw-search]');
+      var clear = root.querySelector('[data-tw-clear]');
+      var chipsWrap = root.querySelector('[data-tw-chips]');
+      var countEl = root.querySelector('[data-tw-count]');
+      var cardsWrap = root.querySelector('[data-tw-cards]');
+
+      function text(el){ return (el && el.textContent ? el.textContent : '').trim(); }
+
+      var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr')).map(function(tr){
+        var tds = tr.querySelectorAll('td');
+        var brand = text(tds[0]);
+        var model = text(tds[1]);
+        var manualLinks = Array.prototype.slice.call((tds[2] || tr).querySelectorAll('a')).map(function(a){
+          return { href: a.getAttribute('href'), label: text(a) || 'Download manual' };
+        });
+        return { tr: tr, brand: brand.replace(/\s+/g,' ').trim(), model: model.replace(/\s+/g,' ').trim(), links: manualLinks };
+      });
+
+      var brandSet = {};
+      rows.forEach(function(r){ if(r.brand) brandSet[r.brand] = true; });
+      var brands = Object.keys(brandSet).sort();
+      var activeBrand = 'All';
+
+      function makeChip(name){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tw-chip';
+        b.textContent = name;
+        b.setAttribute('aria-pressed', name === 'All' ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          activeBrand = name;
+          Array.prototype.slice.call(chipsWrap.querySelectorAll('.tw-chip')).forEach(function(x){
+            x.setAttribute('aria-pressed', x.textContent === name ? 'true' : 'false');
+          });
+          apply();
+        });
+        return b;
+      }
+
+      if(chipsWrap){
+        chipsWrap.innerHTML = '';
+        chipsWrap.appendChild(makeChip('All'));
+        brands.forEach(function(b){ chipsWrap.appendChild(makeChip(b)); });
+      }
+
+      function matches(r, q){
+        var hay = (r.brand + ' ' + r.model).toLowerCase();
+        return hay.indexOf(q) !== -1;
+      }
+
+      function esc(str){
+        return String(str || '')
+          .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+          .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+      }
+
+      function renderCards(visible){
+        if(!cardsWrap) return;
+        cardsWrap.innerHTML = '';
+        visible.forEach(function(r){
+          var card = document.createElement('div');
+          card.className = 'tw-card';
+          var linksHtml = r.links.map(function(l){
+            return '<a class="tw-download" href="' + esc(l.href) + '" target="_blank" rel="noopener"><span class="tw-ico" aria-hidden="true"></span>' + esc(l.label || 'Download manual') + '</a>';
+          }).join('<span style="display:inline-block;width:10px;"></span>');
+
+          card.innerHTML =
+            '<div class="tw-cardTop">' +
+              '<p class="tw-cardTitle" style="margin:0;"><span class="tw-brandPill">' + esc(r.brand || '') + '</span></p>' +
+              '<span style="display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.14);background:rgba(210,71,66,.08);color:#7a1f1c;font-size:12px;">Manual</span>' +
+            '</div>' +
+            '<p class="tw-cardMeta"><strong style="color:#111;">Model:</strong> ' + esc(r.model || '') + '</p>' +
+            '<div>' + linksHtml + '</div>';
+
+          cardsWrap.appendChild(card);
+        });
+      }
+
+      function apply(){
+        var q = (search && search.value ? search.value : '').trim().toLowerCase();
+        var visible = rows.filter(function(r){
+          var brandOk = (activeBrand === 'All') || (r.brand === activeBrand);
+          var qOk = !q || matches(r, q);
+          return brandOk && qOk;
+        });
+
+        rows.forEach(function(r){ r.tr.style.display = 'none'; });
+        visible.forEach(function(r){ r.tr.style.display = ''; });
+
+        if(countEl){
+          countEl.textContent = visible.length + ' manual' + (visible.length === 1 ? '' : 's') + ' shown';
+        }
+
+        renderCards(visible);
+      }
+
+      if(search){
+        var t;
+        search.addEventListener('input', function(){
+          clearTimeout(t);
+          t = setTimeout(apply, 60);
+        });
+      }
+
+      if(clear){
+        clear.addEventListener('click', function(){
+          if(search) search.value = '';
+          activeBrand = 'All';
+          if(chipsWrap){
+            Array.prototype.slice.call(chipsWrap.querySelectorAll('.tw-chip')).forEach(function(x){
+              x.setAttribute('aria-pressed', x.textContent === 'All' ? 'true' : 'false');
+            });
+          }
+          apply();
+        });
+      }
+
+      apply();
+    }
+
+    function bootTypewriterManuals(){
+      initTypewriterManuals(document.getElementById('tw-manuals-{{ section.id }}'));
+    }
+
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', bootTypewriterManuals);
+    } else {
+      bootTypewriterManuals();
+    }
+
+    document.addEventListener('shopify:section:load', function(event){
+      var loadedRoot = event.target && event.target.querySelector ? event.target.querySelector('#tw-manuals-{{ section.id }}') : null;
+      initTypewriterManuals(loadedRoot);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Typewriter Manuals",
+  "tag": "section",
+  "class": "section-typewriter-manuals",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Typewriter Manuals"
+    }
+  ]
+}
+{% endschema %}
