@@ -72,7 +72,7 @@
   padding: 10px 24px;
   border: 0;
   border-radius: 185px;
-  background: var(--wl-accent, #007681);
+  background: var(--wl-accent, #be322d);
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
@@ -225,7 +225,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--wl-accent, #007681);
+  background: var(--wl-accent, #be322d);
   color: #fff;
   border: 0;
   border-radius: 999px;
@@ -271,7 +271,7 @@
   padding: 12px 28px;
   border: 0;
   border-radius: 999px;
-  background: var(--wl-accent, #007681);
+  background: var(--wl-accent, #be322d);
   color: #fff;
   font-weight: 600;
   text-decoration: none;

@@ -1,6 +1,6 @@
 cart-items,
 #main-cart-footer {
-  --monroe-accent: var(--color-primary, #007681);
+  --monroe-accent: var(--color-primary, #be322d);
   --monroe-line: #ececec;
   --monroe-surface: #f4f4f4;
   --monroe-border: #d6d6d6;
@@ -224,7 +224,7 @@ cart-items cart-remove-button .button:not([disabled]):hover {
 }
 
 #main-cart-footer .cart__checkout-button.button:not([disabled]):hover {
-  background: #005f6a;
+  background: #9a2823;
 }
 
 #main-cart-footer .cart__checkout-button.button[disabled] {

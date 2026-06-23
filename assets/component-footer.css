@@ -258,7 +258,7 @@
 .site-footer__social a {
   width: 48px;
   height: 48px;
-  background: var(--ft-social-bg, linear-gradient(90deg, #007681 0%, #71BAC0 100%));
+  background: var(--ft-social-bg, linear-gradient(90deg, #be322d 0%, #71BAC0 100%));
   color: #fff;
   border-radius: 50%;
   display: inline-flex;

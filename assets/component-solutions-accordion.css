@@ -44,7 +44,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--sol-icon-bg, linear-gradient(90deg, #007681 0%, #71BAC0 100%));
+  background: var(--sol-icon-bg, linear-gradient(90deg, #be322d 0%, #71BAC0 100%));
   display: flex;
   align-items: center;
   justify-content: center;

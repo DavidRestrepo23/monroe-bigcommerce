@@ -251,7 +251,7 @@ cart-drawer .cart-drawer__icon-btn {
 }
 
 cart-drawer .cart-drawer__icon-btn:hover {
-  color: var(--color-primary, #007681);
+  color: var(--color-primary, #be322d);
   background: #f6f6f6;
 }
 
@@ -297,7 +297,7 @@ cart-drawer .cart-drawer__subtotal-label {
 cart-drawer .cart-drawer__subtotal-value {
   font-size: 24px;
   font-weight: 600;
-  color: var(--color-primary, #007681);
+  color: var(--color-primary, #be322d);
   font-family: var(--font-family);
 }
 
@@ -319,12 +319,12 @@ cart-drawer .cart-drawer__btn {
 }
 
 cart-drawer .cart-drawer__btn--primary {
-  background: var(--color-primary, #007681);
+  background: var(--color-primary, #be322d);
   color: #fff;
 }
 
 cart-drawer .cart-drawer__btn--primary:hover {
-  background: #005f6a;
+  background: #9a2823;
 }
 
 cart-drawer .cart-drawer__btn--primary:disabled {
