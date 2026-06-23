@@ -482,7 +482,8 @@
 }
 
 .btn-add-to-cart:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  background: #9a2823;
+  color: #fff;
 }
 
 .btn-add-to-cart:disabled {
