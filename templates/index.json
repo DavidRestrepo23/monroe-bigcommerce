@@ -538,7 +538,7 @@
       "name": "Recent Posts",
       "settings": {
         "heading": "RECENT POSTS",
-        "blog": "news",
+        "blog": "posts",
         "post_limit": 3,
         "button_label": "View All Posts",
         "read_more_label": "Read More",
