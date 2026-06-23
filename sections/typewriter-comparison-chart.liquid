@@ -1,0 +1,1822 @@
+{% comment %}
+  Typewriters.com scoped Typewriter Comparison Chart section for Shopify.
+  Built only from the CSS, HTML, and JavaScript provided for this page.
+  Styles and script are scoped to #tw-compare-{{ section.id }} so they do not affect other pages.
+{% endcomment %}
+
+<style>
+/* =====================================================
+   Typewriters.com Comparison Chart - Shopify Scoped Section
+   All visible page styling is scoped to this section ID only.
+   ===================================================== */
+#tw-compare-{{ section.id }},
+#tw-compare-{{ section.id }} *{
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#000000;
+  font-size:18px;
+}
+
+#tw-compare-{{ section.id }}{
+  --tw-accent:#d24742;
+  --tw-border:#d24742;
+  --tw-bg:#ffffff;
+  --tw-soft:rgba(210,71,66,.08);
+  line-height:1.6;
+  width:100%;
+  max-width:100%;
+  overflow:visible;
+}
+
+#tw-compare-{{ section.id }} h2{
+  font-size:40px;
+  line-height:1.2;
+  margin:0 0 18px;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} h3{
+  font-size:25px;
+  line-height:1.25;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} h4{
+  font-size:20px;
+  line-height:1.3;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} a{
+  color:#000000;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+#tw-compare-{{ section.id }} a:hover,
+#tw-compare-{{ section.id }} a:focus{
+  color:#000000;
+  text-decoration-thickness:2px;
+}
+
+#tw-compare-{{ section.id }} button,
+#tw-compare-{{ section.id }} input{
+  font-family:Arial, Helvetica, sans-serif;
+  color:#000000;
+  font-size:18px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__bar{
+  background:var(--tw-accent);
+  height:35px;
+  width:100%;
+  margin:0 0 18px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__intro{
+  margin:0 0 18px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__intro p{
+  margin:0 0 16px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__title{
+  text-align:center;
+  text-decoration:underline;
+}
+
+#tw-compare-{{ section.id }} .tw-sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Controls */
+#tw-compare-{{ section.id }} .tw-compare__controls{
+  position:relative;
+  isolation:isolate;
+  border:3px solid var(--tw-border);
+  padding:14px;
+  margin:0 0 14px;
+  background:#ffffff;
+  overflow:visible;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__controlsRow{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  align-items:stretch;
+  width:100%;
+  height:auto;
+  min-height:0;
+  overflow:visible;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__field{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin:0;
+  overflow:visible;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__fieldLabel{
+  display:block;
+  font-weight:700;
+  margin:0 0 8px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__search{
+  display:block;
+  width:100%;
+  max-width:100%;
+  padding:12px 14px;
+  border:2px solid var(--tw-border);
+  border-radius:10px;
+  background:#ffffff;
+  outline:none;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__search:focus{
+  box-shadow:0 0 0 3px rgba(210,71,66,.18);
+}
+
+#tw-compare-{{ section.id }} .tw-compare__toggles,
+#tw-compare-{{ section.id }} .tw-compare__brands,
+#tw-compare-{{ section.id }} .tw-compare__trayActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__toggles{
+  width:100%;
+  margin:0;
+  padding:0;
+  clear:both;
+  float:none;
+  overflow:visible;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__toggle,
+#tw-compare-{{ section.id }} .tw-compare__chip,
+#tw-compare-{{ section.id }} .tw-compare__pick,
+#tw-compare-{{ section.id }} .tw-compare__trayBtn,
+#tw-compare-{{ section.id }} .tw-compare__modalClose{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:2px solid var(--tw-border);
+  border-radius:999px;
+  background:#ffffff;
+  padding:8px 12px;
+  line-height:1.2;
+  cursor:pointer;
+  text-decoration:none;
+  user-select:none;
+  position:static;
+  float:none;
+  transform:none;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__toggleInput,
+#tw-compare-{{ section.id }} .tw-compare__pickInput{
+  width:18px;
+  height:18px;
+  margin:0;
+  position:static;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__brands{
+  margin-top:14px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__chip[aria-pressed="true"],
+#tw-compare-{{ section.id }} .tw-compare__trayBtn--primary{
+  background:var(--tw-accent);
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__status{
+  margin:12px 0 0;
+}
+
+/* Compare tray */
+#tw-compare-{{ section.id }} .tw-compare__tray{
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:#ffffff;
+  border:3px solid var(--tw-border);
+  margin:0 0 14px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__trayInner{
+  display:grid;
+  grid-template-columns:150px 1fr 260px;
+  gap:14px;
+  align-items:center;
+  padding:14px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__trayTitle,
+#tw-compare-{{ section.id }} .tw-compare__traySlotLabel,
+#tw-compare-{{ section.id }} .tw-compare__modalKey,
+#tw-compare-{{ section.id }} .tw-compare__modalHead{
+  font-weight:700;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__traySlots{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__traySlot{
+  border:2px solid var(--tw-border);
+  border-radius:12px;
+  padding:10px;
+  min-height:70px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__traySlotTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:0 0 8px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__trayRemove{
+  border:0;
+  background:transparent;
+  color:#000000;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:0;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__trayBtn{
+  border-radius:12px;
+  padding:10px 14px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__trayBtn[disabled]{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* Table */
+#tw-compare-{{ section.id }} .tw-compare__tablewrap{
+  border:3px solid var(--tw-border);
+  padding:12px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  position:relative;
+  max-width:100%;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__tablewrap:focus{
+  outline:3px solid rgba(210,71,66,.22);
+  outline-offset:3px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__table{
+  width:100%;
+  min-width:1100px;
+  border-collapse:collapse;
+  background:#ffffff;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__caption{
+  text-align:center;
+  padding:12px;
+  font-weight:700;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__table th,
+#tw-compare-{{ section.id }} .tw-compare__table td{
+  border:2px solid var(--tw-border);
+  padding:10px;
+  text-align:center;
+  vertical-align:middle;
+  background:#ffffff;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__model{
+  font-weight:700;
+  position:relative;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__image img{
+  max-width:150px;
+  height:auto;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__group th{
+  text-align:left;
+  background:var(--tw-soft);
+  font-weight:700;
+}
+
+@media (min-width:751px){
+  #tw-compare-{{ section.id }} .tw-compare__table thead th{
+    position:sticky;
+    top:0;
+    background:#ffffff;
+    z-index:3;
+  }
+}
+
+@media (hover:hover) and (min-width:751px){
+  #tw-compare-{{ section.id }} .tw-compare__row:hover td,
+  #tw-compare-{{ section.id }} .tw-compare__row:hover th[scope="row"],
+  #tw-compare-{{ section.id }} .tw-compare__table td.tw-compare__cellActive,
+  #tw-compare-{{ section.id }} .tw-compare__table th.tw-compare__cellActive{
+    background:var(--tw-soft);
+  }
+}
+
+#tw-compare-{{ section.id }} .tw-compare__pick{
+  margin:10px auto 0;
+  width:max-content;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__row[data-selected="true"] td,
+#tw-compare-{{ section.id }} .tw-compare__row[data-selected="true"] th[scope="row"]{
+  background:var(--tw-soft);
+}
+
+/* Modal */
+#tw-compare-{{ section.id }} .tw-compare__modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalBackdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalPanel{
+  position:relative;
+  max-width:1100px;
+  width:calc(100% - 24px);
+  margin:24px auto;
+  background:#ffffff;
+  border-radius:16px;
+  overflow:hidden;
+  border:3px solid var(--tw-border);
+  max-height:calc(100% - 48px);
+  display:flex;
+  flex-direction:column;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:2px solid var(--tw-border);
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalTitle{
+  font-weight:700;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalClose{
+  border-radius:12px;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalBody{
+  padding:14px 16px;
+  overflow:auto;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalGrid{
+  display:grid;
+  grid-template-columns:240px 1fr 1fr;
+  border:2px solid var(--tw-border);
+  border-radius:14px;
+  overflow:hidden;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalCell{
+  border-right:2px solid var(--tw-border);
+  border-bottom:2px solid var(--tw-border);
+  padding:10px;
+  line-height:1.35;
+  background:#ffffff;
+  color:#000000;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalCell:nth-child(3n){
+  border-right:0;
+}
+
+#tw-compare-{{ section.id }} .tw-compare__modalHead{
+  background:var(--tw-soft);
+}
+
+@media (min-width:1400px){
+  #tw-compare-{{ section.id }} .tw-compare__controlsRow{
+    grid-template-columns:minmax(560px, 1fr) auto;
+    align-items:end;
+  }
+}
+
+@media (max-width:980px){
+  #tw-compare-{{ section.id }} .tw-compare__trayInner{
+    grid-template-columns:1fr;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__trayActions{
+    justify-content:flex-start;
+  }
+}
+
+@media (max-width:750px){
+  #tw-compare-{{ section.id }} .tw-compare__bar{
+    height:24px;
+  }
+
+  #tw-compare-{{ section.id }} h2{
+    font-size:40px;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__tablewrap{
+    padding:8px;
+    overflow:hidden;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table{
+    min-width:0;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table thead{
+    display:none;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__caption{
+    display:block;
+    padding:10px;
+    text-align:left;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table,
+  #tw-compare-{{ section.id }} .tw-compare__table tbody,
+  #tw-compare-{{ section.id }} .tw-compare__table tr,
+  #tw-compare-{{ section.id }} .tw-compare__table td,
+  #tw-compare-{{ section.id }} .tw-compare__table th{
+    display:block;
+    width:100%;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__group th{
+    border:0;
+    padding:16px 0 8px;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__row{
+    border:3px solid var(--tw-border);
+    margin:12px 0;
+    padding:12px;
+    background:#ffffff;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table td,
+  #tw-compare-{{ section.id }} .tw-compare__table th[scope="row"]{
+    border:0;
+    text-align:left;
+    padding:8px 0 10px;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__image{
+    padding-bottom:10px;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__image img{
+    max-width:100%;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table td[data-label],
+  #tw-compare-{{ section.id }} .tw-compare__table th[data-label]{
+    display:grid;
+    grid-template-columns:minmax(120px,170px) minmax(0,1fr);
+    gap:12px;
+    align-items:start;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__table td[data-label]::before,
+  #tw-compare-{{ section.id }} .tw-compare__table th[data-label]::before{
+    content:attr(data-label);
+    font-weight:700;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__row a{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__tray{
+    position:static;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__traySlots{
+    grid-template-columns:1fr;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__modalGrid{
+    grid-template-columns:1fr;
+  }
+
+  #tw-compare-{{ section.id }} .tw-compare__modalCell{
+    border-right:0;
+  }
+}
+</style>
+
+<section id="tw-compare-{{ section.id }}" class="tw-compare" aria-labelledby="tw-compare-title-{{ section.id }}">
+  <div class="tw-compare__bar" aria-hidden="true"></div>
+
+  <div class="tw-compare__intro">
+    <p>
+      Choosing the right typewriter does not have to be complicated. Our <strong>Typewriter Comparison Chart</strong> makes it easy to compare typewriter models side by side, helping you quickly evaluate key features, specifications, and functionality across a wide range of electric and electronic typewriters we offer.
+    </p>
+    <p>
+      At Typewriters.com, we know that every user has different needs, whether you are purchasing a typewriter for an office, school, legal work, or personal use. This detailed comparison chart is designed to help you find the best typewriter for your specific requirements by clearly outlining important features such as paper capacity, display type, memory, correction options, battery backup, dimensions, and recommended supplies. Our selection includes trusted brands like IBM, Nakajima, Royal, and Brother, all known for their reliability, build quality, and long-term performance.
+    </p>
+    <p class="tw-compare__contact">
+      If you need help selecting the right model or have questions about any typewriter listed in this comparison chart, our experienced customer support team is here to help. You can contact us via live chat, email us at
+      <a class="tw-compare__link" href="mailto:info@typewriters.com" title="Typewriters.com Customer Service Email Address">info@typewriters.com</a>,
+      or directly by phone at
+      <a class="tw-compare__link" href="tel:+14043771884" title="Typewriters.com Customer Service Phone Number">(404) 377-1884</a>.
+      Our team is available Monday through Friday from 8 AM to 5 PM ET and is happy to assist with product recommendations, compatibility questions, and ordering support.
+    </p>
+  </div>
+
+  <h2 id="tw-compare-title-{{ section.id }}" class="tw-compare__title">Our Typewriter Comparison Chart</h2>
+
+  <!-- Accessibility helper -->
+  <p id="tw-compare-help-{{ section.id }}" class="tw-sr-only">
+    This comparison table scrolls horizontally on smaller screens. Use arrow keys or swipe to view more columns.
+  </p>
+
+  <!-- Controls -->
+  <div class="tw-compare__controls" role="region" aria-label="Comparison chart controls">
+    <div class="tw-compare__controlsRow">
+      <label class="tw-compare__field">
+        <span class="tw-compare__fieldLabel">Search models</span>
+        <input class="tw-compare__search" type="search" placeholder="Search by model name" autocomplete="off" />
+      </label>
+
+      <div class="tw-compare__toggles" aria-label="Feature filters">
+        <label class="tw-compare__toggle">
+          <input type="checkbox" class="tw-compare__toggleInput" data-filter="Spell Check" aria-controls="tw-compare-table-{{ section.id }}" />
+          <span>Spell Check</span>
+        </label>
+        <label class="tw-compare__toggle">
+          <input type="checkbox" class="tw-compare__toggleInput" data-filter="Battery Backup" aria-controls="tw-compare-table-{{ section.id }}" />
+          <span>Battery Backup</span>
+        </label>
+        <label class="tw-compare__toggle">
+          <input type="checkbox" class="tw-compare__toggleInput" data-filter="Bold" aria-controls="tw-compare-table-{{ section.id }}" />
+          <span>Bold</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="tw-compare__brands" role="group" aria-label="Brand filters">
+      <!-- JS injects brand chips here -->
+    </div>
+
+    <p class="tw-compare__status" role="status" aria-live="polite"></p>
+  </div>
+
+  <!-- Compare tray -->
+  <div class="tw-compare__tray" role="region" aria-label="Selected models for comparison" hidden>
+    <div class="tw-compare__trayInner">
+      <div class="tw-compare__trayTitle">Compare (up to 2)</div>
+
+      <div class="tw-compare__traySlots" aria-label="Selected models">
+        <div class="tw-compare__traySlot" data-slot="0" aria-label="Selected model 1">
+          <div class="tw-compare__traySlotTop">
+            <span class="tw-compare__traySlotLabel">Model 1</span>
+            <button type="button" class="tw-compare__trayRemove" data-remove="0" aria-label="Remove model 1">Remove</button>
+          </div>
+          <div class="tw-compare__trayName">None selected</div>
+        </div>
+
+        <div class="tw-compare__traySlot" data-slot="1" aria-label="Selected model 2">
+          <div class="tw-compare__traySlotTop">
+            <span class="tw-compare__traySlotLabel">Model 2</span>
+            <button type="button" class="tw-compare__trayRemove" data-remove="1" aria-label="Remove model 2">Remove</button>
+          </div>
+          <div class="tw-compare__trayName">None selected</div>
+        </div>
+      </div>
+
+      <div class="tw-compare__trayActions">
+        <button type="button" class="tw-compare__trayBtn tw-compare__trayBtn--primary" data-action="view" disabled>
+          View side by side
+        </button>
+        <button type="button" class="tw-compare__trayBtn" data-action="clear">
+          Clear
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div
+    class="tw-compare__tablewrap"
+    role="region"
+    aria-label="Typewriter feature comparison table"
+    aria-describedby="tw-compare-help-{{ section.id }}"
+    tabindex="0"
+  >
+    <table id="tw-compare-table-{{ section.id }}" class="tw-compare__table">
+      <caption class="tw-compare__caption">
+        Compare typewriter features by model, including paper capacity, display, memory, correction memory, battery backup, bold,
+        spell check, dimensions, weight, warranty, and recommended supplies.
+      </caption>
+
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Model</th>
+          <th scope="col">Paper Capacity</th>
+          <th scope="col">Display</th>
+          <th scope="col">Memory</th>
+          <th scope="col">Correction Memory</th>
+          <th scope="col">Battery Backup</th>
+          <th scope="col">Bold</th>
+          <th scope="col">Spell Check</th>
+          <th scope="col">Dimensions</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Warranty</th>
+          <th scope="col">Recommended Supplies</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- IBM -->
+        <tr class="tw-compare__group">
+          <th scope="rowgroup" colspan="13">IBM</th>
+        </tr>
+
+        <!-- Personal Wheelwriter 1 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-personal-wheelwriter-1-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Personal Wheelwriter 1">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-1-cutout.png?t=1685628043" alt="IBM Wheelwriter 1 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-personal-wheelwriter-1-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Personal Wheelwriter 1</a>
+          </th>
+          <td data-label="Paper Capacity">14.75 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">No</td>
+          <td data-label="Correction Memory">1 line</td>
+          <td data-label="Battery Backup">No</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">5.7 in H x 19.1 in W x 17.1 in D</td>
+          <td data-label="Weight">23 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Personal Wheelwriter 2 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/new-and-reconditioned-typewriters/ibm-lexmark-personal-wheelwriter-2-electric-typewriter-reconditioned-/" target="_blank" rel="noopener" title="IBM Personal Wheelwriter 2">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-2-cutout.png?t=1685628246" alt="IBM Wheelwriter 2 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/new-and-reconditioned-typewriters/ibm-lexmark-personal-wheelwriter-2-electric-typewriter-reconditioned-/" target="_blank" rel="noopener">Personal Wheelwriter 2</a>
+          </th>
+          <td data-label="Paper Capacity">14.75 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">No</td>
+          <td data-label="Correction Memory">1K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">5.63 in H x 19.13 in W x 17.09 in D</td>
+          <td data-label="Weight">24 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 3 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 3">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-3-cutout.png?t=1685628483" alt="IBM Wheelwriter 3 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 3</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">No</td>
+          <td data-label="Correction Memory">72 characters</td>
+          <td data-label="Battery Backup">No</td>
+          <td data-label="Bold">No</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 5 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-5-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 5">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-5-cutout.png?t=1685630374" alt="IBM Wheelwriter 5 typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-5-reconditioned/" target="_blank" rel="noopener">Wheelwriter 5</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">7K</td>
+          <td data-label="Correction Memory">200 characters</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">No</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">6.6 in H x 21.4 in W x 18 in D</td>
+          <td data-label="Weight">33 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 6 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-6-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 6">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-6-cutout.png?t=1685630722" alt="IBM Wheelwriter 6 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-6-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 6</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">31K</td>
+          <td data-label="Correction Memory">200 characters</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">No</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 6 Series II -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/new-and-reconditioned-typewriters/ibm-lexmark-wheelwriter-6-series-ii-electric-typewriter-reconditioned-/" target="_blank" rel="noopener" title="IBM Wheelwriter 6 Series II">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-6-series-ii-chart-cutout.png?t=1685631995" alt="IBM Wheelwriter 6 Series II electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/new-and-reconditioned-typewriters/ibm-lexmark-wheelwriter-6-series-ii-electric-typewriter-reconditioned-/" target="_blank" rel="noopener">Wheelwriter 6 Series II</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">31K</td>
+          <td data-label="Correction Memory">200 characters</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">No</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 10 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-10-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 10">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-10-cutout.png?t=1685628688" alt="IBM Wheelwriter 10 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-10-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 10</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">Reprint</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 15 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-15-electronic-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 15">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-15-cutout.png?t=1685628862" alt="IBM Wheelwriter 15 electronic typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-15-electronic-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 15</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">Reprint</td>
+          <td data-label="Correction Memory">6K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 30 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-30-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 30">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-30-cutout.png?t=1685630941" alt="IBM Wheelwriter 30 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-30-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 30</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">1 line ext</td>
+          <td data-label="Memory">30K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">7.5 in H x 21.3 in W x 18.1 in D</td>
+          <td data-label="Weight">28 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 35 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-35-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 35">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-35-cutout.png?t=1685631171" alt="IBM Wheelwriter 35 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-35-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 35</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">1 line ext</td>
+          <td data-label="Memory">60K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">7.5 in H x 21.3 in W x 18.1 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 50 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-50-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 50">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-50-cutout.png?t=1685631514" alt="IBM Wheelwriter 50 typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-50-reconditioned/" target="_blank" rel="noopener">Wheelwriter 50</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">9 in monitor</td>
+          <td data-label="Memory">60K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 70 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-70-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 70">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-70-cutout.png?t=1685631818" alt="IBM Wheelwriter 70 typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-70-reconditioned/" target="_blank" rel="noopener">Wheelwriter 70</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">9 in monitor</td>
+          <td data-label="Memory">80K</td>
+          <td data-label="Correction Memory">1 line</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">27 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 1000 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-1000-electric-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 1000">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/product_images/uploaded_images/ibm-wheelwriter-1000-cutout.png" alt="IBM Wheelwriter 1000 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-1000-electric-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 1000</a>
+          </th>
+          <td data-label="Paper Capacity">14.75 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">Reprint</td>
+          <td data-label="Correction Memory">6K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">5.7 in H x 19.1 in W x 17.1 in D</td>
+          <td data-label="Weight">23 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 1500 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-1500-electronic-typewriter-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 1500">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-1500-cutout.png?t=1685627012" alt="IBM Wheelwriter 1500 electronic typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-1500-electronic-typewriter-reconditioned/" target="_blank" rel="noopener">Wheelwriter 1500</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">10K phrase</td>
+          <td data-label="Correction Memory">6K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 2000 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-2000-electric-typewriter-with-32k-storage-and-spell-check-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 2000">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-2000-cutout.png?t=1685629560" alt="IBM Wheelwriter 2000 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-2000-electric-typewriter-with-32k-storage-and-spell-check-reconditioned/" target="_blank" rel="noopener">Wheelwriter 2000</a>
+          </th>
+          <td data-label="Paper Capacity">14.75 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">32K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">5.7 in H x 19.1 in W x 17.1 in D</td>
+          <td data-label="Weight">23 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 2500 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-2500-electric-typewriter-48k-storage-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 2500">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-2500-cutout.png?t=1685630215" alt="IBM Wheelwriter 2500 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-2500-electric-typewriter-48k-storage-reconditioned/" target="_blank" rel="noopener">Wheelwriter 2500</a>
+          </th>
+          <td data-label="Paper Capacity">14.75 in</td>
+          <td data-label="Display">1 line ext</td>
+          <td data-label="Memory">48K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">5.7 in H x 19.1 in W x 17.1 in D</td>
+          <td data-label="Weight">23 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 3000 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3000-electric-typewriter-48k-memory-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 3000">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-3000-cutout.png?t=1685627240" alt="IBM Wheelwriter 3000 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3000-electric-typewriter-48k-memory-reconditioned/" target="_blank" rel="noopener">Wheelwriter 3000</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">48K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 3500 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3500-electric-typewriter-60k-storage-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 3500">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-3500-cutout.png?t=1685627692" alt="IBM Wheelwriter 3500 electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-3500-electric-typewriter-60k-storage-reconditioned/" target="_blank" rel="noopener">Wheelwriter 3500</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">1 line ext</td>
+          <td data-label="Memory">60K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 5000 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-5000-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 5000">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-5000-cutout.png?t=1685631355" alt="IBM Wheelwriter 5000 typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-5000-reconditioned/" target="_blank" rel="noopener">Wheelwriter 5000</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">9 in monitor</td>
+          <td data-label="Memory">60K</td>
+          <td data-label="Correction Memory">4K</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Wheelwriter 7000 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-7000-reconditioned/" target="_blank" rel="noopener" title="IBM Wheelwriter 7000">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/ibm-wheelwriter-7000-cutout.png?t=1685631667" alt="IBM Wheelwriter 7000 typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/ibm-lexmark-wheelwriter-7000-reconditioned/" target="_blank" rel="noopener">Wheelwriter 7000</a>
+          </th>
+          <td data-label="Paper Capacity">16.50 in</td>
+          <td data-label="Display">9 in monitor</td>
+          <td data-label="Memory">172K</td>
+          <td data-label="Correction Memory">1 line</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">6.5 in H x 21.3 in W x 18 in D</td>
+          <td data-label="Weight">25 lb</td>
+          <td data-label="Warranty">3 months</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/ibm-wheelwriter-3-5-ink-ribbon/" target="_blank" rel="noopener">T340 Ribbon</a><br />
+            <a href="/supplies/ibm-wheelwriter-correction-tape/" target="_blank" rel="noopener">T350 Correction Tape</a>
+          </td>
+        </tr>
+
+        <!-- Nakajima -->
+        <tr class="tw-compare__group">
+          <th scope="rowgroup" colspan="13">Nakajima</th>
+        </tr>
+
+        <!-- WPT-150 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/nakajima-wpt-150-portable-electronic-word-processing-typewriter/" target="_blank" rel="noopener" title="Nakajima WPT-150">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/nakajima-wpt-150-open-cutout.png?t=1685632572" alt="Nakajima WPT-150 portable electronic typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/nakajima-wpt-150-portable-electronic-word-processing-typewriter/" target="_blank" rel="noopener">WPT-150</a>
+          </th>
+          <td data-label="Paper Capacity">13 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">No</td>
+          <td data-label="Correction Memory">1 line</td>
+          <td data-label="Battery Backup">No</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">4.5 in H x 16.2 in W x 14.7 in D</td>
+          <td data-label="Weight">11.3 lb</td>
+          <td data-label="Warranty">Limited manufacturer warranty</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/nakajima--Correctable-Ribbon-for-WPT-150-and-WPT-160-Typewriters" target="_blank" rel="noopener">NAKX001 Correctable Ribbon</a><br />
+            <a href="/supplies/nakajima-supplies/ink-ribbons/nakajima-brand-ae-710-lift-off-tape-2-000-page-yield-6-units/" target="_blank" rel="noopener">NAKL001 Lift Off Tape</a>
+          </td>
+        </tr>
+
+        <!-- WPT-160 -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/typewriters/nakajima-wpt-160-portable-electric-word-processing-typewriter/" target="_blank" rel="noopener" title="Nakajima WPT-160">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/nakajima-wpt-160-open-cutout.png?t=1685632738" alt="Nakajima WPT-160 portable electronic typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/typewriters/nakajima-wpt-160-portable-electric-word-processing-typewriter/" target="_blank" rel="noopener">WPT-160</a>
+          </th>
+          <td data-label="Paper Capacity">13 in</td>
+          <td data-label="Display">16 character</td>
+          <td data-label="Memory">16K</td>
+          <td data-label="Correction Memory">Full line</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">4.5 in H x 16.2 in W x 14.7 in D</td>
+          <td data-label="Weight">11.6 lb</td>
+          <td data-label="Warranty">Limited manufacturer warranty</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/nakajima--Correctable-Ribbon-for-WPT-150-and-WPT-160-Typewriters" target="_blank" rel="noopener">NAKX001 Correctable Ribbon</a><br />
+            <a href="/supplies/nakajima-supplies/ink-ribbons/nakajima-brand-ae-710-lift-off-tape-2-000-page-yield-6-units/" target="_blank" rel="noopener">NAKL001 Lift Off Tape</a>
+          </td>
+        </tr>
+
+        <!-- Royal -->
+        <tr class="tw-compare__group">
+          <th scope="rowgroup" colspan="13">Royal</th>
+        </tr>
+
+        <!-- Scriptor -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/new/royal-scriptor/" target="_blank" rel="noopener" title="Royal Scriptor">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/royal-scriptor-cutout.png?t=1738007436" alt="Royal Scriptor electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/new/royal-scriptor/" target="_blank" rel="noopener">Scriptor</a>
+          </th>
+          <td data-label="Paper Capacity">13 in</td>
+          <td data-label="Display">No</td>
+          <td data-label="Memory">No</td>
+          <td data-label="Correction Memory">1 line</td>
+          <td data-label="Battery Backup">No</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">No</td>
+          <td data-label="Dimensions">4.5 in H x 16.2 in W x 14.7 in D</td>
+          <td data-label="Weight">11.3 lb</td>
+          <td data-label="Warranty">Limited manufacturer warranty</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/nakajima--Correctable-Ribbon-for-WPT-150-and-WPT-160-Typewriters" target="_blank" rel="noopener">NAKX001 Correctable Ribbon</a><br />
+            <a href="/supplies/nakajima-supplies/ink-ribbons/nakajima-brand-ae-710-lift-off-tape-2-000-page-yield-6-units/" target="_blank" rel="noopener">NAKL001 Lift Off Tape</a>
+          </td>
+        </tr>
+
+        <!-- Scriptor II -->
+        <tr class="tw-compare__row">
+          <td class="tw-compare__image" data-label="Image">
+            <a href="/new-and-reconditioned-typewriters/royal-scriptor-ii-typewriter/" target="_blank" rel="noopener" title="Royal Scriptor II">
+              <img src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/royal-scriptor-ii-cutout.png?t=1738007409" alt="Royal Scriptor II electric typewriter" width="150" height="79" loading="lazy" decoding="async" />
+            </a>
+          </td>
+          <th scope="row" class="tw-compare__model" data-label="Model">
+            <a href="/new-and-reconditioned-typewriters/royal-scriptor-ii-typewriter/" target="_blank" rel="noopener">Scriptor II</a>
+          </th>
+          <td data-label="Paper Capacity">13 in</td>
+          <td data-label="Display">Yes</td>
+          <td data-label="Memory">16k characters / 50 files</td>
+          <td data-label="Correction Memory">Full line</td>
+          <td data-label="Battery Backup">Yes</td>
+          <td data-label="Bold">Yes</td>
+          <td data-label="Spell Check">Yes</td>
+          <td data-label="Dimensions">7.3 in H x 20.1 in W x 18.1 in D</td>
+          <td data-label="Weight">11.3 lb</td>
+          <td data-label="Warranty">Limited manufacturer warranty</td>
+          <td data-label="Recommended Supplies">
+            <a href="/supplies/nakajima--Correctable-Ribbon-for-WPT-150-and-WPT-160-Typewriters" target="_blank" rel="noopener">NAKX001 Correctable Ribbon</a><br />
+            <a href="/supplies/nakajima-supplies/ink-ribbons/nakajima-brand-ae-710-lift-off-tape-2-000-page-yield-6-units/" target="_blank" rel="noopener">NAKL001 Lift Off Tape</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="tw-compare__modal" role="dialog" aria-modal="true" aria-labelledby="tw-compare-modal-title-{{ section.id }}" hidden>
+    <div class="tw-compare__modalBackdrop" data-close="true" aria-hidden="true"></div>
+
+    <div class="tw-compare__modalPanel" role="document">
+      <div class="tw-compare__modalHeader">
+        <div class="tw-compare__modalTitle" id="tw-compare-modal-title-{{ section.id }}">Side by side comparison</div>
+        <button type="button" class="tw-compare__modalClose" data-close="true" aria-label="Close comparison">
+          Close
+        </button>
+      </div>
+
+      <div class="tw-compare__modalBody">
+        <div class="tw-compare__modalGrid" aria-label="Comparison grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-compare__bar" aria-hidden="true"></div>
+</section>
+
+<script>
+(function () {
+  function normalize(v) {
+    return String(v || "").trim().toLowerCase();
+  }
+
+  function esc(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function safeHref(value) {
+    var href = String(value || "").trim();
+    if (!href) return "#";
+    if (/^(https?:)?\/\//i.test(href) || href.charAt(0) === "/" || href.charAt(0) === "#" || href.indexOf("mailto:") === 0 || href.indexOf("tel:") === 0) {
+      return href.replace(/"/g, "&quot;");
+    }
+    return "#";
+  }
+
+  function isYes(value) {
+    var v = normalize(value);
+    return v === "yes" || v === "true" || v === "y";
+  }
+
+  function getCellText(row, label) {
+    var td = row.querySelector('td[data-label="' + label + '"]');
+    if (!td) return "";
+    return (td.textContent || "").trim();
+  }
+
+  function getModelName(row) {
+    var modelTh = row.querySelector(".tw-compare__model");
+    if (!modelTh) return "";
+    var modelLink = modelTh.querySelector("a");
+    if (modelLink) return (modelLink.textContent || "").trim();
+    var clone = modelTh.cloneNode(true);
+    var pick = clone.querySelector(".tw-compare__pick");
+    if (pick && pick.parentNode) pick.parentNode.removeChild(pick);
+    return (clone.textContent || "").trim();
+  }
+
+  function getModelLink(row) {
+    var a = row.querySelector(".tw-compare__model a");
+    return a ? a.getAttribute("href") : "";
+  }
+
+  function getModelImage(row) {
+    var img = row.querySelector(".tw-compare__image img");
+    if (!img) return { src: "", alt: "" };
+    return { src: img.getAttribute("src") || "", alt: img.getAttribute("alt") || "" };
+  }
+
+  function setHidden(el, hidden) {
+    if (!el) return;
+    if (hidden) el.setAttribute("hidden", "");
+    else el.removeAttribute("hidden");
+  }
+
+  function initTypewriterComparison(root) {
+    if (!root || root.getAttribute("data-tw-compare-ready") === "true") return;
+    root.setAttribute("data-tw-compare-ready", "true");
+
+    var table = root.querySelector(".tw-compare__table");
+    var tbody = table ? table.querySelector("tbody") : null;
+    if (!tbody) return;
+
+    var searchInput = root.querySelector(".tw-compare__search");
+    var toggleInputs = Array.prototype.slice.call(root.querySelectorAll(".tw-compare__toggleInput"));
+    var brandsWrap = root.querySelector(".tw-compare__brands");
+    var status = root.querySelector(".tw-compare__status");
+
+    var tray = root.querySelector(".tw-compare__tray");
+    var traySlots = Array.prototype.slice.call(root.querySelectorAll(".tw-compare__traySlot"));
+    var trayRemoves = Array.prototype.slice.call(root.querySelectorAll(".tw-compare__trayRemove"));
+    var trayViewBtn = root.querySelector('.tw-compare__trayBtn[data-action="view"]');
+    var trayClearBtn = root.querySelector('.tw-compare__trayBtn[data-action="clear"]');
+
+    var modal = root.querySelector(".tw-compare__modal");
+    var modalGrid = root.querySelector(".tw-compare__modalGrid");
+    var modalCloseBtn = root.querySelector(".tw-compare__modalClose");
+
+    var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+    var modelRows = [];
+    var currentBrand = "";
+    var brandSet = [];
+
+    function addBrand(brand) {
+      if (brand && brandSet.indexOf(brand) === -1) brandSet.push(brand);
+    }
+
+    rows.forEach(function (tr) {
+      if (tr.classList.contains("tw-compare__group")) {
+        var th = tr.querySelector("th");
+        currentBrand = th ? th.textContent.trim() : "";
+        addBrand(currentBrand);
+        tr.dataset.brandGroup = currentBrand;
+        return;
+      }
+      if (tr.classList.contains("tw-compare__row")) {
+        tr.dataset.brand = currentBrand;
+        modelRows.push(tr);
+      }
+    });
+
+    function setStatus(visibleCount, totalCount) {
+      if (!status) return;
+      status.textContent = visibleCount + " of " + totalCount + " models shown";
+    }
+
+    var activeBrand = "__all__";
+
+    function buildBrandChips() {
+      if (!brandsWrap) return;
+      brandsWrap.innerHTML = "";
+
+      function addChip(label, value, pressed) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tw-compare__chip";
+        btn.textContent = label;
+        btn.setAttribute("aria-pressed", pressed ? "true" : "false");
+        btn.dataset.brandValue = value;
+        brandsWrap.appendChild(btn);
+      }
+
+      addChip("All brands", "__all__", true);
+
+      brandSet.sort().forEach(function (b) {
+        addChip(b, b, false);
+      });
+    }
+
+    buildBrandChips();
+
+    var selected = [];
+    var lastFocusEl = null;
+
+    function ensurePickUI(row) {
+      var modelTh = row.querySelector(".tw-compare__model");
+      if (!modelTh) return;
+      if (modelTh.querySelector(".tw-compare__pick")) return;
+
+      var label = document.createElement("label");
+      label.className = "tw-compare__pick";
+      label.setAttribute("title", "Select this model to compare");
+
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.className = "tw-compare__pickInput";
+      input.setAttribute("aria-controls", "tw-compare-table-{{ section.id }}");
+
+      var span = document.createElement("span");
+      span.textContent = "Compare";
+
+      label.appendChild(input);
+      label.appendChild(span);
+      modelTh.appendChild(label);
+
+      input.addEventListener("change", function () {
+        var id = row.dataset.rowId;
+        var idx = selected.indexOf(id);
+
+        if (input.checked) {
+          if (selected.length >= 2) {
+            input.checked = false;
+            return;
+          }
+          if (idx === -1) selected.push(id);
+        } else {
+          if (idx !== -1) selected.splice(idx, 1);
+        }
+        syncSelectionState();
+      });
+    }
+
+    modelRows.forEach(function (row, i) {
+      row.dataset.rowId = "twc_{{ section.id }}_" + i;
+      ensurePickUI(row);
+    });
+
+    function getRowById(id) {
+      for (var i = 0; i < modelRows.length; i++) {
+        if (modelRows[i].dataset.rowId === id) return modelRows[i];
+      }
+      return null;
+    }
+
+    function syncSelectionState() {
+      modelRows.forEach(function (row) {
+        var id = row.dataset.rowId;
+        var checked = selected.indexOf(id) !== -1;
+        row.dataset.selected = checked ? "true" : "false";
+        var input = row.querySelector(".tw-compare__pickInput");
+        if (input) input.checked = checked;
+      });
+      updateTray();
+    }
+
+    function updateTray() {
+      var hasAny = selected.length > 0;
+      setHidden(tray, !hasAny);
+
+      traySlots.forEach(function (slot, idx) {
+        var id = selected[idx];
+        var nameEl = slot.querySelector(".tw-compare__trayName");
+        var removeBtn = slot.querySelector(".tw-compare__trayRemove");
+
+        if (!id) {
+          if (nameEl) nameEl.textContent = "None selected";
+          if (removeBtn) removeBtn.style.visibility = "hidden";
+          return;
+        }
+
+        var row = getRowById(id);
+        var name = row ? getModelName(row) : "Selected model";
+        if (nameEl) nameEl.textContent = name;
+        if (removeBtn) removeBtn.style.visibility = "visible";
+      });
+
+      if (trayViewBtn) trayViewBtn.disabled = selected.length !== 2;
+    }
+
+    trayRemoves.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var slotIndex = parseInt(btn.getAttribute("data-remove"), 10);
+        if (isNaN(slotIndex)) return;
+
+        var id = selected[slotIndex];
+        if (!id) return;
+
+        selected = selected.filter(function (x) { return x !== id; });
+        syncSelectionState();
+      });
+    });
+
+    if (trayClearBtn) {
+      trayClearBtn.addEventListener("click", function () {
+        selected = [];
+        syncSelectionState();
+      });
+    }
+
+    function openModal() {
+      if (!modal) return;
+      lastFocusEl = document.activeElement;
+      setHidden(modal, false);
+      document.body.style.overflow = "hidden";
+      renderComparison();
+
+      if (modalCloseBtn) {
+        setTimeout(function () { modalCloseBtn.focus(); }, 0);
+      }
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      setHidden(modal, true);
+      document.body.style.overflow = "";
+      if (lastFocusEl && typeof lastFocusEl.focus === "function") {
+        setTimeout(function () { lastFocusEl.focus(); }, 0);
+      }
+    }
+
+    if (trayViewBtn) {
+      trayViewBtn.addEventListener("click", function () {
+        if (selected.length !== 2) return;
+        openModal();
+      });
+    }
+
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        var close = e.target && e.target.getAttribute && e.target.getAttribute("data-close");
+        if (close === "true") closeModal();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (modal.hasAttribute("hidden")) return;
+        if (e.key === "Escape") closeModal();
+      });
+    }
+
+    function renderComparison() {
+      if (!modalGrid || selected.length !== 2) return;
+
+      var rowA = getRowById(selected[0]);
+      var rowB = getRowById(selected[1]);
+      if (!rowA || !rowB) return;
+
+      var labels = [
+        "Brand",
+        "Model",
+        "Paper Capacity",
+        "Display",
+        "Memory",
+        "Correction Memory",
+        "Battery Backup",
+        "Bold",
+        "Spell Check",
+        "Dimensions",
+        "Weight",
+        "Warranty",
+        "Recommended Supplies"
+      ];
+
+      var nameA = getModelName(rowA);
+      var nameB = getModelName(rowB);
+      var linkA = getModelLink(rowA);
+      var linkB = getModelLink(rowB);
+      var imgA = getModelImage(rowA);
+      var imgB = getModelImage(rowB);
+
+      function cell(html, cls) {
+        var d = document.createElement("div");
+        d.className = "tw-compare__modalCell" + (cls ? " " + cls : "");
+        d.innerHTML = html;
+        return d;
+      }
+
+      modalGrid.innerHTML = "";
+
+      modalGrid.appendChild(cell("Feature", "tw-compare__modalHead"));
+      modalGrid.appendChild(cell(
+        '<a class="tw-compare__modalLink" href="' + safeHref(linkA) + '" target="_blank" rel="noopener">' + esc(nameA) + '</a><br />' +
+        (imgA.src ? '<img src="' + safeHref(imgA.src) + '" alt="' + esc(imgA.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
+        "tw-compare__modalHead"
+      ));
+      modalGrid.appendChild(cell(
+        '<a class="tw-compare__modalLink" href="' + safeHref(linkB) + '" target="_blank" rel="noopener">' + esc(nameB) + '</a><br />' +
+        (imgB.src ? '<img src="' + safeHref(imgB.src) + '" alt="' + esc(imgB.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
+        "tw-compare__modalHead"
+      ));
+
+      labels.forEach(function (label) {
+        if (label === "Brand") {
+          modalGrid.appendChild(cell('<span class="tw-compare__modalKey">Brand</span>'));
+          modalGrid.appendChild(cell(esc(rowA.dataset.brand || "")));
+          modalGrid.appendChild(cell(esc(rowB.dataset.brand || "")));
+          return;
+        }
+
+        if (label === "Model") {
+          modalGrid.appendChild(cell('<span class="tw-compare__modalKey">Model</span>'));
+          modalGrid.appendChild(cell('<a class="tw-compare__modalLink" href="' + safeHref(linkA) + '" target="_blank" rel="noopener">' + esc(nameA) + "</a>"));
+          modalGrid.appendChild(cell('<a class="tw-compare__modalLink" href="' + safeHref(linkB) + '" target="_blank" rel="noopener">' + esc(nameB) + "</a>"));
+          return;
+        }
+
+        var valA = getCellText(rowA, label);
+        var valB = getCellText(rowB, label);
+
+        modalGrid.appendChild(cell('<span class="tw-compare__modalKey">' + esc(label) + "</span>"));
+        modalGrid.appendChild(cell(esc(valA || "")));
+        modalGrid.appendChild(cell(esc(valB || "")));
+      });
+    }
+
+    function applyFilters() {
+      var q = searchInput ? normalize(searchInput.value) : "";
+      var activeToggles = toggleInputs
+        .filter(function (i) { return i && i.checked; })
+        .map(function (i) { return i.getAttribute("data-filter"); });
+
+      var shown = 0;
+
+      modelRows.forEach(function (tr) {
+        var modelText = normalize(getModelName(tr));
+        var brandOk = (activeBrand === "__all__") || (tr.dataset.brand === activeBrand);
+        var searchOk = !q || modelText.indexOf(q) !== -1;
+
+        var togglesOk = true;
+        for (var i = 0; i < activeToggles.length; i++) {
+          var label = activeToggles[i];
+          var value = getCellText(tr, label);
+          if (!isYes(value)) {
+            togglesOk = false;
+            break;
+          }
+        }
+
+        var visible = brandOk && searchOk && togglesOk;
+        tr.style.display = visible ? "" : "none";
+        if (visible) shown++;
+      });
+
+      setStatus(shown, modelRows.length);
+
+      rows.forEach(function (tr) {
+        if (!tr.classList.contains("tw-compare__group")) return;
+        var groupBrand = tr.dataset.brandGroup || "";
+        if (!groupBrand) return;
+
+        var anyVisible = modelRows.some(function (r) {
+          return r.dataset.brand === groupBrand && r.style.display !== "none";
+        });
+
+        tr.style.display = anyVisible ? "" : "none";
+      });
+    }
+
+    if (searchInput) searchInput.addEventListener("input", applyFilters);
+    toggleInputs.forEach(function (i) { i.addEventListener("change", applyFilters); });
+
+    if (brandsWrap) {
+      brandsWrap.addEventListener("click", function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest(".tw-compare__chip") : null;
+        if (!btn) return;
+
+        activeBrand = btn.dataset.brandValue || "__all__";
+
+        Array.prototype.slice.call(brandsWrap.querySelectorAll(".tw-compare__chip")).forEach(function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+
+        applyFilters();
+      });
+    }
+
+    var thead = table.querySelector("thead");
+    if (thead) {
+      thead.addEventListener("mouseover", function (e) {
+        var th = e.target && e.target.closest ? e.target.closest("th") : null;
+        if (!th) return;
+
+        var index = Array.prototype.indexOf.call(th.parentNode.children, th);
+        if (index < 0) return;
+
+        Array.prototype.slice.call(table.querySelectorAll("tr")).forEach(function (tr) {
+          var cells = tr.children;
+          if (!cells || !cells[index]) return;
+          cells[index].classList.add("tw-compare__cellActive");
+        });
+      });
+
+      thead.addEventListener("mouseout", function () {
+        Array.prototype.slice.call(table.querySelectorAll(".tw-compare__cellActive")).forEach(function (c) {
+          c.classList.remove("tw-compare__cellActive");
+        });
+      });
+    }
+
+    applyFilters();
+    syncSelectionState();
+  }
+
+  function bootTypewriterComparison() {
+    initTypewriterComparison(document.getElementById("tw-compare-{{ section.id }}"));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootTypewriterComparison);
+  } else {
+    bootTypewriterComparison();
+  }
+
+  document.addEventListener("shopify:section:load", function (event) {
+    var loadedRoot = event.target && event.target.querySelector ? event.target.querySelector("#tw-compare-{{ section.id }}") : null;
+    initTypewriterComparison(loadedRoot);
+  });
+})();
+</script>
+
+
+{% schema %}
+{
+  "name": "TW Compare Chart",
+  "tag": "section",
+  "class": "section-typewriter-comparison-chart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Compare Chart"
+    }
+  ]
+}
+{% endschema %}
