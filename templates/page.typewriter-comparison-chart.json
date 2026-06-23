@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "typewriter_comparison_chart": {
+      "type": "typewriter-comparison-chart",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "typewriter_comparison_chart"
   ]
 }
