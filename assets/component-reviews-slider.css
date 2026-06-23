@@ -11,7 +11,7 @@
   align-items: stretch;
   padding-left: clamp(16px, 5vw, 64px);
   padding-right: 0;
-  margin: 0 auto;
+  margin: 100px auto 0;
 }
 
 .reviews-slider__intro {
