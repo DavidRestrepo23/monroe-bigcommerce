@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "typewriter_manuals": {
+      "type": "typewriter-manuals",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "typewriter_manuals"
   ]
 }
