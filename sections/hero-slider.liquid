@@ -46,8 +46,21 @@
     <div class="swiper-wrapper">
       {%- for block in section.blocks -%}
         {%- if block.type == 'slide' -%}
+          {%- if block.settings.mobile_image != blank -%}
+            {%- style -%}
+              @media (max-width: 749px) {
+                #HeroSlider-{{ section.id }} #HeroSlide-{{ block.id }} {
+                  background-image: url('{{ block.settings.mobile_image | image_url: width: 900 }}') !important;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: cover;
+                }
+              }
+            {%- endstyle -%}
+          {%- endif -%}
           <div
-            class="swiper-slide hero-slider__slide{% if block.settings.main_image != blank %} hero-slider__slide--has-bg{% endif %}"
+            id="HeroSlide-{{ block.id }}"
+            class="swiper-slide hero-slider__slide{% if block.settings.main_image != blank or block.settings.mobile_image != blank %} hero-slider__slide--has-bg{% endif %}"
             {% if block.settings.main_image != blank %}
               style="background-image: url('{{ block.settings.main_image | image_url: width: 1920 }}');background-repeat: no-repeat;background-position: center;background-size: cover;"
             {% endif %}
