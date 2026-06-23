@@ -289,6 +289,7 @@
 /* ── Recent Posts Section ── */
 .blog-recent {
   padding: 56px 0;
+  display: none;
 }
 
 .blog-recent__header {
