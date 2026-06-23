@@ -105,7 +105,7 @@ cart-items quantity-input.cart-quantity {
   align-items: center;
   border: 0.1rem solid var(--monroe-border);
   border-radius: 999px;
-  padding: 0.3rem;
+  padding: 0.2rem;
   width: auto;
   min-height: 0;
   background: #fff;
@@ -117,9 +117,9 @@ cart-items quantity-input.cart-quantity:after {
 
 cart-items quantity-input.cart-quantity .quantity__button {
   flex: 0 0 auto;
-  width: 3.2rem;
-  height: 3.2rem;
-  min-width: 3.2rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  min-width: 2.6rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -142,8 +142,8 @@ cart-items quantity-input.cart-quantity .quantity__button:disabled {
 }
 
 cart-items quantity-input.cart-quantity .quantity__button svg {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 cart-items quantity-input.cart-quantity .quantity__input {
