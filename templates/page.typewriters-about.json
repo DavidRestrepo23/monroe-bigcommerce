@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "typewriters_about_page": {
+      "type": "typewriters-about-page",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "typewriters_about_page"
   ]
 }
