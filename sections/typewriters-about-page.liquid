@@ -1,0 +1,411 @@
+{% comment %}
+  Typewriters.com About page section for Shopify.
+  Scoped to #tw-about-{{ section.id }} so it does not affect other pages.
+{% endcomment %}
+
+<section id="tw-about-{{ section.id }}" class="tw-about" aria-labelledby="tw-about-title-{{ section.id }}">
+  <style>
+    #tw-about-{{ section.id }},
+    #tw-about-{{ section.id }} *{
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+      color:#000000;
+      font-size:18px;
+    }
+
+    #tw-about-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-ink:#000000;
+      --tw-card:#ffffff;
+      --tw-soft:#faf7f6;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 10px 28px rgba(0,0,0,.08);
+      width:100%;
+      max-width:100%;
+      line-height:1.65;
+      background:#ffffff;
+    }
+
+    #tw-about-{{ section.id }} h2{
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 14px;
+      color:#000000;
+      letter-spacing:.2px;
+    }
+
+    #tw-about-{{ section.id }} h3{
+      font-size:25px;
+      line-height:1.25;
+      margin:0 0 10px;
+      color:#000000;
+    }
+
+    #tw-about-{{ section.id }} h4{
+      font-size:20px;
+      line-height:1.3;
+      margin:0 0 8px;
+      color:#000000;
+    }
+
+    #tw-about-{{ section.id }} p{
+      margin:0 0 16px;
+    }
+
+    #tw-about-{{ section.id }} a{
+      color:#000000;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    #tw-about-{{ section.id }} a:hover,
+    #tw-about-{{ section.id }} a:focus{
+      color:#000000;
+      text-decoration-thickness:2px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__bar{
+      height:35px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:0 0 26px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__bar--bottom{
+      margin:28px 0 0;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__shell{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__hero{
+      text-align:center;
+      padding:12px 0 26px;
+      border-bottom:1px solid var(--tw-line);
+      margin-bottom:26px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__logoWrap{
+      display:flex;
+      justify-content:center;
+      margin:0 0 18px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__logo{
+      display:block;
+      width:min(420px, 100%);
+      height:auto;
+      max-width:100%;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:2px solid var(--tw-accent);
+      border-radius:999px;
+      padding:7px 14px;
+      margin:0 0 14px;
+      font-weight:700;
+      background:#ffffff;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__subhead{
+      max-width:850px;
+      margin:0 auto;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.35fr) minmax(300px, .65fr);
+      gap:22px;
+      align-items:start;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__panel,
+    #tw-about-{{ section.id }} .tw-about__card,
+    #tw-about-{{ section.id }} .tw-about__contact{
+      background:var(--tw-card);
+      border:1px solid var(--tw-line);
+      border-radius:18px;
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-about-{{ section.id }} .tw-about__panel{
+      padding:22px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__timeline{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin:20px 0 0;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__milestone{
+      border:2px solid var(--tw-accent);
+      border-radius:16px;
+      padding:14px;
+      background:var(--tw-soft);
+      text-align:center;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__year{
+      display:block;
+      font-weight:700;
+      margin:0 0 4px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__cards{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__card{
+      padding:18px;
+      border-left:8px solid var(--tw-accent);
+    }
+
+    #tw-about-{{ section.id }} .tw-about__card p{
+      margin:0;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__contact{
+      margin-top:22px;
+      padding:22px;
+      background:linear-gradient(180deg, #ffffff, var(--tw-soft));
+    }
+
+    #tw-about-{{ section.id }} .tw-about__contactGrid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__contactItem{
+      border:1px solid var(--tw-line);
+      border-radius:14px;
+      padding:12px;
+      background:#ffffff;
+      min-height:78px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__label{
+      display:block;
+      font-weight:700;
+      margin:0 0 4px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:10px 16px;
+      border:3px solid #000000;
+      border-radius:999px;
+      background:var(--tw-accent);
+      color:#000000;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__btn--secondary{
+      background:#ffffff;
+    }
+
+    #tw-about-{{ section.id }} .tw-about__btn:hover,
+    #tw-about-{{ section.id }} .tw-about__btn:focus{
+      text-decoration:none;
+      transform:translateY(-1px);
+    }
+
+    @media (max-width:900px){
+      #tw-about-{{ section.id }} .tw-about__grid{
+        grid-template-columns:1fr;
+      }
+
+      #tw-about-{{ section.id }} .tw-about__timeline{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      #tw-about-{{ section.id }} .tw-about__shell{
+        padding:0 14px;
+      }
+
+      #tw-about-{{ section.id }} h2{
+        font-size:40px;
+      }
+
+      #tw-about-{{ section.id }} .tw-about__panel,
+      #tw-about-{{ section.id }} .tw-about__contact,
+      #tw-about-{{ section.id }} .tw-about__card{
+        padding:16px;
+      }
+
+      #tw-about-{{ section.id }} .tw-about__contactGrid{
+        grid-template-columns:1fr;
+      }
+
+      #tw-about-{{ section.id }} .tw-about__ctaRow,
+      #tw-about-{{ section.id }} .tw-about__btn{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-about__bar" aria-hidden="true"></div>
+
+  <div class="tw-about__shell">
+    <div class="tw-about__hero">
+      <div class="tw-about__logoWrap">
+        {% if section.settings.logo_image != blank %}
+          <img
+            class="tw-about__logo"
+            src="{{ section.settings.logo_image | image_url: width: 840 }}"
+            alt="{{ section.settings.logo_image.alt | default: 'Typewriters.com Logo' | escape }}"
+            width="420"
+            height="125"
+            loading="lazy"
+          >
+        {% else %}
+          <img
+            class="tw-about__logo"
+            title="Typewriters.com Logo"
+            src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/typewriters-logo-original-size.png?t=1686843639"
+            alt="Typewriters.com Logo"
+            width="420"
+            height="125"
+            loading="lazy"
+          >
+        {% endif %}
+      </div>
+
+      <div class="tw-about__eyebrow">Serving typewriter customers since 1958</div>
+      <h2 id="tw-about-title-{{ section.id }}">About Typewriters.com</h2>
+      <p class="tw-about__subhead">
+        New and reconditioned typewriters, supplies, service, purchase orders, trade-ins, and support from experienced typewriter specialists.
+      </p>
+    </div>
+
+    <div class="tw-about__grid">
+      <div class="tw-about__panel">
+        <p>
+          Starting in 1958, we have specialized in the sale of new and reconditioned typewriters for businesses and consumers around the world. In addition to selling typewriters and their supplies, we have one of the best typewriter service departments in the industry. Our full-time technicians are veterans in the typewriter business.
+        </p>
+
+        <p>
+          When we went into business, our company was originally named Progressive Methods. We started as an IBM typewriter dealer. In 2003, we started the internet division Typewriters.com. In 2019, <a title="Monroe Systems for Business Website" href="https://monroe-systems.com/" target="_blank" rel="noopener">Monroe Systems for Business</a>, the inventor of the commercial printing calculator, acquired Typewriters.com. The rest is history.
+        </p>
+
+        <p>
+          When it comes to quality business typewriters and supplies as well as quality consumer typewriters and supplies, you can be assured that Typewriters.com will be your best resource. Call us at <a title="Typewriters.com Toll-Free Number" href="tel:8663778973">(866) 377-8973</a>. One of our typewriter specialists will be standing by and ready to answer any question you may have.
+        </p>
+
+        <div class="tw-about__timeline" aria-label="Typewriters.com history highlights">
+          <div class="tw-about__milestone">
+            <span class="tw-about__year">1958</span>
+            Started as Progressive Methods and an IBM typewriter dealer.
+          </div>
+          <div class="tw-about__milestone">
+            <span class="tw-about__year">2003</span>
+            Started the internet division Typewriters.com.
+          </div>
+          <div class="tw-about__milestone">
+            <span class="tw-about__year">2019</span>
+            Acquired by Monroe Systems for Business.
+          </div>
+        </div>
+
+        <div class="tw-about__ctaRow" aria-label="Contact actions">
+          <a class="tw-about__btn" href="tel:8663778973" title="Call Typewriters.com toll-free">Call (866) 377-8973</a>
+          <a class="tw-about__btn tw-about__btn--secondary" href="mailto:info@typewriters.com" title="Email Typewriters.com">Email Us</a>
+        </div>
+      </div>
+
+      <div class="tw-about__cards" aria-label="Typewriters.com services">
+        <div class="tw-about__card">
+          <h3>We Accept Purchase Orders</h3>
+          <p>For qualified schools, government (GSA), and corporations.</p>
+        </div>
+
+        <div class="tw-about__card">
+          <h3>We Buy Used Typewriters</h3>
+          <p>IBM Wheelwriters and Selectrics.</p>
+        </div>
+
+        <div class="tw-about__card">
+          <h3>We Accept Trade-Ins</h3>
+          <p>For used IBM Wheelwriters.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-about__contact" aria-label="Typewriters.com contact information">
+      <h3>Contact Typewriters.com</h3>
+      <p>
+        <strong>TYPEWRITERS.COM</strong><br>
+        5357 Royal Woods Pkwy<br>
+        Tucker, GA 30084
+      </p>
+
+      <div class="tw-about__contactGrid">
+        <div class="tw-about__contactItem">
+          <span class="tw-about__label">Toll Free</span>
+          <a title="Typewriters.com Toll-Free Number" href="tel:8663778973">(866) 377-8973</a>
+        </div>
+
+        <div class="tw-about__contactItem">
+          <span class="tw-about__label">Phone</span>
+          <a title="Typewriters.com Phone Number" href="tel:4043771884">(404) 377-1884</a>
+        </div>
+
+        <div class="tw-about__contactItem">
+          <span class="tw-about__label">Fax</span>
+          <a title="Typewriters.com Fax Number" href="tel:7709390531">(770) 939-0531</a>
+        </div>
+
+        <div class="tw-about__contactItem">
+          <span class="tw-about__label">Email</span>
+          <a href="mailto:info@typewriters.com">info@typewriters.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tw-about__bar tw-about__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW About Page",
+  "tag": "section",
+  "class": "section-tw-about-page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TW About Page"
+    }
+  ]
+}
+{% endschema %}
