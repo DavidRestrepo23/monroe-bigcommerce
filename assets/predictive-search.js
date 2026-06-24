@@ -78,7 +78,7 @@ class PredictiveSearch extends HTMLElement {
       'resources[limit]': '4',
       'resources[limit_scope]': 'each',
       'resources[options][unavailable_products]': 'last',
-      'resources[options][fields]': 'title,product_type,variants.title,vendor'
+      'resources[options][fields]': 'title,product_type,variants.title,vendor,variants.sku'
     });
 
     try {
