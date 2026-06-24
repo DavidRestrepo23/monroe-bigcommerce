@@ -1,112 +1,58 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-
 {%- liquid
   assign sort_by = search.sort_by | default: search.default_sort_by
 -%}
 
-{%- style -%}
-  #MainSearch-{{ section.id }} {
-    --cg-columns: 4;
-    --cg-pad-top: 36px;
-    --cg-pad-bottom: 36px;
-    --cg-accent: #007681;
-    --cg-accent-hover: #005f68;
-  }
-
-  @media (max-width: 989px) and (min-width: 750px) {
-    #MainSearch-{{ section.id }} {
-      --cg-columns: 3;
-    }
-  }
-
-  @media (max-width: 749px) {
-    #MainSearch-{{ section.id }} {
-      --cg-columns: 2;
-    }
-  }
-{%- endstyle -%}
-
 {%- paginate search.results by section.settings.results_per_page -%}
 
-<section id="MainSearch-{{ section.id }}" class="collection-grid">
-  <div class="collection-grid__container">
+<section id="MainSearch-{{ section.id }}" class="msrs">
+  <div class="msrs__container">
 
     {%- if search.performed -%}
 
-      <div class="collection-grid__layout{% if search.filters == empty %} collection-grid__layout--no-sidebar{% endif %}">
+      <div class="msrs__layout{% if search.filters == empty %} msrs__layout--no-sidebar{% endif %}">
 
         {%- unless search.filters == empty -%}
-          <div class="collection-grid__sidebar">
+          <aside class="msrs__sidebar" aria-label="Search filters">
             {%- render 'simple-facets', results: search, heading: 'Refine By' -%}
-          </div>
+          </aside>
         {%- endunless -%}
 
-        <div class="collection-grid__main">
+        <main class="msrs__main" aria-label="Search results">
 
-          <div class="collection-grid__header">
-            <div class="collection-grid__heading-wrap">
+          <header class="msrs__header">
+            <div class="msrs__heading-wrap">
               {%- if search.results_count == 0 -%}
-                <h1 class="collection-grid__heading">
+                <h1 class="msrs__heading">
                   No results for &ldquo;{{ search.terms | escape }}&rdquo;
                 </h1>
               {%- elsif search.results_count == 1 -%}
-                <h1 class="collection-grid__heading">
+                <h1 class="msrs__heading">
                   1 result for &ldquo;{{ search.terms | escape }}&rdquo;
                 </h1>
               {%- else -%}
-                <h1 class="collection-grid__heading">
+                <h1 class="msrs__heading">
                   {{ search.results_count }} results for &ldquo;{{ search.terms | escape }}&rdquo;
                 </h1>
               {%- endif -%}
 
               {%- if search.results_count > 0 -%}
-                <span class="collection-grid__count">
+                <span class="msrs__count">
                   Showing {{ paginate.current_offset | plus: 1 }}&ndash;{{ paginate.current_offset | plus: paginate.page_size | at_most: search.results_count }}
                 </span>
               {%- endif -%}
             </div>
 
-            <form action="{{ routes.search_url }}" method="get" role="search" class="collection-grid__search">
-              <button type="submit" class="collection-grid__search-btn" aria-label="Search">
-                {%- render 'icon-search' -%}
-              </button>
-
-              <input type="hidden" name="type" value="product">
-              <input type="hidden" name="options[prefix]" value="last">
-
-              <input
-                class="collection-grid__search-input"
-                type="search"
-                name="q"
-                value="{{ search.terms | escape }}"
-                placeholder="Search Monroe products..."
-                autocomplete="off"
-              >
-
-              {%- if search.terms != blank -%}
-                <a
-                  href="{{ routes.search_url }}"
-                  class="collection-grid__search-clear"
-                  aria-label="Clear search"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                  </svg>
-                </a>
-              {%- endif -%}
-            </form>
-
             {%- if search.results_count > 0 -%}
-              <div class="collection-grid__controls">
-                <div class="collection-grid__sort">
-                  <label for="SearchSortBy-{{ section.id }}" class="collection-grid__sort-label">
+              <div class="msrs__controls">
+                <div class="msrs__sort">
+                  <label for="SearchSortBy-{{ section.id }}" class="msrs__sort-label">
                     Sort by
                   </label>
 
                   <select
                     id="SearchSortBy-{{ section.id }}"
-                    class="collection-grid__sort-select"
-                    data-main-search-sort
+                    class="msrs__sort-select"
+                    data-msrs-sort
                   >
                     {%- for option in search.sort_options -%}
                       <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected{% endif %}>
@@ -117,14 +63,14 @@
                 </div>
               </div>
             {%- endif -%}
-          </div>
+          </header>
 
           {%- if search.results_count > 0 -%}
 
-            <ul class="collection-grid__list list-unstyled" role="list">
+            <ul class="msrs__grid" role="list">
               {%- for item in search.results -%}
                 {%- if item.object_type == 'product' -%}
-                  <li class="collection-grid__item">
+                  <li class="msrs__item">
                     {%- render 'product-card', product: item -%}
                   </li>
                 {%- endif -%}
@@ -132,11 +78,12 @@
             </ul>
 
             {%- if paginate.pages > 1 -%}
-              <nav class="collection-grid__pagination" role="navigation" aria-label="Pagination">
-                <ul class="collection-grid__pagination-list list-unstyled" role="list">
+              <nav class="msrs__pagination" role="navigation" aria-label="Pagination">
+                <ul class="msrs__pagination-list" role="list">
+
                   {%- if paginate.previous -%}
                     <li>
-                      <a href="{{ paginate.previous.url }}" class="collection-grid__pagination-arrow" aria-label="Previous page">
+                      <a href="{{ paginate.previous.url }}" class="msrs__pagination-arrow" aria-label="Previous page">
                         &lsaquo;
                       </a>
                     </li>
@@ -145,15 +92,15 @@
                   {%- for part in paginate.parts -%}
                     <li>
                       {%- if part.is_link -%}
-                        <a href="{{ part.url }}" class="collection-grid__pagination-item">
+                        <a href="{{ part.url }}" class="msrs__pagination-item">
                           {{ part.title }}
                         </a>
                       {%- elsif part.title == paginate.current_page -%}
-                        <span class="collection-grid__pagination-item collection-grid__pagination-item--current" aria-current="page">
+                        <span class="msrs__pagination-item msrs__pagination-item--current" aria-current="page">
                           {{ part.title }}
                         </span>
                       {%- else -%}
-                        <span class="collection-grid__pagination-item collection-grid__pagination-item--disabled">
+                        <span class="msrs__pagination-item msrs__pagination-item--disabled">
                           {{ part.title }}
                         </span>
                       {%- endif -%}
@@ -162,38 +109,44 @@
 
                   {%- if paginate.next -%}
                     <li>
-                      <a href="{{ paginate.next.url }}" class="collection-grid__pagination-arrow" aria-label="Next page">
+                      <a href="{{ paginate.next.url }}" class="msrs__pagination-arrow" aria-label="Next page">
                         &rsaquo;
                       </a>
                     </li>
                   {%- endif -%}
+
                 </ul>
               </nav>
             {%- endif -%}
 
           {%- else -%}
 
-            <p class="collection-grid__empty">
-              No products found for &ldquo;{{ search.terms | escape }}&rdquo;. Try searching for a product name, model number, ribbon, paper roll, or supply item.
-            </p>
+            <div class="msrs__empty">
+              <p>
+                No products found for &ldquo;{{ search.terms | escape }}&rdquo;.
+              </p>
+              <p>
+                Try searching for a product name, model number, ribbon, paper roll, or supply item.
+              </p>
+            </div>
 
           {%- endif -%}
 
-        </div>
+        </main>
       </div>
 
     {%- else -%}
 
-      <div class="main-search-empty">
-        <h1>Search Monroe Products</h1>
+      <div class="msrs-empty">
+        <h1 class="msrs-empty__heading">Search Monroe Products</h1>
 
-        <form action="{{ routes.search_url }}" method="get" role="search" class="main-search-empty__form">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="msrs-empty__form">
           <input type="hidden" name="type" value="product">
           <input type="hidden" name="options[prefix]" value="last">
 
-          <div class="field">
+          <div class="msrs-empty__field">
             <input
-              class="field__input"
+              class="msrs-empty__input"
               id="SearchPageInput-{{ section.id }}"
               type="search"
               name="q"
@@ -202,11 +155,7 @@
               autocomplete="off"
             >
 
-            <label class="field__label" for="SearchPageInput-{{ section.id }}">
-              Search
-            </label>
-
-            <button type="submit" class="search__button field__button" aria-label="Search">
+            <button type="submit" class="msrs-empty__button" aria-label="Search">
               {%- render 'icon-search' -%}
             </button>
           </div>
@@ -221,52 +170,710 @@
 {%- endpaginate -%}
 
 <style>
-  #MainSearch-{{ section.id }} .main-search-empty {
+  /*
+    Monroe Search Results
+    Isolated to sections/main-search.liquid only.
+    All styling is scoped under #MainSearch-{{ section.id }}.
+  */
+
+  #MainSearch-{{ section.id }} {
+    --msrs-accent: #007681;
+    --msrs-accent-hover: #005f68;
+    --msrs-text: #000000;
+    --msrs-muted: rgba(28, 28, 28, 0.52);
+    --msrs-border: rgba(0, 0, 0, 0.12);
+    --msrs-soft: #f7fbfa;
+    --msrs-card-bg: #f4f4f4;
+    --msrs-radius: 16px;
+    --msrs-font: var(--font-family, Arial, Helvetica, sans-serif);
+
+    display: block;
+    width: 100%;
+    padding: 36px 0;
+    color: var(--msrs-text);
+    font-family: var(--msrs-font);
+    background: #ffffff;
+  }
+
+  #MainSearch-{{ section.id }} *,
+  #MainSearch-{{ section.id }} *::before,
+  #MainSearch-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__container {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__layout {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__layout--no-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__sidebar {
+    position: sticky;
+    top: 24px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__main {
+    min-width: 0;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__header {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__heading-wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__heading {
+    margin: 0;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__count {
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--msrs-muted);
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__sort-label {
+    font-size: 1rem;
+    color: var(--msrs-text);
+    font-family: var(--msrs-font);
+    font-weight: 500;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__sort-select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #d6d6d6;
+    border-radius: 999px;
+    padding: 10px 36px 10px 16px;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    font-family: var(--msrs-font);
+    font-weight: 500;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__grid > li::marker,
+  #MainSearch-{{ section.id }} .msrs__pagination-list > li::marker,
+  #MainSearch-{{ section.id }} .simple-facets__values > li::marker,
+  #MainSearch-{{ section.id }} .simple-facets__pills > li::marker {
+    content: "";
+  }
+
+  #MainSearch-{{ section.id }} .msrs__item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__empty {
+    padding: 48px 0;
+    text-align: center;
+    color: #6b6b6b;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__empty p {
+    margin: 0 0 8px;
+  }
+
+  /* Product cards scoped only to this search section */
+
+  #MainSearch-{{ section.id }} .product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: transparent;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: var(--msrs-card-bg);
+    border-radius: var(--msrs-radius);
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__media img,
+  #MainSearch-{{ section.id }} .product-card__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__media:hover img {
+    transform: scale(1.03);
+  }
+
+  #MainSearch-{{ section.id }} .product-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--msrs-text);
+    z-index: 2;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .product-card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__title a:hover {
+    text-decoration: underline;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--msrs-text);
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .product-card__price del {
+    color: #9a9a9a;
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--msrs-accent);
+    color: #ffffff;
+    border: 0;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .product-card__cart:hover:not(:disabled) {
+    background: var(--msrs-accent-hover);
+  }
+
+  #MainSearch-{{ section.id }} .product-card__cart:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  #MainSearch-{{ section.id }} .product-card__cart svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Facets scoped only to this search section */
+
+  #MainSearch-{{ section.id }} .simple-facets {
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__clear {
+    font-size: 0.8rem;
+    color: var(--msrs-accent);
+    text-decoration: underline;
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid #d6d6d6;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    color: var(--msrs-text);
+    text-decoration: none;
+    font-weight: 600;
+    background: #ffffff;
+    font-family: var(--msrs-font);
+    transition: border-color 0.2s ease;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__pill:hover {
+    border-color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__group {
+    border-radius: 999px;
+    padding: 20px 16px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: var(--msrs-soft);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__group[open] {
+    border-radius: 18px;
+    padding: 0 18px 14px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-weight: 400;
+    font-size: 1.125rem;
+    color: var(--msrs-text);
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__chevron {
+    transition: transform 0.2s ease;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__group[open] .simple-facets__chevron {
+    transform: rotate(180deg);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__group[open] .simple-facets__summary {
+    padding-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__body {
+    padding-top: 8px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__values {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__check {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__check input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--msrs-accent);
+    cursor: pointer;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__check-label,
+  #MainSearch-{{ section.id }} .simple-facets__check-count {
+    font-family: var(--msrs-font);
+    font-size: 0.875rem;
+    color: var(--msrs-text);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__check-count {
+    color: #9a9a9a;
+    font-size: 0.8rem;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-slider {
+    padding: 8px 4px 0;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-track {
+    position: relative;
+    height: 24px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-track::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 4px;
+    transform: translateY(-50%);
+    background: #e3e3e3;
+    border-radius: 999px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-fill {
+    position: absolute;
+    top: 50%;
+    height: 4px;
+    transform: translateY(-50%);
+    background: var(--msrs-accent);
+    border-radius: 999px;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--msrs-accent);
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-input::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--msrs-accent);
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-input::-webkit-slider-runnable-track {
+    background: transparent;
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__price-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--msrs-text);
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .simple-facets__apply {
+    display: none;
+  }
+
+  /* Pagination scoped only to this search section */
+
+  #MainSearch-{{ section.id }} .msrs__pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-list > li {
+    list-style: none;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-item,
+  #MainSearch-{{ section.id }} .msrs__pagination-arrow {
+    min-width: 33px;
+    height: 33px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--msrs-text);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    font-family: var(--msrs-font);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-item:hover,
+  #MainSearch-{{ section.id }} .msrs__pagination-arrow:hover {
+    background: #f1f1f1;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-item--current {
+    background: var(--msrs-accent);
+    color: #ffffff;
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-item--current:hover {
+    background: var(--msrs-accent);
+  }
+
+  #MainSearch-{{ section.id }} .msrs__pagination-item--disabled {
+    color: #9a9a9a;
+    cursor: default;
+  }
+
+  /* Empty search state scoped only to this search section */
+
+  #MainSearch-{{ section.id }} .msrs-empty {
     max-width: 560px;
     margin: 0 auto;
     padding: 60px 0;
     text-align: center;
   }
 
-  #MainSearch-{{ section.id }} .main-search-empty h1 {
+  #MainSearch-{{ section.id }} .msrs-empty__heading {
     margin: 0 0 24px;
     font-size: 2rem;
-    color: #000;
+    line-height: 1.2;
+    color: var(--msrs-text);
   }
 
-  #MainSearch-{{ section.id }} .main-search-empty__form {
+  #MainSearch-{{ section.id }} .msrs-empty__form {
     width: 100%;
   }
 
-  #MainSearch-{{ section.id }} .field {
-    position: relative;
+  #MainSearch-{{ section.id }} .msrs-empty__field {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--msrs-border);
+    border-radius: 999px;
+    overflow: hidden;
+    background: #ffffff;
   }
 
-  #MainSearch-{{ section.id }} .field__input {
-    width: 100%;
+  #MainSearch-{{ section.id }} .msrs-empty__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 14px 18px;
+    font: inherit;
+    outline: none;
+    color: var(--msrs-text);
   }
 
-  #MainSearch-{{ section.id }} .collection-grid__search {
-    max-width: 760px;
+  #MainSearch-{{ section.id }} .msrs-empty__button {
+    width: 52px;
+    height: 52px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  #MainSearch-{{ section.id }} .collection-grid__search-btn {
-    pointer-events: auto;
+  #MainSearch-{{ section.id }} .msrs-empty__button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Responsive behavior scoped only to this search section */
+
+  @media (max-width: 989px) {
+    #MainSearch-{{ section.id }} .msrs__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__sidebar {
+      position: static;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 749px) {
-    #MainSearch-{{ section.id }} .collection-grid__heading-wrap {
+    #MainSearch-{{ section.id }} {
+      padding: 28px 0;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__container {
+      padding: 0 16px;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__heading-wrap {
       flex-direction: column;
       align-items: flex-start;
     }
 
-    #MainSearch-{{ section.id }} .collection-grid__controls {
-      gap: 16px;
+    #MainSearch-{{ section.id }} .msrs__heading {
+      font-size: 1.4rem;
     }
 
-    #MainSearch-{{ section.id }} .collection-grid__sort {
+    #MainSearch-{{ section.id }} .msrs__count {
+      font-size: 0.95rem;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__sort {
       width: 100%;
       justify-content: space-between;
+    }
+
+    #MainSearch-{{ section.id }} .msrs__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 16px;
+    }
+
+    #MainSearch-{{ section.id }} .product-card__title {
+      font-size: 0.9rem;
+    }
+
+    #MainSearch-{{ section.id }} .product-card__price {
+      font-size: 1rem;
+    }
+
+    #MainSearch-{{ section.id }} .product-card__cart {
+      padding: 8px 12px;
+    }
+
+    #MainSearch-{{ section.id }} .product-card__cart span {
+      display: none;
+    }
+
+    #MainSearch-{{ section.id }} .simple-facets__apply {
+      display: inline-flex;
+      margin-top: 12px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--msrs-accent);
+      color: #ffffff;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #MainSearch-{{ section.id }} .msrs__grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -276,11 +883,26 @@
     var sectionEl = document.getElementById('MainSearch-{{ section.id }}');
     if (!sectionEl) return;
 
+    /*
+      Optional product-only normalization.
+      This is scoped to the search results page and only runs when a query exists.
+      It prevents the page from showing counts for pages/articles while only rendering products.
+    */
+    var currentUrl = new URL(window.location.href);
+    var currentQuery = currentUrl.searchParams.get('q');
+    var currentType = currentUrl.searchParams.get('type');
+
+    if (currentQuery && !currentType) {
+      currentUrl.searchParams.set('type', 'product');
+      currentUrl.searchParams.set('options[prefix]', 'last');
+      window.location.replace(currentUrl.toString());
+      return;
+    }
+
     var facetForm = sectionEl.querySelector('.simple-facets__form');
 
     /*
-      1. Keep search filter submissions product-only.
-      This prevents filters from accidentally losing the product search type.
+      Keep filter submissions product-only.
     */
     if (facetForm && !facetForm.querySelector('[name="type"]')) {
       var typeInput = document.createElement('input');
@@ -291,7 +913,7 @@
     }
 
     /*
-      2. Keep prefix behavior consistent with Shopify search.
+      Keep Shopify search prefix behavior consistent.
     */
     if (facetForm && !facetForm.querySelector('[name="options[prefix]"]')) {
       var prefixInput = document.createElement('input');
@@ -302,16 +924,16 @@
     }
 
     /*
-      3. Fix Clear all link on search pages.
-      The simple-facets snippet uses results.url, which is not always reliable on search objects.
+      Fix Clear all link for search pages.
     */
     var clearLink = sectionEl.querySelector('.simple-facets__clear');
+
     if (clearLink) {
       clearLink.href = '/search?q={{ search.terms | url_encode }}&type=product&options%5Bprefix%5D=last';
     }
 
     /*
-      4. Auto-submit checkbox filters.
+      Auto-submit checkbox filters.
     */
     if (facetForm) {
       facetForm.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
@@ -322,9 +944,9 @@
     }
 
     /*
-      5. Price slider behavior.
+      Price slider behavior.
     */
-    function fmtMoney(value) {
+    function formatMoney(value) {
       return '$' + parseFloat(value || 0).toFixed(2);
     }
 
@@ -351,8 +973,8 @@
         fill.style.right = (100 - hi / max * 100) + '%';
       }
 
-      if (minLabel) minLabel.textContent = fmtMoney(lo);
-      if (maxLabel) maxLabel.textContent = fmtMoney(hi);
+      if (minLabel) minLabel.textContent = formatMoney(lo);
+      if (maxLabel) maxLabel.textContent = formatMoney(hi);
 
       if (gte) gte.value = lo > 0 ? lo : '';
       if (lte) lte.value = hi < max ? hi : '';
@@ -377,10 +999,10 @@
     });
 
     /*
-      6. Sort select behavior.
-      Preserve query and filters, update sort_by, and reset pagination.
+      Sort behavior.
+      This preserves the search query and active filters while changing sort.
     */
-    var sortSelect = sectionEl.querySelector('[data-main-search-sort]');
+    var sortSelect = sectionEl.querySelector('[data-msrs-sort]');
 
     if (sortSelect) {
       sortSelect.addEventListener('change', function () {
