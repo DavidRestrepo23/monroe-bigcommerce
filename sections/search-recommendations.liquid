@@ -154,7 +154,7 @@
         }
 
         fetch(
-          '/recommendations/products.json?product_id=' + encodeURIComponent(productId) + '&limit=8&intent=related',
+          '/recommendations/products.json?product_id=' + encodeURIComponent(productId) + '&limit=10&intent=related',
           { headers: { 'Accept': 'application/json' } }
         )
           .then(function (r) {
