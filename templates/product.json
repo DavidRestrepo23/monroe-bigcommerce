@@ -12,7 +12,7 @@
     "main": {
       "type": "main-product",
       "settings": {
-        "availability_note": "Please allow 1 to 2 weeks before shipment",
+        "availability_note": "Orders placed by 11 am ET will ship same-day (Mon - Fri)",
         "bulk_pricing_url": "shopify://products/accubanker-ab4200-commercial-bill-counter",
         "financing_text": "Starting at $20.92/mo or as low as 0% APR with PayPal",
         "show_paypal_button": true,
