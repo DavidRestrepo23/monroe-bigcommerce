@@ -152,13 +152,14 @@
       {%- endif -%}
 
       <div class="main-product__notes">
-        {%- if section.settings.availability_note != blank -%}
-          <div class="note-row">
-            {% render 'icon-calendar' %}
-            <strong>{{ 'products.product.availability' | t }}:</strong>
-            <span>{{ section.settings.availability_note }}</span>
-          </div>
-        {%- endif -%}
+  {%- assign availability_text = product.metafields.custom.availability_message | default: section.settings.availability_note -%}
+  {%- if availability_text != blank -%}
+    <div class="note-row">
+      {% render 'icon-calendar' %}
+      <strong>{{ 'products.product.availability' | t }}:</strong>
+      <span>{{ availability_text }}</span>
+    </div>
+  {%- endif -%}
         {%- if section.settings.bulk_pricing_url != blank -%}
           <div class="note-row">
              {% render 'icon-shop' %}
