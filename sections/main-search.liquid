@@ -1,0 +1,622 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
+
+{%- paginate search.results by 24 -%}
+
+<div class="main-search page-width">
+
+  {%- if search.performed -%}
+
+    <div class="search-results-header">
+      {%- if search.results_count == 0 -%}
+        <h1 class="main-search__title h2">No results for &ldquo;{{ search.terms | escape }}&rdquo;</h1>
+      {%- elsif search.results_count == 1 -%}
+        <h1 class="main-search__title h2">1 result for &ldquo;{{ search.terms | escape }}&rdquo;</h1>
+      {%- else -%}
+        <h1 class="main-search__title h2">{{ search.results_count }} results for &ldquo;{{ search.terms | escape }}&rdquo;</h1>
+      {%- endif -%}
+    </div>
+
+    <div class="search-layout{% if search.filters == empty %} search-layout--no-sidebar{% endif %}">
+
+      {%- unless search.filters == empty -%}
+        <aside class="search-sidebar">
+          <form
+            id="SearchFilterForm"
+            action="{{ routes.search_url }}"
+            method="get"
+            class="search-filter-form"
+          >
+            <input type="hidden" name="q" value="{{ search.terms | escape }}">
+            <input type="hidden" name="type" value="product">
+            <input type="hidden" name="options[prefix]" value="last">
+            <input type="hidden" name="sort_by" value="{{ sort_by }}">
+
+            {%- assign active_filter_count = 0 -%}
+            {%- for filter in search.filters -%}
+              {%- if filter.type == 'price_range' -%}
+                {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                  {%- assign active_filter_count = active_filter_count | plus: 1 -%}
+                {%- endif -%}
+              {%- else -%}
+                {%- assign active_filter_count = active_filter_count | plus: filter.active_values.size -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            <div class="search-sidebar__header">
+              <span class="search-sidebar__title">Filters</span>
+              {%- if active_filter_count > 0 -%}
+                <a
+                  href="/search?q={{ search.terms | escape }}&type=product"
+                  class="search-sidebar__clear"
+                >
+                  Clear all ({{ active_filter_count }})
+                </a>
+              {%- endif -%}
+            </div>
+
+            {%- if active_filter_count > 0 -%}
+              <div class="active-filters">
+                {%- for filter in search.filters -%}
+                  {%- for value in filter.active_values -%}
+                    <a href="{{ value.url_to_remove }}" class="active-filter-pill">
+                      {{ value.label | escape }}
+                      <span aria-hidden="true" class="active-filter-pill__x">&#x2715;</span>
+                    </a>
+                  {%- endfor -%}
+                  {%- if filter.type == 'price_range' -%}
+                    {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                      <a href="{{ filter.url_to_remove }}" class="active-filter-pill">
+                        {{ filter.min_value.value | default: 0 | money }} &ndash; {{ filter.max_value.value | default: filter.range_max | money }}
+                        <span aria-hidden="true" class="active-filter-pill__x">&#x2715;</span>
+                      </a>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+            {%- for filter in search.filters -%}
+              <details class="filter-group" open>
+                <summary class="filter-group__summary">
+                  <span class="filter-group__label">
+                    {{ filter.label | escape }}
+                    {%- if filter.active_values.size > 0 -%}
+                      <span class="filter-group__active-count">({{ filter.active_values.size }})</span>
+                    {%- endif -%}
+                  </span>
+                  <svg class="filter-group__caret" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+
+                <div class="filter-group__body">
+                  {%- if filter.type == 'price_range' -%}
+                    <div class="filter-price">
+                      <div class="filter-price__fields">
+                        <div class="filter-price__field">
+                          <label for="Filter-Price-GTE" class="filter-price__label">From</label>
+                          <div class="filter-price__input-wrap">
+                            <span class="filter-price__symbol">{{ cart.currency.symbol }}</span>
+                            <input
+                              type="number"
+                              id="Filter-Price-GTE"
+                              name="{{ filter.min_value.param_name }}"
+                              class="filter-price__input"
+                              {%- if filter.min_value.value -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif -%}
+                              placeholder="0"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            >
+                          </div>
+                        </div>
+                        <div class="filter-price__field">
+                          <label for="Filter-Price-LTE" class="filter-price__label">To</label>
+                          <div class="filter-price__input-wrap">
+                            <span class="filter-price__symbol">{{ cart.currency.symbol }}</span>
+                            <input
+                              type="number"
+                              id="Filter-Price-LTE"
+                              name="{{ filter.max_value.param_name }}"
+                              class="filter-price__input"
+                              {%- if filter.max_value.value -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif -%}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="filter-price__apply button button--secondary button--small">Apply</button>
+                    </div>
+                  {%- else -%}
+                    <ul class="filter-values">
+                      {%- for value in filter.values -%}
+                        <li class="filter-value">
+                          <label
+                            for="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                            class="filter-value__label{% if value.count == 0 and value.active == false %} filter-value__label--disabled{% endif %}"
+                          >
+                            <input
+                              type="checkbox"
+                              class="filter-value__checkbox"
+                              id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                              name="{{ value.param_name }}"
+                              value="{{ value.value }}"
+                              {% if value.active %}checked{% endif %}
+                              {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                            >
+                            <span class="filter-value__text">{{ value.label | escape }}</span>
+                            <span class="filter-value__count">({{ value.count }})</span>
+                          </label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+              </details>
+            {%- endfor -%}
+
+          </form>
+        </aside>
+      {%- endunless -%}
+
+      <div class="search-results-col">
+
+        <div class="search-toolbar">
+          <p class="search-toolbar__count">
+            {%- if search.results_count > 0 -%}
+              Showing {{ paginate.current_offset | plus: 1 }}&ndash;{{ paginate.current_offset | plus: paginate.page_size | at_most: search.results_count }} of {{ search.results_count }} results
+            {%- endif -%}
+          </p>
+          <div class="search-toolbar__sort">
+            <label for="SearchSortBy" class="visually-hidden">Sort by</label>
+            <select id="SearchSortBy" class="search-sort-select">
+              {%- for option in search.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>
+                  {{ option.name }}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        </div>
+
+        {%- if search.results_count > 0 -%}
+
+          <ul class="search-product-grid" role="list">
+            {%- for item in search.results -%}
+              {%- case item.object_type -%}
+                {%- when 'product' -%}
+                  <li class="search-product-grid__item">
+                    {%- render 'card-product',
+                      card_product: item,
+                      media_aspect_ratio: 'square',
+                      show_secondary_image: true,
+                      show_vendor: true,
+                      show_rating: false,
+                      lazy_load: true,
+                      section_id: section.id
+                    -%}
+                  </li>
+              {%- endcase -%}
+            {%- endfor -%}
+          </ul>
+
+          {%- if paginate.pages > 1 -%}
+            <div class="search-pagination">
+              {%- render 'pagination', paginate: paginate -%}
+            </div>
+          {%- endif -%}
+
+        {%- else -%}
+
+          <div class="search-no-results">
+            <p class="search-no-results__heading">No products found for &ldquo;{{ search.terms | escape }}&rdquo;</p>
+            <p class="search-no-results__sub">Try a different keyword or clear your filters.</p>
+          </div>
+
+        {%- endif -%}
+
+      </div>
+    </div>
+
+  {%- else -%}
+
+    <div class="search-empty-state">
+      <h1 class="h2">Search</h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-empty-state__form">
+        <div class="field">
+          <input
+            class="search__input field__input"
+            id="SearchPageInput"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="Search products..."
+            autocomplete="off"
+          >
+          <label class="field__label" for="SearchPageInput">Search</label>
+          <input type="hidden" name="type" value="product">
+          <button type="submit" class="search__button field__button" aria-label="Search">
+            {%- render 'icon-search' -%}
+          </button>
+        </div>
+      </form>
+    </div>
+
+  {%- endif -%}
+
+</div>
+
+{%- endpaginate -%}
+
+<style>
+  .main-search {
+    padding-top: 3.2rem;
+    padding-bottom: 6rem;
+  }
+
+  .search-results-header {
+    margin-bottom: 2.4rem;
+  }
+
+  .main-search__title {
+    margin: 0;
+  }
+
+  /* Layout */
+  .search-layout {
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .search-layout--no-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar */
+  .search-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .search-sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.2rem;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    margin-bottom: 0.4rem;
+  }
+
+  .search-sidebar__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .search-sidebar__clear {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.65);
+    text-decoration: underline;
+  }
+
+  .search-sidebar__clear:hover {
+    color: rgb(var(--color-foreground));
+  }
+
+  /* Active filter pills */
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1rem 0;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    margin-bottom: 0.4rem;
+  }
+
+  .active-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: rgba(var(--color-foreground), 0.06);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    border-radius: 10rem;
+    font-size: 1.2rem;
+    color: rgb(var(--color-foreground));
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .active-filter-pill:hover {
+    background: rgba(var(--color-foreground), 0.1);
+  }
+
+  .active-filter-pill__x {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+
+  /* Filter groups */
+  .filter-group {
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .filter-group__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 0;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    gap: 1rem;
+  }
+
+  .filter-group__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .filter-group__label {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .filter-group__active-count {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.6);
+    font-weight: 400;
+    margin-left: 0.3rem;
+  }
+
+  .filter-group__caret {
+    flex-shrink: 0;
+    color: rgba(var(--color-foreground), 0.5);
+    transition: transform 0.2s ease;
+  }
+
+  details.filter-group[open] .filter-group__caret {
+    transform: rotate(180deg);
+  }
+
+  .filter-group__body {
+    padding-bottom: 1.4rem;
+  }
+
+  /* Filter values */
+  .filter-values {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .filter-value__label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: rgb(var(--color-foreground));
+    line-height: 1.3;
+  }
+
+  .filter-value__label--disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .filter-value__checkbox {
+    width: 1.6rem;
+    height: 1.6rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: rgb(var(--color-foreground));
+    border-radius: 0.2rem;
+  }
+
+  .filter-value__text {
+    flex: 1;
+  }
+
+  .filter-value__count {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.5);
+  }
+
+  /* Price range */
+  .filter-price__fields {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .filter-price__field {
+    flex: 1;
+  }
+
+  .filter-price__label {
+    display: block;
+    font-size: 1.1rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin-bottom: 0.4rem;
+  }
+
+  .filter-price__input-wrap {
+    position: relative;
+  }
+
+  .filter-price__symbol {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.5);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .filter-price__input {
+    width: 100%;
+    padding: 0.8rem 0.8rem 0.8rem 2.2rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    -moz-appearance: textfield;
+  }
+
+  .filter-price__input::-webkit-inner-spin-button,
+  .filter-price__input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .filter-price__input:focus {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.3);
+    outline-offset: 0.1rem;
+  }
+
+  /* Toolbar */
+  .search-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.4rem;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    margin-bottom: 2.4rem;
+  }
+
+  .search-toolbar__count {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin: 0;
+  }
+
+  .search-sort-select {
+    font-size: 1.3rem;
+    padding: 0.6rem 1rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+    border-radius: 0.4rem;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+  }
+
+  /* Product grid */
+  .search-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.4rem 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .search-product-grid__item {
+    list-style: none;
+  }
+
+  /* Pagination */
+  .search-pagination {
+    margin-top: 4rem;
+  }
+
+  /* No results */
+  .search-no-results {
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .search-no-results__heading {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .search-no-results__sub {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin: 0;
+  }
+
+  /* Empty state (no search performed) */
+  .search-empty-state {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .search-empty-state__form {
+    margin-top: 2.4rem;
+  }
+
+  /* Responsive: tablet */
+  @media screen and (max-width: 989px) {
+    .search-layout {
+      grid-template-columns: 20rem 1fr;
+      gap: 2.4rem;
+    }
+  }
+
+  /* Responsive: mobile */
+  @media screen and (max-width: 749px) {
+    .search-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .search-sidebar {
+      position: static;
+    }
+
+    .search-product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.6rem 1.2rem;
+    }
+
+    .search-toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var filterForm = document.getElementById('SearchFilterForm');
+
+    if (filterForm) {
+      // Auto-submit on checkbox change
+      filterForm.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+        cb.addEventListener('change', function () {
+          filterForm.submit();
+        });
+      });
+    }
+
+    // Sort select: update URL preserving existing params
+    var sortSelect = document.getElementById('SearchSortBy');
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function () {
+        var url = new URL(window.location.href);
+        url.searchParams.set('sort_by', this.value);
+        window.location.href = url.toString();
+      });
+    }
+  })();
+</script>
