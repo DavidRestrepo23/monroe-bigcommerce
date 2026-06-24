@@ -1,45 +1,24 @@
 {%- if search.performed and search.results_count > 0 -%}
 
-  {%- comment -%} Get the ID of the first product result to seed recommendations {%- endcomment -%}
   {%- assign first_product_id = '' -%}
-  {%- assign first_product_title = '' -%}
   {%- for item in search.results -%}
     {%- if item.object_type == 'product' and first_product_id == '' -%}
       {%- assign first_product_id = item.id -%}
-      {%- assign first_product_title = item.title -%}
     {%- endif -%}
   {%- endfor -%}
 
   {%- if first_product_id != '' -%}
 
-    {%- style -%}
-      #SearchRecs-{{ section.id }} {
-        --cg-columns: 4;
-        --cg-accent: #007681;
-        --cg-accent-hover: #000000;
-      }
-      @media (max-width: 989px) and (min-width: 750px) {
-        #SearchRecs-{{ section.id }} {
-          --cg-columns: 3;
-        }
-      }
-      @media (max-width: 749px) {
-        #SearchRecs-{{ section.id }} {
-          --cg-columns: 2;
-        }
-      }
-    {%- endstyle -%}
-
     <section
       id="SearchRecs-{{ section.id }}"
-      class="search-recs"
+      class="msrs-recs"
       data-product-id="{{ first_product_id }}"
       hidden
     >
-      <div class="search-recs__inner collection-grid__container">
-        <h2 class="search-recs__heading">You may also like</h2>
+      <div class="msrs-recs__container">
+        <h2 class="msrs-recs__heading">You may also like</h2>
         <ul
-          class="collection-grid__list list-unstyled"
+          class="msrs-recs__grid"
           id="SearchRecsGrid-{{ section.id }}"
           role="list"
         ></ul>
@@ -47,17 +26,222 @@
     </section>
 
     <style>
-      .search-recs {
+      /*
+        Monroe Search Recommendations
+        Isolated to sections/search-recommendations.liquid only.
+        All styling scoped under #SearchRecs-{{ section.id }}.
+      */
+
+      #SearchRecs-{{ section.id }} {
+        --msrs-accent: #007681;
+        --msrs-accent-hover: #005f68;
+        --msrs-text: #000000;
+        --msrs-muted: rgba(28, 28, 28, 0.52);
+        --msrs-border: rgba(0, 0, 0, 0.12);
+        --msrs-card-bg: #f4f4f4;
+        --msrs-radius: 16px;
+        --msrs-font: var(--font-family, Arial, Helvetica, sans-serif);
+
+        display: block;
+        width: 100%;
         padding: 48px 0 60px;
         border-top: 1px solid rgba(0, 0, 0, 0.08);
-        margin-top: 0;
+        background: #ffffff;
+        font-family: var(--msrs-font);
       }
-      .search-recs__heading {
+
+      #SearchRecs-{{ section.id }} *,
+      #SearchRecs-{{ section.id }} *::before,
+      #SearchRecs-{{ section.id }} *::after {
+        box-sizing: border-box;
+      }
+
+      #SearchRecs-{{ section.id }} .msrs-recs__container {
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      #SearchRecs-{{ section.id }} .msrs-recs__heading {
+        margin: 0 0 28px;
         font-size: 1.5rem;
         font-weight: 700;
-        margin: 0 0 28px;
         letter-spacing: -0.01em;
-        color: #000;
+        color: var(--msrs-text);
+      }
+
+      #SearchRecs-{{ section.id }} .msrs-recs__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 32px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      #SearchRecs-{{ section.id }} .msrs-recs__grid > li::marker {
+        content: "";
+      }
+
+      #SearchRecs-{{ section.id }} .msrs-recs__item {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      /* Product cards scoped only to this recommendations section */
+
+      #SearchRecs-{{ section.id }} .product-card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        background: transparent;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__media {
+        position: relative;
+        display: block;
+        aspect-ratio: 1 / 1;
+        background: var(--msrs-card-bg);
+        border-radius: var(--msrs-radius);
+        overflow: hidden;
+        text-decoration: none;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__media img,
+      #SearchRecs-{{ section.id }} .product-card__media > div {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__media:hover img {
+        transform: scale(1.03);
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--msrs-text);
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__title a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__title a:hover {
+        text-decoration: underline;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__price {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 8px;
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--msrs-text);
+        font-family: var(--msrs-font);
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__price del {
+        color: #9a9a9a;
+        font-weight: 400;
+        font-size: 0.85rem;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__cart {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: var(--msrs-accent);
+        color: #ffffff;
+        border: 0;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 1.125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        font-family: var(--msrs-font);
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__cart:hover:not(:disabled) {
+        background: var(--msrs-accent-hover);
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__cart:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      #SearchRecs-{{ section.id }} .product-card__cart svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      /* Responsive */
+
+      @media (max-width: 989px) {
+        #SearchRecs-{{ section.id }} .msrs-recs__grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 749px) {
+        #SearchRecs-{{ section.id }} {
+          padding: 36px 0 48px;
+        }
+
+        #SearchRecs-{{ section.id }} .msrs-recs__container {
+          padding: 0 16px;
+        }
+
+        #SearchRecs-{{ section.id }} .msrs-recs__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 24px 16px;
+        }
+
+        #SearchRecs-{{ section.id }} .product-card__title {
+          font-size: 0.9rem;
+        }
+
+        #SearchRecs-{{ section.id }} .product-card__price {
+          font-size: 1rem;
+        }
+
+        #SearchRecs-{{ section.id }} .product-card__cart {
+          padding: 8px 12px;
+        }
+
+        #SearchRecs-{{ section.id }} .product-card__cart span {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #SearchRecs-{{ section.id }} .msrs-recs__grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
 
@@ -84,18 +268,14 @@
         }
 
         function getImgSrc(product) {
-          // featured_image can be an object {src, alt} or a string URL
           var fi = product.featured_image;
           if (fi) {
             var raw = typeof fi === 'string' ? fi : (fi.src || '');
             if (raw) {
-              // Ensure HTTPS
               raw = raw.startsWith('//') ? 'https:' + raw : raw;
-              // Insert _480x480 before the file extension, preserving query string
               return raw.replace(/\.(jpg|jpeg|png|gif|webp)(\?|$)/i, '_480x480.$1$2');
             }
           }
-          // Fallback to first image in images array
           if (product.images && product.images.length > 0) {
             var img = product.images[0];
             var src = typeof img === 'string' ? img : (img.src || '');
@@ -137,7 +317,7 @@
             + '<span>' + (available ? 'Cart' : 'Sold Out') + '</span>'
             + '</button>';
 
-          return '<li class="collection-grid__item">'
+          return '<li class="msrs-recs__item">'
             + '<article class="product-card">'
             + '<a class="product-card__media" href="' + escHtml(p.url) + '" aria-label="' + escHtml(p.title) + '">'
             + imgHtml
@@ -167,7 +347,7 @@
             section.hidden = false;
           })
           .catch(function () {
-            // Fail silently - section stays hidden, no errors shown to user
+            // Fail silently - section stays hidden
           });
       })();
     </script>
