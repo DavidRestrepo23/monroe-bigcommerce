@@ -73,11 +73,12 @@
 
       #SearchRecs-{{ section.id }} .msrs-recs__grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 32px;
         margin: 0;
         padding: 0;
         list-style: none;
+        justify-items: center;
       }
 
       #SearchRecs-{{ section.id }} .msrs-recs__grid > li::marker {
@@ -98,6 +99,8 @@
         gap: 14px;
         background: transparent;
         max-width: 200px;
+        width: 100%;
+        text-align: center;
       }
 
       #SearchRecs-{{ section.id }} .product-card__media {
@@ -149,7 +152,7 @@
       #SearchRecs-{{ section.id }} .product-card__row {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         gap: 12px;
       }
 
