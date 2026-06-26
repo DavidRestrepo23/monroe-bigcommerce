@@ -1,0 +1,475 @@
+<section id="tw-warranty-{{ section.id }}" class="tw-warranty" aria-labelledby="tw-warranty-title">
+  <style>
+    #tw-warranty-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-accent-dark:#a93430;
+      --tw-ink:#000000;
+      --tw-soft:#fff7f6;
+      --tw-card:#ffffff;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 12px 30px rgba(0,0,0,.08);
+      --tw-radius:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+      background:#ffffff;
+      text-align:center;
+    }
+
+    #tw-warranty-{{ section.id }} *,
+    #tw-warranty-{{ section.id }} *::before,
+    #tw-warranty-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__bar{
+      height:35px;
+      width:100%;
+      background:#d24742;
+      margin:0 0 28px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__bar--bottom{
+      margin:34px 0 0;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__shell{
+      width:100%;
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 18px 8px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(210,71,66,.12), transparent 34%),
+        linear-gradient(180deg, #ffffff, #fff7f6);
+      box-shadow:var(--tw-shadow);
+      padding:34px 24px;
+      margin:0 auto 24px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__eyebrow{
+      display:inline-block;
+      margin:0 0 12px;
+      padding:7px 12px;
+      border:1px solid rgba(210,71,66,.28);
+      border-radius:999px;
+      background:#ffffff;
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+    }
+
+    #tw-warranty-{{ section.id }} h2{
+      margin:0 0 14px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:40px;
+      line-height:1.15;
+      color:#000000;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-warranty-{{ section.id }} h3{
+      margin:0 0 10px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:25px;
+      line-height:1.25;
+      color:#000000;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-warranty-{{ section.id }} h4{
+      margin:0 0 8px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:20px;
+      line-height:1.25;
+      color:#000000;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-warranty-{{ section.id }} p{
+      margin:0 0 16px;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-warranty-{{ section.id }} p:last-child{
+      margin-bottom:0;
+    }
+
+    #tw-warranty-{{ section.id }} a{
+      color:#d24742;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
+    }
+
+    #tw-warranty-{{ section.id }} a:hover{
+      color:var(--tw-accent-dark);
+      text-decoration-thickness:2px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__intro{
+      max-width:880px;
+      margin:0 auto;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      margin-top:22px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 18px;
+      border:5px solid #000000;
+      border-radius:999px;
+      background:#d24742;
+      color:#ffffff;
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+      text-decoration:none;
+      transition:transform .08s ease, box-shadow .18s ease, background .18s ease;
+      box-shadow:0 8px 18px rgba(0,0,0,.12);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__button:hover{
+      color:#ffffff;
+      background:var(--tw-accent-dark);
+      text-decoration:none;
+      box-shadow:0 10px 22px rgba(0,0,0,.16);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__button:active{
+      transform:translateY(1px);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__button--secondary{
+      background:#ffffff;
+      color:#000000;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__button--secondary:hover{
+      background:#fff7f6;
+      color:#000000;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__quickGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin:24px auto;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__quickCard,
+    #tw-warranty-{{ section.id }} .tw-warranty__panel,
+    #tw-warranty-{{ section.id }} .tw-warranty__stepCard{
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:#ffffff;
+      box-shadow:var(--tw-shadow);
+      color:#000000;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__quickCard{
+      padding:20px 16px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__quickIcon{
+      width:44px;
+      height:44px;
+      margin:0 auto 12px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff7f6;
+      border:1px solid rgba(210,71,66,.24);
+      color:#000000;
+      font-weight:800;
+      font-size:20px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+      gap:18px;
+      margin:24px auto;
+      text-align:center;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__panel{
+      padding:24px 22px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__panel--full{
+      grid-column:1 / -1;
+      max-width:920px;
+      margin:0 auto;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__list{
+      list-style:none;
+      padding:0;
+      margin:14px 0 0;
+      display:grid;
+      gap:10px;
+      text-align:left;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__list li{
+      position:relative;
+      padding:12px 12px 12px 44px;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:14px;
+      background:#ffffff;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__list li::before{
+      content:"";
+      position:absolute;
+      left:14px;
+      top:17px;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:#d24742;
+      box-shadow:0 0 0 4px rgba(210,71,66,.14);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__process{
+      margin:24px auto;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:24px 20px;
+      background:linear-gradient(180deg, #ffffff, #fffafa);
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__stepCard{
+      padding:18px 16px;
+      text-align:center;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__stepNumber{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#d24742;
+      color:#ffffff;
+      border:3px solid #000000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 10px;
+      font-weight:800;
+      font-size:18px;
+      line-height:1;
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__notice{
+      max-width:920px;
+      margin:24px auto 0;
+      padding:22px 20px;
+      border:2px solid rgba(210,71,66,.32);
+      border-radius:var(--tw-radius);
+      background:#fff7f6;
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+    }
+
+    #tw-warranty-{{ section.id }} .tw-warranty__finePrint{
+      font-size:18px;
+      color:#000000;
+    }
+
+    @media (max-width:900px){
+      #tw-warranty-{{ section.id }} .tw-warranty__quickGrid,
+      #tw-warranty-{{ section.id }} .tw-warranty__steps{
+        grid-template-columns:1fr;
+      }
+
+      #tw-warranty-{{ section.id }} .tw-warranty__grid{
+        grid-template-columns:1fr;
+      }
+
+      #tw-warranty-{{ section.id }} h2{
+        font-size:34px;
+      }
+    }
+
+    @media (max-width:560px){
+      #tw-warranty-{{ section.id }} .tw-warranty__shell{
+        padding-left:14px;
+        padding-right:14px;
+      }
+
+      #tw-warranty-{{ section.id }} .tw-warranty__hero,
+      #tw-warranty-{{ section.id }} .tw-warranty__panel,
+      #tw-warranty-{{ section.id }} .tw-warranty__process,
+      #tw-warranty-{{ section.id }} .tw-warranty__notice{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      #tw-warranty-{{ section.id }} h2{
+        font-size:30px;
+      }
+
+      #tw-warranty-{{ section.id }} h3{
+        font-size:24px;
+      }
+
+      #tw-warranty-{{ section.id }} .tw-warranty__button{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-warranty__bar" aria-hidden="true"></div>
+
+  <div class="tw-warranty__shell">
+    <div class="tw-warranty__hero">
+      <span class="tw-warranty__eyebrow">Typewriters.com Support</span>
+      <h2 id="tw-warranty-title">Our Warranty</h2>
+      <div class="tw-warranty__intro">
+        <p>
+          Are you experiencing an issue with your typewriter? We are here to help. Please call us, contact us through live chat, or email us and a member of our team will be happy to help.
+        </p>
+        <p>
+          To better assist you, we recommend capturing a photo or video of the issue you are having so you can provide us with a visual and help us better understand the problem.
+        </p>
+      </div>
+
+      <div class="tw-warranty__ctaRow" aria-label="Warranty contact options">
+        <a class="tw-warranty__button" href="tel:4043771884" title="Call Typewriters.com Warranty Support">Call (404) 377-1884</a>
+        <a class="tw-warranty__button tw-warranty__button--secondary" href="mailto:info@typewriters.com" title="Email Typewriters.com Warranty Support">Email Support</a>
+      </div>
+    </div>
+
+    <div class="tw-warranty__quickGrid" aria-label="Warranty highlights">
+      <div class="tw-warranty__quickCard">
+        <div class="tw-warranty__quickIcon" aria-hidden="true">90</div>
+        <h3>90-Day Period</h3>
+        <p>Our goods are suggested to be free from defects in material and workmanship, under normal use, for a period of 3 months from the date of purchase, based on our own findings.</p>
+      </div>
+
+      <div class="tw-warranty__quickCard">
+        <div class="tw-warranty__quickIcon" aria-hidden="true">✓</div>
+        <h3>Normal Use</h3>
+        <p>The warranty language applies to defects in material and workmanship under normal use. If something does not seem right, contact us so our team can review the issue.</p>
+      </div>
+
+      <div class="tw-warranty__quickCard">
+        <div class="tw-warranty__quickIcon" aria-hidden="true">?</div>
+        <h3>We Are Here To Help</h3>
+        <p>Our goal is to do everything in our power to keep your typewriter functioning like the day we sent it to you.</p>
+      </div>
+    </div>
+
+    <div class="tw-warranty__grid">
+      <section class="tw-warranty__panel" aria-labelledby="tw-warranty-covered">
+        <h3 id="tw-warranty-covered">What This Warranty Covers</h3>
+        <p>
+          Typewriters.com suggests that our goods to be free from defects in material and workmanship, under normal use, for a period of 3 months, or 90 days, from the date of purchase, based on our own findings.
+        </p>
+        <ul class="tw-warranty__list">
+          <li>Defects in material under normal use.</li>
+          <li>Defects in workmanship under normal use.</li>
+          <li>Issues reviewed and evaluated based on Typewriters.com findings.</li>
+        </ul>
+      </section>
+
+      <section class="tw-warranty__panel" aria-labelledby="tw-warranty-not-covered">
+        <h3 id="tw-warranty-not-covered">What Is Not Covered</h3>
+        <p>
+          Typewriters.com is not responsible for damage caused by the following conditions:
+        </p>
+        <ul class="tw-warranty__list">
+          <li>Improper storage, installation, or maintenance.</li>
+          <li>Hostile environment, misuse, abuse, or negligence.</li>
+          <li>Accident or modification of the device.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="tw-warranty__process" aria-labelledby="tw-warranty-support-process">
+      <h3 id="tw-warranty-support-process">Before You Contact Us</h3>
+      <p>
+        The fastest way for our team to understand your issue is to send a clear photo or video when possible. A visual can help us better identify what is happening and guide you toward the next best step.
+      </p>
+
+      <div class="tw-warranty__steps" aria-label="Recommended warranty support steps">
+        <div class="tw-warranty__stepCard">
+          <div class="tw-warranty__stepNumber" aria-hidden="true">1</div>
+          <h4>Document The Issue</h4>
+          <p>Take a photo or short video that clearly shows the concern you are experiencing with the typewriter.</p>
+        </div>
+
+        <div class="tw-warranty__stepCard">
+          <div class="tw-warranty__stepNumber" aria-hidden="true">2</div>
+          <h4>Contact Our Team</h4>
+          <p>Reach out by phone, live chat, or email so a member of our team can assist you.</p>
+        </div>
+
+        <div class="tw-warranty__stepCard">
+          <div class="tw-warranty__stepNumber" aria-hidden="true">3</div>
+          <h4>We Review The Issue</h4>
+          <p>Our team will use the information you provide to better understand your issue and help determine the next step.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tw-warranty__notice" aria-labelledby="tw-warranty-help-title">
+      <h3 id="tw-warranty-help-title">Need Help With Your Typewriter?</h3>
+      <p>
+        Please call us at <a href="tel:4043771884" target="_blank" rel="noopener" title="Typewriters.com Phone Number">(404) 377-1884</a>, contact us through live chat, or email us at <a href="mailto:info@typewriters.com" target="_blank" rel="noopener" title="Typewriters.com Email">info@typewriters.com</a> and a member of our team will be happy to help.
+      </p>
+      <p class="tw-warranty__finePrint">
+        We work to do everything in our power to keep your typewriter functioning like the day we sent it to you.
+      </p>
+    </section>
+  </div>
+
+  <div class="tw-warranty__bar tw-warranty__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Warranty",
+  "tag": "section",
+  "class": "section-typewriters-warranty-page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Warranty"
+    }
+  ]
+}
+{% endschema %}
