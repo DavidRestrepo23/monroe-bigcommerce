@@ -1,0 +1,543 @@
+<section id="tw-contact-{{ section.id }}" class="tw-contact" aria-labelledby="tw-contact-title">
+  <style>
+    #tw-contact-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-ink:#000000;
+      --tw-soft:#f8f8f8;
+      --tw-card:#ffffff;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 12px 30px rgba(0,0,0,.08);
+      --tw-radius:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+      width:100%;
+    }
+
+    #tw-contact-{{ section.id }} *,
+    #tw-contact-{{ section.id }} *::before,
+    #tw-contact-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-contact-{{ section.id }} *{
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} a{
+      color:#000000;
+      text-decoration:underline;
+      text-decoration-color:var(--tw-accent);
+      text-decoration-thickness:2px;
+      text-underline-offset:4px;
+    }
+
+    #tw-contact-{{ section.id }} a:hover{
+      text-decoration-thickness:3px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__bar{
+      height:35px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:0 0 28px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__bar--bottom{
+      margin:34px 0 0;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__shell{
+      width:100%;
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px;
+      text-align:center;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__hero{
+      max-width:960px;
+      margin:0 auto 26px;
+      padding:30px 22px;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:
+        radial-gradient(circle at 12px 12px, rgba(0,0,0,.035) 2px, transparent 3px) 0 0/20px 20px,
+        linear-gradient(180deg, #ffffff, #f7f7f7);
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__kicker{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 0 14px;
+      padding:8px 14px;
+      border:1px solid rgba(0,0,0,.18);
+      border-radius:999px;
+      background:rgba(210,71,66,.10);
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+    }
+
+    #tw-contact-{{ section.id }} h2{
+      margin:0 0 16px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:40px;
+      line-height:1.15;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} h3{
+      margin:0 0 12px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:25px;
+      line-height:1.25;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} h4{
+      margin:0 0 8px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:20px;
+      line-height:1.3;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} p{
+      margin:0 0 16px;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__intro{
+      max-width:850px;
+      margin:0 auto;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:12px 20px;
+      border:5px solid #000000;
+      border-radius:0;
+      background:#ffffff;
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+      text-decoration:none;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__btn:hover{
+      background:rgba(210,71,66,.10);
+      box-shadow:6px 6px 0 rgba(0,0,0,.18);
+      transform:translate(-2px, -2px);
+      text-decoration:none;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__grid{
+      display:grid;
+      grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr);
+      gap:22px;
+      align-items:start;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__panel,
+    #tw-contact-{{ section.id }} .tw-contact__formPanel,
+    #tw-contact-{{ section.id }} .tw-contact__card{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      box-shadow:var(--tw-shadow);
+      text-align:center;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__panel,
+    #tw-contact-{{ section.id }} .tw-contact__formPanel{
+      padding:24px 20px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__cards{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__card{
+      padding:18px 16px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__card p{
+      margin:0;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__icon{
+      width:42px;
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.18);
+      background:rgba(210,71,66,.12);
+      font-weight:700;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__address{
+      font-style:normal;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__note{
+      margin-top:18px;
+      padding:16px;
+      border:1px solid rgba(210,71,66,.35);
+      border-radius:14px;
+      background:rgba(210,71,66,.08);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__form{
+      text-align:left;
+      max-width:620px;
+      margin:0 auto;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__formIntro{
+      text-align:center;
+      max-width:650px;
+      margin:0 auto 18px;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__field{
+      margin:0 0 14px;
+    }
+
+    #tw-contact-{{ section.id }} label{
+      display:block;
+      margin:0 0 6px;
+      font-size:18px;
+      font-weight:700;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} input,
+    #tw-contact-{{ section.id }} textarea{
+      width:100%;
+      border:1px solid rgba(0,0,0,.28);
+      border-radius:12px;
+      background:#ffffff;
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.4;
+      padding:13px 14px;
+      box-shadow:none;
+    }
+
+    #tw-contact-{{ section.id }} textarea{
+      min-height:150px;
+      resize:vertical;
+    }
+
+    #tw-contact-{{ section.id }} input:focus,
+    #tw-contact-{{ section.id }} textarea:focus{
+      outline:none;
+      border-color:var(--tw-accent);
+      box-shadow:0 0 0 4px rgba(210,71,66,.18);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__submit{
+      width:100%;
+      min-height:52px;
+      padding:12px 20px;
+      border:5px solid #000000;
+      border-radius:0;
+      background:var(--tw-accent);
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__submit:hover{
+      background:#ffffff;
+      box-shadow:6px 6px 0 rgba(0,0,0,.18);
+      transform:translate(-2px, -2px);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__success,
+    #tw-contact-{{ section.id }} .tw-contact__error{
+      margin:0 0 18px;
+      padding:14px 16px;
+      border-radius:12px;
+      text-align:center;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__success{
+      border:1px solid rgba(0,0,0,.22);
+      background:rgba(0,128,0,.10);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__error{
+      border:1px solid rgba(210,71,66,.42);
+      background:rgba(210,71,66,.10);
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__helperGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      max-width:1100px;
+      margin:24px auto 0;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__helper{
+      padding:18px 16px;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:#ffffff;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+      text-align:center;
+    }
+
+    #tw-contact-{{ section.id }} .tw-contact__helper p{
+      margin:0;
+    }
+
+    @media (max-width: 900px){
+      #tw-contact-{{ section.id }} .tw-contact__grid{
+        grid-template-columns:1fr;
+        max-width:760px;
+      }
+
+      #tw-contact-{{ section.id }} .tw-contact__helperGrid{
+        grid-template-columns:1fr;
+        max-width:760px;
+      }
+    }
+
+    @media (max-width: 640px){
+      #tw-contact-{{ section.id }} .tw-contact__shell{
+        padding:0 14px;
+      }
+
+      #tw-contact-{{ section.id }} h2{
+        font-size:34px;
+      }
+
+      #tw-contact-{{ section.id }} h3{
+        font-size:25px;
+      }
+
+      #tw-contact-{{ section.id }} h4{
+        font-size:20px;
+      }
+
+      #tw-contact-{{ section.id }} .tw-contact__hero,
+      #tw-contact-{{ section.id }} .tw-contact__panel,
+      #tw-contact-{{ section.id }} .tw-contact__formPanel{
+        padding:22px 16px;
+      }
+
+      #tw-contact-{{ section.id }} .tw-contact__btn{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-contact__bar" aria-hidden="true"></div>
+
+  <div class="tw-contact__shell">
+    <div class="tw-contact__hero">
+      <p class="tw-contact__kicker">Typewriters.com Support</p>
+      <h2 id="tw-contact-title">Contact Us</h2>
+      <div class="tw-contact__intro">
+        <h3>Our Experience Is Here To Work For You</h3>
+        <p>
+          At Typewriters.com, our account representatives are here to help you. Each of our staff members has an average of more than 20 years of experience in the typewriter business, so you can feel confident in the service we provide.
+        </p>
+        <p>
+          We will recommend the right product at the right price to meet your needs.
+        </p>
+      </div>
+
+      <div class="tw-contact__ctaRow" aria-label="Contact options">
+        <a class="tw-contact__btn" href="tel:8663778973" title="Typewriters.com Toll-Free Number">Call Toll-Free</a>
+        <a class="tw-contact__btn" href="tel:4043771884" title="Typewriters.com Phone Number">Call Direct</a>
+        <a class="tw-contact__btn" href="mailto:info@typewriters.com" title="Typewriters.com Email">Email Us</a>
+      </div>
+    </div>
+
+    <div class="tw-contact__grid">
+      <section class="tw-contact__panel" aria-labelledby="tw-contact-details-title">
+        <h3 id="tw-contact-details-title">Reach Our Team</h3>
+        <p>
+          Whether you need help choosing a typewriter, finding the right supply, or getting support for an existing machine, our team is ready to help.
+        </p>
+
+        <div class="tw-contact__cards">
+          <article class="tw-contact__card">
+            <div class="tw-contact__icon" aria-hidden="true">1</div>
+            <h4>Phone &amp; Fax</h4>
+            <p><strong>Toll-Free:</strong> <a href="tel:8663778973" title="Typewriters.com Toll-Free Number">(866) 377-8973</a></p>
+            <p><strong>Phone:</strong> <a href="tel:4043771884" title="Typewriters.com Phone Number">(404) 377-1884</a></p>
+            <p><strong>Fax:</strong> (770) 939-0531</p>
+          </article>
+
+          <article class="tw-contact__card">
+            <div class="tw-contact__icon" aria-hidden="true">2</div>
+            <h4>Email</h4>
+            <p><a href="mailto:info@typewriters.com" title="Typewriters.com Email">info@typewriters.com</a></p>
+          </article>
+
+          <article class="tw-contact__card">
+            <div class="tw-contact__icon" aria-hidden="true">3</div>
+            <h4>Mailing Address</h4>
+            <address class="tw-contact__address">
+              5357 Royal Woods Pkwy<br>
+              Tucker, GA 30084
+            </address>
+          </article>
+        </div>
+
+        <div class="tw-contact__note">
+          <p>
+            For the fastest help, include your typewriter brand, model, and a short description of what you need. This helps our team recommend the right product or support option more quickly.
+          </p>
+        </div>
+      </section>
+
+      <section class="tw-contact__formPanel" aria-labelledby="tw-contact-form-title">
+        <h3 id="tw-contact-form-title">Send Us A Message</h3>
+        <p class="tw-contact__formIntro">
+          Use the form below to contact our team directly from the website.
+        </p>
+
+        {% form 'contact', id: 'ContactForm-' | append: section.id, class: 'tw-contact__form' %}
+          {% if form.posted_successfully? %}
+            <p class="tw-contact__success" tabindex="-1" autofocus>Your message has been sent. Thank you for contacting Typewriters.com.</p>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="tw-contact__error" role="alert">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <div class="tw-contact__field">
+            <label for="ContactFormName-{{ section.id }}">Name</label>
+            <input
+              type="text"
+              id="ContactFormName-{{ section.id }}"
+              name="contact[name]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="tw-contact__field">
+            <label for="ContactFormEmail-{{ section.id }}">Email</label>
+            <input
+              type="email"
+              id="ContactFormEmail-{{ section.id }}"
+              name="contact[email]"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              required
+            >
+          </div>
+
+          <div class="tw-contact__field">
+            <label for="ContactFormPhone-{{ section.id }}">Phone</label>
+            <input
+              type="tel"
+              id="ContactFormPhone-{{ section.id }}"
+              name="contact[phone]"
+              value="{% if form.phone %}{{ form.phone }}{% endif %}"
+              autocomplete="tel"
+            >
+          </div>
+
+          <div class="tw-contact__field">
+            <label for="ContactFormMessage-{{ section.id }}">How can we help?</label>
+            <textarea
+              id="ContactFormMessage-{{ section.id }}"
+              name="contact[body]"
+              required
+            >{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          </div>
+
+          <button type="submit" class="tw-contact__submit">Send Message</button>
+        {% endform %}
+      </section>
+    </div>
+
+    <div class="tw-contact__helperGrid" aria-label="Helpful contact reminders">
+      <article class="tw-contact__helper">
+        <h4>Choosing A Typewriter?</h4>
+        <p>Tell us how you plan to use it, and we can help point you toward the right option.</p>
+      </article>
+
+      <article class="tw-contact__helper">
+        <h4>Need Supplies?</h4>
+        <p>Send us the brand and model so we can help match the correct ribbon, correction tape, or accessory.</p>
+      </article>
+
+      <article class="tw-contact__helper">
+        <h4>Need Support?</h4>
+        <p>Share what is happening with the machine and any details that can help our team understand the issue.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="tw-contact__bar tw-contact__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Contact",
+  "tag": "section",
+  "class": "section-typewriters-contact",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Contact"
+    }
+  ]
+}
+{% endschema %}
