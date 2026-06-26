@@ -1,0 +1,507 @@
+<section id="tw-paper-guide-{{ section.id }}" class="tw-paper-guide" aria-labelledby="tw-paper-guide-title">
+  <style>
+    #tw-paper-guide-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-accent-dark:#a8322f;
+      --tw-ink:#000000;
+      --tw-soft:#fff7f6;
+      --tw-card:#ffffff;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 12px 28px rgba(0,0,0,.08);
+      --tw-radius:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      color:#000000;
+      line-height:1.65;
+      background:#ffffff;
+    }
+
+    #tw-paper-guide-{{ section.id }} *,
+    #tw-paper-guide-{{ section.id }} *::before,
+    #tw-paper-guide-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__bar{
+      height:18px;
+      background:var(--tw-accent);
+      width:100%;
+      margin:0 0 26px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__shell{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px 44px;
+      text-align:center;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__hero{
+      background:
+        radial-gradient(circle at top left, rgba(210,71,66,.16), transparent 34%),
+        linear-gradient(180deg, #ffffff, #fff8f7);
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      box-shadow:var(--tw-shadow);
+      padding:34px 22px;
+      margin:0 auto 24px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__hero::after{
+      content:"";
+      position:absolute;
+      right:-80px;
+      bottom:-90px;
+      width:220px;
+      height:220px;
+      border-radius:999px;
+      background:rgba(210,71,66,.10);
+      pointer-events:none;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__hero > *{
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__eyebrow{
+      display:inline-block;
+      margin:0 0 14px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(210,71,66,.10);
+      border:1px solid rgba(210,71,66,.32);
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    #tw-paper-guide-{{ section.id }} h2{
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 16px;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-paper-guide-{{ section.id }} h3{
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:25px;
+      line-height:1.25;
+      margin:0 0 12px;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-paper-guide-{{ section.id }} h4{
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:20px;
+      line-height:1.3;
+      margin:0 0 10px;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-paper-guide-{{ section.id }} p,
+    #tw-paper-guide-{{ section.id }} li,
+    #tw-paper-guide-{{ section.id }} a,
+    #tw-paper-guide-{{ section.id }} button{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-paper-guide-{{ section.id }} p{
+      margin:0 0 16px;
+    }
+
+    #tw-paper-guide-{{ section.id }} a{
+      color:var(--tw-accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
+    }
+
+    #tw-paper-guide-{{ section.id }} a:hover{
+      color:var(--tw-accent-dark);
+      text-decoration-thickness:2px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__intro{
+      max-width:920px;
+      margin:0 auto;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin-top:20px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 18px;
+      border-radius:999px;
+      border:5px solid #000000;
+      background:var(--tw-accent);
+      color:#ffffff;
+      text-decoration:none;
+      font-weight:700;
+      line-height:1.2;
+      transition:transform .08s ease, background .18s ease;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__button:hover{
+      background:var(--tw-accent-dark);
+      color:#ffffff;
+      text-decoration:none;
+      transform:translateY(-1px);
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__button--secondary{
+      background:#ffffff;
+      color:#000000;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__button--secondary:hover{
+      background:#f6f6f6;
+      color:#000000;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__quickCards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin:24px auto;
+      max-width:980px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__quickCard{
+      background:var(--tw-card);
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:20px 18px;
+      box-shadow:var(--tw-shadow);
+      text-align:center;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__quickNumber{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      background:var(--tw-accent);
+      color:#ffffff;
+      font-size:20px;
+      font-weight:700;
+      margin:0 0 12px;
+      border:2px solid #000000;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__visualCard{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:18px;
+      box-shadow:var(--tw-shadow);
+      margin:0 auto 26px;
+      max-width:880px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__imageLink{
+      display:block;
+      line-height:0;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__image{
+      display:block;
+      width:100%;
+      max-width:760px;
+      height:auto;
+      margin:0 auto;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.14);
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__caption{
+      margin:14px auto 0;
+      max-width:760px;
+      color:#000000;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr);
+      gap:18px;
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__panel{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      box-shadow:var(--tw-shadow);
+      padding:24px 22px;
+      text-align:center;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__panel--accent{
+      background:linear-gradient(180deg, #ffffff, #fff8f7);
+      border-color:rgba(210,71,66,.28);
+    }
+
+    #tw-paper-guide-{{ section.id }} ol{
+      list-style:none;
+      counter-reset:tw-step;
+      margin:18px auto 0;
+      padding:0;
+      max-width:820px;
+      text-align:left;
+    }
+
+    #tw-paper-guide-{{ section.id }} ol li{
+      counter-increment:tw-step;
+      position:relative;
+      margin:0 0 14px;
+      padding:16px 16px 16px 68px;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:14px;
+      background:#ffffff;
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+    }
+
+    #tw-paper-guide-{{ section.id }} ol li::before{
+      content:counter(tw-step);
+      position:absolute;
+      left:16px;
+      top:16px;
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--tw-accent);
+      color:#ffffff;
+      font-weight:700;
+      border:2px solid #000000;
+      font-size:18px;
+      line-height:1;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__note{
+      max-width:820px;
+      margin:18px auto 0;
+      padding:16px;
+      border-radius:14px;
+      background:rgba(210,71,66,.08);
+      border:1px solid rgba(210,71,66,.28);
+      text-align:center;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__help{
+      max-width:980px;
+      margin:24px auto 0;
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      box-shadow:var(--tw-shadow);
+      padding:24px 22px;
+      text-align:center;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__helpLinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      margin-top:18px;
+    }
+
+    #tw-paper-guide-{{ section.id }} .tw-paper-guide__bar--bottom{
+      margin:28px 0 0;
+    }
+
+    @media (max-width:900px){
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__quickCards{
+        grid-template-columns:1fr;
+      }
+
+      #tw-paper-guide-{{ section.id }} h2{
+        font-size:34px;
+      }
+
+      #tw-paper-guide-{{ section.id }} h3{
+        font-size:24px;
+      }
+    }
+
+    @media (max-width:600px){
+      #tw-paper-guide-{{ section.id }}{
+        font-size:18px;
+      }
+
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__shell{
+        padding:0 14px 34px;
+      }
+
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__hero,
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__panel,
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__help{
+        padding:22px 16px;
+      }
+
+      #tw-paper-guide-{{ section.id }} h2{
+        font-size:30px;
+      }
+
+      #tw-paper-guide-{{ section.id }} ol li{
+        padding:64px 14px 14px;
+      }
+
+      #tw-paper-guide-{{ section.id }} ol li::before{
+        left:14px;
+        top:14px;
+      }
+
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__ctaRow,
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__helpLinks{
+        flex-direction:column;
+      }
+
+      #tw-paper-guide-{{ section.id }} .tw-paper-guide__button{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-paper-guide__bar" aria-hidden="true"></div>
+
+  <div class="tw-paper-guide__shell">
+    <div class="tw-paper-guide__hero">
+      <span class="tw-paper-guide__eyebrow">IBM Wheelwriter Help Guide</span>
+      <h2 id="tw-paper-guide-title">How To Insert And Remove Paper When Using An IBM Wheelwriter</h2>
+      <div class="tw-paper-guide__intro">
+        <p>
+          Many <strong>IBM Wheelwriter</strong> users have asked us how to properly insert and remove paper from their IBM Wheelwriter typewriters. This guide breaks the process into simple steps, using the paper release lever, paper edge indicator, paper scale, and Paper Bail Load Lever correctly.
+        </p>
+      </div>
+      <div class="tw-paper-guide__ctaRow" aria-label="Page actions">
+        <a class="tw-paper-guide__button" href="#tw-inserting-paper-{{ section.id }}">View Inserting Steps</a>
+        <a class="tw-paper-guide__button tw-paper-guide__button--secondary" href="tel:4043771884">Call For Help</a>
+      </div>
+    </div>
+
+    <div class="tw-paper-guide__quickCards" aria-label="Quick guide summary">
+      <article class="tw-paper-guide__quickCard">
+        <span class="tw-paper-guide__quickNumber">1</span>
+        <h3>Load Carefully</h3>
+        <p>Use the Paper Bail Load Lever to feed the sheet to the top margin position.</p>
+      </article>
+      <article class="tw-paper-guide__quickCard">
+        <span class="tw-paper-guide__quickNumber">2</span>
+        <h3>Remove Smoothly</h3>
+        <p>Open the lever and pull the Paper Release Lever toward you before lifting the paper out.</p>
+      </article>
+      <article class="tw-paper-guide__quickCard">
+        <span class="tw-paper-guide__quickNumber">3</span>
+        <h3>Set The Margin</h3>
+        <p>Use Code with the Paper Bail Load Lever to save a new top margin position.</p>
+      </article>
+    </div>
+
+    <div class="tw-paper-guide__visualCard">
+      <a class="tw-paper-guide__imageLink" title="IBM Wheelwriters" href="/typewriters/IBM" target="_blank" rel="noopener">
+        <img class="tw-paper-guide__image" src="https://s3.amazonaws.com/typewriters.comwebsiteimages/Typewriters.com+Pages/Home+Page/FAQ/HowToInsertAndRemovePaper/Inserting_and_Removing_Paper-How_TO_large.jpg" alt="Inserting and removing paper on an IBM Wheelwriter" width="760" height="auto" loading="lazy" />
+      </a>
+      <p class="tw-paper-guide__caption">
+        Use this diagram as a visual reference while following the step-by-step instructions below.
+      </p>
+    </div>
+
+    <div class="tw-paper-guide__layout">
+      <section id="tw-inserting-paper-{{ section.id }}" class="tw-paper-guide__panel" aria-labelledby="tw-inserting-title-{{ section.id }}">
+        <h3 id="tw-inserting-title-{{ section.id }}">Inserting Paper</h3>
+        <p>
+          Use the Paper Bail Load Lever to load paper semi-automatically. The lever has three positions: closed, open, and load.
+        </p>
+        <ol>
+          <li>Turn the typewriter on.</li>
+          <li>Push the Paper Release Lever all the way back.</li>
+          <li>Align the center of the paper edge indicator with the vertical line to the left of zero on the paper scale.</li>
+          <li>Align the left edge of the paper with the vertical line in the center of the paper edge indicator.</li>
+          <li>Pull the Paper Bail Load Lever to the load position. When the paper begins to feed, release the Paper Bail Load Lever. The paper feeds to the top margin position.</li>
+          <li>Push the Paper Bail Load Lever back until it holds the paper against the platen.</li>
+        </ol>
+        <div class="tw-paper-guide__note">
+          <p><strong>Helpful note:</strong> You can also use the Paper Bail Load Lever to change the top margin.</p>
+        </div>
+      </section>
+
+      <section class="tw-paper-guide__panel tw-paper-guide__panel--accent" aria-labelledby="tw-removing-title-{{ section.id }}">
+        <h3 id="tw-removing-title-{{ section.id }}">Removing Paper</h3>
+        <ol>
+          <li>Pull the Paper Bail Load Lever to the open position.</li>
+          <li>Pull the Paper Release Lever toward you, then lift the paper out of the typewriter.</li>
+          <li>Push the Paper Release Lever and Paper Bail Load Lever back to the closed position.</li>
+        </ol>
+      </section>
+
+      <section class="tw-paper-guide__panel" aria-labelledby="tw-margin-title-{{ section.id }}">
+        <h3 id="tw-margin-title-{{ section.id }}">Changing The Top Margin</h3>
+        <p>
+          When you insert paper, it feeds to the top margin position, which is the first writing line. You can change the position of this top margin by following these steps.
+        </p>
+        <ol>
+          <li>Use the Paper Bail Load Lever to insert a sheet of paper. An incorrect top margin position will result if you do not use the Paper Bail Load Lever.</li>
+          <li>Position the paper at the desired new first writing line.</li>
+          <li>Hold down Code while you pull the Paper Bail Load Lever forward. The printwheel spins as the top margin is set.</li>
+          <li>Push the Paper Bail Load Lever all the way back and release Code. The new top margin is saved when you turn the typewriter off.</li>
+        </ol>
+      </section>
+    </div>
+
+    <section class="tw-paper-guide__help" aria-labelledby="tw-paper-help-title-{{ section.id }}">
+      <h3 id="tw-paper-help-title-{{ section.id }}">Need Help With Your IBM Wheelwriter?</h3>
+      <p>
+        If you have any further questions or problems, contact us through live chat, email, or phone and we will be happy to assist you between 8 AM and 5 PM EST, Monday through Friday.
+      </p>
+      <div class="tw-paper-guide__helpLinks">
+        <a class="tw-paper-guide__button" href="tel:4043771884">Call (404) 377-1884</a>
+        <a class="tw-paper-guide__button tw-paper-guide__button--secondary" href="mailto:info@typewriters.com" target="_blank" rel="noopener">Email info@typewriters.com</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="tw-paper-guide__bar tw-paper-guide__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Paper Guide",
+  "tag": "section",
+  "class": "section-wheelwriter-paper-guide",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Paper Guide"
+    }
+  ]
+}
+{% endschema %}
