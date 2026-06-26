@@ -1,0 +1,561 @@
+<section id="tw-reconditioned-{{ section.id }}" class="tw-reconditioned" aria-labelledby="tw-reconditioned-title">
+  <style>
+    #tw-reconditioned-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-accent-dark:#a8322e;
+      --tw-ink:#000000;
+      --tw-soft:#f7f7f7;
+      --tw-card:#ffffff;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 12px 28px rgba(0,0,0,.08);
+      --tw-radius:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      color:#000000;
+      font-size:18px;
+      line-height:1.65;
+      width:100%;
+      background:#ffffff;
+    }
+
+    #tw-reconditioned-{{ section.id }} *,
+    #tw-reconditioned-{{ section.id }} *::before,
+    #tw-reconditioned-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__bar{
+      height:18px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:0 0 26px;
+      border-radius:999px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__shell{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px 42px;
+      text-align:center;
+    }
+
+    #tw-reconditioned-{{ section.id }} h2,
+    #tw-reconditioned-{{ section.id }} h3,
+    #tw-reconditioned-{{ section.id }} h4,
+    #tw-reconditioned-{{ section.id }} p,
+    #tw-reconditioned-{{ section.id }} li,
+    #tw-reconditioned-{{ section.id }} a,
+    #tw-reconditioned-{{ section.id }} span,
+    #tw-reconditioned-{{ section.id }} strong{
+      font-family:Arial, Helvetica, sans-serif;
+      color:#000000;
+    }
+
+    #tw-reconditioned-{{ section.id }} h2{
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 16px;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    #tw-reconditioned-{{ section.id }} h3{
+      font-size:25px;
+      line-height:1.25;
+      margin:0 0 10px;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    #tw-reconditioned-{{ section.id }} h4{
+      font-size:20px;
+      line-height:1.25;
+      margin:0 0 8px;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    #tw-reconditioned-{{ section.id }} p{
+      margin:0 0 16px;
+      font-size:18px;
+      line-height:1.65;
+    }
+
+    #tw-reconditioned-{{ section.id }} a{
+      color:var(--tw-accent) !important;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-size:18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} a:hover{
+      color:var(--tw-accent-dark) !important;
+      text-decoration-thickness:2px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:
+        radial-gradient(circle at top left, rgba(210,71,66,.16), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+      box-shadow:var(--tw-shadow);
+      padding:34px 26px;
+      margin:0 auto 24px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__kicker{
+      display:inline-block;
+      margin:0 0 12px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(210,71,66,.35);
+      background:rgba(210,71,66,.08);
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__lead{
+      max-width:920px;
+      margin:0 auto 18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__ctaRow{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:12px 18px;
+      border:5px solid #000000;
+      border-radius:12px;
+      background:var(--tw-accent);
+      color:#ffffff !important;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+      transition:transform .12s ease, background .12s ease;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__btn:hover{
+      background:var(--tw-accent-dark);
+      color:#ffffff !important;
+      text-decoration:none;
+      transform:translateY(-1px);
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__btn--secondary{
+      background:#ffffff;
+      color:#000000 !important;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__btn--secondary:hover{
+      background:#f1f1f1;
+      color:#000000 !important;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__stats{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin:24px auto;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__stat{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:20px 16px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__statNumber{
+      display:block;
+      color:var(--tw-accent) !important;
+      font-size:34px;
+      line-height:1;
+      font-weight:800;
+      margin:0 0 8px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__section{
+      margin:24px auto 0;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      background:#ffffff;
+      box-shadow:var(--tw-shadow);
+      padding:26px;
+      text-align:left;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__sectionHeader{
+      text-align:center;
+      max-width:900px;
+      margin:0 auto 18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__sectionHeader p{
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__copy{
+      max-width:930px;
+      margin:0 auto;
+      text-align:left;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__split{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(280px, .78fr);
+      gap:18px;
+      align-items:stretch;
+      margin-top:18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__panel{
+      background:var(--tw-soft);
+      border:1px solid var(--tw-line);
+      border-radius:16px;
+      padding:20px;
+      height:100%;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__compareGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__compareCard{
+      border:1px solid var(--tw-line);
+      border-radius:16px;
+      background:#ffffff;
+      padding:20px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__compareCard--strong{
+      border:2px solid var(--tw-accent);
+      box-shadow:0 8px 20px rgba(210,71,66,.10);
+    }
+
+    #tw-reconditioned-{{ section.id }} ul{
+      margin:10px 0 0 0;
+      padding:0;
+      list-style:none;
+    }
+
+    #tw-reconditioned-{{ section.id }} li{
+      position:relative;
+      padding-left:28px;
+      margin:0 0 12px;
+      font-size:18px;
+      line-height:1.55;
+    }
+
+    #tw-reconditioned-{{ section.id }} li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.48em;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--tw-accent);
+      box-shadow:0 0 0 4px rgba(210,71,66,.14);
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__steps{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__stepCard{
+      border:1px solid var(--tw-line);
+      border-radius:16px;
+      background:linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+      padding:18px;
+      text-align:left;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__stepNumber{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;
+      height:38px;
+      border-radius:999px;
+      background:var(--tw-accent);
+      color:#ffffff !important;
+      font-weight:800;
+      margin-bottom:12px;
+      font-size:18px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__note{
+      margin-top:18px;
+      padding:18px;
+      border-left:6px solid var(--tw-accent);
+      background:rgba(210,71,66,.08);
+      border-radius:12px;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__contact{
+      background:linear-gradient(180deg, rgba(210,71,66,.08), rgba(210,71,66,.03));
+      border:1px solid rgba(210,71,66,.24);
+      text-align:center;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__contact p{
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    #tw-reconditioned-{{ section.id }} .tw-reconditioned__bottomBar{
+      height:18px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:28px 0 0;
+      border-radius:999px;
+    }
+
+    @media (max-width:900px){
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__stats,
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__steps{
+        grid-template-columns:1fr 1fr;
+      }
+
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__split,
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__compareGrid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      #tw-reconditioned-{{ section.id }} h2{
+        font-size:32px;
+      }
+
+      #tw-reconditioned-{{ section.id }} h3{
+        font-size:24px;
+      }
+
+      #tw-reconditioned-{{ section.id }} h4{
+        font-size:20px;
+      }
+
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__hero,
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__section{
+        padding:22px 16px;
+      }
+
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__stats,
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__steps{
+        grid-template-columns:1fr;
+      }
+
+      #tw-reconditioned-{{ section.id }} .tw-reconditioned__btn{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-reconditioned__bar" aria-hidden="true"></div>
+
+  <div class="tw-reconditioned__shell">
+    <div class="tw-reconditioned__hero">
+      <span class="tw-reconditioned__kicker">Reconditioned Typewriters</span>
+      <h2 id="tw-reconditioned-title">A Reconditioning Process That Surpasses All Others</h2>
+      <p class="tw-reconditioned__lead">
+        When it comes to our technician's reconditioning process for typewriters, quality and experience speak volumes. Every reconditioned typewriter at Typewriters.com goes through an extensive process before it is shipped to our customers, giving you a machine that is inspected, cleaned, tested, and prepared for real use.
+      </p>
+      <div class="tw-reconditioned__ctaRow">
+        <a class="tw-reconditioned__btn" href="/collections/typewriters">Shop Reconditioned Typewriters</a>
+        <a class="tw-reconditioned__btn tw-reconditioned__btn--secondary" href="/pages/typewriter-reconditioning">View Our 21-Step Process</a>
+      </div>
+    </div>
+
+    <div class="tw-reconditioned__stats" aria-label="Typewriters.com reconditioning highlights">
+      <div class="tw-reconditioned__stat">
+        <span class="tw-reconditioned__statNumber">21</span>
+        <h3>Step Process</h3>
+        <p>Each reconditioned typewriter is reviewed through a detailed quality-control process before shipment.</p>
+      </div>
+      <div class="tw-reconditioned__stat">
+        <span class="tw-reconditioned__statNumber">50+</span>
+        <h3>Years of Experience</h3>
+        <p>Our service technicians bring deep typewriter knowledge, including extensive experience with IBM models.</p>
+      </div>
+      <div class="tw-reconditioned__stat">
+        <span class="tw-reconditioned__statNumber">Ready</span>
+        <h3>To Type</h3>
+        <p>Our goal is simple: your typewriter should arrive prepared for dependable, confident use.</p>
+      </div>
+    </div>
+
+    <section class="tw-reconditioned__section" aria-labelledby="tw-quality-title">
+      <div class="tw-reconditioned__sectionHeader">
+        <h2 id="tw-quality-title">Quality and Experience Speak Volumes</h2>
+      </div>
+      <div class="tw-reconditioned__copy">
+        <p>
+          All of our reconditioned typewriters at Typewriters.com go through an extensive <a href="/pages/typewriter-reconditioning" target="_blank" rel="noopener">21-step reconditioning process</a> before they are shipped to our customers. Our service technicians bring over 50 years of experience in the typewriter business and have extensive knowledge with a variety of typewriters, including IBM models. This experience and level of dedication are what sets our company apart from other sellers in the typewriter market.
+        </p>
+        <p>
+          A typewriter is more than a display piece. For many customers, it is a tool for daily office work, forms, labels, invoices, correspondence, records, and focused writing. That is why our process is built around practical reliability, not just appearance.
+        </p>
+      </div>
+    </section>
+
+    <section class="tw-reconditioned__section" aria-labelledby="tw-why-title">
+      <div class="tw-reconditioned__sectionHeader">
+        <h2 id="tw-why-title">Why Reconditioned Over Refurbished?</h2>
+        <p>
+          The difference matters. A reconditioned typewriter should be prepared with a more thorough process than a quick cosmetic refresh.
+        </p>
+      </div>
+
+      <div class="tw-reconditioned__compareGrid">
+        <article class="tw-reconditioned__compareCard">
+          <h3>Refurbished Often Means Minimal</h3>
+          <p>
+            While refurbished units may cost less than a reconditioned model, less expensive does not necessarily mean better. Refurbished units can go through minimal inspection and testing, and in some cases may only receive a quick look over.
+          </p>
+          <ul>
+            <li>May focus mostly on appearance</li>
+            <li>May receive limited testing</li>
+            <li>May not be fully prepared for regular use</li>
+          </ul>
+        </article>
+
+        <article class="tw-reconditioned__compareCard tw-reconditioned__compareCard--strong">
+          <h3>Reconditioned Means Prepared</h3>
+          <p>
+            Our reconditioned units are completely disassembled, cleaned, carefully inspected, tested, and prepared through a structured process before shipment.
+          </p>
+          <ul>
+            <li>Detailed inspection and cleaning</li>
+            <li>Quality-control checks before shipment</li>
+            <li>Warranty-backed confidence from Typewriters.com</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="tw-reconditioned__note">
+        <p>
+          At Typewriters.com, our typewriters are reconditioned and not refurbished. Our 21-step reconditioning process gives you peace of mind that your typewriter will be completely ready to go when you receive it. Plus, we warranty our work.
+        </p>
+      </div>
+    </section>
+
+    <section class="tw-reconditioned__section" aria-labelledby="tw-process-title">
+      <div class="tw-reconditioned__sectionHeader">
+        <h2 id="tw-process-title">What Our Process Is Designed To Protect</h2>
+        <p>
+          A dependable typewriter requires attention to both the visible condition and the internal performance of the machine.
+        </p>
+      </div>
+
+      <div class="tw-reconditioned__steps">
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">1</span>
+          <h3>Clean Operation</h3>
+          <p>We focus on removing buildup, checking movement, and preparing the machine so it functions smoothly.</p>
+        </article>
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">2</span>
+          <h3>Mechanical Confidence</h3>
+          <p>Our technicians inspect the typewriter for wear, response, alignment, and performance concerns.</p>
+        </article>
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">3</span>
+          <h3>Typing Readiness</h3>
+          <p>Each machine is prepared with the goal of arriving ready for real typing work, not just display.</p>
+        </article>
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">4</span>
+          <h3>Customer Support</h3>
+          <p>If you need help choosing the right model, our team can guide you based on your needs and use case.</p>
+        </article>
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">5</span>
+          <h3>Warranty Support</h3>
+          <p>We warranty our work so you can buy with more confidence than purchasing from an unknown seller.</p>
+        </article>
+        <article class="tw-reconditioned__stepCard">
+          <span class="tw-reconditioned__stepNumber">6</span>
+          <h3>Better Value</h3>
+          <p>A lower upfront price is not always the better deal if the machine has not been carefully inspected and prepared.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tw-reconditioned__section" aria-labelledby="tw-confidence-title">
+      <div class="tw-reconditioned__split">
+        <div class="tw-reconditioned__panel">
+          <h2 id="tw-confidence-title">A Better Buying Decision</h2>
+          <p>
+            You wouldn't want a mechanic to put minimum effort into a major car repair, so choosing a typewriter should not be any different. We've been in the typewriter business for over 50 years, so you can feel confident that you are getting the very best reconditioned products, customer service, and tech support available.
+          </p>
+          <p>
+            When you purchase a reconditioned typewriter from Typewriters.com, you are choosing a machine backed by experience, inspection, preparation, and support.
+          </p>
+        </div>
+
+        <div class="tw-reconditioned__panel">
+          <h3>Best For Customers Who Want</h3>
+          <ul>
+            <li>A typewriter prepared for actual use</li>
+            <li>Support from experienced typewriter specialists</li>
+            <li>A more dependable alternative to unknown used listings</li>
+            <li>A machine backed by a company that warranties its work</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tw-reconditioned__section tw-reconditioned__contact" aria-labelledby="tw-help-title">
+      <h2 id="tw-help-title">Have Questions About Our Reconditioning Process?</h2>
+      <p>
+        If you have any other questions about our reconditioning process that the link above cannot answer, please feel free to contact us through our live chat, by phone at <a href="tel:4043771884" title="Typewriters.com Phone Number">(404) 377-1884</a>, or by email at <a href="mailto:info@typewriters.com" title="Typewriters.com Email">info@typewriters.com</a> Monday through Friday, 8 AM to 5 PM EST, and one of our team members will be happy to assist you.
+      </p>
+      <div class="tw-reconditioned__ctaRow">
+        <a class="tw-reconditioned__btn" href="/collections/typewriters">Shop Reconditioned Typewriters</a>
+        <a class="tw-reconditioned__btn tw-reconditioned__btn--secondary" href="mailto:info@typewriters.com">Email Us</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="tw-reconditioned__bottomBar" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Reconditioned",
+  "tag": "section",
+  "class": "section-tw-reconditioned",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Reconditioned"
+    }
+  ]
+}
+{% endschema %}
