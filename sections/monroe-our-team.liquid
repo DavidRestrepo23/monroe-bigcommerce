@@ -1,0 +1,452 @@
+<style>
+  .ms-team {
+    font-family: Roboto, Arial, sans-serif;
+    color: #000000;
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 18px 36px;
+  }
+
+  .ms-team * {
+    box-sizing: border-box;
+  }
+
+  .ms-team__bar {
+    height: 35px;
+    background: #007681;
+    width: 100%;
+    margin: 0 0 28px;
+  }
+
+  .ms-team__bar--bottom {
+    margin: 34px 0 0;
+  }
+
+  .ms-team h2 {
+    font-family: Roboto, Arial, sans-serif;
+    color: #000000;
+    font-size: 40px;
+    line-height: 1.15;
+    text-align: center;
+    margin: 0 0 14px;
+    text-decoration: none;
+  }
+
+  .ms-team h3 {
+    font-family: Roboto, Arial, sans-serif;
+    color: #000000;
+    font-size: 25px;
+    line-height: 1.25;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  .ms-team h4 {
+    font-family: Roboto, Arial, sans-serif;
+    color: #000000;
+    font-size: 20px;
+    line-height: 1.35;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  .ms-team p,
+  .ms-team li,
+  .ms-team a,
+  .ms-team span {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    color: #000000;
+  }
+
+  .ms-team a {
+    color: #007681;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .ms-team a:hover,
+  .ms-team a:focus {
+    text-decoration: underline;
+  }
+
+  .ms-team__intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 30px;
+  }
+
+  .ms-team__eyebrow {
+    display: inline-block;
+    color: #007681;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .ms-team__intro p {
+    margin: 10px auto 0;
+  }
+
+  .ms-team__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin: 28px 0 32px;
+  }
+
+  .ms-team__card {
+    border: 1px solid rgba(0, 118, 129, 0.22);
+    border-radius: 18px;
+    padding: 24px 18px;
+    text-align: center;
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .ms-team__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.11);
+    border-color: rgba(0, 118, 129, 0.42);
+  }
+
+  .ms-team__photoLink,
+  .ms-team__photoWrap {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+  }
+
+  .ms-team__photo {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #007681;
+    background: #ffffff;
+  }
+
+  .ms-team__name {
+    margin: 0 0 6px;
+  }
+
+  .ms-team__name a,
+  .ms-team__name span {
+    color: #007681;
+    font-size: 25px;
+    font-weight: 800;
+  }
+
+  .ms-team__role {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+  }
+
+  .ms-team__support {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 28px 0 32px;
+  }
+
+  .ms-team__supportCard {
+    background: rgba(0, 118, 129, 0.07);
+    border: 1px solid rgba(0, 118, 129, 0.22);
+    border-radius: 16px;
+    padding: 18px;
+  }
+
+  .ms-team__supportCard h3 {
+    color: #007681;
+    font-size: 25px;
+    margin-bottom: 8px;
+  }
+
+  .ms-team__supportCard p {
+    margin: 0;
+  }
+
+  .ms-team__careers {
+    border: 2px solid #007681;
+    border-radius: 18px;
+    padding: 24px 18px;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  .ms-team__careers h3 {
+    color: #000000;
+    margin-bottom: 8px;
+  }
+
+  .ms-team__careers p {
+    margin: 8px auto 0;
+    max-width: 820px;
+  }
+
+  .ms-team__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    padding: 12px 20px;
+    border: 5px solid #000000;
+    background: #007681;
+    color: #ffffff !important;
+    font-weight: 900;
+    text-decoration: none !important;
+    border-radius: 999px;
+    line-height: 1.15;
+  }
+
+  .ms-team__button:hover,
+  .ms-team__button:focus {
+    background: #005f68;
+    text-decoration: none !important;
+  }
+
+  @media (max-width: 850px) {
+    .ms-team__grid,
+    .ms-team__support {
+      grid-template-columns: 1fr;
+    }
+
+    .ms-team h2 {
+      font-size: 34px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .ms-team {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .ms-team h2 {
+      font-size: 30px;
+    }
+
+    .ms-team h3,
+    .ms-team__name a,
+    .ms-team__name span {
+      font-size: 23px;
+    }
+
+    .ms-team__photoLink,
+    .ms-team__photoWrap,
+    .ms-team__photo {
+      width: 170px;
+      height: 170px;
+    }
+  }
+</style>
+
+<section class="ms-team" aria-label="Monroe Systems for Business team">
+  <div class="ms-team__bar" aria-hidden="true"></div>
+
+  <div class="ms-team__intro">
+    <span class="ms-team__eyebrow">Meet the Team</span>
+    <h2>Our Team</h2>
+    <p>Behind Monroe Systems for Business is a team focused on supporting customers, keeping daily operations moving, maintaining product resources, and helping businesses find the right office solutions.</p>
+    <p>From customer service and operations to strategy, marketing, and factory service support, the people below help keep Monroe running every day.</p>
+  </div>
+
+  <div class="ms-team__grid">
+    <article class="ms-team__card">
+      <a class="ms-team__photoLink" href="https://www.linkedin.com/in/josephspurka/" target="_blank" rel="noopener" aria-label="Joseph Spurka LinkedIn Profile">
+        <img class="ms-team__photo" title="Joe Spurka, Vice President of Operations" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/joe-spurka-vp-of-operations.png?t=1758033803" alt="Joseph Spurka, Vice President of Operations" width="200" height="200" loading="lazy" />
+      </a>
+      <h3 class="ms-team__name"><a title="Joseph Spurka LinkedIn Profile" href="https://www.linkedin.com/in/josephspurka/" target="_blank" rel="noopener">Joseph Spurka</a></h3>
+      <p class="ms-team__role">Vice President of Operations</p>
+    </article>
+
+    <article class="ms-team__card">
+      <a class="ms-team__photoLink" href="https://www.linkedin.com/in/jasonmarsdale/" target="_blank" rel="noopener" aria-label="Jason Marsdale LinkedIn Profile">
+        <img class="ms-team__photo" title="Jason Marsdale, Director of Strategy" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/jason-marsdale-director-of-strategy.png?t=1760019667" alt="Jason Marsdale, Director of Strategy" width="200" height="200" loading="lazy" />
+      </a>
+      <h3 class="ms-team__name"><a title="Jason Marsdale LinkedIn Profile" href="https://www.linkedin.com/in/jasonmarsdale/" target="_blank" rel="noopener">Jason Marsdale</a></h3>
+      <p class="ms-team__role">Director of Strategy</p>
+    </article>
+
+    <article class="ms-team__card">
+      <span class="ms-team__photoWrap">
+        <img class="ms-team__photo" title="Jim Ruths, Warehouse Factory Service Manager" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/product_images/uploaded_images/jim-ruths.jpg" alt="Jim Ruths, Warehouse Factory Service Manager" width="200" height="200" loading="lazy" />
+      </span>
+      <h3 class="ms-team__name"><span>Jim Ruths</span></h3>
+      <p class="ms-team__role">Warehouse Factory Service Manager</p>
+    </article>
+
+    <article class="ms-team__card">
+      <a class="ms-team__photoLink" href="https://www.linkedin.com/in/jonathongregull/" target="_blank" rel="noopener" aria-label="Jonathon Gregull LinkedIn Profile">
+        <img class="ms-team__photo" title="Jon Gregull, Marketing Manager" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/product_images/uploaded_images/jon-2.0.png" alt="Jonathon Gregull, Marketing Manager" width="200" height="200" loading="lazy" />
+      </a>
+      <h3 class="ms-team__name"><a title="Jonathon Gregull LinkedIn Profile" href="https://www.linkedin.com/in/jonathongregull/" target="_blank" rel="noopener">Jonathon Gregull</a></h3>
+      <p class="ms-team__role">Marketing Manager</p>
+    </article>
+
+    <article class="ms-team__card">
+      <span class="ms-team__photoWrap">
+        <img class="ms-team__photo" title="Nicole Rosenblatt, Administrative Assistant" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/nicole-rosenblatt-administrative-assistant.png?t=1743171336" alt="Nicole Rosenblatt, Administrative Assistant" width="200" height="200" loading="lazy" />
+      </span>
+      <h3 class="ms-team__name"><span>Nicole Rosenblatt</span></h3>
+      <p class="ms-team__role">Administrative Assistant</p>
+    </article>
+
+    <article class="ms-team__card">
+      <a class="ms-team__photoLink" href="https://www.linkedin.com/in/brandonleip/" target="_blank" rel="noopener" aria-label="Brandon Leip LinkedIn Profile">
+        <img class="ms-team__photo" title="Brandon Leip, Digital Marketer" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/brandon-leip-digital-marketer.png?t=1743171333" alt="Brandon Leip, Digital Marketer" width="200" height="200" loading="lazy" />
+      </a>
+      <h3 class="ms-team__name"><a title="Brandon Leip LinkedIn Profile" href="https://www.linkedin.com/in/brandonleip/" target="_blank" rel="noopener">Brandon Leip</a></h3>
+      <p class="ms-team__role">Digital Marketer</p>
+    </article>
+
+    <article class="ms-team__card">
+      <span class="ms-team__photoWrap">
+        <img class="ms-team__photo" title="Maria Haney, Customer Service Representative" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/maria-haney-customer-service-representative.png?t=1743171339" alt="Maria Haney, Customer Service Representative" width="200" height="200" loading="lazy" />
+      </span>
+      <h3 class="ms-team__name"><span>Maria Haney</span></h3>
+      <p class="ms-team__role">Customer Service Representative</p>
+    </article>
+
+    <article class="ms-team__card">
+      <span class="ms-team__photoWrap">
+        <img class="ms-team__photo" title="Gaby Larco, Customer Service Representative" src="https://cdn11.bigcommerce.com/s-fp5opfnomp/images/stencil/original/image-manager/gaby-customer-service-representative.png?t=1758033800" alt="Gaby Larco, Customer Service Representative" width="200" height="200" loading="lazy" />
+      </span>
+      <h3 class="ms-team__name"><span>Gaby Larco</span></h3>
+      <p class="ms-team__role">Customer Service Representative</p>
+    </article>
+  </div>
+
+  <section class="ms-team__support" aria-label="How the Monroe team supports customers">
+    <div class="ms-team__supportCard">
+      <h3>Customer Support</h3>
+      <p>Our customer service team helps customers with product questions, order support, and general assistance before and after purchase.</p>
+    </div>
+    <div class="ms-team__supportCard">
+      <h3>Operations &amp; Service</h3>
+      <p>Our operations and warehouse service team helps keep orders, product support, and factory service needs moving efficiently.</p>
+    </div>
+    <div class="ms-team__supportCard">
+      <h3>Strategy &amp; Marketing</h3>
+      <p>Our strategy and marketing team supports the website, customer resources, product information, and Monroe's overall digital presence.</p>
+    </div>
+  </section>
+
+  <section class="ms-team__careers" aria-label="Careers at Monroe Systems for Business">
+    <h3>Interested in Joining Monroe?</h3>
+    <p>We're always on the lookout for passionate people to join our team. If you think you have something interesting to add, we'd love to hear about it.</p>
+    <p>Send resumes and cover letters to <a href="mailto:csr@monroe-systems.com">csr@monroe-systems.com</a>.</p>
+    <a class="ms-team__button" href="mailto:csr@monroe-systems.com">Contact Monroe</a>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Monroe Systems for Business Team",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Person",
+          "name": "Joseph Spurka",
+          "jobTitle": "Vice President of Operations",
+          "url": "https://www.linkedin.com/in/josephspurka/"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Person",
+          "name": "Jason Marsdale",
+          "jobTitle": "Director of Strategy",
+          "url": "https://www.linkedin.com/in/jasonmarsdale/"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Person",
+          "name": "Jim Ruths",
+          "jobTitle": "Warehouse Factory Service Manager"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Person",
+          "name": "Jonathon Gregull",
+          "jobTitle": "Marketing Manager",
+          "url": "https://www.linkedin.com/in/jonathongregull/"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Person",
+          "name": "Nicole Rosenblatt",
+          "jobTitle": "Administrative Assistant"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Person",
+          "name": "Brandon Leip",
+          "jobTitle": "Digital Marketer",
+          "url": "https://www.linkedin.com/in/brandonleip/"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Person",
+          "name": "Maria Haney",
+          "jobTitle": "Customer Service Representative"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "item": {
+          "@type": "Person",
+          "name": "Gaby Larco",
+          "jobTitle": "Customer Service Representative"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="ms-team__bar ms-team__bar--bottom" aria-hidden="true"></div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Monroe Our Team",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Monroe Our Team"
+    }
+  ]
+}
+{% endschema %}
