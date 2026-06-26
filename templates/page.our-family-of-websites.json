@@ -9,12 +9,12 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "monroe_family_of_websites": {
+      "type": "monroe-family-of-websites",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "monroe_family_of_websites"
   ]
 }
