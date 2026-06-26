@@ -1,0 +1,510 @@
+{% comment %}
+  Typewriters.com 21-Step Reconditioning Process page
+  Shopify-safe section: all CSS and JavaScript, if added later, should be scoped to #tw-recon-{{ section.id }}.
+{% endcomment %}
+
+<section id="tw-recon-{{ section.id }}" class="tw-recon" aria-labelledby="tw-recon-title-{{ section.id }}">
+  <style>
+    #tw-recon-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-black:#000000;
+      --tw-white:#ffffff;
+      --tw-soft:#f8f8f8;
+      --tw-soft-red:rgba(210,71,66,.08);
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 14px 36px rgba(0,0,0,.08);
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+      background:#ffffff;
+    }
+
+    #tw-recon-{{ section.id }} *,
+    #tw-recon-{{ section.id }} *::before,
+    #tw-recon-{{ section.id }} *::after{
+      box-sizing:border-box;
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__bar{
+      height:35px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:0 0 28px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__shell{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px 34px;
+      text-align:center;
+    }
+
+    #tw-recon-{{ section.id }} h2{
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 16px;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-recon-{{ section.id }} h3{
+      font-size:25px;
+      line-height:1.25;
+      margin:0 0 12px;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-recon-{{ section.id }} h4{
+      font-size:20px;
+      line-height:1.3;
+      margin:0 0 8px;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-recon-{{ section.id }} p{
+      font-size:18px;
+      line-height:1.65;
+      margin:0 0 16px;
+      color:#000000;
+    }
+
+    #tw-recon-{{ section.id }} a{
+      color:#000000;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
+    }
+
+    #tw-recon-{{ section.id }} a:hover,
+    #tw-recon-{{ section.id }} a:focus{
+      color:#000000;
+      text-decoration-thickness:2px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--tw-line);
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(0,0,0,.035) 2px, transparent 3px) 0 0/22px 22px,
+        linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      box-shadow:var(--tw-shadow);
+      padding:34px 24px 30px;
+      margin:0 auto 24px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:2px solid var(--tw-accent);
+      border-radius:999px;
+      padding:8px 14px;
+      margin:0 0 18px;
+      font-size:18px;
+      line-height:1.2;
+      font-weight:700;
+      background:#ffffff;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__title{
+      max-width:900px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__lead{
+      max-width:920px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__heroGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      max-width:980px;
+      margin:24px auto 0;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__stat{
+      border:1px solid var(--tw-line);
+      border-radius:18px;
+      background:#ffffff;
+      padding:18px 14px;
+      min-height:126px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      box-shadow:0 8px 22px rgba(0,0,0,.05);
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__stat strong{
+      display:block;
+      font-size:25px;
+      line-height:1.15;
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__stat span{
+      display:block;
+      font-size:18px;
+      line-height:1.35;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__section{
+      border:1px solid var(--tw-line);
+      border-radius:22px;
+      background:#ffffff;
+      padding:26px 22px;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      margin:22px auto;
+      max-width:1060px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__section--accent{
+      background:linear-gradient(180deg, #ffffff 0%, var(--tw-soft-red) 100%);
+      border-color:rgba(210,71,66,.28);
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__calloutGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__callout{
+      border:1px solid var(--tw-line);
+      border-radius:18px;
+      background:#ffffff;
+      padding:18px 14px;
+      min-height:145px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__stepsIntro{
+      max-width:890px;
+      margin:0 auto 22px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__steps{
+      list-style:none;
+      counter-reset:tw-step;
+      margin:0;
+      padding:0;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      text-align:left;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__step{
+      counter-increment:tw-step;
+      position:relative;
+      border:1px solid var(--tw-line);
+      border-radius:20px;
+      background:#ffffff;
+      padding:18px 16px 18px 70px;
+      min-height:170px;
+      box-shadow:0 8px 22px rgba(0,0,0,.05);
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__step::before{
+      content:counter(tw-step, decimal-leading-zero);
+      position:absolute;
+      top:18px;
+      left:16px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:2px solid var(--tw-accent);
+      background:#ffffff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      line-height:1;
+      font-weight:700;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__step strong{
+      display:block;
+      font-size:20px;
+      line-height:1.25;
+      margin:0 0 8px;
+      font-weight:700;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__step span{
+      display:block;
+      font-size:18px;
+      line-height:1.5;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__cta{
+      border:2px solid var(--tw-accent);
+      border-radius:24px;
+      background:#ffffff;
+      padding:30px 22px;
+      max-width:980px;
+      margin:26px auto;
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__btnRow{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:12px 20px;
+      border-radius:12px;
+      border:3px solid #000000;
+      background:#ffffff;
+      color:#000000;
+      text-decoration:none;
+      font-size:18px;
+      line-height:1.2;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__btn--accent{
+      background:var(--tw-accent);
+      color:#000000;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__btn:hover,
+    #tw-recon-{{ section.id }} .tw-recon__btn:focus{
+      color:#000000;
+      text-decoration:none;
+      transform:translateY(-1px);
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__reviews{
+      max-width:1060px;
+      margin:24px auto 0;
+      border:1px solid var(--tw-line);
+      border-radius:24px;
+      overflow:hidden;
+      background:#ffffff;
+      box-shadow:var(--tw-shadow);
+      padding:24px 18px;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__reviewImage{
+      display:block;
+      width:100%;
+      max-width:980px;
+      height:auto;
+      margin:16px auto 0;
+      border-radius:16px;
+      border:1px solid var(--tw-line);
+      background:#ffffff;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__note{
+      max-width:900px;
+      margin:16px auto 0;
+      font-size:18px;
+      line-height:1.55;
+    }
+
+    #tw-recon-{{ section.id }} .tw-recon__bottomBar{
+      height:35px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:32px 0 0;
+    }
+
+    @media (max-width:980px){
+      #tw-recon-{{ section.id }} .tw-recon__heroGrid,
+      #tw-recon-{{ section.id }} .tw-recon__calloutGrid,
+      #tw-recon-{{ section.id }} .tw-recon__steps{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width:720px){
+      #tw-recon-{{ section.id }} h2{
+        font-size:34px;
+      }
+
+      #tw-recon-{{ section.id }} h3{
+        font-size:25px;
+      }
+
+      #tw-recon-{{ section.id }} h4{
+        font-size:20px;
+      }
+
+      #tw-recon-{{ section.id }} .tw-recon__hero,
+      #tw-recon-{{ section.id }} .tw-recon__section,
+      #tw-recon-{{ section.id }} .tw-recon__cta,
+      #tw-recon-{{ section.id }} .tw-recon__reviews{
+        border-radius:18px;
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      #tw-recon-{{ section.id }} .tw-recon__heroGrid,
+      #tw-recon-{{ section.id }} .tw-recon__calloutGrid,
+      #tw-recon-{{ section.id }} .tw-recon__steps{
+        grid-template-columns:1fr;
+      }
+
+      #tw-recon-{{ section.id }} .tw-recon__step{
+        min-height:auto;
+      }
+
+      #tw-recon-{{ section.id }} .tw-recon__btn{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-recon__bar" aria-hidden="true"></div>
+
+  <div class="tw-recon__shell">
+    <div class="tw-recon__hero">
+      <div class="tw-recon__eyebrow">21-Step Reconditioning Process</div>
+      <h2 id="tw-recon-title-{{ section.id }}" class="tw-recon__title">You Get The Best From Typewriters.com</h2>
+      <h3>Experience Unparalleled Quality with Typewriters.com</h3>
+      <p class="tw-recon__lead">
+        At Typewriters.com, we are not just selling typewriters; we are delivering a legacy of precision engineering and timeless value. Our meticulous 21-Step Reconditioning Process is a testament to our commitment to excellence. With over half a century of expertise, our service technicians, seasoned in the intricacies of typewriter craftsmanship, help ensure that each reconditioned unit you receive is prepared for dependable, everyday use.
+      </p>
+
+      <div class="tw-recon__heroGrid" aria-label="Typewriters.com reconditioning highlights">
+        <div class="tw-recon__stat">
+          <strong>21 Steps</strong>
+          <span>A detailed inspection, cleaning, testing, adjustment, and packing process.</span>
+        </div>
+        <div class="tw-recon__stat">
+          <strong>Expert Service</strong>
+          <span>Handled by technicians familiar with IBM models and classic typewriters.</span>
+        </div>
+        <div class="tw-recon__stat">
+          <strong>Ready To Type</strong>
+          <span>New ribbons and correction tapes are installed before shipment.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-recon__section tw-recon__section--accent">
+      <h3>Our Promise: Reliability in Every Keystroke</h3>
+      <p>
+        We understand the nuances of IBM models and a spectrum of classic typewriters, enabling us to provide you with a machine that does not just work, but works wonders for you. When you choose Typewriters.com, you are not just purchasing a typewriter; you are securing a reliable partner for every word you type.
+      </p>
+      <div class="tw-recon__calloutGrid" aria-label="What the reconditioning process helps deliver">
+        <div class="tw-recon__callout">
+          <h4>Cleaner Operation</h4>
+          <p>Machines are cleaned, inspected, lubricated, adjusted, and tested before they leave our facility.</p>
+        </div>
+        <div class="tw-recon__callout">
+          <h4>Better Typing Confidence</h4>
+          <p>Key action, ribbon movement, printwheel performance, paper feeding, and correction functions are checked.</p>
+        </div>
+        <div class="tw-recon__callout">
+          <h4>Protected Shipment</h4>
+          <p>Custom boxes and foam caps help protect your typewriter during shipping.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-recon__section">
+      <h3>Connect with Typewriters.com Experts</h3>
+      <p>
+        We welcome you to call us at <a href="tel:4043771884">(404) 377-1884</a>, contact us through our live chat, or email us at <a title="Typewriters.com Email" href="mailto:info@typewriters.com" target="_blank" rel="noopener">info@typewriters.com</a>. A member of our team will be happy to assist you with selecting the right typewriter for your needs.
+      </p>
+    </div>
+
+    <div class="tw-recon__section tw-recon__section--accent">
+      <h2>Dive into the Details: Our Comprehensive 21-Step Reconditioning Process</h2>
+      <p class="tw-recon__stepsIntro">
+        Every reconditioned typewriter goes through a careful process designed to address cleanliness, mechanical reliability, typing performance, correction function, and shipping protection. Here is what our team checks before your machine is ready to go.
+      </p>
+
+      <ol class="tw-recon__steps">
+        <li class="tw-recon__step"><strong>Thorough Cleaning</strong><span>Each machine is disassembled, and every component is meticulously cleaned.</span></li>
+        <li class="tw-recon__step"><strong>Rigorous Inspection</strong><span>We examine each part for wear and tear, ensuring only the best quality.</span></li>
+        <li class="tw-recon__step"><strong>Precision Reconditioning</strong><span>Print hammer solenoids are renewed, and we install fresh caps for flawless performance.</span></li>
+        <li class="tw-recon__step"><strong>Rubber Rejuvenation</strong><span>All rubber parts are treated to extend their life and performance.</span></li>
+        <li class="tw-recon__step"><strong>Platen Resurfacing</strong><span>We ensure the platen is impeccable for clear, consistent printing.</span></li>
+        <li class="tw-recon__step"><strong>Gear Renewal</strong><span>New steel gears are installed in Series I transport motors for superior durability.</span></li>
+        <li class="tw-recon__step"><strong>Connectivity Check</strong><span>Keyboard and circuit board connectors are tested for secure connections.</span></li>
+        <li class="tw-recon__step"><strong>Battery Box Inspection</strong><span>Any sign of corrosion leads to a replacement to guarantee reliability.</span></li>
+        <li class="tw-recon__step"><strong>Platen Latch Examination</strong><span>We ensure platen latches are secure for steady paper feeding.</span></li>
+        <li class="tw-recon__step"><strong>Factory-Spec Lubrication</strong><span>Machines are reassembled with precision lubrication to meet original factory specifications.</span></li>
+        <li class="tw-recon__step"><strong>Ground Strap Verification</strong><span>We check all grounding for electrical safety and functionality.</span></li>
+        <li class="tw-recon__step"><strong>Adjustment Assurance</strong><span>All factory settings are verified for optimal performance.</span></li>
+        <li class="tw-recon__step"><strong>Printwheel Perfection</strong><span>Each character is tested multiple times to ensure flawless printing.</span></li>
+        <li class="tw-recon__step"><strong>Mechanical Integrity</strong><span>The machine undergoes a thorough check for gear and tabulation accuracy.</span></li>
+        <li class="tw-recon__step"><strong>Paper Insert Testing</strong><span>SAPI functionality is confirmed with covers in place.</span></li>
+        <li class="tw-recon__step"><strong>Keyboard Adjustments</strong><span>We ensure the perfect angle and responsive keystrokes.</span></li>
+        <li class="tw-recon__step"><strong>Ribbon and Tape Installation</strong><span>New ribbons and correction tapes are fitted for immediate use.</span></li>
+        <li class="tw-recon__step"><strong>Carbon Copy Calibration</strong><span>Print hammers are adjusted to handle multiple copies while retaining correctability.</span></li>
+        <li class="tw-recon__step"><strong>Key Button Testing</strong><span>Each key is tested for smooth operation without repeats.</span></li>
+        <li class="tw-recon__step"><strong>Ribbon Mechanics</strong><span>Lift height and feed are fine-tuned for perfect ribbon performance.</span></li>
+        <li class="tw-recon__step"><strong>Secure Packaging</strong><span>Custom boxes and foam caps protect your typewriter during shipping.</span></li>
+      </ol>
+    </div>
+
+    <div class="tw-recon__cta">
+      <h3>Shop with Confidence at Typewriters.com</h3>
+      <p>
+        We invite you to explore our curated collection of typewriters, each promising a journey back to the era of tangible craftsmanship. With Typewriters.com, type with assurance, type with legacy.
+      </p>
+      <div class="tw-recon__btnRow">
+        <a class="tw-recon__btn tw-recon__btn--accent" href="/collections/typewriters">Shop our Typewriters</a>
+        <a class="tw-recon__btn" href="tel:4043771884">Call (404) 377-1884</a>
+        <a class="tw-recon__btn" href="mailto:info@typewriters.com">Email Our Team</a>
+      </div>
+    </div>
+
+    <div class="tw-recon__reviews">
+      <h3>A Look At What Others Think About Our Wheelwriters</h3>
+      <p class="tw-recon__note">
+        Customer feedback helps show why the reconditioning process matters. A properly prepared IBM Wheelwriter can make a meaningful difference for offices, schools, legal work, personal correspondence, and anyone who still values a dependable typing machine.
+      </p>
+      <img class="tw-recon__reviewImage" src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/images/stencil/original/image-manager/wheelwriter-reviews-adjusted.png?t=1704484537" alt="IBM Wheelwriter Reviews" loading="lazy" decoding="async" />
+    </div>
+  </div>
+
+  <div class="tw-recon__bottomBar" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Reconditioning",
+  "tag": "section",
+  "class": "section-tw-reconditioning",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Reconditioning"
+    }
+  ]
+}
+{% endschema %}
