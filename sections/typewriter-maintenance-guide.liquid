@@ -1,0 +1,818 @@
+<section id="tw-maintenance-{{ section.id }}" class="tw-maintenance" aria-labelledby="tw-maintenance-title">
+  <style>
+    #tw-maintenance-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-accent-dark:#a9322e;
+      --tw-ink:#000000;
+      --tw-paper:#f7f3ea;
+      --tw-paper2:#ffffff;
+      --tw-soft:#fbf7ee;
+      --tw-border:rgba(0,0,0,.16);
+      --tw-shadow:0 14px 34px rgba(0,0,0,.10);
+      --tw-radius:18px;
+      --tw-max:1180px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      color:#000000;
+      line-height:1.65;
+      background:
+        radial-gradient(1000px 700px at 8% 2%, rgba(210,71,66,.10), transparent 62%),
+        radial-gradient(900px 600px at 92% 5%, rgba(0,0,0,.045), transparent 58%),
+        linear-gradient(180deg, #ffffff 0%, var(--tw-paper) 100%);
+      overflow:hidden;
+    }
+
+    #tw-maintenance-{{ section.id }} *,
+    #tw-maintenance-{{ section.id }} *::before,
+    #tw-maintenance-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-maintenance-{{ section.id }} a{
+      color:var(--tw-accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    #tw-maintenance-{{ section.id }} a:hover{
+      text-decoration-thickness:2px;
+    }
+
+    #tw-maintenance-{{ section.id }} p,
+    #tw-maintenance-{{ section.id }} li,
+    #tw-maintenance-{{ section.id }} td,
+    #tw-maintenance-{{ section.id }} th,
+    #tw-maintenance-{{ section.id }} button,
+    #tw-maintenance-{{ section.id }} a{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-maintenance-{{ section.id }} p{
+      margin:0 0 14px;
+    }
+
+    #tw-maintenance-{{ section.id }} p:last-child{
+      margin-bottom:0;
+    }
+
+    #tw-maintenance-{{ section.id }} h2,
+    #tw-maintenance-{{ section.id }} h3,
+    #tw-maintenance-{{ section.id }} h4{
+      font-family:Arial, Helvetica, sans-serif;
+      color:#000000;
+      line-height:1.2;
+      text-decoration:none;
+    }
+
+    #tw-maintenance-{{ section.id }} h2{
+      font-size:40px;
+      margin:0 0 16px;
+      letter-spacing:-.02em;
+    }
+
+    #tw-maintenance-{{ section.id }} h3{
+      font-size:25px;
+      margin:0 0 12px;
+    }
+
+    #tw-maintenance-{{ section.id }} h4{
+      font-size:20px;
+      margin:0 0 10px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-bar{
+      height:14px;
+      width:100%;
+      background:linear-gradient(90deg, var(--tw-accent), var(--tw-accent-dark));
+      border-radius:999px;
+      margin:0 auto;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-shell{
+      max-width:var(--tw-max);
+      margin:0 auto;
+      padding:0 18px;
+      text-align:center;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-skip{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-skip:focus{
+      left:16px;
+      top:16px;
+      width:auto;
+      height:auto;
+      padding:10px 12px;
+      background:#ffffff;
+      border:2px solid var(--tw-accent);
+      border-radius:10px;
+      z-index:9999;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-hero{
+      padding:34px 0 28px;
+      position:relative;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-heroCard{
+      background:
+        radial-gradient(circle at top left, rgba(210,71,66,.15), transparent 36%),
+        linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.78));
+      border:1px solid var(--tw-border);
+      border-radius:24px;
+      box-shadow:var(--tw-shadow);
+      padding:32px 24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-heroCard::after{
+      content:"";
+      position:absolute;
+      right:-70px;
+      bottom:-90px;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      background:rgba(210,71,66,.12);
+      pointer-events:none;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-heroCard > *{
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-kicker{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 0 12px;
+      padding:7px 12px;
+      border:1px solid rgba(210,71,66,.35);
+      border-radius:999px;
+      background:rgba(210,71,66,.09);
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-title{
+      max-width:850px;
+      margin:0 auto 12px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-subtitle{
+      max-width:850px;
+      margin:0 auto 18px;
+      color:#000000;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-ctaRow{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-btn{
+      appearance:none;
+      border:3px solid #000000;
+      border-radius:999px;
+      padding:12px 18px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      background:#ffffff;
+      color:#000000;
+      transition:transform .06s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-btn:hover{
+      text-decoration:none;
+      box-shadow:0 10px 22px rgba(0,0,0,.14);
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-btn:active{
+      transform:translateY(1px);
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-btn--primary{
+      background:var(--tw-accent);
+      color:#ffffff;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-btn--primary span,
+    #tw-maintenance-{{ section.id }} .tw-btn--primary{
+      color:#ffffff;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-fineprint{
+      max-width:760px;
+      margin:16px auto 0;
+      font-size:18px;
+      color:#000000;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-wrap{
+      padding:0 0 44px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-card,
+    #tw-maintenance-{{ section.id }} .tw-panel,
+    #tw-maintenance-{{ section.id }} .tw-toc,
+    #tw-maintenance-{{ section.id }} .tw-tableWrap,
+    #tw-maintenance-{{ section.id }} .tw-contactBox{
+      background:rgba(255,255,255,.88);
+      border:1px solid var(--tw-border);
+      border-radius:var(--tw-radius);
+      box-shadow:var(--tw-shadow);
+      text-align:center;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-card{
+      padding:24px 22px;
+      max-width:980px;
+      margin:0 auto 22px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-card p{
+      max-width:920px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-trustGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      max-width:980px;
+      margin:0 auto 22px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-trustItem{
+      background:#ffffff;
+      border:1px solid var(--tw-border);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-trustNumber{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:rgba(210,71,66,.12);
+      border:1px solid rgba(210,71,66,.28);
+      color:#000000;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-toc{
+      max-width:980px;
+      margin:0 auto 28px;
+      padding:24px 22px;
+      border-style:dashed;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-toc__list{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0, 1fr));
+      gap:10px;
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-toc__list a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:10px;
+      border:1px solid rgba(210,71,66,.35);
+      border-radius:14px;
+      background:#ffffff;
+      color:#000000;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-toc__list a:hover{
+      background:rgba(210,71,66,.08);
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-section{
+      max-width:980px;
+      margin:30px auto 0;
+      scroll-margin-top:20px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-panel{
+      padding:24px 22px;
+      margin:14px 0;
+      position:relative;
+      overflow:hidden;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(700px 220px at 0% 0%, rgba(210,71,66,.10), transparent 62%),
+        radial-gradient(650px 220px at 100% 0%, rgba(0,0,0,.04), transparent 58%);
+      pointer-events:none;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-panel > *{
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-list,
+    #tw-maintenance-{{ section.id }} .tw-steps,
+    #tw-maintenance-{{ section.id }} .tw-checklist,
+    #tw-maintenance-{{ section.id }} .tw-callout ul{
+      max-width:800px;
+      margin:12px auto 0;
+      text-align:left;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-list li,
+    #tw-maintenance-{{ section.id }} .tw-steps li{
+      margin:10px 0;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-checklist{
+      list-style:none;
+      padding:0;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-checklist li{
+      position:relative;
+      padding-left:30px;
+      margin:10px 0;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-checklist li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--tw-accent);
+      font-weight:900;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-callout{
+      max-width:850px;
+      margin:18px auto 0;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(210,71,66,.45);
+      background:rgba(210,71,66,.08);
+      text-align:center;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-grid{
+      display:grid;
+      grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr);
+      gap:16px;
+      align-items:stretch;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-tableWrap{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+      margin-top:16px;
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:740px;
+      background:#ffffff;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-table th,
+    #tw-maintenance-{{ section.id }} .tw-table td{
+      padding:15px;
+      border-bottom:1px solid rgba(0,0,0,.12);
+      vertical-align:top;
+      text-align:left;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-table thead th{
+      background:rgba(210,71,66,.10);
+      border-bottom:2px solid rgba(210,71,66,.40);
+      font-weight:800;
+      position:sticky;
+      top:0;
+      z-index:2;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-table tbody th{
+      width:24%;
+      font-weight:800;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-contactBox{
+      padding:24px 22px;
+      margin-top:18px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-contactGrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-contactItem{
+      border:1px solid var(--tw-border);
+      border-radius:16px;
+      background:#ffffff;
+      padding:16px;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-footer{
+      max-width:980px;
+      margin:34px auto 0;
+      padding:24px 22px;
+      border-top:1px solid rgba(0,0,0,.12);
+      text-align:center;
+    }
+
+    #tw-maintenance-{{ section.id }} .tw-small{
+      font-size:18px;
+      margin-top:8px;
+    }
+
+    @media (max-width:900px){
+      #tw-maintenance-{{ section.id }} h2{ font-size:34px; }
+      #tw-maintenance-{{ section.id }} .tw-grid,
+      #tw-maintenance-{{ section.id }} .tw-trustGrid,
+      #tw-maintenance-{{ section.id }} .tw-contactGrid{
+        grid-template-columns:1fr;
+      }
+      #tw-maintenance-{{ section.id }} .tw-toc__list{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      #tw-maintenance-{{ section.id }}{
+        font-size:18px;
+      }
+      #tw-maintenance-{{ section.id }} h2{ font-size:30px; }
+      #tw-maintenance-{{ section.id }} h3{ font-size:23px; }
+      #tw-maintenance-{{ section.id }} .tw-heroCard,
+      #tw-maintenance-{{ section.id }} .tw-card,
+      #tw-maintenance-{{ section.id }} .tw-panel,
+      #tw-maintenance-{{ section.id }} .tw-toc,
+      #tw-maintenance-{{ section.id }} .tw-contactBox{
+        padding:20px 16px;
+      }
+      #tw-maintenance-{{ section.id }} .tw-tableWrap{
+        border-radius:14px;
+      }
+    }
+  </style>
+
+  <a class="tw-skip" href="#tw-content-{{ section.id }}">Skip to guide</a>
+
+  <div class="tw-shell">
+    <div class="tw-bar" aria-hidden="true"></div>
+  </div>
+
+  <div class="tw-hero">
+    <div class="tw-shell">
+      <div class="tw-heroCard">
+        <p class="tw-kicker">Free guide</p>
+        <h2 id="tw-maintenance-title" class="tw-title">Typewriter Maintenance Guide</h2>
+        <p class="tw-subtitle">Cleaning, lubrication, storage, and handling best practices for vintage and modern typewriters.</p>
+
+        <div class="tw-ctaRow">
+          <a class="tw-btn tw-btn--primary" id="twDownloadBtn-{{ section.id }}" href="https://www.dropbox.com/scl/fi/jxgboofzy482kb1nxzesq/typewriter-maintenance-guide.pdf?rlkey=3d704u4q9qtgrya4qhuxt711i&amp;st=u7zbdqby&amp;dl=0" target="_blank" rel="noopener">
+            <span>Download the guide as a PDF</span>
+          </a>
+          <button class="tw-btn" type="button" id="twCopyLinkBtn-{{ section.id }}">
+            Copy page link
+          </button>
+        </div>
+
+        <p class="tw-fineprint">
+          Tip: Save this page for quick reference whenever your typewriter needs cleaning, troubleshooting, or routine care.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <main id="tw-content-{{ section.id }}" class="tw-wrap" role="main">
+    <div class="tw-shell">
+      <section class="tw-card" aria-label="Introduction">
+        <p>
+          Typewriters, whether vintage models or modern ones like the IBM Wheelwriter, Nakajima WPT 150 and WPT 160, Royal Classic, or Royal Scriptor, need regular care to work their best. These machines are marvels of engineering, blending functionality with timeless design. With proper care, your typewriter will not only last longer but also provide a smooth and satisfying typing experience. This guide will walk you through everything you need to know to keep your typewriter in excellent condition, regardless of the make or model. Whether you are a casual user or a collector, understanding these steps will help preserve your machine for years to come.
+        </p>
+      </section>
+
+      <div class="tw-trustGrid" aria-label="Maintenance guide highlights">
+        <div class="tw-trustItem">
+          <div class="tw-trustNumber">1</div>
+          <h3>Clean Carefully</h3>
+          <p>Routine dust removal helps protect keys, rollers, ribbon mechanisms, and internal components.</p>
+        </div>
+        <div class="tw-trustItem">
+          <div class="tw-trustNumber">2</div>
+          <h3>Lubricate Lightly</h3>
+          <p>A small amount of typewriter safe oil can support smoother movement without attracting buildup.</p>
+        </div>
+        <div class="tw-trustItem">
+          <div class="tw-trustNumber">3</div>
+          <h3>Store Properly</h3>
+          <p>A cool, dry storage area helps reduce corrosion, ribbon deterioration, and dust accumulation.</p>
+        </div>
+      </div>
+
+      <nav class="tw-toc" aria-label="Guide table of contents">
+        <h2>On This Page</h2>
+        <ol class="tw-toc__list">
+          <li><a href="#top3-{{ section.id }}">Top 3 maintenance tips</a></li>
+          <li><a href="#essentials-{{ section.id }}">Cleaning essentials</a></li>
+          <li><a href="#extra-{{ section.id }}">Extra maintenance tips</a></li>
+          <li><a href="#problems-{{ section.id }}">Common problems</a></li>
+          <li><a href="#help-{{ section.id }}">Where to get help</a></li>
+        </ol>
+      </nav>
+
+      <section class="tw-section" id="top3-{{ section.id }}" aria-label="Top 3 maintenance tips">
+        <h2>Top 3 Maintenance Tips For Your Typewriter</h2>
+
+        <article class="tw-panel" aria-label="Cleaning your typewriter">
+          <h3>Cleaning Your Typewriter</h3>
+          <p><strong>Dust removal:</strong> Dust and debris can accumulate on and inside your typewriter, leading to performance issues. Use a soft cloth to wipe down the exterior gently. For internal components, a small brush can help dislodge stubborn dirt. Compressed air is another effective tool for reaching tight spaces, like between the keys and under the carriage. Regular dusting prevents debris from causing mechanical problems.</p>
+          <p><strong>Deep cleaning:</strong> Perform a thorough deep cleaning once a month. Pay special attention to high-contact areas like keys, rollers, and ribbon mechanisms, as debris in these areas can hinder functionality. Do not forget to check underneath the machine, where hidden dust often accumulates. Deep cleaning ensures that your typewriter mechanisms remain unobstructed and efficient.</p>
+          <p><strong>Disinfection:</strong> If you share your typewriter with others, regular disinfection helps prevent the spread of germs. Spray a microfiber cloth with a disinfectant solution and carefully clean the keys and body. Ensure the cloth is damp, not wet, to prevent moisture from seeping into the machine. Disinfection also helps protect against oils and residue left by fingers.</p>
+
+          <div class="tw-callout" role="note" aria-label="What to avoid">
+            <h4>What To Avoid</h4>
+            <ul>
+              <li>Avoid spraying liquids directly onto the typewriter.</li>
+              <li>Never use alcohol based cleaners on displays, such as those found on IBM Wheelwriter or Nakajima models, since they can fog or damage the surface permanently.</li>
+              <li>Always check your typewriter manual for model-specific cleaning guidance.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="tw-panel" aria-label="Lubricating the moving parts">
+          <h3>Lubricating The Moving Parts</h3>
+          <ul class="tw-list">
+            <li>Apply a small amount of typewriter safe oil to gears, levers, and other moving components. Be precise. Too much oil can attract dust and grime and create buildup. Wipe away excess oil to avoid residue.</li>
+            <li>Focus on carriage rails and typebars, since these areas see frequent movement. After oiling, test the keys and carriage motion for smooth operation.</li>
+            <li>Use your manual for exact lubrication points. Some models may call out specific areas and intervals.</li>
+          </ul>
+          <div class="tw-callout" role="note" aria-label="Lubrication timing">
+            <p><strong>Tip:</strong> Lubricate every three to six months depending on usage. For long term storage, lubricate before storing to help protect against rust.</p>
+          </div>
+        </article>
+
+        <article class="tw-panel" aria-label="Using your typewriter carefully">
+          <h3>Using Your Typewriter Carefully</h3>
+          <ul class="tw-list">
+            <li>Press keys firmly but with control. Slamming keys can misalign typebars or damage internal components. Smooth and consistent typing is better for longevity.</li>
+            <li>Avoid overloading paper. One or two sheets are ideal, especially for older machines. Overloading can jam rollers and strain the mechanism.</li>
+            <li>Store your typewriter in a cool, dry place. High humidity can encourage corrosion and degrade ribbons. In damp areas, use a dehumidifier.</li>
+          </ul>
+          <div class="tw-callout" role="note" aria-label="Storage tip">
+            <p><strong>Storage tip:</strong> When not in use, cover your typewriter with a protective case or dust cover to help protect against dust, spills, and scratches.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="tw-section" id="essentials-{{ section.id }}" aria-label="Essentials of typewriter cleaning">
+        <h2>Essentials Of Typewriter Cleaning</h2>
+
+        <div class="tw-grid">
+          <div class="tw-panel">
+            <h3>Supplies You Will Need</h3>
+            <ul class="tw-checklist">
+              <li>Microfiber cloth</li>
+              <li>Compressed air</li>
+              <li>Professional Lysol Disinfecting Spray</li>
+              <li>Toothpick for stubborn debris</li>
+              <li>Typewriter safe oil</li>
+            </ul>
+          </div>
+
+          <div class="tw-panel">
+            <h3>Cleaning Steps</h3>
+            <ol class="tw-steps">
+              <li><strong>Power off:</strong> For electric models, unplug before cleaning. For manual models, ensure the carriage is locked if your machine supports it.</li>
+              <li><strong>Remove dust:</strong> Use compressed air to clear dust from keys and internal mechanisms. For stubborn debris, carefully use a toothpick without scratching surfaces.</li>
+              <li><strong>Wipe surfaces:</strong> Lightly spray disinfectant onto a microfiber cloth, then wipe the body, keys, and exterior surfaces. Focus on keys since they are high contact.</li>
+              <li><strong>Final dusting:</strong> Use compressed air again to ensure no particles remain. This supports both appearance and performance.</li>
+            </ol>
+            <div class="tw-callout" role="note" aria-label="Pro tip">
+              <p><strong>Pro tip:</strong> For shared workspaces, clean before and after each use. For home use, monthly cleaning is typically sufficient. Consider deeper cleanings during seasonal changes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tw-section" id="extra-{{ section.id }}" aria-label="Extra maintenance tips">
+        <h2>Extra Maintenance Tips</h2>
+        <div class="tw-panel">
+          <ul class="tw-list">
+            <li><strong>Replace the ribbon:</strong> Faded print is a clear sign that your ribbon needs replacing. Keep extra ribbons on hand and store them in a cool, dry place. Always confirm compatibility for your model.</li>
+            <li><strong>Inspect for wear:</strong> Check for worn parts like springs, belts, or feed rollers. Replacing these early can prevent larger issues.</li>
+            <li><strong>Schedule professional tune-ups:</strong> At least once a year, have your typewriter inspected and serviced. This is especially important for electronic models like the IBM Wheelwriter.</li>
+            <li><strong>Use the right paper:</strong> Thin or lightweight paper reduces the risk of jams and is gentler on feed rollers. Avoid thick or textured paper that can strain the mechanism.</li>
+            <li><strong>Avoid overloading:</strong> Feeding too many sheets increases wear on rollers, platen, and paper feed components.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="tw-section" id="problems-{{ section.id }}" aria-label="Common problems and fixes">
+        <h2>Common Typewriter Problems And Fixes</h2>
+
+        <div class="tw-tableWrap" role="region" aria-label="Problems table" tabindex="0">
+          <table class="tw-table">
+            <thead>
+              <tr>
+                <th scope="col">Problem</th>
+                <th scope="col">Likely Cause</th>
+                <th scope="col">Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Sticky keys</th>
+                <td>Dust, dirt, or lack of lubrication</td>
+                <td>Clean keys with a brush and compressed air. Apply a small amount of oil to the key mechanism.</td>
+              </tr>
+              <tr>
+                <th scope="row">Faded text</th>
+                <td>Old or worn ribbon</td>
+                <td>Replace the ribbon and confirm the new ribbon is compatible with your model.</td>
+              </tr>
+              <tr>
+                <th scope="row">Paper jams</th>
+                <td>Misaligned rollers or too many sheets</td>
+                <td>Realign rollers and insert one or two sheets. Clean rollers regularly.</td>
+              </tr>
+              <tr>
+                <th scope="row">Uneven typing</th>
+                <td>Misaligned typebars or uneven platen</td>
+                <td>Adjust typebars carefully or have the platen inspected by a professional. Use consistent typing pressure.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="tw-section" id="help-{{ section.id }}" aria-label="Where to get help">
+        <h2>Where To Get Help</h2>
+        <div class="tw-contactBox">
+          <p>If you encounter issues you cannot resolve, contact Typewriters.com for guidance.</p>
+
+          <div class="tw-contactGrid">
+            <div class="tw-contactItem">
+              <h3>Website Chat</h3>
+              <p>Contact us via the website chat, and we will respond as soon as possible.</p>
+            </div>
+            <div class="tw-contactItem">
+              <h3>Phone</h3>
+              <p><a href="tel:4043771884">(404) 377-1884</a><br>Monday through Friday, 8 AM to 5 PM.</p>
+            </div>
+            <div class="tw-contactItem">
+              <h3>Email</h3>
+              <p><a href="mailto:info@typewriters.com">info@typewriters.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tw-card" style="margin-top:18px;">
+          <p>
+            Caring for your typewriter does not have to be difficult. By following the cleaning, lubrication, and handling tips outlined in this guide, you can keep your machine in excellent condition for years. Whether you own a vintage model or a modern typewriter like the IBM Wheelwriter or Royal Classic, these maintenance practices support better performance and longer life.
+          </p>
+          <p>
+            For more tips, replacement parts, or professional help, visit Typewriters.com.
+          </p>
+
+          <div class="tw-ctaRow">
+            <a class="tw-btn tw-btn--primary" href="https://www.dropbox.com/scl/fi/jxgboofzy482kb1nxzesq/typewriter-maintenance-guide.pdf?rlkey=3d704u4q9qtgrya4qhuxt711i&amp;st=u7zbdqby&amp;dl=0" target="_blank" rel="noopener">
+              <span>Download the guide as a PDF</span>
+            </a>
+            <a class="tw-btn" href="#tw-maintenance-{{ section.id }}">Back to top</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="tw-footer" role="contentinfo">
+        <p><strong>Typewriters.com</strong></p>
+        <p><a href="tel:4043771884">(404) 377-1884</a> | <a href="mailto:info@typewriters.com">info@typewriters.com</a></p>
+        <p class="tw-small">© <span id="twYear-{{ section.id }}"></span> Typewriters.com. All rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+  <div class="tw-shell">
+    <div class="tw-bar" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    (function(){
+      var root = document.getElementById('tw-maintenance-{{ section.id }}');
+      if(!root) return;
+
+      var yearEl = root.querySelector('#twYear-{{ section.id }}');
+      if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+      root.addEventListener('click', function(e){
+        var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+        if(!a || !root.contains(a)) return;
+
+        var id = a.getAttribute('href');
+        if(!id || id === '#') return;
+
+        var target;
+        try{
+          target = root.querySelector(id);
+        }catch(err){
+          return;
+        }
+
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+
+      var copyBtn = root.querySelector('#twCopyLinkBtn-{{ section.id }}');
+      if(copyBtn){
+        copyBtn.addEventListener('click', function(){
+          if(!navigator.clipboard){
+            copyBtn.textContent = 'Copy unavailable';
+            setTimeout(function(){ copyBtn.textContent = 'Copy page link'; }, 1600);
+            return;
+          }
+
+          navigator.clipboard.writeText(window.location.href).then(function(){
+            copyBtn.textContent = 'Link copied';
+            setTimeout(function(){ copyBtn.textContent = 'Copy page link'; }, 1600);
+          }).catch(function(){
+            copyBtn.textContent = 'Copy failed';
+            setTimeout(function(){ copyBtn.textContent = 'Copy page link'; }, 1600);
+          });
+        });
+      }
+
+      var dlBtn = root.querySelector('#twDownloadBtn-{{ section.id }}');
+      if(dlBtn){
+        dlBtn.addEventListener('click', function(){
+          try{
+            if(typeof window.gtag === 'function'){
+              window.gtag('event', 'download', {
+                event_category:'Guide',
+                event_label:'Typewriter Maintenance Guide PDF'
+              });
+            }
+          }catch(err){}
+        });
+      }
+    })();
+  </script>
+
+  {% schema %}
+  {
+    "name": "TW Maint Guide",
+    "tag": "section",
+    "class": "section-tw-maint-guide",
+    "settings": [],
+    "presets": [
+      {
+        "name": "TW Maint Guide"
+      }
+    ]
+  }
+  {% endschema %}
+</section>
