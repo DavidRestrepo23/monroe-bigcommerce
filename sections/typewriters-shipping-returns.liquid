@@ -1,0 +1,512 @@
+<section id="tw-ship-returns-{{ section.id }}" class="tw-ship-returns" aria-labelledby="tw-ship-returns-title">
+  <style>
+    #tw-ship-returns-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-accent-dark:#a93632;
+      --tw-ink:#000000;
+      --tw-soft:#fbf7f2;
+      --tw-card:#ffffff;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-shadow:0 14px 34px rgba(0,0,0,.08);
+      --tw-radius:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+      background:#ffffff;
+      max-width:100%;
+      margin:0 auto;
+    }
+
+    #tw-ship-returns-{{ section.id }} *,
+    #tw-ship-returns-{{ section.id }} *::before,
+    #tw-ship-returns-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__bar{
+      height:18px;
+      background:var(--tw-accent);
+      width:100%;
+      margin:0 0 28px;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__bar--bottom{
+      margin:34px 0 0;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__shell{
+      width:100%;
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px 0;
+      text-align:center;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__hero{
+      background:
+        radial-gradient(circle at 10% 0%, rgba(210,71,66,.13), transparent 36%),
+        radial-gradient(circle at 95% 10%, rgba(210,71,66,.08), transparent 34%),
+        linear-gradient(180deg,#ffffff,var(--tw-soft));
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:34px 24px;
+      box-shadow:var(--tw-shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__eyebrow{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin:0 0 12px;
+      padding:8px 14px;
+      border:1px solid rgba(210,71,66,.28);
+      border-radius:999px;
+      background:rgba(210,71,66,.08);
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+      line-height:1.2;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__eyebrowDot{
+      display:inline-block;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--tw-accent);
+      flex:0 0 auto;
+    }
+
+    #tw-ship-returns-{{ section.id }} h2{
+      margin:0 0 14px;
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:40px;
+      line-height:1.15;
+      font-weight:800;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-ship-returns-{{ section.id }} h3{
+      margin:0 0 12px;
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:25px;
+      line-height:1.25;
+      font-weight:800;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-ship-returns-{{ section.id }} h4{
+      margin:0 0 8px;
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:20px;
+      line-height:1.3;
+      font-weight:800;
+      text-align:center;
+      text-decoration:none;
+    }
+
+    #tw-ship-returns-{{ section.id }} p,
+    #tw-ship-returns-{{ section.id }} li,
+    #tw-ship-returns-{{ section.id }} a,
+    #tw-ship-returns-{{ section.id }} span,
+    #tw-ship-returns-{{ section.id }} div{
+      color:#000000;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+    }
+
+    #tw-ship-returns-{{ section.id }} p{
+      margin:0 0 14px;
+    }
+
+    #tw-ship-returns-{{ section.id }} a{
+      color:var(--tw-accent);
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
+    }
+
+    #tw-ship-returns-{{ section.id }} a:hover{
+      color:var(--tw-accent-dark);
+      text-decoration-thickness:2px;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__intro{
+      max-width:880px;
+      margin:0 auto;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 20px;
+      border:5px solid #000000;
+      border-radius:999px;
+      background:var(--tw-accent);
+      color:#ffffff !important;
+      text-decoration:none;
+      font-size:18px;
+      font-weight:800;
+      line-height:1.2;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+      box-shadow:0 8px 18px rgba(0,0,0,.12);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__button:hover{
+      background:var(--tw-accent-dark);
+      color:#ffffff !important;
+      text-decoration:none;
+      transform:translateY(-1px);
+      box-shadow:0 12px 22px rgba(0,0,0,.16);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__button--secondary{
+      background:#ffffff;
+      color:#000000 !important;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__button--secondary:hover{
+      background:#f5f5f5;
+      color:#000000 !important;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__quickGrid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin:24px auto 0;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__quickCard{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:16px;
+      padding:18px 14px;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+      text-align:center;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__quickNumber{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      margin:0 0 8px;
+      color:var(--tw-accent);
+      font-size:26px;
+      font-weight:900;
+      line-height:1;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__quickText{
+      margin:0;
+      font-size:18px;
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__section{
+      margin-top:28px;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__split{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      align-items:stretch;
+      text-align:center;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__panel{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:var(--tw-radius);
+      padding:24px;
+      box-shadow:var(--tw-shadow);
+      text-align:center;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__panel--accent{
+      background:linear-gradient(180deg,#ffffff,#fff8f7);
+      border-color:rgba(210,71,66,.28);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__list{
+      list-style:none;
+      margin:14px auto 0;
+      padding:0;
+      max-width:720px;
+      text-align:left;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__list li{
+      position:relative;
+      margin:0 0 12px;
+      padding:0 0 0 32px;
+      line-height:1.5;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__list li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:7px;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:var(--tw-accent);
+      box-shadow:inset 0 0 0 4px #ffffff, 0 0 0 1px rgba(210,71,66,.40);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__timeline{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__timelineItem{
+      background:#ffffff;
+      border:1px solid var(--tw-line);
+      border-radius:16px;
+      padding:18px 14px;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__timelineStep{
+      width:42px;
+      height:42px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 10px;
+      border-radius:50%;
+      background:var(--tw-accent);
+      color:#ffffff;
+      font-size:18px;
+      font-weight:900;
+      border:3px solid #000000;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__notice{
+      margin-top:22px;
+      padding:20px;
+      border:1px solid rgba(210,71,66,.34);
+      border-left:8px solid var(--tw-accent);
+      border-radius:16px;
+      background:#fff8f7;
+      text-align:left;
+      box-shadow:0 8px 22px rgba(0,0,0,.05);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__notice p{
+      margin:0;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox{
+      margin-top:28px;
+      background:#000000;
+      color:#ffffff;
+      border-radius:var(--tw-radius);
+      padding:28px 20px;
+      text-align:center;
+      box-shadow:var(--tw-shadow);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox h3,
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox p{
+      color:#ffffff;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox a:not(.tw-sr__button){
+      color:#ffffff;
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox .tw-sr__button{
+      background:#ffffff;
+      color:#000000 !important;
+      border-color:var(--tw-accent);
+    }
+
+    #tw-ship-returns-{{ section.id }} .tw-sr__contactBox .tw-sr__button:hover{
+      background:#f4f4f4;
+      color:#000000 !important;
+    }
+
+    @media (max-width:980px){
+      #tw-ship-returns-{{ section.id }} .tw-sr__quickGrid,
+      #tw-ship-returns-{{ section.id }} .tw-sr__timeline{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      #tw-ship-returns-{{ section.id }} .tw-sr__split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      #tw-ship-returns-{{ section.id }} h2{
+        font-size:32px;
+      }
+
+      #tw-ship-returns-{{ section.id }} h3{
+        font-size:24px;
+      }
+
+      #tw-ship-returns-{{ section.id }} .tw-sr__hero,
+      #tw-ship-returns-{{ section.id }} .tw-sr__panel{
+        padding:22px 16px;
+      }
+
+      #tw-ship-returns-{{ section.id }} .tw-sr__quickGrid,
+      #tw-ship-returns-{{ section.id }} .tw-sr__timeline{
+        grid-template-columns:1fr;
+      }
+
+      #tw-ship-returns-{{ section.id }} .tw-sr__ctaRow{
+        align-items:stretch;
+      }
+
+      #tw-ship-returns-{{ section.id }} .tw-sr__button{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="tw-sr__bar" aria-hidden="true"></div>
+
+  <div class="tw-sr__shell">
+    <div class="tw-sr__hero">
+      <p class="tw-sr__eyebrow"><span class="tw-sr__eyebrowDot" aria-hidden="true"></span> Shipping & Returns</p>
+      <h2 id="tw-ship-returns-title">Shipping & Returns Policy</h2>
+      <div class="tw-sr__intro">
+        <p>We want your order experience to be clear from the start. Below you will find the return window, refund timing, restocking fee information, and shipping details for orders placed with Typewriters.com.</p>
+      </div>
+
+      <div class="tw-sr__ctaRow" aria-label="Shipping and returns actions">
+        <a class="tw-sr__button" href="/contact-us/">Start A Return</a>
+        <a class="tw-sr__button tw-sr__button--secondary" href="/collections/typewriters">Shop Typewriters</a>
+      </div>
+
+      <div class="tw-sr__quickGrid" aria-label="Quick policy highlights">
+        <div class="tw-sr__quickCard">
+          <div class="tw-sr__quickNumber">30</div>
+          <p class="tw-sr__quickText">Days to return most new, unopened items</p>
+        </div>
+        <div class="tw-sr__quickCard">
+          <div class="tw-sr__quickNumber">10%</div>
+          <p class="tw-sr__quickText">Restocking fee when the return is not due to our error</p>
+        </div>
+        <div class="tw-sr__quickCard">
+          <div class="tw-sr__quickNumber">4</div>
+          <p class="tw-sr__quickText">Weeks is the expected maximum refund window</p>
+        </div>
+        <div class="tw-sr__quickCard">
+          <div class="tw-sr__quickNumber">USA</div>
+          <p class="tw-sr__quickText">Shipping available to virtually any U.S. address</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw-sr__section tw-sr__split">
+      <section class="tw-sr__panel tw-sr__panel--accent" aria-labelledby="tw-returns-heading">
+        <h3 id="tw-returns-heading">Returns Policy</h3>
+        <p>You may return most new, unopened items within 30 days of delivery for a full refund. We cover the return shipping costs if the return is a result of our error, such as receiving an incorrect or defective item.</p>
+        <p>All returns that are not the result of our own error are subject to a 10% restocking fee.</p>
+        <ul class="tw-sr__list">
+          <li>Items should be new and unopened unless the return is related to an incorrect or defective item.</li>
+          <li>Please contact us with your order number and details about the product you would like to return.</li>
+          <li>We will respond with instructions for how to return items from your order.</li>
+        </ul>
+      </section>
+
+      <section class="tw-sr__panel" aria-labelledby="tw-shipping-heading">
+        <h3 id="tw-shipping-heading">Shipping</h3>
+        <p>We can ship to virtually any address in the USA. Please note that there are restrictions on some products, and some products cannot be shipped to certain destinations.</p>
+        <p>When you place an order, we will estimate shipping and delivery dates based on the availability of your items and the shipping options you choose. Depending on the shipping provider, shipping date estimates may appear on the shipping quotes page.</p>
+        <ul class="tw-sr__list">
+          <li>Some products may have shipping restrictions based on destination.</li>
+          <li>Shipping estimates depend on item availability and the selected shipping provider.</li>
+          <li>Shipping rates for many items are weight-based.</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="tw-sr__section tw-sr__panel" aria-labelledby="tw-refund-heading">
+      <h3 id="tw-refund-heading">Refund Timing</h3>
+      <p>You should expect to receive your refund within four weeks of giving your package to the return shipper. In many cases, you may receive your refund more quickly.</p>
+
+      <div class="tw-sr__timeline" aria-label="Refund timing breakdown">
+        <div class="tw-sr__timelineItem">
+          <div class="tw-sr__timelineStep">1</div>
+          <h4>Return Transit</h4>
+          <p>Transit time for us to receive your return from the shipper is typically 5 to 10 business days.</p>
+        </div>
+        <div class="tw-sr__timelineItem">
+          <div class="tw-sr__timelineStep">2</div>
+          <h4>Return Processing</h4>
+          <p>Once we receive your return, processing typically takes 3 to 5 business days.</p>
+        </div>
+        <div class="tw-sr__timelineItem">
+          <div class="tw-sr__timelineStep">3</div>
+          <h4>Bank Processing</h4>
+          <p>Your bank may take 5 to 10 business days to process the refund request.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tw-sr__section tw-sr__panel" aria-labelledby="tw-weight-heading">
+      <h3 id="tw-weight-heading">Weight-Based Shipping Rates</h3>
+      <p>Please note that the shipping rates for many items we sell are weight-based. The weight of an item can be found on its detail page. To reflect the policies of the shipping companies we use, all weights are rounded up to the next full pound.</p>
+      <div class="tw-sr__notice" role="note">
+        <p><strong>Before returning an item:</strong> Please contact us with your order number and product details so we can provide the correct return instructions.</p>
+      </div>
+    </section>
+
+    <section class="tw-sr__contactBox" aria-labelledby="tw-contact-heading">
+      <h3 id="tw-contact-heading">Need To Return An Item?</h3>
+      <p>If you need to return an item, please contact us with your order number and details about the product you would like to return. We will respond quickly with instructions for how to return items from your order.</p>
+      <div class="tw-sr__ctaRow">
+        <a class="tw-sr__button" href="/contact-us/">Contact Us</a>
+        <a class="tw-sr__button" href="mailto:info@typewriters.com">Email Typewriters.com</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="tw-sr__bar tw-sr__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Ship Returns",
+  "tag": "section",
+  "class": "section-typewriters-shipping-returns",
+  "settings": [],
+  "presets": [
+    {
+      "name": "TW Ship Returns"
+    }
+  ]
+}
+{% endschema %}
