@@ -1,0 +1,394 @@
+<style>
+  .monroe-family-websites {
+    --mfw-accent: #007681;
+    --mfw-ink: #000000;
+    --mfw-muted: rgba(0, 0, 0, 0.72);
+    --mfw-card: #ffffff;
+    --mfw-soft: #f5faf9;
+    --mfw-border: rgba(0, 118, 129, 0.22);
+    --mfw-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    --mfw-radius: 18px;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--mfw-ink);
+    background: #ffffff;
+  }
+
+  .monroe-family-websites,
+  .monroe-family-websites * {
+    box-sizing: border-box;
+  }
+
+  .monroe-family-websites p,
+  .monroe-family-websites li,
+  .monroe-family-websites span,
+  .monroe-family-websites strong {
+    color: var(--mfw-ink);
+    font-size: 18px;
+    font-family: Roboto, Arial, sans-serif;
+  }
+
+  .monroe-family-websites a {
+    color: var(--mfw-accent);
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .monroe-family-websites a:hover,
+  .monroe-family-websites a:focus {
+    text-decoration: underline;
+  }
+
+  .monroe-family-websites h2 {
+    color: var(--mfw-ink);
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .monroe-family-websites h3 {
+    color: var(--mfw-ink);
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 25px;
+    line-height: 1.25;
+    margin: 0 0 10px;
+    text-decoration: none;
+  }
+
+  .monroe-family-websites h4 {
+    color: var(--mfw-ink);
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.35;
+    margin: 0 0 8px;
+    text-decoration: none;
+  }
+
+  .monroe-family-websites__bar {
+    height: 35px;
+    background: var(--mfw-accent);
+    width: 100%;
+  }
+
+  .monroe-family-websites__wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 34px 18px;
+  }
+
+  .monroe-family-websites__hero {
+    text-align: center;
+    max-width: 920px;
+    margin: 0 auto 28px;
+  }
+
+  .monroe-family-websites__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--mfw-border);
+    border-radius: 999px;
+    padding: 7px 13px;
+    margin-bottom: 14px;
+    background: var(--mfw-soft);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .monroe-family-websites__intro {
+    margin: 0 auto;
+    max-width: 820px;
+    color: var(--mfw-muted);
+  }
+
+  .monroe-family-websites__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+    margin-top: 26px;
+  }
+
+  .monroe-family-websites__card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: var(--mfw-card);
+    border: 1px solid var(--mfw-border);
+    border-radius: var(--mfw-radius);
+    box-shadow: var(--mfw-shadow);
+    overflow: hidden;
+  }
+
+  .monroe-family-websites__logoPanel {
+    display: flex;
+    min-height: 190px;
+    align-items: center;
+    justify-content: center;
+    padding: 26px;
+    background: var(--mfw-soft);
+    border-bottom: 1px solid var(--mfw-border);
+  }
+
+  .monroe-family-websites__logoPanel img {
+    display: block;
+    width: auto;
+    max-width: min(360px, 100%);
+    max-height: 140px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .monroe-family-websites__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 22px;
+    text-align: left;
+  }
+
+  .monroe-family-websites__body p {
+    margin: 0 0 14px;
+  }
+
+  .monroe-family-websites__details {
+    margin: 2px 0 18px;
+    padding-left: 20px;
+  }
+
+  .monroe-family-websites__details li {
+    margin: 8px 0;
+  }
+
+  .monroe-family-websites__ctaRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .monroe-family-websites__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 3px solid #000000;
+    background: var(--mfw-accent);
+    color: #ffffff !important;
+    font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.08s ease, box-shadow 0.18s ease;
+  }
+
+  .monroe-family-websites__btn:hover,
+  .monroe-family-websites__btn:focus {
+    text-decoration: none;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+  }
+
+  .monroe-family-websites__btn:active {
+    transform: translateY(1px);
+  }
+
+  .monroe-family-websites__support {
+    margin-top: 28px;
+    padding: 24px;
+    border: 1px solid var(--mfw-border);
+    border-radius: var(--mfw-radius);
+    background: linear-gradient(180deg, var(--mfw-soft), #ffffff);
+    text-align: center;
+  }
+
+  .monroe-family-websites__support p {
+    max-width: 840px;
+    margin: 0 auto 16px;
+  }
+
+  .monroe-family-websites__miniGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+    text-align: left;
+  }
+
+  .monroe-family-websites__miniCard {
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--mfw-border);
+    background: #ffffff;
+  }
+
+  .monroe-family-websites__miniCard p {
+    margin: 0;
+  }
+
+  @media (max-width: 820px) {
+    .monroe-family-websites__grid,
+    .monroe-family-websites__miniGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .monroe-family-websites h2 {
+      font-size: 34px;
+    }
+
+    .monroe-family-websites h3 {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .monroe-family-websites__wrap {
+      padding: 26px 14px;
+    }
+
+    .monroe-family-websites h2 {
+      font-size: 30px;
+    }
+
+    .monroe-family-websites__body,
+    .monroe-family-websites__support {
+      padding: 18px;
+    }
+  }
+</style>
+
+<section class="monroe-family-websites" aria-label="Our Family of Websites">
+  <div class="monroe-family-websites__bar" aria-hidden="true"></div>
+
+  <div class="monroe-family-websites__wrap">
+    <header class="monroe-family-websites__hero">
+      <span class="monroe-family-websites__eyebrow">Monroe Systems for Business</span>
+      <h2>Our Family of Websites</h2>
+      <p class="monroe-family-websites__intro">
+        Monroe Systems for Business is proud to be connected with a focused family of websites that support customers with specialized products, helpful information, and dependable service.
+      </p>
+      <p class="monroe-family-websites__intro">
+        Explore the websites below to learn more about each organization and visit the site that best matches what you are looking for.
+      </p>
+    </header>
+
+    <div class="monroe-family-websites__grid">
+      <article class="monroe-family-websites__card">
+        <a class="monroe-family-websites__logoPanel" href="https://typewriters.com/" target="_blank" rel="noopener" aria-label="Visit Typewriters.com">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/typewriters-logo-original-size.png?v=1782503906"
+            alt="Typewriters.com Logo"
+            loading="lazy"
+          >
+        </a>
+        <div class="monroe-family-websites__body">
+          <h3><a href="https://typewriters.com/" target="_blank" rel="noopener">Typewriters.com</a></h3>
+          <p>
+            Typewriters.com offers an extensive collection of typewriters, typewriter ribbons, supplies, parts, and manuals.
+          </p>
+          <ul class="monroe-family-websites__details">
+            <li>Founded in 1958.</li>
+            <li>Specializes in new and reconditioned typewriters.</li>
+            <li>Uses an extensive 21-point reconditioning process for high-quality reconditioned typewriters.</li>
+          </ul>
+          <div class="monroe-family-websites__ctaRow">
+            <a class="monroe-family-websites__btn" href="https://typewriters.com/" target="_blank" rel="noopener">Visit Typewriters.com</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="monroe-family-websites__card">
+        <a class="monroe-family-websites__logoPanel" href="https://medmanager.com/" target="_blank" rel="noopener" aria-label="Visit MedManager.com">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/med-manager-logo-250x100.png?v=1782503925"
+            alt="MedManager Logo"
+            loading="lazy"
+          >
+        </a>
+        <div class="monroe-family-websites__body">
+          <h3><a href="https://medmanager.com/" target="_blank" rel="noopener">MedManager.com</a></h3>
+          <p>
+            Med Manager provides a convenient carrier system for organizing medications and supplements at home or on the go.
+          </p>
+          <ul class="monroe-family-websites__details">
+            <li>Helps reduce messy medicine cabinets and counters.</li>
+            <li>Makes it easier to transport medication without plastic shopping bags.</li>
+            <li>Helps keep pill bottles easier to organize and locate.</li>
+          </ul>
+          <div class="monroe-family-websites__ctaRow">
+            <a class="monroe-family-websites__btn" href="https://medmanager.com/" target="_blank" rel="noopener">Visit MedManager.com</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="monroe-family-websites__support" aria-label="Choosing the right website">
+      <h3>Which Website Should You Visit?</h3>
+      <p>
+        Each website has a specific purpose, so customers can quickly find the right products, supplies, and support without sorting through unrelated categories.
+      </p>
+      <div class="monroe-family-websites__miniGrid">
+        <div class="monroe-family-websites__miniCard">
+          <h4>Visit Typewriters.com For</h4>
+          <p>Typewriters, ribbons, supplies, parts, manuals, and new or reconditioned typewriter options.</p>
+        </div>
+        <div class="monroe-family-websites__miniCard">
+          <h4>Visit MedManager.com For</h4>
+          <p>A simple medication and supplement organization system for home use, travel, and everyday routines.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="monroe-family-websites__bar" aria-hidden="true"></div>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Monroe Systems for Business Family of Websites",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Organization",
+            "name": "Typewriters.com",
+            "url": "https://typewriters.com/",
+            "description": "Typewriters.com offers typewriters, typewriter ribbons, supplies, parts, manuals, and new or reconditioned typewriter options."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Organization",
+            "name": "MedManager.com",
+            "url": "https://medmanager.com/",
+            "description": "MedManager.com provides a carrier system for organizing medications and supplements at home or on the go."
+          }
+        }
+      ]
+    }
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Family of Websites",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Family of Websites"
+    }
+  ]
+}
+{% endschema %}
