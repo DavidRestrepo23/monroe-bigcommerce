@@ -1,0 +1,445 @@
+<section id="tw-partners-{{ section.id }}" class="tw-partners" aria-labelledby="tw-partners-title">
+  <style>
+    #tw-partners-{{ section.id }}{
+      --tw-accent:#d24742;
+      --tw-ink:#000000;
+      --tw-soft:#fff7f6;
+      --tw-line:rgba(0,0,0,.14);
+      --tw-card:#ffffff;
+      --tw-shadow:0 10px 26px rgba(0,0,0,.08);
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.65;
+      color:#000000;
+      background:#ffffff;
+      margin:0 auto;
+      max-width:100%;
+    }
+
+    #tw-partners-{{ section.id }} *,
+    #tw-partners-{{ section.id }} *::before,
+    #tw-partners-{{ section.id }} *::after{
+      box-sizing:border-box;
+    }
+
+    #tw-partners-{{ section.id }} h2,
+    #tw-partners-{{ section.id }} h3,
+    #tw-partners-{{ section.id }} h4,
+    #tw-partners-{{ section.id }} p,
+    #tw-partners-{{ section.id }} a,
+    #tw-partners-{{ section.id }} span,
+    #tw-partners-{{ section.id }} strong,
+    #tw-partners-{{ section.id }} li,
+    #tw-partners-{{ section.id }} div{
+      font-family:Arial, Helvetica, sans-serif;
+      color:#000000;
+    }
+
+    #tw-partners-{{ section.id }} h2{
+      font-size:40px;
+      line-height:1.15;
+      margin:0 0 14px;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    #tw-partners-{{ section.id }} h3{
+      font-size:25px;
+      line-height:1.25;
+      margin:0 0 10px;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    #tw-partners-{{ section.id }} h4{
+      font-size:20px;
+      line-height:1.3;
+      margin:0 0 8px;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    #tw-partners-{{ section.id }} p{
+      font-size:18px;
+      line-height:1.65;
+      margin:0 0 14px;
+      color:#000000;
+    }
+
+    #tw-partners-{{ section.id }} a{
+      color:#000000;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-size:18px;
+    }
+
+    #tw-partners-{{ section.id }} a:hover,
+    #tw-partners-{{ section.id }} a:focus{
+      color:#000000;
+      text-decoration-thickness:2px;
+    }
+
+    #tw-partners-{{ section.id }} img{
+      max-width:100%;
+      height:auto;
+      display:block;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__bar{
+      height:35px;
+      width:100%;
+      background:var(--tw-accent);
+      margin:0 0 26px;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__bar--bottom{
+      margin:28px 0 0;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__shell{
+      width:100%;
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 18px 34px;
+      text-align:center;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__hero{
+      border:1px solid var(--tw-line);
+      border-radius:20px;
+      background:linear-gradient(180deg,#ffffff,var(--tw-soft));
+      padding:28px 22px;
+      box-shadow:var(--tw-shadow);
+      margin:0 auto 24px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__hero::after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:999px;
+      background:rgba(210,71,66,.10);
+      right:-90px;
+      bottom:-120px;
+      pointer-events:none;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__logoWrap{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      margin:0 auto 18px;
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__logo{
+      width:min(300px, 100%);
+      height:auto;
+      margin:0 auto;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__eyebrow{
+      display:inline-block;
+      border:1px solid var(--tw-accent);
+      border-radius:999px;
+      padding:7px 13px;
+      margin:0 0 12px;
+      font-size:18px;
+      line-height:1.2;
+      background:#ffffff;
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__intro{
+      max-width:850px;
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__cards{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:20px;
+      align-items:stretch;
+      margin:24px auto 0;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__card{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      text-align:center;
+      border:1px solid var(--tw-line);
+      border-radius:20px;
+      background:#ffffff;
+      padding:24px 20px;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+      min-height:100%;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__brandLogo{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      margin:0 auto 18px;
+      padding:12px;
+      border-radius:16px;
+      background:#ffffff;
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__brandLogo img{
+      max-width:280px;
+      max-height:90px;
+      object-fit:contain;
+      margin:0 auto;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__brandFallback{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:70px;
+      border:1px dashed var(--tw-accent);
+      border-radius:14px;
+      padding:12px;
+      font-weight:700;
+      font-size:25px;
+      line-height:1.2;
+      color:#000000;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__summary{
+      flex:1 1 auto;
+      max-width:470px;
+      margin:0 auto;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__highlights{
+      list-style:none;
+      padding:0;
+      margin:10px auto 18px;
+      max-width:430px;
+      display:grid;
+      gap:8px;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__highlights li{
+      position:relative;
+      display:block;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#fffafa;
+      font-size:18px;
+      line-height:1.45;
+      color:#000000;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:48px;
+      padding:11px 18px;
+      border:2px solid #000000;
+      border-radius:999px;
+      background:#ffffff;
+      color:#000000;
+      font-size:18px;
+      font-weight:700;
+      text-decoration:none;
+      margin-top:auto;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__btn:hover,
+    #tw-partners-{{ section.id }} .tw-partners__btn:focus{
+      background:var(--tw-soft);
+      color:#000000;
+      text-decoration:none;
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__note{
+      max-width:880px;
+      margin:24px auto 0;
+      padding:18px;
+      border:1px solid var(--tw-line);
+      border-left:8px solid var(--tw-accent);
+      border-radius:18px;
+      background:#ffffff;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,.05);
+    }
+
+    #tw-partners-{{ section.id }} .tw-partners__note p:last-child,
+    #tw-partners-{{ section.id }} .tw-partners__card p:last-child,
+    #tw-partners-{{ section.id }} .tw-partners__intro p:last-child{
+      margin-bottom:0;
+    }
+
+    @media (max-width:860px){
+      #tw-partners-{{ section.id }} .tw-partners__cards{
+        grid-template-columns:1fr;
+      }
+
+      #tw-partners-{{ section.id }} h2{
+        font-size:34px;
+      }
+
+      #tw-partners-{{ section.id }} h3{
+        font-size:25px;
+      }
+    }
+
+    @media (max-width:520px){
+      #tw-partners-{{ section.id }} .tw-partners__shell{
+        padding-left:14px;
+        padding-right:14px;
+      }
+
+      #tw-partners-{{ section.id }} .tw-partners__hero,
+      #tw-partners-{{ section.id }} .tw-partners__card,
+      #tw-partners-{{ section.id }} .tw-partners__note{
+        border-radius:16px;
+      }
+
+      #tw-partners-{{ section.id }} h2{
+        font-size:30px;
+      }
+    }
+  </style>
+
+  <div class="tw-partners__bar" aria-hidden="true"></div>
+
+  <div class="tw-partners__shell">
+    <div class="tw-partners__hero">
+      <div class="tw-partners__logoWrap">
+        {% if section.settings.typewriters_logo != blank %}
+          {{ section.settings.typewriters_logo | image_url: width: 600 | image_tag: class: 'tw-partners__logo', alt: 'Typewriters.com Logo', loading: 'eager' }}
+        {% else %}
+          <img class="tw-partners__logo" src="https://cdn11.bigcommerce.com/s-r2o17ymkxr/product_images/uploaded_images/tw-logo-300x73.png" alt="Typewriters.com Logo" width="300" height="73" loading="eager" decoding="async">
+        {% endif %}
+      </div>
+
+      <span class="tw-partners__eyebrow">Sister Organizations</span>
+      <h2 id="tw-partners-title">Organizations Connected to Typewriters.com</h2>
+
+      <div class="tw-partners__intro">
+        <p>
+          Typewriters.com is proud to be connected with sister organizations that serve customers across office equipment, business supplies, and medication organization. Each organization below offers a different kind of practical support for customers who value dependable products and straightforward service.
+        </p>
+        <p>
+          Use the links below to learn more about Monroe Systems for Business and Med Manager.
+        </p>
+      </div>
+    </div>
+
+    <div class="tw-partners__cards" aria-label="Typewriters.com sister organizations">
+      <article class="tw-partners__card">
+        <a class="tw-partners__brandLogo" title="Monroe Systems for Business Logo" href="https://monroe-systems.com" target="_blank" rel="noopener">
+          {% if section.settings.monroe_logo != blank %}
+            {{ section.settings.monroe_logo | image_url: width: 560 | image_tag: alt: 'Monroe Systems for Business Logo', loading: 'lazy' }}
+          {% else %}
+            <span class="tw-partners__brandFallback">Monroe Systems for Business</span>
+          {% endif %}
+        </a>
+
+        <h3>Monroe Systems for Business</h3>
+
+        <div class="tw-partners__summary">
+          <p>
+            Founded in 1912 as the inventor of the printing calculator, Monroe Systems for Business continues to manufacture and sell business equipment and supplies to accounting and finance professionals around the United States.
+          </p>
+        </div>
+
+        <ul class="tw-partners__highlights" aria-label="Monroe Systems for Business highlights">
+          <li>Printing calculator history dating back to 1912</li>
+          <li>Business equipment and supplies for accounting and finance professionals</li>
+          <li>Customer service-focused support for offices throughout the United States</li>
+        </ul>
+
+        <a class="tw-partners__btn" href="https://monroe-systems.com" target="_blank" rel="noopener" title="Visit Monroe Systems for Business Website">
+          Visit Monroe-Systems.com
+        </a>
+      </article>
+
+      <article class="tw-partners__card">
+        <a class="tw-partners__brandLogo" title="Med Manager Logo" href="https://medmanager.com" target="_blank" rel="noopener">
+          {% if section.settings.medmanager_logo != blank %}
+            {{ section.settings.medmanager_logo | image_url: width: 560 | image_tag: alt: 'Med Manager Logo', loading: 'lazy' }}
+          {% else %}
+            <span class="tw-partners__brandFallback">Med Manager</span>
+          {% endif %}
+        </a>
+
+        <h3>Med Manager</h3>
+
+        <div class="tw-partners__summary">
+          <p>
+            Med Manager provides a convenient carrier system for organizing medications and supplements. It helps reduce clutter from medicine cabinets and counters while making medication easier to store, transport, and keep track of at home or on the go.
+          </p>
+        </div>
+
+        <ul class="tw-partners__highlights" aria-label="Med Manager highlights">
+          <li>Organizes medications and supplements</li>
+          <li>Helps replace messy bags, counters, and medicine cabinet clutter</li>
+          <li>Designed for use at home or while traveling</li>
+        </ul>
+
+        <a class="tw-partners__btn" href="https://medmanager.com" target="_blank" rel="noopener" title="Visit Med Manager Website">
+          Visit MedManager.com
+        </a>
+      </article>
+    </div>
+
+    <div class="tw-partners__note">
+      <h3>Need Help From Typewriters.com?</h3>
+      <p>
+        If you are looking for typewriters, supplies, service, or product guidance, Typewriters.com is here to help you find the right solution.
+      </p>
+    </div>
+  </div>
+
+  <div class="tw-partners__bar tw-partners__bar--bottom" aria-hidden="true"></div>
+</section>
+
+{% schema %}
+{
+  "name": "TW Partners",
+  "tag": "section",
+  "class": "section-tw-partners",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "typewriters_logo",
+      "label": "Typewriters.com logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "monroe_logo",
+      "label": "Monroe logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "medmanager_logo",
+      "label": "Med Manager logo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "TW Partners"
+    }
+  ]
+}
+{% endschema %}
