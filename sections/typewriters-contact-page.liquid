@@ -446,7 +446,8 @@
           Use the form below to contact our team directly from the website.
         </p>
 
-        {% form 'contact', id: 'ContactForm-' | append: section.id, class: 'tw-contact__form' %}
+        {% assign tw_contact_form_id = 'ContactForm-' | append: section.id %}
+        {% form 'contact', id: tw_contact_form_id, class: 'tw-contact__form' %}
           {% if form.posted_successfully? %}
             <p class="tw-contact__success" tabindex="-1" autofocus>Your message has been sent. Thank you for contacting Typewriters.com.</p>
           {% endif %}
