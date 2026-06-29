@@ -20,6 +20,22 @@
         "additional_text": "<p>I need more information to generate text. Please provide:<br/><br/>- What type of block is this? (heading, body text, product description, etc.)<br/>- What should the text be about?<br/>- Any specific tone or style preferences?<br/>- Any key details to include?</p>"
       }
     },
+    "17827589136e294e2b": {
+      "type": "apps",
+      "blocks": {
+        "qikify_volume_discount_volume_offer_PjFY8U": {
+          "type": "shopify://apps/qikify-volume-discount/blocks/volume_offer/f0592105-7af5-4bc5-afd2-d674b4b2de92",
+          "settings": {
+            "product": "{{product}}"
+          }
+        }
+      },
+      "block_order": [
+        "qikify_volume_discount_volume_offer_PjFY8U"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
     "17810382055ab4d2c2": {
       "type": "apps",
       "blocks": {
@@ -35,21 +51,6 @@
       },
       "block_order": [
         "judge_me_reviews_review_widget_QXdjMB"
-      ],
-      "settings": {}
-    },
-    "17827589136e294e2b": {
-      "type": "apps",
-      "blocks": {
-        "qikify_volume_discount_volume_offer_PjFY8U": {
-          "type": "shopify://apps/qikify-volume-discount/blocks/volume_offer/f0592105-7af5-4bc5-afd2-d674b4b2de92",
-          "settings": {
-            "product": "{{product}}"
-          }
-        }
-      },
-      "block_order": [
-        "qikify_volume_discount_volume_offer_PjFY8U"
       ],
       "settings": {}
     }
