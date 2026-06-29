@@ -26,6 +26,20 @@
             "rating": 5
           }
         },
+        "slide_cH4jHn": {
+          "type": "slide",
+          "settings": {
+            "heading": "",
+            "subtext": "",
+            "button_text": "",
+            "button_link": "",
+            "main_image": "shopify://shop_images/6120X_Price_Drop_1920_x_1080_px.png",
+            "mobile_image": "shopify://shop_images/6120X_Price_Drop_749_x_421_px.png",
+            "slide_link": "",
+            "featured_product": "",
+            "rating": 5
+          }
+        },
         "slide_dVPqr6": {
           "type": "slide",
           "settings": {
@@ -68,6 +82,7 @@
       },
       "block_order": [
         "slide_UXz9Hi",
+        "slide_cH4jHn",
         "slide_dVPqr6",
         "slide_mmUFYz",
         "slide_CcjC8d"
