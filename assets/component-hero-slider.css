@@ -12,11 +12,13 @@
   background-repeat: no-repeat;
   border-radius: var(--hero-radius);
   overflow: hidden;
+  aspect-ratio:21/9;
+  height: auto;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
   .hero-slider__swiper {
-    height: 520px;
+    height: auto;
   }
 
   .hero-slider__inner {
@@ -26,7 +28,7 @@
 
 @media screen and (min-width: 1440px) {
   .hero-slider__swiper {
-    height: 640px;
+    height: auto;
   }
 
   .hero-slider__inner {
