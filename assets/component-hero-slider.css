@@ -39,8 +39,8 @@
 }
 
 .hero-slider__slide--has-bg {
-  background-size: 100% 100%;
-  background-position: center;
+  background-size: cover;
+  background-position: cover;
 }
 
 .hero-slider__inner {
