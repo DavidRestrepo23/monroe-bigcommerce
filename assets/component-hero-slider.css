@@ -249,6 +249,9 @@
 
   .hero-slider__swiper {
     border-radius: 6px;
+    aspect-ratio: 4/5;
+    height: auto;
+    min-height: unset;
   }
 
   .hero-slider__media img {
@@ -281,5 +284,9 @@
 
   .hero-slider__product-card {
     width: 90%;
+  }
+  .hero-slider__swiper {
+    aspect-ratio: 3/4;
+    height auto;
   }
 }
