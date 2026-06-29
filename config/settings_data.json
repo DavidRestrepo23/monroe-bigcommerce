@@ -394,6 +394,11 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "8232719769135528861": {
+        "type": "shopify://apps/qikify-volume-discount/blocks/app-embed/f0592105-7af5-4bc5-afd2-d674b4b2de92",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
