@@ -42,7 +42,7 @@
 
 .hero-slider__slide--has-bg {
   background-size: cover;
-  background-position: cover;
+  background-position: center;
 }
 
 .hero-slider__inner {
