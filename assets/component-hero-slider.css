@@ -2,7 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   margin-top: 0;
-  padding: 0 24px;
+  padding: 0 80px;
   position: relative;
 }
 
@@ -264,7 +264,7 @@
 
 @media (max-width: 640px) {
   .hero-slider {
-    padding: 0 0;
+    padding: 0;
   }
 
   .hero-slider__inner {
