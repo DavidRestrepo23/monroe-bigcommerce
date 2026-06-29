@@ -14,6 +14,7 @@
       "blocks": {
         "slide_UXz9Hi": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "heading": "",
             "subtext": "",
