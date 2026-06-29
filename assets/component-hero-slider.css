@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
   .hero-slider__swiper {
-    height: 710px;
+    height: 520px;
   }
 
   .hero-slider__inner {
@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 1440px) {
   .hero-slider__swiper {
-    height: 980px;
+    height: 640px;
   }
 
   .hero-slider__inner {
