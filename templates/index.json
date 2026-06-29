@@ -95,7 +95,7 @@
       ],
       "settings": {
         "autoplay": true,
-        "autoplay_delay": 5000,
+        "autoplay_delay": 6500,
         "loop": true,
         "show_arrows": false,
         "background_color": "#ededed",
