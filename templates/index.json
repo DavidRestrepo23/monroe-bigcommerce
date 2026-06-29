@@ -14,14 +14,13 @@
       "blocks": {
         "slide_UXz9Hi": {
           "type": "slide",
-          "disabled": true,
           "settings": {
             "heading": "",
             "subtext": "",
             "button_text": "",
             "button_link": "shopify://products/monroe-8130x-12-digit-basic-function-heavy-duty-accounting-printing-calculator",
-            "main_image": "shopify://shop_images/8130X_Back_in_Stock.png",
-            "mobile_image": "shopify://shop_images/8130X_Back_in_Stock_749_x_421_px.png",
+            "main_image": "shopify://shop_images/8130X_Is_Back_In_Stock_In_Black.png",
+            "mobile_image": "shopify://shop_images/8130X_Is_Back_In_Stock_In_Black.png",
             "slide_link": "shopify://products/monroe-8130x-12-digit-basic-function-heavy-duty-accounting-printing-calculator",
             "featured_product": "",
             "rating": 5
