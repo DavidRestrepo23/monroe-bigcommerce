@@ -106,27 +106,17 @@
   {%- endif -%}
 
   {%- comment -%} ── Recent Posts Grid ── {%- endcomment -%}
-  <div class="blog-recent">
-    <div class="blog-recent__header">
-      <h2 class="blog-recent__label">{{ section.settings.recent_heading | default: 'Recent Posts' }}</h2>
 
-      {%- if blog.all_tags.size > 0 -%}
-        <div class="blog-recent__filters">
-          {%- for tag in blog.all_tags -%}
-            {%- if current_tag == tag -%}
-              <a href="{{ blog.url }}" class="blog-recent__filter blog-recent__filter--active">
-                {{ tag }}
-                <svg class="blog-recent__filter-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-              </a>
-            {%- else -%}
-              <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-recent__filter">{{ tag }}</a>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-    </div>
+<div class="blog-recent__header">
+  <h2 class="blog-recent__label">
+    {{ section.settings.recent_heading | default: 'Recent Posts' }}
+  </h2>
+
+  {%- comment -%}
+    Blog tag filter buttons intentionally hidden.
+    Article tags remain assigned and tagged blog URLs will continue to work.
+  {%- endcomment -%}
+</div>
 
     {%- liquid
       if paginate.current_page == 1
