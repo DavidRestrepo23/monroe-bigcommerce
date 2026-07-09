@@ -27,11 +27,12 @@
 
 .top-ribbon__text {
     font-family: var(--font-family);
-    font-size: 14px;
+    font-size: 18px;
     font-weight: var(--font-weight-light);
     line-height: var(--line-height-normal);
     color: var(--color-white);
     margin: 0;
+    text-align: center;
 }
 
 .top-ribbon__link {
