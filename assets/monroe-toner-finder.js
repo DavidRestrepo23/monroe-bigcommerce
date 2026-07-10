@@ -9,7 +9,7 @@
     return;
   }
 
-  var DEFAULT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi_wzfF3eX5KmEkQhAVfSIrNln1bYHABlkYJceHzOa8tgV05pIb4Djj3zrDRyC1AP318vgXZlftDkx/pub?output=csv';
+  var DEFAULT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi_wzfF3eX5KmEkQhAVfSIrNln1bYHABlkYJceHzOa8tgV05pIb4Djj3zrDRyC1AP318vgXZlftDkx/pub?gid=0&single=true&output=csv';
 
   var FIELD_ALIASES = {
     product_type: ['product_type', 'type', 'supply_type'],
