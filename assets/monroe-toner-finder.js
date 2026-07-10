@@ -4,10 +4,21 @@
 (function () {
   'use strict';
 
-  if (window.MonroeTonerFinder && typeof window.MonroeTonerFinder.initAll === 'function') {
+  var BUILD_VERSION = '2.2.1';
+
+  if (
+    window.MonroeTonerFinder &&
+    window.MonroeTonerFinder.version === BUILD_VERSION &&
+    typeof window.MonroeTonerFinder.initAll === 'function'
+  ) {
     window.MonroeTonerFinder.initAll();
     return;
   }
+
+  document.querySelectorAll('[data-msf-root]').forEach(function (existingRoot) {
+    if (typeof existingRoot._msfDestroy === 'function') existingRoot._msfDestroy();
+    existingRoot.dataset.msfInitialized = '';
+  });
 
   var DEFAULT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRi_wzfF3eX5KmEkQhAVfSIrNln1bYHABlkYJceHzOa8tgV05pIb4Djj3zrDRyC1AP318vgXZlftDkx/pub?gid=0&single=true&output=csv';
 
@@ -270,18 +281,12 @@
     var clean = norm(value);
     if (!clean) return [];
 
-    var delimiterPattern;
-    if (clean.indexOf('|') !== -1) {
-      delimiterPattern = /\|+/;
-    } else if (clean.indexOf('\n') !== -1) {
-      delimiterPattern = /\n+/;
-    } else if (clean.indexOf(';') !== -1) {
-      delimiterPattern = /;+/;
-    } else {
-      delimiterPattern = /,+/;
-    }
-
-    return uniqueSorted(clean.split(delimiterPattern).map(norm).filter(Boolean));
+    return uniqueSorted(
+      clean
+        .split(/[|;\n,]+/)
+        .map(norm)
+        .filter(Boolean)
+    );
   }
 
   function normalizeRecords(parsed) {
@@ -467,12 +472,32 @@
       chartTable: root.querySelector('[data-msf-chart-table]')
     };
 
-    var missingElement = Object.keys(elements).find(function (name) { return !elements[name]; });
+    var requiredElements = [
+      'form', 'brand', 'model', 'search', 'color', 'minYield', 'sort',
+      'reset', 'retry', 'download', 'print', 'status', 'count', 'context',
+      'gate', 'results', 'loadMoreWrap', 'loadMore', 'chartCard',
+      'chartLabel', 'chartBody', 'chartTable'
+    ];
+
+    var missingElement = requiredElements.find(function (name) { return !elements[name]; });
     if (missingElement) {
       root.dataset.msfInitialized = 'error';
-      console.error('Monroe Toner Finder: missing element', missingElement);
+      var setupMessage = 'Toner Finder setup error: the Shopify section is missing the required "' + missingElement + '" element. Replace the Liquid section and JavaScript with matching versions.';
+      console.error('Monroe Toner Finder:', setupMessage);
+      if (elements.status) {
+        elements.status.textContent = 'Tool setup error';
+        elements.status.dataset.state = 'error';
+      }
+      if (elements.results) {
+        elements.results.innerHTML = '<div class="msf-error-state"><strong>Toner Finder could not start.</strong><br>' + escapeHtml(setupMessage) + '</div>';
+      }
       return;
     }
+
+    var hasCustomModelMenu = Boolean(
+      elements.modelCombobox && elements.modelTrigger && elements.modelValue &&
+      elements.modelPanel && elements.modelSearch && elements.modelList && elements.modelMessage
+    );
 
     var state = {
       records: [],
@@ -497,9 +522,13 @@
       elements.search.disabled = isBusy;
       elements.minYield.disabled = isBusy;
       elements.sort.disabled = isBusy || !state.loaded;
-      elements.model.disabled = isBusy || !state.loaded;
-      elements.modelTrigger.disabled = isBusy || !state.loaded || state.modelOptions.length === 0;
-      elements.modelSearch.disabled = isBusy || !state.loaded;
+      elements.model.disabled = isBusy || !state.loaded || state.modelOptions.length === 0;
+
+      if (hasCustomModelMenu) {
+        elements.modelTrigger.disabled = isBusy || !state.loaded || state.modelOptions.length === 0;
+        elements.modelSearch.disabled = isBusy || !state.loaded;
+      }
+
       if (isBusy) {
         elements.color.disabled = true;
         closeModelMenu(false);
@@ -530,6 +559,7 @@
     }
 
     function updateModelTrigger() {
+      if (!hasCustomModelMenu) return;
       var selected = norm(elements.model.value);
       var label = selected || 'All printer models';
       elements.modelValue.textContent = label;
@@ -538,13 +568,14 @@
     }
 
     function closeModelMenu(returnFocus) {
-      if (elements.modelPanel.hidden) return;
+      if (!hasCustomModelMenu || elements.modelPanel.hidden) return;
       elements.modelPanel.hidden = true;
       elements.modelTrigger.setAttribute('aria-expanded', 'false');
       if (returnFocus !== false) elements.modelTrigger.focus();
     }
 
     function renderModelOptions(filterValue) {
+      if (!hasCustomModelMenu) return;
       var searchTerm = key(filterValue);
       var matches = state.modelOptions.filter(function (model) {
         return !searchTerm || key(model).indexOf(searchTerm) !== -1;
@@ -579,7 +610,7 @@
     }
 
     function openModelMenu() {
-      if (elements.modelTrigger.disabled) return;
+      if (!hasCustomModelMenu || elements.modelTrigger.disabled) return;
       elements.modelPanel.hidden = false;
       elements.modelTrigger.setAttribute('aria-expanded', 'true');
       elements.modelSearch.value = '';
@@ -594,17 +625,23 @@
       var previous = norm(elements.model.value);
       state.modelOptions = uniqueSorted(values);
 
-      if (previous && !state.modelOptions.some(function (model) { return key(model) === key(previous); })) {
-        elements.model.value = '';
-      }
+      if (hasCustomModelMenu) {
+        if (previous && !state.modelOptions.some(function (model) { return key(model) === key(previous); })) {
+          elements.model.value = '';
+        }
 
-      updateModelTrigger();
-      elements.modelTrigger.disabled = !state.loaded || state.modelOptions.length === 0;
-      elements.modelSearch.disabled = !state.loaded || state.modelOptions.length === 0;
-      closeModelMenu(false);
+        updateModelTrigger();
+        elements.model.disabled = !state.loaded || state.modelOptions.length === 0;
+        elements.modelTrigger.disabled = !state.loaded || state.modelOptions.length === 0;
+        elements.modelSearch.disabled = !state.loaded || state.modelOptions.length === 0;
+        closeModelMenu(false);
+      } else {
+        setSelectOptions(elements.model, state.modelOptions, 'All printer models');
+      }
     }
 
     function chooseModel(value) {
+      if (!hasCustomModelMenu) return;
       elements.model.value = norm(value);
       updateModelTrigger();
       closeModelMenu(true);
@@ -942,9 +979,11 @@
       setBusy(false);
       elements.brand.disabled = true;
       elements.model.disabled = true;
-      elements.modelTrigger.disabled = true;
-      elements.modelSearch.disabled = true;
-      closeModelMenu(false);
+      if (hasCustomModelMenu) {
+        elements.modelTrigger.disabled = true;
+        elements.modelSearch.disabled = true;
+        closeModelMenu(false);
+      }
       elements.color.disabled = true;
       elements.sort.disabled = true;
       elements.retry.hidden = false;
@@ -954,10 +993,61 @@
       setStatus('Data load failed', 'error');
     }
 
+    function delay(milliseconds) {
+      return new Promise(function (resolve) {
+        window.setTimeout(resolve, milliseconds);
+      });
+    }
+
+    async function fetchSheetAttempt(baseUrl, attemptNumber) {
+      var requestUrl = new URL(baseUrl, window.location.href);
+      requestUrl.searchParams.set('_msf', String(Date.now()) + '-' + String(attemptNumber));
+
+      var controller = new AbortController();
+      state.controller = controller;
+      root._msfAbortController = controller;
+
+      var timeoutId = window.setTimeout(function () {
+        controller.abort();
+      }, 15000);
+
+      try {
+        var response = await fetch(requestUrl.toString(), {
+          method: 'GET',
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'no-store',
+          signal: controller.signal
+        });
+
+        if (!response.ok) {
+          throw new Error('Google Sheets returned HTTP ' + response.status + '. Confirm the sheet is still published to the web.');
+        }
+
+        var text = await response.text();
+        var trimmedStart = text.replace(/^\s+/, '').slice(0, 120).toLowerCase();
+
+        if (!text || !norm(text)) {
+          throw new Error('Google Sheets returned an empty response.');
+        }
+
+        if (trimmedStart.indexOf('<!doctype html') === 0 || trimmedStart.indexOf('<html') === 0) {
+          throw new Error('Google Sheets returned an HTML page instead of CSV data. Confirm the published URL ends in output=csv.');
+        }
+
+        return text;
+      } catch (error) {
+        if (error && error.name === 'AbortError') {
+          throw new Error('The Google Sheets request timed out after 15 seconds.');
+        }
+        throw error;
+      } finally {
+        window.clearTimeout(timeoutId);
+      }
+    }
+
     async function loadData() {
       if (state.controller) state.controller.abort();
-      state.controller = new AbortController();
-      root._msfAbortController = state.controller;
 
       state.loaded = false;
       elements.retry.hidden = true;
@@ -970,24 +1060,24 @@
 
       try {
         var csvUrl = normalizeSheetUrl(root.dataset.csvUrl);
-        var response = await fetch(csvUrl, {
-          method: 'GET',
-          mode: 'cors',
-          credentials: 'omit',
-          cache: 'no-store',
-          headers: { Accept: 'text/csv,text/plain;q=0.9,*/*;q=0.8' },
-          signal: state.controller.signal
-        });
+        var text = '';
+        var lastError = null;
 
-        if (!response.ok) {
-          throw new Error('Google Sheets returned HTTP ' + response.status + '. Confirm the sheet is published and accessible to anyone with the link.');
+        for (var attempt = 1; attempt <= 2; attempt += 1) {
+          try {
+            if (attempt > 1) {
+              setStatus('Retrying toner data…', '');
+              await delay(1200);
+            }
+            text = await fetchSheetAttempt(csvUrl, attempt);
+            lastError = null;
+            break;
+          } catch (attemptError) {
+            lastError = attemptError;
+          }
         }
 
-        var text = await response.text();
-        var trimmedStart = text.trimStart().slice(0, 80).toLowerCase();
-        if (trimmedStart.indexOf('<!doctype html') === 0 || trimmedStart.indexOf('<html') === 0) {
-          throw new Error('The configured Google Sheets link returned an HTML webpage instead of CSV data. Use the published CSV URL ending in output=csv.');
-        }
+        if (lastError) throw lastError;
 
         var parsed = parseDelimited(text);
         var records = normalizeRecords(parsed);
@@ -1003,7 +1093,6 @@
         setStatus('Ready: ' + records.length + ' toner supplies loaded', 'success');
         renderResults();
       } catch (error) {
-        if (error && error.name === 'AbortError') return;
         showLoadError(error instanceof Error ? error : new Error('Unknown data error.'));
       }
     }
@@ -1034,68 +1123,72 @@
       applyFilters();
     });
 
-    elements.modelTrigger.addEventListener('click', function () {
-      if (elements.modelPanel.hidden) openModelMenu();
-      else closeModelMenu(true);
-    });
+    var handleDocumentClick = null;
 
-    elements.modelTrigger.addEventListener('keydown', function (event) {
-      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openModelMenu();
-      }
-    });
+    if (hasCustomModelMenu) {
+      elements.modelTrigger.addEventListener('click', function () {
+        if (elements.modelPanel.hidden) openModelMenu();
+        else closeModelMenu(true);
+      });
 
-    elements.modelSearch.addEventListener('input', function () {
-      renderModelOptions(elements.modelSearch.value);
-    });
+      elements.modelTrigger.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModelMenu();
+        }
+      });
 
-    elements.modelSearch.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeModelMenu(true);
-      } else if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        var firstOption = elements.modelList.querySelector('[data-msf-model-option]');
-        if (firstOption) firstOption.focus();
-      }
-    });
+      elements.modelSearch.addEventListener('input', function () {
+        renderModelOptions(elements.modelSearch.value);
+      });
 
-    elements.modelList.addEventListener('click', function (event) {
-      var option = event.target.closest('[data-msf-model-option]');
-      if (!option) return;
-      chooseModel(option.dataset.msfModelOption || '');
-    });
+      elements.modelSearch.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModelMenu(true);
+        } else if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          var firstOption = elements.modelList.querySelector('[data-msf-model-option]');
+          if (firstOption) firstOption.focus();
+        }
+      });
 
-    elements.modelList.addEventListener('keydown', function (event) {
-      var option = event.target.closest('[data-msf-model-option]');
-      if (!option) return;
-      var options = Array.from(elements.modelList.querySelectorAll('[data-msf-model-option]'));
-      var index = options.indexOf(option);
+      elements.modelList.addEventListener('click', function (event) {
+        var option = event.target.closest('[data-msf-model-option]');
+        if (!option) return;
+        chooseModel(option.dataset.msfModelOption || '');
+      });
 
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        (options[index + 1] || options[0]).focus();
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        (options[index - 1] || options[options.length - 1]).focus();
-      } else if (event.key === 'Home') {
-        event.preventDefault();
-        if (options[0]) options[0].focus();
-      } else if (event.key === 'End') {
-        event.preventDefault();
-        if (options.length) options[options.length - 1].focus();
-      } else if (event.key === 'Escape') {
-        event.preventDefault();
-        closeModelMenu(true);
-      }
-    });
+      elements.modelList.addEventListener('keydown', function (event) {
+        var option = event.target.closest('[data-msf-model-option]');
+        if (!option) return;
+        var options = Array.from(elements.modelList.querySelectorAll('[data-msf-model-option]'));
+        var index = options.indexOf(option);
 
-    function handleDocumentClick(event) {
-      if (!elements.modelCombobox.contains(event.target)) closeModelMenu(false);
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          (options[index + 1] || options[0]).focus();
+        } else if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          (options[index - 1] || options[options.length - 1]).focus();
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          if (options[0]) options[0].focus();
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          if (options.length) options[options.length - 1].focus();
+        } else if (event.key === 'Escape') {
+          event.preventDefault();
+          closeModelMenu(true);
+        }
+      });
+
+      handleDocumentClick = function (event) {
+        if (!elements.modelCombobox.contains(event.target)) closeModelMenu(false);
+      };
+
+      document.addEventListener('click', handleDocumentClick);
     }
-
-    document.addEventListener('click', handleDocumentClick);
 
     elements.color.addEventListener('change', applyFilters);
     elements.minYield.addEventListener('input', debounce(applyFilters, 180));
@@ -1115,7 +1208,7 @@
 
     root._msfDestroy = function () {
       if (state.controller) state.controller.abort();
-      document.removeEventListener('click', handleDocumentClick);
+      if (handleDocumentClick) document.removeEventListener('click', handleDocumentClick);
     };
 
     loadData();
@@ -1129,7 +1222,7 @@
 
   window.MonroeTonerFinder = {
     initAll: initAll,
-    version: '2.1.0'
+    version: BUILD_VERSION
   };
 
   onReady(function () {
