@@ -1,1492 +1,435 @@
-<!-- Monroe Toner Finder Shopify Section
-  File: sections/monroe-toner-finder.liquid
-  Purpose: Printer Toner Compatibility Chart / Finder
--->
-<style>
-  .msf-tool, .msf-tool *{
-    font-family: Roboto, serif;
-    color:#000000;
-    font-size:18px;
-    box-sizing:border-box;
-    max-width: 95%!important;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-
-  .msf-tool{
-    --msf-main:#007681;
-    --msf-accent:#666666;
-    --msf-border: #000000;
-    --msf-soft: rgba(0,0,0,.10);
-    --msf-shadow: 0 14px 30px rgba(0,0,0,.10);
-    --msf-radius: 18px;
-    --msf-radius-sm: 14px;
-  }
-
-  .msf-topbar{
-    height: 44px;
-    background: linear-gradient(90deg, var(--msf-main), var(--msf-accent));
-  }
-
-  .msf-wrap{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 22px 14px 56px;
-  }
-
-  .msf-hero{
-    margin-bottom: 14px;
-  }
-
-  .msf-hero-inner{
-    display:grid;
-    grid-template-columns: 1.3fr .7fr;
-    gap: 14px;
-    align-items: stretch;
-  }
-
-  .msf-title{
-    margin:0 0 10px;
-    font-size:36px;
-    font-weight:700;
-    letter-spacing:.2px;
-  }
-
-  .msf-subtitle{
-    margin:0 0 12px;
-    line-height:1.6;
-    max-width: 980px;
-  }
-
-  .msf-jumps{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top: 10px;
-  }
-
-  .msf-jump{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding: 10px 12px;
-    border-radius: 999px;
-    border: 5px solid var(--msf-border);
-    text-decoration:none;
-    font-weight:700;
-    background:#fff;
-  }
-
-  .msf-jump:focus,
-  .msf-jump:hover{
-    border-color: var(--msf-accent);
-    box-shadow: 0 0 0 3px rgba(102,102,102,.18);
-  }
-
-  .msf-hero-card{
-    border:1px solid var(--msf-border);
-    border-radius: var(--msf-radius);
-    box-shadow: var(--msf-shadow);
-    background:#fff;
-    padding: 16px;
-    height:100%;
-  }
-
-  .msf-hero-card-title{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom: 10px;
-  }
-
-  .msf-hero-list{
-    margin:0;
-    padding-left: 18px;
-    line-height: 1.6;
-  }
-
-  .msf-hero-actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top: 12px;
-  }
-
-  .msf-hero-fine{
-    margin-top: 10px;
-    line-height:1.55;
-  }
-
-  .msf-card{
-    background:#fff;
-    border:1px solid var(--msf-border);
-    border-radius: var(--msf-radius);
-    box-shadow: var(--msf-shadow);
-    padding: 16px;
-    margin: 14px 0;
-  }
-
-  .msf-card-head{
-    margin-bottom: 12px;
-  }
-
-  .msf-h2{
-    margin:0 0 8px;
-    font-size:26px;
-    font-weight:700;
-  }
-
-  .msf-muted{
-    line-height:1.55;
-  }
-
-  .msf-controls-grid{
-    display:grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 12px;
-    align-items:end;
-  }
-
-  .msf-field{ display:flex; flex-direction:column; gap: 6px; }
-  .msf-label{ font-weight:700; }
-
-  .msf-help{
-    font-size:16px;
-    line-height:1.35;
-    opacity:.95;
-  }
-
-  .msf-input, .msf-select{
-    height:46px;
-    border-radius: 12px;
-    border: 1px solid var(--msf-border);
-    padding: 0 12px;
-    background:#fff;
-    outline:none;
-  }
-
-  .msf-input:focus, .msf-select:focus{
-    border-color: var(--msf-accent);
-    box-shadow: 0 0 0 3px rgba(102,102,102,.22);
-  }
-
-  .msf-actions{
-    display:flex;
-    gap: 10px;
-    flex-wrap:wrap;
-    margin-top: 14px;
-    align-items:center;
-  }
-
-  .msf-btn{
-    height:46px;
-    border-radius: 14px;
-    padding: 0 14px;
-    border: 5px solid #000000;
-    background:#fff;
-    cursor:pointer;
-    font-weight:900;
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .msf-btn-primary{
-    background: var(--msf-main);
-    border-color: var(--msf-main);
-    color:#ffffff;
-    border: 5px solid #000000;
-  }
-
-  .msf-btn-ghost{
-    background: transparent;
-  }
-
-  .msf-btn:hover{
-    border-color: var(--msf-accent);
-    box-shadow: 0 0 0 3px rgba(102,102,102,.18);
-  }
-
-  .msf-btn-primary:hover{
-    border-color: var(--msf-main);
-    box-shadow: 0 0 0 3px rgba(0,118,129,.20);
-  }
-
-  .msf-btn[disabled]{
-    opacity:.55;
-    cursor:not-allowed;
-    box-shadow:none;
-  }
-
-  .msf-status{
-    margin-left:auto;
-    padding: 10px 12px;
-    border-radius: 999px;
-    border: 5px solid var(--msf-border);
-    background:#fff;
-    font-weight:700;
-  }
-
-  .msf-callout{
-    margin-top: 14px;
-    border: 1px solid rgba(0,0,0,.14);
-    border-radius: var(--msf-radius);
-    background: rgba(0,118,129,.06);
-    padding: 14px;
-  }
-
-  .msf-callout-title{
-    font-weight:700;
-    font-size:20px;
-    margin-bottom: 6px;
-  }
-
-  .msf-callout-text{
-    margin:0 0 12px;
-    line-height:1.55;
-  }
-
-  .msf-callout-actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-
-  .msf-meta{
-    display:flex;
-    gap: 12px;
-    flex-wrap:wrap;
-    align-items:center;
-    margin-bottom: 10px;
-  }
-
-  .msf-pill{
-    display:inline-flex;
-    align-items:center;
-    height: 30px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: rgba(102,102,102,.14);
-    font-weight:700;
-  }
-
-  .msf-empty{
-    border: 1px dashed rgba(0,0,0,.25);
-    border-radius: var(--msf-radius);
-    padding: 18px;
-    text-align:center;
-    background:#fff;
-    line-height:1.55;
-  }
-
-  .msf-grid{
-    display:grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .msf-item{
-    border:1px solid var(--msf-border);
-    border-radius: var(--msf-radius);
-    overflow:hidden;
-    background:#fff;
-    box-shadow: 0 10px 22px rgba(0,0,0,.08);
-    display:flex;
-    flex-direction:column;
-    min-height: 100%;
-  }
-
-  .msf-item-top{
-    padding: 12px 14px 0;
-    display:flex;
-    justify-content:space-between;
-    gap: 10px;
-    align-items:flex-start;
-  }
-
-  .msf-brand{
-    font-weight:700;
-  }
-
-  .msf-badge{
-    border:1px solid rgba(0,0,0,.18);
-    border-radius: 999px;
-    padding: 6px 10px;
-    font-weight:700;
-    font-size:16px;
-    background:#fff;
-  }
-
-  .msf-media{
-    padding: 10px 14px 0;
-    display:flex;
-    flex-direction:column;
-    gap: 10px;
-  }
-
-  .msf-img-wrap{
-    border:1px solid rgba(0,0,0,.15);
-    border-radius: var(--msf-radius-sm);
-    overflow:hidden;
-    background:#fff;
-    height: 200px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .msf-img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
-  }
-
-  .msf-view{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    height:46px;
-    border-radius: 14px;
-    border: 1px solid var(--msf-main);
-    background: var(--msf-main);
-    color:#ffffff;
-    text-decoration:none;
-    font-weight:700;
-  }
-
-  .msf-body{
-    padding: 12px 14px 14px;
-    display:flex;
-    flex-direction:column;
-    gap: 10px;
-  }
-
-  .msf-name{
-    margin:0;
-    font-size:20px;
-    font-weight:700;
-    line-height:1.35;
-  }
-
-  .msf-kv{
-    display:grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .msf-kv-box{
-    border:1px solid rgba(0,0,0,.15);
-    border-radius: var(--msf-radius-sm);
-    padding: 10px 12px;
-    background:#fff;
-  }
-
-  .msf-kv-label{
-    font-size:16px;
-    font-weight:700;
-    margin-bottom: 4px;
-  }
-
-  .msf-kv-value{
-    font-weight:700;
-  }
-
-  .msf-loadmore{
-    margin-top: 14px;
-    display:flex;
-    justify-content:center;
-  }
-
-  .msf-table-wrap{
-    overflow:auto;
-    border:1px solid rgba(0,0,0,.18);
-    border-radius: var(--msf-radius-sm);
-    background:#fff;
-  }
-
-  .msf-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width: 980px;
-  }
-
-  .msf-table thead th{
-    position: sticky;
-    top: 0;
-    background:#fff;
-    z-index: 1;
-    text-align:left;
-    padding: 12px;
-    border-bottom: 2px solid rgba(0,0,0,.18);
-    font-weight:700;
-    white-space: nowrap;
-  }
-
-  .msf-table tbody td{
-    padding: 12px;
-    border-bottom: 1px solid rgba(0,0,0,.12);
-    font-weight:700;
-    vertical-align: top;
-  }
-
-  .msf-seo{
-    margin-top: 18px;
-  }
-
-  .msf-seo-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-
-  .msf-seo-card{
-    border:1px solid var(--msf-border);
-    border-radius: var(--msf-radius);
-    box-shadow: var(--msf-shadow);
-    background:#fff;
-    padding: 16px;
-    margin-top: 14px;
-  }
-
-  .msf-seo-title{
-    margin:0 0 10px;
-    font-size:22px;
-    font-weight:700;
-  }
-
-  .msf-seo-text{
-    margin:0 0 12px;
-    line-height:1.55;
-  }
-
-  .msf-seo-callout{
-    border:1px solid rgba(0,0,0,.18);
-    border-radius: var(--msf-radius-sm);
-    padding: 12px;
-    background: rgba(102,102,102,.08);
-    margin-bottom: 12px;
-  }
-
-  .msf-seo-callout-title{
-    font-weight:700;
-    margin-bottom: 8px;
-  }
-
-  .msf-seo-list{
-    margin:0;
-    padding-left: 18px;
-    line-height:1.6;
-  }
-
-  .msf-seo-actions{
-    display:flex;
-    gap: 10px;
-    flex-wrap:wrap;
-    margin-top: 12px;
-  }
-
-  .msf-seo-btn{
-    height:46px;
-    border-radius: 14px;
-    padding: 0 14px;
-    border:5px solid #000000;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    font-weight:900;
-    background:#fff;
-  }
-
-  .msf-seo-btn-primary{
-    background: var(--msf-main);
-    border-color: var(--msf-main);
-    color:#ffffff;
-    border: 5px solid #000000;
-  }
-
-  .msf-seo-fine{
-    margin: 10px 0 0;
-    line-height:1.55;
-  }
-
-  .msf-seo-links{
-    display:flex;
-    gap: 12px;
-    flex-wrap:wrap;
-    margin-top: 12px;
-  }
-
-  .msf-seo-link{
-    font-weight:700;
-    text-decoration: underline;
-  }
-
-  .msf-kb-grid{
-    display:grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 10px;
-  }
-
-  .msf-kb-item{
-    border:1px solid rgba(0,0,0,.12);
-    border-radius: var(--msf-radius-sm);
-    padding: 12px;
-    background:#fff;
-  }
-
-  .msf-kb-title{
-    font-weight:700;
-    margin-bottom: 6px;
-  }
-
-  .msf-kb-text{
-    line-height:1.55;
-  }
-
-  .msf-seo-faq{
-    margin-top: 14px;
-    border:1px solid var(--msf-border);
-    border-radius: var(--msf-radius);
-    box-shadow: var(--msf-shadow);
-    background:#fff;
-    padding: 16px;
-  }
-
-  .msf-seo-qa{
-    border-top:1px solid rgba(0,0,0,.12);
-    padding-top: 10px;
-    margin-top: 10px;
-  }
-
-  .msf-seo-qa:first-of-type{
-    border-top:none;
-    padding-top:0;
-    margin-top:0;
-  }
-
-  .msf-seo-qa summary{
-    cursor:pointer;
-    font-weight:700;
-    line-height:1.45;
-  }
-
-  .msf-seo-answer{
-    padding-top: 10px;
-    line-height:1.55;
-  }
-
-  @media (max-width: 1100px){
-    .msf-hero-inner{ grid-template-columns: 1fr; }
-    .msf-controls-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .msf-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .msf-seo-grid{ grid-template-columns: 1fr; }
-    .msf-kb-grid{ grid-template-columns: 1fr; }
-    .msf-status{ margin-left: 0; width:100%; }
-  }
-
-  @media (max-width: 640px){
-    .msf-grid{ grid-template-columns: 1fr; }
-    .msf-title{ font-size:28px; }
-  }
-</style>
-
-<!-- Monroe Toner Finder Tool | Final Combined HTML + CSS + JS -->
-<section class="msf-tool" id="msfTool">
-
-  <!-- Top Accent Bar -->
+{{ 'monroe-toner-finder.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monroe-toner-finder.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+  assign support_email = section.settings.support_email | default: 'csr@monroe-systems.com'
+  assign phone_display = section.settings.phone_display | default: '(267) 580-2600'
+  assign phone_link = section.settings.phone_link | default: '+12675802600'
+  assign email_subject = 'Toner Compatibility Request' | url_encode
+-%}
+
+<section
+  id="MonroeTonerFinder-{{ section.id }}"
+  class="msf-tool"
+  data-msf-root
+  data-section-id="{{ section.id }}"
+  data-csv-url="{{ section.settings.csv_url | escape }}"
+  data-page-size="{{ section.settings.page_size }}"
+  style="--msf-main: {{ section.settings.main_color }}; --msf-accent: {{ section.settings.accent_color }}; --msf-section-pt: {{ section.settings.padding_top }}px; --msf-section-pb: {{ section.settings.padding_bottom }}px;"
+>
   <div class="msf-topbar" aria-hidden="true"></div>
 
-  <div class="msf-wrap">
-
-    <!-- Hero -->
+  <div class="msf-shell">
     <header class="msf-hero" id="toner-finder-top">
-      <div class="msf-hero-inner">
-        <div class="msf-hero-copy">
-          <h1 class="msf-title">Printer Toner Supply Finder</h1>
-          <p class="msf-subtitle">
-            Find the right toner fast. Filter by printer brand and model or search by SKU. Results stay hidden until you filter or search to keep the page fast.
-          </p>
+      <div class="msf-hero__grid">
+        <div class="msf-hero__copy">
+          <{{ heading_tag }} class="msf-title">{{ section.settings.heading | escape }}</{{ heading_tag }}>
+          <p class="msf-subtitle">{{ section.settings.subheading | escape }}</p>
 
-          <!-- Quick Jump Links -->
-          <nav class="msf-jumps" aria-label="Page sections">
+          <nav class="msf-jumps" aria-label="Toner finder page sections">
             <a class="msf-jump" href="#toner-finder-tool">Use the Finder</a>
             <a class="msf-jump" href="#toner-finder-results">View Results</a>
-            <a class="msf-jump" href="#toner-compatibility-chart-anchor">Compatibility Chart</a>
+            <a class="msf-jump" href="#toner-compatibility-chart">Compatibility Chart</a>
             <a class="msf-jump" href="#toner-resources">Shop by Brand</a>
             <a class="msf-jump" href="#toner-finder-faq">FAQs</a>
           </nav>
         </div>
 
-        <div class="msf-hero-side">
-          <div class="msf-hero-card">
-            <div class="msf-hero-card-title">Need an exact match</div>
-            <ul class="msf-hero-list">
-              <li>Printer brand and model</li>
-              <li>Toner part number or SKU</li>
-              <li>Color and yield preference</li>
-            </ul>
-            <div class="msf-hero-actions">
-              <a class="msf-btn msf-btn-primary" href="mailto:csr@monroe-systems.com?subject=Toner%20Compatibility%20Request">Email Us</a>
-              <a class="msf-btn" href="tel:+12675802600">Call (267) 580-2600</a>
-            </div>
-            <div class="msf-hero-fine">
-              If your toner does not appear here, it does not mean we do not carry it. Our sourcing options change frequently.
-            </div>
+        <aside class="msf-hero-card" aria-label="Information needed for an exact toner match">
+          <h2 class="msf-hero-card__title">Need an exact match?</h2>
+          <ul class="msf-checklist">
+            <li>Printer brand and exact model</li>
+            <li>Toner part number or SKU</li>
+            <li>Color and yield preference</li>
+          </ul>
+          <div class="msf-button-row">
+            <a class="msf-button msf-button--primary" href="mailto:{{ support_email | escape }}?subject={{ email_subject }}">Email Us</a>
+            <a class="msf-button msf-button--secondary" href="tel:{{ phone_link | escape }}">Call {{ phone_display | escape }}</a>
           </div>
-        </div>
+          <p class="msf-fine-print">If your toner does not appear in the finder, it does not necessarily mean we do not carry it.</p>
+        </aside>
       </div>
     </header>
 
-    <!-- Finder -->
-    <section class="msf-card" id="toner-finder-tool" aria-label="Finder filters">
-      <div class="msf-card-head">
-        <h2 class="msf-h2">Search Your Printer Supplies</h2>
-        <p class="msf-muted">
-          Start with Printer Brand and Model for the most accurate matches. You can also search by SKU or toner name.
-        </p>
+    <section class="msf-panel" id="toner-finder-tool" aria-labelledby="msf-finder-title-{{ section.id }}">
+      <div class="msf-panel__head">
+        <h2 class="msf-heading" id="msf-finder-title-{{ section.id }}">Search Your Printer Supplies</h2>
+        <p>Start with Printer Brand and Printer Model for the most accurate match. You can also search by toner name, SKU, color, or page yield.</p>
       </div>
 
-      <div class="msf-controls-grid">
-        <div class="msf-field">
-          <label class="msf-label" for="msfBrand">Printer Brand</label>
-          <select class="msf-select" id="msfBrand" disabled>
-            <option value="">All</option>
-          </select>
+      <form class="msf-filter-form" data-msf-form novalidate>
+        <div class="msf-filter-grid">
+          <div class="msf-field msf-field--brand">
+            <label for="msf-brand-{{ section.id }}">Printer Brand</label>
+            <select id="msf-brand-{{ section.id }}" data-msf-brand disabled>
+              <option value="">All printer brands</option>
+            </select>
+          </div>
+
+          <div class="msf-field msf-field--model">
+            <label for="msf-model-{{ section.id }}">Printer Model</label>
+            <select id="msf-model-{{ section.id }}" data-msf-model disabled>
+              <option value="">All printer models</option>
+            </select>
+          </div>
+
+          <div class="msf-field msf-field--search">
+            <label for="msf-search-{{ section.id }}">Search Supplies</label>
+            <input
+              id="msf-search-{{ section.id }}"
+              data-msf-search
+              type="search"
+              placeholder="Search by toner name, SKU, model, color, or yield"
+              autocomplete="off"
+              enterkeyhint="search"
+            >
+            <small>Enter at least two characters when using search by itself.</small>
+          </div>
+
+          <div class="msf-field msf-field--color">
+            <label for="msf-color-{{ section.id }}">Color</label>
+            <select id="msf-color-{{ section.id }}" data-msf-color disabled>
+              <option value="">All colors</option>
+            </select>
+          </div>
+
+          <div class="msf-field msf-field--yield">
+            <label for="msf-yield-{{ section.id }}">Minimum Page Yield</label>
+            <input id="msf-yield-{{ section.id }}" data-msf-min-yield type="number" min="0" step="1" placeholder="0" inputmode="numeric">
+          </div>
+
+          <div class="msf-field msf-field--sort">
+            <label for="msf-sort-{{ section.id }}">Sort Results</label>
+            <select id="msf-sort-{{ section.id }}" data-msf-sort disabled>
+              <option value="yield_desc">Yield: high to low</option>
+              <option value="yield_asc">Yield: low to high</option>
+              <option value="name_asc">Name: A to Z</option>
+              <option value="name_desc">Name: Z to A</option>
+            </select>
+          </div>
         </div>
 
-        <div class="msf-field">
-          <label class="msf-label" for="msfModel">Printer Model</label>
-          <select class="msf-select" id="msfModel" disabled>
-            <option value="">All</option>
-          </select>
+        <div class="msf-actions">
+          <button class="msf-button msf-button--primary" type="button" data-msf-download disabled>Download Model Chart</button>
+          <button class="msf-button msf-button--secondary" type="button" data-msf-print disabled>Print Model Chart</button>
+          <button class="msf-button msf-button--secondary" type="reset" data-msf-reset disabled>Clear Filters</button>
+          <button class="msf-button msf-button--secondary" type="button" data-msf-retry hidden>Retry Data Load</button>
+          <div class="msf-status" data-msf-status role="status" aria-live="polite">Loading toner data…</div>
         </div>
+      </form>
 
-        <div class="msf-field">
-          <label class="msf-label" for="msfSearch">Search Supplies</label>
-          <input class="msf-input" id="msfSearch" type="text" placeholder="Search by SKU or toner name" autocomplete="off" />
+      <div class="msf-help-callout">
+        <div>
+          <h3>Do not see your toner?</h3>
+          <p>Send us the printer brand, exact model, and toner part number. We will confirm compatibility and help you choose the appropriate yield.</p>
         </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfColor">Color</label>
-          <select class="msf-select" id="msfColor" disabled>
-            <option value="">All</option>
-          </select>
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfMinYield">Min Yield</label>
-          <input class="msf-input" id="msfMinYield" type="number" min="0" placeholder="0" inputmode="numeric" />
-        </div>
-
-        <div class="msf-field">
-          <label class="msf-label" for="msfSort">Sort</label>
-          <select class="msf-select" id="msfSort" disabled>
-            <option value="yield_desc">Yield high to low</option>
-            <option value="yield_asc">Yield low to high</option>
-            <option value="name_asc">Name A to Z</option>
-            <option value="name_desc">Name Z to A</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="msf-actions">
-        <button class="msf-btn msf-btn-primary" id="msfDownload" disabled>Download Chart (CSV)</button>
-        <button class="msf-btn" id="msfPrint" disabled>Print Chart</button>
-        <button class="msf-btn msf-btn-ghost" id="msfReset">Reset</button>
-
-        <div class="msf-status" id="msfStatus" aria-live="polite">Loading toner data</div>
-      </div>
-
-      <div class="msf-callout">
-        <div class="msf-callout-title">Do not see your toner</div>
-        <p class="msf-callout-text">
-          Send your printer brand and model plus the toner part number or SKU, and we will confirm the correct cartridge and best yield option.
-        </p>
-        <div class="msf-callout-actions">
-          <a class="msf-btn msf-btn-primary" href="mailto:sales@monroe-systems.com?subject=Toner%20Finder%20Help">Email Your Model</a>
-          <a class="msf-btn" href="tel:+12675802600">Call Support</a>
+        <div class="msf-button-row">
+          <a class="msf-button msf-button--primary" href="mailto:{{ support_email | escape }}?subject={{ email_subject }}">Email Your Model</a>
+          <a class="msf-button msf-button--secondary" href="tel:{{ phone_link | escape }}">Call Support</a>
         </div>
       </div>
     </section>
 
-    <!-- Results -->
-    <section class="msf-card" id="toner-finder-results" aria-label="Results">
-      <div class="msf-meta">
-        <span class="msf-pill" id="msfCount">0 results</span>
-        <span class="msf-muted" id="msfContext"></span>
+    <section class="msf-panel" id="toner-finder-results" aria-labelledby="msf-results-title-{{ section.id }}">
+      <div class="msf-results-head">
+        <div>
+          <h2 class="msf-heading" id="msf-results-title-{{ section.id }}">Matching Toner Supplies</h2>
+          <p class="msf-results-context" data-msf-context></p>
+        </div>
+        <span class="msf-count" data-msf-count>0 results</span>
       </div>
 
-      <div class="msf-empty" id="msfGate">
-        Use Printer Brand and Model filters or search by SKU to view results.
+      <div class="msf-empty-state" data-msf-gate>
+        Choose a printer brand or model, apply a filter, or search by toner name or SKU to view matching supplies.
       </div>
 
-      <div id="msfResults"></div>
+      <div data-msf-results aria-live="polite" aria-busy="false"></div>
 
-      <div class="msf-loadmore" id="msfLoadMoreWrap" hidden>
-        <button class="msf-btn" id="msfLoadMore">Load More</button>
+      <div class="msf-load-more" data-msf-load-more-wrap hidden>
+        <button class="msf-button msf-button--secondary" type="button" data-msf-load-more>Load More</button>
       </div>
     </section>
 
-    <!-- Chart Anchor -->
-    <div id="toner-compatibility-chart-anchor"></div>
-
-    <!-- Compatibility Chart -->
-    <section class="msf-card" id="msfChartCard" hidden aria-label="Compatibility chart">
-      <div class="msf-card-head">
-        <h2 class="msf-h2">Compatibility Chart</h2>
-        <p class="msf-muted" id="msfChartLabel"></p>
+    <section class="msf-panel" id="toner-compatibility-chart" data-msf-chart-card hidden aria-labelledby="msf-chart-title-{{ section.id }}">
+      <div class="msf-panel__head">
+        <h2 class="msf-heading" id="msf-chart-title-{{ section.id }}">Printer Model Compatibility Chart</h2>
+        <p data-msf-chart-label></p>
       </div>
 
-      <div class="msf-table-wrap" role="region" aria-label="Chart table" tabindex="0">
-        <table class="msf-table" id="msfChartTable">
+      <div class="msf-table-wrap" role="region" aria-label="Toner compatibility chart" tabindex="0">
+        <table class="msf-table" data-msf-chart-table>
           <thead>
             <tr>
-              <th>Brand</th>
-              <th>Model</th>
-              <th>Toner</th>
-              <th>SKU</th>
-              <th>Color</th>
-              <th>Yield</th>
-              <th>Link</th>
+              <th scope="col">Printer Brand</th>
+              <th scope="col">Printer Model</th>
+              <th scope="col">Toner</th>
+              <th scope="col">SKU</th>
+              <th scope="col">Color</th>
+              <th scope="col">Yield</th>
+              <th scope="col">Product</th>
             </tr>
           </thead>
-          <tbody id="msfChartBody"></tbody>
+          <tbody data-msf-chart-body></tbody>
         </table>
       </div>
     </section>
 
-    <!-- SEO + Resource Section -->
-    <div class="msf-seo">
+    <section class="msf-content-grid" aria-label="Toner help and shopping resources">
+      <article class="msf-content-card" id="toner-finder-help">
+        <h2 class="msf-content-title">Can’t Find Your Toner Here?</h2>
+        <p>If your toner does not appear in the results, it does not mean we do not carry it. Many replacements share part numbers across several printer models, and availability can change.</p>
 
-      <div class="msf-seo-grid">
-
-        <!-- Help Card -->
-        <div class="msf-seo-card" id="toner-finder-help">
-          <h3 class="msf-seo-title">Can’t Find Your Toner Here?</h3>
-          <p class="msf-seo-text">
-            If your toner does not appear in the results, it does not mean we do not carry it. Many replacements share multiple part numbers across different printer models and availability can change.
-          </p>
-
-          <div class="msf-seo-callout">
-            <div class="msf-seo-callout-title">Fastest way to get an exact match</div>
-            <ul class="msf-seo-list">
-              <li><strong>Printer Brand and Model</strong> for example HP LaserJet Pro MFP M428fdw</li>
-              <li><strong>Toner Part Number or SKU</strong> for example CF258A or CF258X</li>
-              <li><strong>Color and Yield</strong> standard or high yield</li>
-            </ul>
-          </div>
-
-          <div class="msf-seo-actions">
-            <a class="msf-seo-btn msf-seo-btn-primary" href="mailto:csr@monroe-systems.com?subject=Toner%20Compatibility%20Request">Email Us Your Model</a>
-            <a class="msf-seo-btn" href="tel:+12675802600">Call (267) 580-2600</a>
-          </div>
-
-          <p class="msf-seo-fine">
-            Include as much detail as you can. We will confirm compatibility and help you choose the right yield.
-          </p>
-        </div>
-
-        <!-- Resources Card -->
-        <div class="msf-seo-card" id="toner-resources">
-          <h3 class="msf-seo-title">Shop Toner by Brand and Category</h3>
-          <p class="msf-seo-text">
-            Prefer browsing instead of filtering. Use these quick links to shop toner and supplies by brand or category.
-          </p>
-
-          <ul class="msf-seo-list">
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-toner/smart-print-supplies/">Smart Printer Supplies</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/printer-drums-and-drum-kits/">Printer Drums and Drum Kits</a></li>
-
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/canon/">Canon Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/dell/">Dell Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/hp/">HP Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/kodak/">Kodak Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/kyocera/">Kyocera Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/lexmark/">Lexmark Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/okidata/">Okidata Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/pitney-bowes/">Pitney Bowes Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/ricoh/">Ricoh Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/samsung/">Samsung Toner</a></li>
-            <li><a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/xerox/">Xerox Toner</a></li>
+        <div class="msf-info-box">
+          <h3>Fastest way to get an exact match</h3>
+          <ul>
+            <li><strong>Printer brand and exact model</strong></li>
+            <li><strong>Toner part number or SKU</strong></li>
+            <li><strong>Color and preferred page yield</strong></li>
           </ul>
-
-          <p class="msf-seo-fine">
-            Not seeing what you need in the Finder. Email or call with your printer model and toner part number, and we will confirm the correct cartridge.
-          </p>
         </div>
 
+        <div class="msf-button-row">
+          <a class="msf-button msf-button--primary" href="mailto:{{ support_email | escape }}?subject={{ email_subject }}">Email Us Your Model</a>
+          <a class="msf-button msf-button--secondary" href="tel:{{ phone_link | escape }}">Call {{ phone_display | escape }}</a>
+        </div>
+      </article>
+
+      {%- if section.settings.show_resources -%}
+        <article class="msf-content-card" id="toner-resources">
+          <h2 class="msf-content-title">Shop Toner by Brand and Category</h2>
+          <p>Prefer to browse? Use these links to explore printer supplies by brand or category.</p>
+
+          <div class="msf-resource-links">
+            <a href="/office-products/ink-toner/smart-print-supplies/">Smart Printer Supplies</a>
+            <a href="/office-products/ink-and-toner/printer-drums-and-drum-kits/">Printer Drums and Drum Kits</a>
+            <a href="/office-products/ink-and-toner/canon/">Canon Toner</a>
+            <a href="/office-products/ink-and-toner/dell/">Dell Toner</a>
+            <a href="/office-products/ink-and-toner/hp/">HP Toner</a>
+            <a href="/office-products/ink-and-toner/kodak/">Kodak Toner</a>
+            <a href="/office-products/ink-and-toner/kyocera/">Kyocera Toner</a>
+            <a href="/office-products/ink-and-toner/lexmark/">Lexmark Toner</a>
+            <a href="/office-products/ink-and-toner/okidata/">Okidata Toner</a>
+            <a href="/office-products/ink-and-toner/pitney-bowes/">Pitney Bowes Toner</a>
+            <a href="/office-products/ink-and-toner/ricoh/">Ricoh Toner</a>
+            <a href="/office-products/ink-and-toner/samsung/">Samsung Toner</a>
+            <a href="/office-products/ink-and-toner/xerox/">Xerox Toner</a>
+          </div>
+        </article>
+      {%- endif -%}
+    </section>
+
+    <section class="msf-content-card msf-knowledge" aria-labelledby="msf-knowledge-title-{{ section.id }}">
+      <h2 class="msf-content-title" id="msf-knowledge-title-{{ section.id }}">How to Find the Correct Printer Toner</h2>
+      <p>Use the exact printer model whenever possible. Printer series can include similar submodels that use different cartridges, and standard-yield and high-yield cartridges may share similar names.</p>
+
+      <div class="msf-knowledge-grid">
+        <div>
+          <h3>Standard vs. High Yield</h3>
+          <p>High-yield toner prints more pages and may reduce cost per page for offices with frequent print volume.</p>
+        </div>
+        <div>
+          <h3>Model Variations Matter</h3>
+          <p>Check the complete model number printed on the front, back, or settings screen of the printer.</p>
+        </div>
+        <div>
+          <h3>Search by SKU</h3>
+          <p>The part number on an existing toner box, cartridge label, or prior invoice is often the fastest search method.</p>
+        </div>
+        <div>
+          <h3>Ask Before Ordering</h3>
+          <p>For uncommon submodels or uncertain part numbers, contact Monroe and we will confirm compatibility.</p>
+        </div>
       </div>
 
-      <!-- Knowledge Card -->
-      <div class="msf-seo-card" id="toner-finder-kb">
-        <h3 class="msf-seo-title">What This Tool Helps With</h3>
-        <p class="msf-seo-text">
-          Browse toner by brand, model, color, and yield. Compare options, then download or print a compatibility chart to share with your team.
-        </p>
-
-        <div class="msf-kb-grid">
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Standard vs High Yield</div>
-            <div class="msf-kb-text">High yield prints more pages and often lowers cost per page for frequent printing.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Model Variations Matter</div>
-            <div class="msf-kb-text">A single printer series can include sub-models that use different toners. Verify the exact model number.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">SKU Search Works</div>
-            <div class="msf-kb-text">If you have a cartridge box or invoice, searching by SKU is usually the fastest way to match.</div>
-          </div>
-          <div class="msf-kb-item">
-            <div class="msf-kb-title">Need Confirmation</div>
-            <div class="msf-kb-text">Send your model and part number, and we will confirm compatibility before you order.</div>
-          </div>
-        </div>
-
-        <div class="msf-seo-links">
-          <a class="msf-seo-link" href="https://monroe-systems.com/contact-monroe-printing-calculator-company/">Contact Us</a>
-          <a class="msf-seo-link" href="https://monroe-systems.com/office-products/ink-and-toner/">Shop All Toner</a>
-        </div>
+      <div class="msf-text-links">
+        <a href="/contact-monroe-printing-calculator-company/">Contact Monroe</a>
+        <a href="/office-products/ink-and-toner/">Shop All Toner</a>
       </div>
+    </section>
 
-      <!-- FAQ -->
-      <div class="msf-seo-faq" id="toner-finder-faq">
-        <h3 class="msf-seo-title">Toner Compatibility FAQs</h3>
+    {%- if section.settings.show_faq -%}
+      <section class="msf-faq" id="toner-finder-faq" aria-labelledby="msf-faq-title-{{ section.id }}">
+        <h2 class="msf-content-title" id="msf-faq-title-{{ section.id }}">Toner Compatibility FAQs</h2>
 
-        <details class="msf-seo-qa">
-          <summary>Why might my toner not show up in the Finder?</summary>
-          <div class="msf-seo-answer">
-            Some listings share multiple part numbers, some models have regional variations, and availability can change. If you do not see it, email or call us with your printer model and toner part number.
-          </div>
+        <details>
+          <summary>Why might my toner not appear in the finder?</summary>
+          <p>Some listings share multiple part numbers, some printer models have regional variations, and availability can change. Contact us with the printer model and toner part number when a match does not appear.</p>
         </details>
 
-        <details class="msf-seo-qa">
+        <details>
           <summary>What information should I send for the fastest match?</summary>
-          <div class="msf-seo-answer">
-            Send your printer brand and exact model, the toner part number from the box or label, and your preferred color and yield.
-          </div>
+          <p>Send the printer brand and exact model, the toner part number from the box or cartridge label, the color, and whether you prefer standard or high yield.</p>
         </details>
 
-        <details class="msf-seo-qa">
-          <summary>Can you help me choose between standard and high yield?</summary>
-          <div class="msf-seo-answer">
-            Yes. Share your approximate monthly print volume, and we will recommend the best value option.
-          </div>
+        <details>
+          <summary>Can Monroe help me choose between standard and high yield?</summary>
+          <p>Yes. Share your approximate monthly print volume and we can help identify the most practical yield for your office.</p>
         </details>
 
-        <details class="msf-seo-qa">
-          <summary>How accurate is the compatibility chart?</summary>
-          <div class="msf-seo-answer">
-            The chart is generated from our published toner list. For edge cases and uncommon sub-models, we can verify compatibility before you buy.
-          </div>
+        <details>
+          <summary>How is the compatibility chart created?</summary>
+          <p>The chart is generated from Monroe’s published toner data. For unusual printer submodels, contact us so we can verify compatibility before you order.</p>
         </details>
-      </div>
+      </section>
 
-    </div>
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Why might my toner not appear in the finder?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Some listings share multiple part numbers, some printer models have regional variations, and availability can change. Contact Monroe with the printer model and toner part number when a match does not appear."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What information should I send for the fastest toner match?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Send the printer brand and exact model, the toner part number from the box or cartridge label, the color, and whether you prefer standard or high yield."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can Monroe help me choose between standard and high yield toner?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Share your approximate monthly print volume and Monroe can help identify the most practical yield for your office."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is the toner compatibility chart created?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The chart is generated from Monroe's published toner data. For unusual printer submodels, contact Monroe to verify compatibility before ordering."
+              }
+            }
+          ]
+        }
+      </script>
+    {%- endif -%}
 
     <noscript>
-      <div class="msf-card">
-        <h2 class="msf-h2">JavaScript Required</h2>
-        <p class="msf-muted">
-          This Finder requires JavaScript to load toner data and display results. If you need help, call (267) 580-2600 or email sales@monroe-systems.com.
-        </p>
+      <div class="msf-panel">
+        <h2 class="msf-heading">JavaScript Required</h2>
+        <p>This finder requires JavaScript to load toner data. Call {{ phone_display | escape }} or email {{ support_email | escape }} for assistance.</p>
       </div>
     </noscript>
-
   </div>
 </section>
-
-<script>
-(function(){
-  "use strict";
-
-  var MSF_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRi_wzfF3eX5KmEkQhAVfSIrNln1bYHABlkYJceHzOa8tgV05pIb4Djj3zrDRyC1AP318vgXZlftDkx/pubhtml";
-
-  function onReady(fn){
-    if(document.readyState === "loading"){
-      document.addEventListener("DOMContentLoaded", fn);
-    }else{
-      fn();
-    }
-  }
-
-  function norm(v){ return (v == null ? "" : String(v)).trim(); }
-  function key(v){ return norm(v).toLowerCase(); }
-
-  function toInt(v){
-    var n = parseInt(String(v || "").replace(/[^\d]/g,""), 10);
-    return isNaN(n) ? null : n;
-  }
-
-  function escapeHtml(s){
-    return String(s || "")
-      .replace(/&/g,"&amp;")
-      .replace(/</g,"&lt;")
-      .replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;")
-      .replace(/'/g,"&#39;");
-  }
-
-  function csvEscape(value){
-    var s = String(value == null ? "" : value);
-    if(/[,"\n]/.test(s)) s = '"' + s.replace(/"/g,'""') + '"';
-    return s;
-  }
-
-  function uniqueSorted(arr){
-    var seen = Object.create(null);
-    var out = [];
-    for(var i=0;i<arr.length;i++){
-      var v = norm(arr[i]);
-      if(!v) continue;
-      var k = key(v);
-      if(seen[k]) continue;
-      seen[k] = true;
-      out.push(v);
-    }
-    out.sort(function(a,b){ return a.localeCompare(b); });
-    return out;
-  }
-
-  function setOptions(selectEl, values, placeholder){
-    var current = selectEl.value;
-    selectEl.innerHTML = "";
-    var opt0 = document.createElement("option");
-    opt0.value = "";
-    opt0.textContent = placeholder || "All";
-    selectEl.appendChild(opt0);
-
-    values.forEach(function(v){
-      var o = document.createElement("option");
-      o.value = v;
-      o.textContent = v;
-      selectEl.appendChild(o);
-    });
-
-    if(current && values.indexOf(current) !== -1) selectEl.value = current;
-  }
-
-  function parseModelsList(s){
-    var t = norm(s);
-    if(!t) return [];
-    return t.split(/[\|\n,;]+/).map(function(x){ return norm(x); }).filter(Boolean);
-  }
-
-  function detectDelimiter(firstLine){
-    var commaCount = (firstLine.match(/,/g) || []).length;
-    var tabCount = (firstLine.match(/\t/g) || []).length;
-    return tabCount > commaCount ? "\t" : ",";
-  }
-
-  function parseDelimited(text){
-    text = String(text || "").replace(/\r\n/g,"\n").replace(/\r/g,"\n");
-    var firstLine = text.split("\n")[0] || "";
-    var delim = detectDelimiter(firstLine);
-
-    var rows = [];
-    var i=0, field="", row=[], inQuotes=false;
-
-    function pushField(){ row.push(field); field=""; }
-    function pushRow(){
-      if(row.length === 1 && norm(row[0]) === "") { row=[]; return; }
-      rows.push(row); row=[];
-    }
-
-    while(i < text.length){
-      var c = text[i];
-
-      if(inQuotes){
-        if(c === '"'){
-          if(text[i+1] === '"'){ field += '"'; i += 2; continue; }
-          inQuotes = false; i++; continue;
-        }
-        field += c; i++; continue;
-      }
-
-      if(c === '"'){ inQuotes = true; i++; continue; }
-      if(c === delim){ pushField(); i++; continue; }
-      if(c === "\n"){ pushField(); pushRow(); i++; continue; }
-
-      field += c; i++;
-    }
-    pushField(); pushRow();
-
-    if(rows.length < 2) return { headers: [], records: [], delimiter: delim };
-
-    var headers = rows[0].map(function(h){ return key(h); });
-    var records = [];
-
-    for(var r=1; r<rows.length; r++){
-      var obj = {};
-      for(var c2=0; c2<headers.length; c2++){
-        obj[headers[c2]] = norm(rows[r][c2]);
-      }
-      var any = Object.keys(obj).some(function(k){ return norm(obj[k]) !== ""; });
-      if(any) records.push(obj);
-    }
-
-    return { headers: headers, records: records, delimiter: delim };
-  }
-
-  function normalizeRecords(records){
-    var expanded = [];
-    for(var i=0;i<records.length;i++){
-      var r = records[i];
-
-      var printerBrand = norm(r["printer_brand"]) || "(Brand not provided)";
-      var models = parseModelsList(r["compatible_models"]);
-      if(!models.length) models = ["(Model list not provided)"];
-
-      var tonerName = norm(r["toner_model"]) || norm(r["sku"]) || "Toner";
-      var sku = norm(r["sku"]) || "";
-      var color = norm(r["color"]) || "—";
-      var yieldPages = norm(r["yield_pages"]) || "—";
-      var yieldNum = toInt(yieldPages);
-
-      var imageUrl = norm(r["image_url"]) || "";
-      var productUrl = norm(r["product_url"]) || "";
-
-      for(var m=0;m<models.length;m++){
-        expanded.push({
-          printer_brand: printerBrand,
-          printer_model: models[m],
-          toner: tonerName,
-          sku: sku,
-          color: color,
-          yield_pages: yieldPages,
-          yield_num: yieldNum,
-          image_url: imageUrl,
-          product_url: productUrl
-        });
-      }
-    }
-    return expanded;
-  }
-
-  function placeholderImageSvg(){
-    var svg =
-      '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">'
-      + '<rect width="800" height="600" fill="#ffffff"/>'
-      + '<rect x="60" y="70" width="680" height="460" rx="28" fill="#f4f4f4" stroke="#000" stroke-width="6"/>'
-      + '<text x="400" y="320" text-anchor="middle" font-family="Times New Roman" font-size="44" font-weight="700" fill="#000">Toner</text>'
-      + '</svg>';
-    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-  }
-
-  function cardHtml(r){
-    var img = r.image_url ? r.image_url : placeholderImageSvg();
-    var viewBtn = r.product_url
-      ? '<a class="msf-view" href="' + escapeHtml(r.product_url) + '">View Toner</a>'
-      : '<span class="msf-view" style="opacity:.65; pointer-events:none;">View Toner</span>';
-
-    return ''
-      + '<article class="msf-item">'
-        + '<div class="msf-item-top">'
-          + '<div class="msf-brand">' + escapeHtml(r.printer_brand || "—") + '</div>'
-          + (r.color ? '<div class="msf-badge">' + escapeHtml(r.color) + '</div>' : '')
-        + '</div>'
-        + '<div class="msf-media">'
-          + '<div class="msf-img-wrap">'
-            + '<img class="msf-img" src="' + escapeHtml(img) + '" alt="' + escapeHtml(r.toner) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + escapeHtml(placeholderImageSvg()) + '\';" />'
-          + '</div>'
-          + viewBtn
-        + '</div>'
-        + '<div class="msf-body">'
-          + '<h3 class="msf-name">' + escapeHtml(r.toner) + '</h3>'
-          + '<div class="msf-kv">'
-            + '<div class="msf-kv-box"><div class="msf-kv-label">SKU</div><div class="msf-kv-value">' + escapeHtml(r.sku || "—") + '</div></div>'
-            + '<div class="msf-kv-box"><div class="msf-kv-label">Yield</div><div class="msf-kv-value">' + escapeHtml(r.yield_pages || "—") + '</div></div>'
-            + '<div class="msf-kv-box"><div class="msf-kv-label">Color</div><div class="msf-kv-value">' + escapeHtml(r.color || "—") + '</div></div>'
-          + '</div>'
-        + '</div>'
-      + '</article>';
-  }
-
-  onReady(function(){
-    var els = {
-      brand: document.getElementById("msfBrand"),
-      model: document.getElementById("msfModel"),
-      search: document.getElementById("msfSearch"),
-      color: document.getElementById("msfColor"),
-      minYield: document.getElementById("msfMinYield"),
-      sort: document.getElementById("msfSort"),
-      reset: document.getElementById("msfReset"),
-      download: document.getElementById("msfDownload"),
-      print: document.getElementById("msfPrint"),
-      status: document.getElementById("msfStatus"),
-      count: document.getElementById("msfCount"),
-      context: document.getElementById("msfContext"),
-      gate: document.getElementById("msfGate"),
-      results: document.getElementById("msfResults"),
-      loadMoreWrap: document.getElementById("msfLoadMoreWrap"),
-      loadMore: document.getElementById("msfLoadMore"),
-      chartCard: document.getElementById("msfChartCard"),
-      chartLabel: document.getElementById("msfChartLabel"),
-      chartBody: document.getElementById("msfChartBody"),
-      chartTable: document.getElementById("msfChartTable")
-    };
-
-    function setStatus(t){ if(els.status) els.status.textContent = t; }
-    function fail(msg){
-      setStatus(msg);
-      if(els.results) els.results.innerHTML = '<div class="msf-empty">' + escapeHtml(msg) + '</div>';
-    }
-
-    // Hard guard: if HTML IDs are missing, we stop and show why
-    var requiredIds = ["brand","model","search","color","minYield","sort","reset","download","print","status","count","context","gate","results","loadMoreWrap","loadMore","chartCard","chartLabel","chartBody","chartTable"];
-    for(var i=0;i<requiredIds.length;i++){
-      if(!els[requiredIds[i]]){
-        return fail("Tool error: Missing HTML element for ID msf" + requiredIds[i].charAt(0).toUpperCase() + requiredIds[i].slice(1) + ". Make sure you pasted the full combined HTML block.");
-      }
-    }
-
-    var state = {
-      rows: [],
-      filtered: [],
-      visibleCount: 0,
-      pageSize: 24,
-      hasInteracted: false
-    };
-
-    function buildContextLine(){
-      var parts = [];
-      if(els.brand.value) parts.push(els.brand.value);
-      if(els.model.value) parts.push(els.model.value);
-      if(els.color.value) parts.push("Color: " + els.color.value);
-      if(norm(els.minYield.value)) parts.push("Min yield: " + norm(els.minYield.value));
-      if(norm(els.search.value)) parts.push("Search: " + norm(els.search.value));
-      els.context.textContent = parts.length ? ("Showing matches for " + parts.join(" | ")) : "";
-    }
-
-    function hasAnyFilter(){
-      var q = norm(els.search.value);
-      var hasSearch = q.length >= 2;
-      return !!(norm(els.brand.value) || norm(els.model.value) || norm(els.color.value) || norm(els.minYield.value) || hasSearch);
-    }
-
-    function rowMatches(r){
-      var br = norm(els.brand.value);
-      var mo = norm(els.model.value);
-      var col = norm(els.color.value);
-      var minY = toInt(els.minYield.value);
-
-      var q = key(els.search.value);
-      var useSearch = q.length >= 2;
-
-      if(br && r.printer_brand !== br) return false;
-      if(mo && r.printer_model !== mo) return false;
-      if(col && r.color !== col) return false;
-
-      if(minY != null){
-        if(r.yield_num == null || r.yield_num < minY) return false;
-      }
-
-      if(useSearch){
-        var hay = [r.toner, r.sku, r.printer_brand, r.printer_model, r.color, r.yield_pages].map(key).join(" ");
-        if(hay.indexOf(q) === -1) return false;
-      }
-      return true;
-    }
-
-    function applySort(list){
-      var mode = norm(els.sort.value) || "yield_desc";
-      var arr = list.slice();
-
-      arr.sort(function(a,b){
-        if(mode === "yield_asc"){
-          var ay = (a.yield_num == null ? 999999999 : a.yield_num);
-          var by = (b.yield_num == null ? 999999999 : b.yield_num);
-          return ay - by || a.toner.localeCompare(b.toner);
-        }
-        if(mode === "yield_desc"){
-          var ay2 = (a.yield_num == null ? -1 : a.yield_num);
-          var by2 = (b.yield_num == null ? -1 : b.yield_num);
-          return by2 - ay2 || a.toner.localeCompare(b.toner);
-        }
-        if(mode === "name_desc") return b.toner.localeCompare(a.toner);
-        return a.toner.localeCompare(b.toner);
-      });
-
-      return arr;
-    }
-
-    function updateModelOptions(){
-      var br = norm(els.brand.value);
-      var models = uniqueSorted(
-        state.rows
-          .filter(function(r){ return !br || r.printer_brand === br; })
-          .map(function(r){ return r.printer_model; })
-      );
-
-      setOptions(els.model, models, "All");
-      els.model.disabled = models.length === 0;
-    }
-
-    function rebuildDropdowns(){
-      var brands = uniqueSorted(state.rows.map(function(r){ return r.printer_brand; }));
-      setOptions(els.brand, brands, "All");
-      els.brand.disabled = brands.length === 0;
-
-      updateModelOptions();
-
-      var colors = uniqueSorted(state.rows.map(function(r){ return r.color; }));
-      setOptions(els.color, colors, "All");
-      els.color.disabled = colors.length === 0;
-
-      els.sort.disabled = false;
-    }
-
-    function setChartButtonsEnabled(enabled){
-      els.download.disabled = !enabled;
-      els.print.disabled = !enabled;
-    }
-
-    function renderChart(){
-      var br = norm(els.brand.value);
-      var mo = norm(els.model.value);
-
-      if(!mo || mo === "(Model list not provided)"){
-        els.chartCard.hidden = true;
-        els.chartBody.innerHTML = "";
-        return;
-      }
-
-      var chartRows = state.rows.filter(function(r){
-        if(br && r.printer_brand !== br) return false;
-        return r.printer_model === mo;
-      });
-
-      chartRows = chartRows.slice().sort(function(a,b){
-        var ay = (a.yield_num == null ? -1 : a.yield_num);
-        var by = (b.yield_num == null ? -1 : b.yield_num);
-        return by - ay || a.toner.localeCompare(b.toner);
-      });
-
-      els.chartLabel.textContent = (br ? br + " " : "") + mo;
-
-      var body = "";
-      for(var i=0;i<chartRows.length;i++){
-        var r = chartRows[i];
-        var link = r.product_url ? '<a href="' + escapeHtml(r.product_url) + '">View</a>' : "—";
-        body += "<tr>"
-          + "<td>" + escapeHtml(r.printer_brand) + "</td>"
-          + "<td>" + escapeHtml(r.printer_model) + "</td>"
-          + "<td>" + escapeHtml(r.toner) + "</td>"
-          + "<td>" + escapeHtml(r.sku || "—") + "</td>"
-          + "<td>" + escapeHtml(r.color || "—") + "</td>"
-          + "<td>" + escapeHtml(r.yield_pages || "—") + "</td>"
-          + "<td>" + link + "</td>"
-        + "</tr>";
-      }
-
-      els.chartBody.innerHTML = body || '<tr><td colspan="7">No chart rows available for this model.</td></tr>';
-      els.chartCard.hidden = false;
-    }
-
-    function renderResults(){
-      buildContextLine();
-
-      if(!state.hasInteracted && !hasAnyFilter()){
-        els.count.textContent = "0 results";
-        els.gate.style.display = "block";
-        els.results.innerHTML = "";
-        els.loadMoreWrap.hidden = true;
-        els.chartCard.hidden = true;
-        setChartButtonsEnabled(false);
-        return;
-      }
-
-      els.gate.style.display = "none";
-
-      var filtered = state.rows.filter(rowMatches);
-      filtered = applySort(filtered);
-      state.filtered = filtered;
-
-      els.count.textContent = filtered.length + (filtered.length === 1 ? " result" : " results");
-
-      if(filtered.length === 0){
-        els.results.innerHTML = '<div class="msf-empty">No matches found. Try clearing filters or searching by SKU. If you still do not see it, call or email us and we will help match it.</div>';
-        els.loadMoreWrap.hidden = true;
-        els.chartCard.hidden = true;
-        setChartButtonsEnabled(false);
-        return;
-      }
-
-      if(state.visibleCount === 0) state.visibleCount = Math.min(state.pageSize, filtered.length);
-
-      var slice = filtered.slice(0, state.visibleCount);
-      var html = '<div class="msf-grid">';
-      for(var i=0;i<slice.length;i++) html += cardHtml(slice[i]);
-      html += '</div>';
-
-      els.results.innerHTML = html;
-
-      if(state.visibleCount < filtered.length){
-        els.loadMoreWrap.hidden = false;
-        els.loadMore.textContent = "Load More (" + (filtered.length - state.visibleCount) + " remaining)";
-      }else{
-        els.loadMoreWrap.hidden = true;
-      }
-
-      renderChart();
-      setChartButtonsEnabled(!!norm(els.model.value) && els.model.value !== "(Model list not provided)");
-    }
-
-    function downloadChart(){
-      if(els.download.disabled) return;
-
-      var br = norm(els.brand.value);
-      var mo = norm(els.model.value);
-      if(!mo) return;
-
-      var rows = state.rows.filter(function(r){
-        if(br && r.printer_brand !== br) return false;
-        return r.printer_model === mo;
-      });
-
-      rows = rows.slice().sort(function(a,b){
-        var ay = (a.yield_num == null ? -1 : a.yield_num);
-        var by = (b.yield_num == null ? -1 : b.yield_num);
-        return by - ay || a.toner.localeCompare(b.toner);
-      });
-
-      var headers = ["printer_brand","printer_model","toner","sku","color","yield_pages","product_url"];
-      var lines = [headers.join(",")];
-
-      for(var i=0;i<rows.length;i++){
-        var r = rows[i];
-        lines.push(headers.map(function(h){ return csvEscape(r[h] || ""); }).join(","));
-      }
-
-      var blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
-      var filename = ["monroe", br || "all-brands", mo, "compatibility-chart"].join("_")
-        .replace(/\s+/g,"_").replace(/[^a-zA-Z0-9_]+/g,"") + ".csv";
-
-      var a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 80);
-    }
-
-    function printChart(){
-      if(els.print.disabled) return;
-
-      var title = els.chartLabel.textContent || "Compatibility Chart";
-      var html = '<!doctype html><html><head><meta charset="utf-8">'
-        + '<title>' + escapeHtml(title) + '</title>'
-        + '<style>'
-        + 'body{font-family:"Times New Roman",Times,serif;color:#000;padding:16px;font-size:18px;}'
-        + 'h1{margin:0 0 10px;font-size:22px;font-weight:700;}'
-        + 'p{margin:0 0 14px;}'
-        + 'table{width:100%;border-collapse:collapse;font-size:16px;}'
-        + 'th,td{border:1px solid rgba(0,0,0,.35);padding:8px;text-align:left;vertical-align:top;}'
-        + 'th{background:#f3f3f3;}'
-        + '</style></head><body>'
-        + '<h1>Monroe Compatibility Chart</h1>'
-        + '<p>' + escapeHtml(title) + '</p>'
-        + els.chartTable.outerHTML
-        + '</body></html>';
-
-      var w = window.open("", "_blank");
-      if(!w) return;
-      w.document.open(); w.document.write(html); w.document.close();
-      w.focus(); w.print();
-    }
-
-    function debounce(fn, wait){
-      var t;
-      return function(){
-        clearTimeout(t);
-        t = setTimeout(fn, wait);
-      };
-    }
-
-    function applyFilters(){
-      state.hasInteracted = true;
-      state.visibleCount = 0;
-      renderResults();
-    }
-
-    function resetAll(){
-      els.brand.value = "";
-      els.model.value = "";
-      els.search.value = "";
-      els.color.value = "";
-      els.minYield.value = "";
-      els.sort.value = "yield_desc";
-
-      state.hasInteracted = false;
-      state.visibleCount = 0;
-
-      updateModelOptions();
-      renderResults();
-    }
-
-    function wire(){
-      els.brand.addEventListener("change", function(){
-        state.hasInteracted = true;
-        els.model.value = "";
-        updateModelOptions();
-        applyFilters();
-      });
-
-      els.model.addEventListener("change", applyFilters);
-      els.color.addEventListener("change", applyFilters);
-      els.minYield.addEventListener("input", debounce(applyFilters, 140));
-      els.sort.addEventListener("change", applyFilters);
-      els.search.addEventListener("input", debounce(applyFilters, 160));
-
-      els.reset.addEventListener("click", resetAll);
-
-      els.loadMore.addEventListener("click", function(){
-        var max = state.filtered.length;
-        state.visibleCount = Math.min(max, state.visibleCount + state.pageSize);
-        renderResults();
-      });
-
-      els.download.addEventListener("click", downloadChart);
-      els.print.addEventListener("click", printChart);
-    }
-
-    setStatus("Loading toner data");
-    setChartButtonsEnabled(false);
-
-    fetch(MSF_CSV_URL, { credentials:"omit", cache:"no-store" })
-      .then(function(res){
-        if(!res.ok) throw new Error("Fetch failed: " + res.status);
-        return res.text();
-      })
-      .then(function(text){
-        var parsed = parseDelimited(text);
-
-        if(!parsed.records.length){
-          throw new Error("Parsed 0 rows. Delimiter detected: " + parsed.delimiter);
-        }
-
-        state.rows = normalizeRecords(parsed.records);
-
-        rebuildDropdowns();
-        wire();
-
-        setStatus("Ready (" + state.rows.length + " rows)");
-        renderResults();
-      })
-      .catch(function(err){
-        fail("Unable to load toner data: " + (err && err.message ? err.message : "Unknown error"));
-      });
-  });
-})();
-</script>
 
 {% schema %}
 {
   "name": "Monroe toner finder",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Printer Toner Supply Finder"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" }
+      ],
+      "info": "Use H2 if the page template already displays the page title as an H1."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Intro text",
+      "default": "Find the right toner fast. Filter by printer brand and model or search by toner name or SKU."
+    },
+    {
+      "type": "text",
+      "id": "csv_url",
+      "label": "Published Google Sheets CSV URL",
+      "default": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRi_wzfF3eX5KmEkQhAVfSIrNln1bYHABlkYJceHzOa8tgV05pIb4Djj3zrDRyC1AP318vgXZlftDkx/pub?gid=0&single=true&output=csv",
+      "info": "Use the published CSV URL. A pubhtml URL is automatically converted, but CSV is preferred."
+    },
+    {
+      "type": "range",
+      "id": "page_size",
+      "label": "Results loaded at a time",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "main_color",
+      "label": "Main color",
+      "default": "#007681"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#666666"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support email",
+      "default": "csr@monroe-systems.com"
+    },
+    {
+      "type": "text",
+      "id": "phone_display",
+      "label": "Displayed phone number",
+      "default": "(267) 580-2600"
+    },
+    {
+      "type": "text",
+      "id": "phone_link",
+      "label": "Phone link",
+      "default": "+12675802600"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_resources",
+      "label": "Show brand and category links",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ and FAQ structured data",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
   "presets": [
     {
       "name": "Monroe toner finder"
