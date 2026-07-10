@@ -439,6 +439,13 @@
       form: root.querySelector('[data-msf-form]'),
       brand: root.querySelector('[data-msf-brand]'),
       model: root.querySelector('[data-msf-model]'),
+      modelCombobox: root.querySelector('[data-msf-model-combobox]'),
+      modelTrigger: root.querySelector('[data-msf-model-trigger]'),
+      modelValue: root.querySelector('[data-msf-model-value]'),
+      modelPanel: root.querySelector('[data-msf-model-panel]'),
+      modelSearch: root.querySelector('[data-msf-model-search]'),
+      modelList: root.querySelector('[data-msf-model-list]'),
+      modelMessage: root.querySelector('[data-msf-model-message]'),
       search: root.querySelector('[data-msf-search]'),
       color: root.querySelector('[data-msf-color]'),
       minYield: root.querySelector('[data-msf-min-yield]'),
@@ -473,6 +480,8 @@
       chartRows: [],
       visibleCount: 0,
       pageSize: Math.max(8, parseInt(root.dataset.pageSize || '12', 10) || 12),
+      modelOptions: [],
+      modelRenderLimit: 200,
       loaded: false,
       controller: null
     };
@@ -488,9 +497,12 @@
       elements.search.disabled = isBusy;
       elements.minYield.disabled = isBusy;
       elements.sort.disabled = isBusy || !state.loaded;
+      elements.model.disabled = isBusy || !state.loaded;
+      elements.modelTrigger.disabled = isBusy || !state.loaded || state.modelOptions.length === 0;
+      elements.modelSearch.disabled = isBusy || !state.loaded;
       if (isBusy) {
-        elements.model.disabled = true;
         elements.color.disabled = true;
+        closeModelMenu(false);
       }
     }
 
@@ -517,6 +529,88 @@
       return true;
     }
 
+    function updateModelTrigger() {
+      var selected = norm(elements.model.value);
+      var label = selected || 'All printer models';
+      elements.modelValue.textContent = label;
+      elements.modelTrigger.title = selected ? label : '';
+      elements.modelTrigger.setAttribute('aria-label', selected ? 'Printer model: ' + label : 'All printer models');
+    }
+
+    function closeModelMenu(returnFocus) {
+      if (elements.modelPanel.hidden) return;
+      elements.modelPanel.hidden = true;
+      elements.modelTrigger.setAttribute('aria-expanded', 'false');
+      if (returnFocus !== false) elements.modelTrigger.focus();
+    }
+
+    function renderModelOptions(filterValue) {
+      var searchTerm = key(filterValue);
+      var matches = state.modelOptions.filter(function (model) {
+        return !searchTerm || key(model).indexOf(searchTerm) !== -1;
+      });
+      var visible = matches.slice(0, state.modelRenderLimit);
+      var fragment = document.createDocumentFragment();
+
+      function addOption(value, label) {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'msf-combobox__option';
+        button.dataset.msfModelOption = value;
+        button.setAttribute('role', 'option');
+        button.setAttribute('aria-selected', key(elements.model.value) === key(value) ? 'true' : 'false');
+        button.textContent = label;
+        fragment.appendChild(button);
+      }
+
+      if (!searchTerm) addOption('', 'All printer models');
+      visible.forEach(function (model) { addOption(model, model); });
+
+      elements.modelList.innerHTML = '';
+      elements.modelList.appendChild(fragment);
+
+      if (!matches.length) {
+        elements.modelMessage.textContent = 'No printer models match that search.';
+      } else if (matches.length > visible.length) {
+        elements.modelMessage.textContent = 'Showing the first ' + visible.length + ' of ' + matches.length + ' models. Type more letters to narrow the list.';
+      } else {
+        elements.modelMessage.textContent = matches.length + (matches.length === 1 ? ' printer model found.' : ' printer models found.');
+      }
+    }
+
+    function openModelMenu() {
+      if (elements.modelTrigger.disabled) return;
+      elements.modelPanel.hidden = false;
+      elements.modelTrigger.setAttribute('aria-expanded', 'true');
+      elements.modelSearch.value = '';
+      renderModelOptions('');
+      window.requestAnimationFrame(function () {
+        elements.modelSearch.focus();
+        elements.modelSearch.select();
+      });
+    }
+
+    function setModelOptions(values) {
+      var previous = norm(elements.model.value);
+      state.modelOptions = uniqueSorted(values);
+
+      if (previous && !state.modelOptions.some(function (model) { return key(model) === key(previous); })) {
+        elements.model.value = '';
+      }
+
+      updateModelTrigger();
+      elements.modelTrigger.disabled = !state.loaded || state.modelOptions.length === 0;
+      elements.modelSearch.disabled = !state.loaded || state.modelOptions.length === 0;
+      closeModelMenu(false);
+    }
+
+    function chooseModel(value) {
+      elements.model.value = norm(value);
+      updateModelTrigger();
+      closeModelMenu(true);
+      elements.model.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
     function rebuildBrandOptions() {
       setSelectOptions(
         elements.brand,
@@ -535,7 +629,7 @@
         }
       });
 
-      setSelectOptions(elements.model, uniqueSorted(models), 'All printer models');
+      setModelOptions(models);
     }
 
     function rebuildColorOptions() {
@@ -625,7 +719,7 @@
       var imageUrl = safeUrl(record.imageUrl, false) || placeholderImage();
       var productUrl = safeUrl(record.productUrl, true);
       var productButton = productUrl
-        ? '<a class="msf-button msf-button--primary msf-result-card__view" href="' + escapeHtml(productUrl) + '">View Toner</a>'
+        ? '<a class="msf-button msf-button--primary msf-result-card__view" href="' + escapeHtml(productUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="View ' + escapeHtml(record.toner) + ' in a new tab">View Toner</a>'
         : '<span class="msf-button msf-button--secondary msf-result-card__view" aria-disabled="true">Product Link Unavailable</span>';
 
       return ''
@@ -686,7 +780,7 @@
         elements.chartBody.innerHTML = state.chartRows.map(function (record) {
           var productUrl = safeUrl(record.productUrl, true);
           var productLink = productUrl
-            ? '<a href="' + escapeHtml(productUrl) + '">View Toner</a>'
+            ? '<a href="' + escapeHtml(productUrl) + '" target="_blank" rel="noopener noreferrer" aria-label="View ' + escapeHtml(record.toner) + ' in a new tab">View Toner</a>'
             : 'Not available';
 
           return ''
@@ -765,8 +859,9 @@
       elements.search.value = '';
       elements.minYield.value = '';
       elements.sort.value = 'yield_desc';
-      rebuildModelOptions();
       elements.model.value = '';
+      rebuildModelOptions();
+      updateModelTrigger();
       rebuildColorOptions();
       elements.color.value = '';
       state.visibleCount = 0;
@@ -847,6 +942,9 @@
       setBusy(false);
       elements.brand.disabled = true;
       elements.model.disabled = true;
+      elements.modelTrigger.disabled = true;
+      elements.modelSearch.disabled = true;
+      closeModelMenu(false);
       elements.color.disabled = true;
       elements.sort.disabled = true;
       elements.retry.hidden = false;
@@ -920,8 +1018,9 @@
     });
 
     elements.brand.addEventListener('change', function () {
-      rebuildModelOptions();
       elements.model.value = '';
+      rebuildModelOptions();
+      updateModelTrigger();
       rebuildColorOptions();
       elements.color.value = '';
       applyFilters();
@@ -934,6 +1033,69 @@
       }
       applyFilters();
     });
+
+    elements.modelTrigger.addEventListener('click', function () {
+      if (elements.modelPanel.hidden) openModelMenu();
+      else closeModelMenu(true);
+    });
+
+    elements.modelTrigger.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModelMenu();
+      }
+    });
+
+    elements.modelSearch.addEventListener('input', function () {
+      renderModelOptions(elements.modelSearch.value);
+    });
+
+    elements.modelSearch.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModelMenu(true);
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        var firstOption = elements.modelList.querySelector('[data-msf-model-option]');
+        if (firstOption) firstOption.focus();
+      }
+    });
+
+    elements.modelList.addEventListener('click', function (event) {
+      var option = event.target.closest('[data-msf-model-option]');
+      if (!option) return;
+      chooseModel(option.dataset.msfModelOption || '');
+    });
+
+    elements.modelList.addEventListener('keydown', function (event) {
+      var option = event.target.closest('[data-msf-model-option]');
+      if (!option) return;
+      var options = Array.from(elements.modelList.querySelectorAll('[data-msf-model-option]'));
+      var index = options.indexOf(option);
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        (options[index + 1] || options[0]).focus();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        (options[index - 1] || options[options.length - 1]).focus();
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        if (options[0]) options[0].focus();
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        if (options.length) options[options.length - 1].focus();
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModelMenu(true);
+      }
+    });
+
+    function handleDocumentClick(event) {
+      if (!elements.modelCombobox.contains(event.target)) closeModelMenu(false);
+    }
+
+    document.addEventListener('click', handleDocumentClick);
 
     elements.color.addEventListener('change', applyFilters);
     elements.minYield.addEventListener('input', debounce(applyFilters, 180));
@@ -953,6 +1115,7 @@
 
     root._msfDestroy = function () {
       if (state.controller) state.controller.abort();
+      document.removeEventListener('click', handleDocumentClick);
     };
 
     loadData();
@@ -966,7 +1129,7 @@
 
   window.MonroeTonerFinder = {
     initAll: initAll,
-    version: '2.0.0'
+    version: '2.1.0'
   };
 
   onReady(function () {
