@@ -572,6 +572,7 @@
   height: auto;
   margin: 0 auto;
   border-radius: 8px;
+  padding: 5px 5px;
 }
 
 .cc-figure figcaption {
