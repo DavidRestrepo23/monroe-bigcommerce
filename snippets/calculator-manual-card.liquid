@@ -1,0 +1,75 @@
+{%- liquid
+  assign card_status = status | default: 'previous'
+  assign status_label = 'Previous model'
+  if card_status == 'current'
+    assign status_label = 'Current model'
+  endif
+
+  assign card_search = 'Monroe ' | append: model | append: ' ' | append: description | append: ' ' | append: card_status | downcase
+-%}
+
+<article
+  id="{{ anchor_id | escape }}"
+  class="calculator-manual-card calculator-manual-card--{{ card_status }}"
+  data-manual-card
+  data-manual-status="{{ card_status }}"
+  data-manual-search-value="{{ card_search | escape }}"
+>
+  <div class="calculator-manual-card__media">
+    <span class="calculator-manual-card__badge">{{ status_label }}</span>
+
+    {%- if product_url != blank -%}
+      <a
+        href="{{ product_url }}"
+        class="calculator-manual-card__image-link"
+        aria-label="View the Monroe {{ model | escape }} calculator"
+      >
+    {%- endif -%}
+
+    <img
+      src="{{ image_url }}"
+      alt="{{ image_alt | escape }}"
+      width="{{ image_width | default: 340 }}"
+      height="{{ image_height | default: 340 }}"
+      loading="lazy"
+    >
+
+    {%- if product_url != blank -%}
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class="calculator-manual-card__body">
+    <p class="calculator-manual-card__brand">Monroe</p>
+    <h4>{{ model }}</h4>
+    <p class="calculator-manual-card__description">{{ description }}</p>
+
+    <div class="calculator-manual-card__actions">
+      <a
+        class="calculator-manuals__button calculator-manuals__button--primary"
+        href="{{ manual_url }}"
+        target="_blank"
+        rel="noopener"
+        aria-label="Open the Monroe {{ model | escape }} manual PDF in a new window"
+      >
+        View manual
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M14 3h7v7M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>
+        </svg>
+      </a>
+
+      {%- if product_url != blank -%}
+        <a
+          class="calculator-manual-card__product-link"
+          href="{{ product_url }}"
+          aria-label="Shop the Monroe {{ model | escape }} calculator"
+        >
+          View calculator
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
