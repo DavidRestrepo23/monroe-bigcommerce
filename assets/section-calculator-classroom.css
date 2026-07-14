@@ -572,7 +572,10 @@
   height: auto;
   margin: 0 auto;
   border-radius: 8px;
-  padding: 55px 55px;
+}
+
+.cc-content-image-larger {
+  padding: 75px 75px;
 }
 
 .cc-figure figcaption {
