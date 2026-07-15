@@ -557,7 +557,7 @@
 
 .accordion__content ul,
 .accordion__content ol {
-  padding-left: 0;
+  padding-left: 20px;
 }
 
 .accordion__content h2 {
