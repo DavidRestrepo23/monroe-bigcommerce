@@ -115,7 +115,6 @@
 .hdc__intro p {
   margin: 0;
   font-size: clamp(17px, 1.35vw, 21px);
-  color: #ffffff;
 }
 
 .hdc__hero-actions,
@@ -1262,13 +1261,4 @@
   .hdc__modal-body {
     overflow: visible;
   }
-}
-
-/* Keep the View Model button text white */
-.hdc a.hdc__product-link,
-.hdc a.hdc__product-link:visited,
-.hdc a.hdc__product-link:hover,
-.hdc a.hdc__product-link:focus,
-.hdc a.hdc__product-link:active {
-  color: #ffffff !important;
 }
