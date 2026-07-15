@@ -1,1330 +1,331 @@
-<style>
-/* =====================================================
-   MONROE HEAVY DUTY SPEC CHART (Interactive) – FULL BUILD
-   Scoped: .ms-hd
-   Accent: #007681
-   Included fixes:
-   - Differences only REMOVED
-   - Theme-proof row hiding for section toggles (hidden attribute)
-   - Hard width fix so chart spans full content width
-   - All buttons styled with 5px solid #000000 + bold white text
-   ===================================================== */
-
-.ms-hd{
-  --ms-accent:#007681;
-  --ms-soft: rgba(0,118,129,.10);
-  --ms-soft2: rgba(0,118,129,.06);
-  font-family: Roboto, sans-serif;
-  font-size: 18px;
-  line-height: 1.6;
-  color:#000;
-  max-width: 90%!important;
-  margin: 0 auto!important;
-  padding: 0 16px!important;
-}
-
-.ms-hd *, .ms-hd *::before, .ms-hd *::after{ box-sizing:border-box; }
-
-.ms-hd__bar{
-  background: var(--ms-accent);
-  height: 35px;
-  width: 100%;
-  margin: 0 0 18px 0;
-}
-
-.ms-hd__title{
-  font-size: 40px;
-  line-height: 1.2;
-  margin: 0 0 12px 0;
-  text-align: center;
-  text-decoration: underline;
-  color: #000000;
-}
-
-.ms-hd__intro{ margin: 0 0 18px 0; }
-
-.ms-hd__link{
-  color: var(--ms-accent);
-  text-decoration: underline;
-}
-
-/* Controls */
-.ms-hd__controls{
-  border: 2px solid var(--ms-accent);
-  padding: 12px;
-  margin: 0 0 12px 0;
-  position: relative;
-  isolation: isolate;
-  overflow: visible;
-}
-
-.ms-hd__controlsTop{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:0 0 12px 0;
-}
-
-.ms-hd__controlsTitle{
-  margin:0;
-  font-weight:650;
-  font-size:12pt;
-}
-
-.ms-hd__controlsHint{
-  margin:0;
-  font-size:10.5pt;
-  opacity:.85;
-  max-width: 720px;
-}
-
-.ms-hd__btnRow{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-}
-
-/* =====================================================
-   BUTTON DESIGN REQUIREMENT
-   - 5px solid #000000 border
-   - Bold white text
-   ===================================================== */
-.ms-hd__btn,
-.ms-hd__trayRemove,
-.ms-hd__modalClose{
-  border: 5px solid #000000 !important;
-  background: var(--ms-accent) !important;
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  border-radius: 12px;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 11pt;
-  text-decoration: none !important;
-  line-height: 1.1;
-}
-
-.ms-hd__btn[disabled]{
-  opacity:.55;
-  cursor:not-allowed;
-}
-
-/* Keep pressed-state obvious */
-.ms-hd__btn[aria-pressed="true"]{
-  filter: brightness(0.95);
-}
-
-/* Make Remove a bit tighter (still matches border + text requirements) */
-.ms-hd__trayRemove{
-  padding: 6px 10px;
-  font-size: 10pt;
-}
-
-/* Benchmark panel with competitor visual */
-.ms-hd__bench{
-  border: 1px solid var(--ms-accent);
-  border-radius: 14px;
-  padding: 12px;
-}
-
-.ms-hd__benchTop{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:0 0 10px 0;
-}
-
-.ms-hd__benchTitle{
-  margin:0;
-  font-weight:650;
-  font-size:12pt;
-}
-
-.ms-hd__benchNote{
-  margin:0;
-  font-size:10.5pt;
-  opacity:.85;
-}
-
-.ms-hd__benchGrid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:10px;
-}
-
-@media (min-width:900px){
-  .ms-hd__benchGrid{ grid-template-columns: 300px 1fr 1fr 1fr; }
-}
-
-.ms-hd__benchVisual{
-  border: 1px solid rgba(0,118,129,.45);
-  border-radius: 14px;
-  padding: 10px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-
-.ms-hd__benchIcon{
-  width:64px;
-  height:64px;
-  border-radius:14px;
-  background: rgba(0,0,0,.06);
-  display:grid;
-  place-items:center;
-  flex:0 0 auto;
-}
-
-.ms-hd__benchVisualText{
-  margin:0;
-  font-size:10.5pt;
-  line-height:1.35;
-}
-
-.ms-hd__benchCard{
-  border: 1px solid rgba(0,118,129,.45);
-  border-radius: 14px;
-  padding: 10px;
-}
-
-.ms-hd__benchLabel{
-  margin:0 0 6px 0;
-  font-size:10pt;
-  font-weight:650;
-}
-
-.ms-hd__benchBar{
-  height:10px;
-  border-radius:999px;
-  background: rgba(0,0,0,.10);
-  overflow:hidden;
-}
-
-.ms-hd__benchFill{
-  height:100%;
-  width:0%;
-  background: var(--ms-accent);
-}
-
-.ms-hd__benchFill--comp{
-  background: rgba(0,0,0,.25);
-}
-
-.ms-hd__benchValue{
-  margin:8px 0 0 0;
-  font-size:10.5pt;
-}
-
-/* Table wrapper */
-.ms-hd__wrap{
-  border: 3px solid var(--ms-accent);
-  padding: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
-}
-
-.ms-hd__wrap::before,
-.ms-hd__wrap::after{
-  content:"";
-  position:sticky;
-  top:0;
-  width:22px;
-  height:100%;
-  pointer-events:none;
-  display:block;
-}
-
-.ms-hd__wrap::before{
-  left:0;
-  background:linear-gradient(to right, rgba(0,118,129,.18), transparent);
-  float:left;
-}
-
-.ms-hd__wrap::after{
-  right:0;
-  background:linear-gradient(to left, rgba(0,118,129,.18), transparent);
-  float:right;
-}
-
-/* Table */
-.ms-hd__table{
-  width:100%;
-  border-collapse:collapse;
-  min-width: 1100px;
-}
-
-.ms-hd__table th,
-.ms-hd__table td{
-  border: 1px solid var(--ms-accent);
-  padding: 10px;
-  text-align:center;
-  font-size: 14pt;
-  background:#fff;
-  vertical-align:middle;
-}
-
-.ms-hd__table thead th{
-  background:#fff;
-}
-
-@media (min-width:751px){
-  .ms-hd__table thead th{
-    position:sticky;
-    top:0;
-    z-index:3;
-  }
-}
-
-.ms-hd__rowLabel{
-  text-align:left !important;
-  font-weight:650;
-}
-
-.ms-hd__modelHead{
-  min-width: 210px;
-}
-
-.ms-hd__modelName{
-  display:block;
-  font-weight:650;
-  margin-top:8px;
-}
-
-.ms-hd__modelImg img{
-  max-width:150px;
-  height:auto;
-  display:block;
-  margin:0 auto;
-}
-
-.ms-hd__pick{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  border:1px solid var(--ms-accent);
-  border-radius:999px;
-  padding:6px 10px;
-  margin-top:10px;
-  font-size:11pt;
-  cursor:pointer;
-  user-select:none;
-}
-
-.ms-hd__pick input{
-  width:16px;
-  height:16px;
-}
-
-/* Section rows */
-.ms-hd__sectionRow th{
-  text-align:left;
-  font-size: 20pt;
-  background: #fff;
-}
-
-/* Selected column highlighting */
-.ms-hd__colSelected{
-  background: var(--ms-soft) !important;
-}
-
-.ms-hd__colSelected2{
-  background: var(--ms-soft2) !important;
-}
-
-/* Tray */
-.ms-hd__tray{
-  position:sticky;
-  top:0;
-  z-index:5;
-  background:#fff;
-  border:2px solid var(--ms-accent);
-  margin:0 0 12px 0;
-}
-
-.ms-hd__trayInner{
-  display:grid;
-  grid-template-columns: 160px 1fr 240px;
-  gap:12px;
-  align-items:center;
-  padding:12px;
-}
-
-.ms-hd__trayTitle{
-  font-weight:650;
-  font-size:12pt;
-}
-
-.ms-hd__traySlots{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:10px;
-}
-
-.ms-hd__traySlot{
-  border:1px solid var(--ms-accent);
-  border-radius:12px;
-  padding:10px;
-  min-height:64px;
-}
-
-.ms-hd__traySlotTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin:0 0 6px 0;
-}
-
-.ms-hd__traySlotLabel{
-  font-size:10pt;
-  font-weight:650;
-}
-
-.ms-hd__trayName{
-  font-size:11pt;
-  line-height:1.3;
-}
-
-.ms-hd__trayActions{
-  display:flex;
-  gap:10px;
-  justify-content:flex-end;
-  flex-wrap:wrap;
-}
-
-@media (max-width:980px){
-  .ms-hd__trayInner{ grid-template-columns:1fr; }
-  .ms-hd__trayActions{ justify-content:flex-start; }
-}
-
-/* Modal */
-.ms-hd__modal{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-}
-
-.ms-hd__modalBackdrop{
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,.55);
-}
-
-.ms-hd__modalPanel{
-  position:relative;
-  max-width:1100px;
-  width:calc(100% - 24px);
-  margin:24px auto;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  border:2px solid var(--ms-accent);
-  max-height:calc(100% - 48px);
-  display:flex;
-  flex-direction:column;
-}
-
-.ms-hd__modalHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 16px;
-  border-bottom:1px solid var(--ms-accent);
-}
-
-.ms-hd__modalTitle{
-  font-size:13pt;
-  font-weight:650;
-}
-
-.ms-hd__modalBody{
-  padding:14px 16px;
-  overflow:auto;
-}
-
-.ms-hd__modalGrid{
-  display:grid;
-  grid-template-columns: 280px 1fr 1fr;
-  border:1px solid var(--ms-accent);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-.ms-hd__modalCell{
-  border-right:1px solid var(--ms-accent);
-  border-bottom:1px solid var(--ms-accent);
-  padding:10px;
-  font-size:11pt;
-  line-height:1.35;
-  background:#fff;
-}
-
-.ms-hd__modalCell:nth-child(3n){ border-right:0; }
-
-.ms-hd__modalHead{
-  font-weight:650;
-  background: var(--ms-soft);
-}
-
-.ms-hd__modalKey{ font-weight:650; }
-
-.ms-hd__modalLink{
-  color:var(--ms-accent);
-  text-decoration:underline;
-}
-
-/* Mobile */
-@media (max-width:750px){
-  .ms-hd{ font-size:12pt; }
-  .ms-hd__wrap{ padding:6px; overflow:hidden; }
-  .ms-hd__table{ min-width:0; }
-}
-
-/* =====================================================
-   Theme-proof row hiding (for section toggles)
-   ===================================================== */
-.ms-hd tr[hidden]{ display:none !important; }
-
-/* =====================================================
-   HARD WIDTH FIX: Force chart to span full content width
-   ===================================================== */
-.ms-hd{
-  display:block !important;
-  width:100% !important;
-  max-width:100% !important;
-  clear:both !important;
-}
-
-.ms-hd__controls,
-.ms-hd__wrap,
-.ms-hd__bench{
-  display:block !important;
-  width:100% !important;
-  max-width:100% !important;
-}
-
-.ms-hd__wrap{
-  margin-left:0 !important;
-  margin-right:0 !important;
-}
-
-.ms-hd__table{
-  width:100% !important;
-  max-width:none !important;
-  table-layout:auto !important;
-}
-  /* =====================================================
-   TIGHT MODE: Reduce width so table fits without scroll
-   Paste at VERY END of CSS
-   ===================================================== */
-
-/* Slightly smaller base type for the module */
-.ms-hd{
-  font-size: 13pt !important;
-  line-height: 1.35 !important;
-}
-
-/* Tighten controls + benchmark spacing */
-.ms-hd__controls{ padding: 10px !important; }
-.ms-hd__controlsTop{ gap: 10px !important; margin: 0 0 10px 0 !important; }
-.ms-hd__bench{ padding: 10px !important; }
-.ms-hd__benchGrid{ gap: 8px !important; }
-.ms-hd__benchVisual{ padding: 8px !important; gap: 10px !important; }
-.ms-hd__benchCard{ padding: 8px !important; }
-
-/* Tighten table wrapper */
-.ms-hd__wrap{ padding: 8px !important; }
-
-/* Reduce table padding + font sizes */
-.ms-hd__table th,
-.ms-hd__table td{
-  padding: 6px 6px !important;
-  font-size: 12pt !important;
-  line-height: 1.2 !important;
-}
-
-/* Narrow the model columns */
-.ms-hd__modelHead{
-  min-width: 170px !important;
-  width: 170px !important;
-}
-
-/* Reduce image size inside headers */
-.ms-hd__modelImg img{
-  max-width: 105px !important;
-  height: auto !important;
-}
-
-/* Tighten model name spacing */
-.ms-hd__modelName{ margin-top: 6px !important; }
-
-/* Make Select pills smaller */
-.ms-hd__pick{
-  padding: 4px 8px !important;
-  font-size: 10pt !important;
-  margin-top: 8px !important;
-}
-
-/* Make row labels slightly smaller and allow wrapping */
-.ms-hd__rowLabel{
-  font-size: 12pt !important;
-  white-space: normal !important;
-}
-
-/* Reduce overall table minimum width so it can fit */
-.ms-hd__table{
-  min-width: 0 !important;
-  table-layout: fixed !important; /* enables predictable fitting */
-}
-
-/* Let cells wrap instead of forcing width */
-.ms-hd__table td{
-  white-space: normal !important;
-  word-break: break-word !important;
-}
-
-/* Optional: reduce title spacing */
-.ms-hd__title{
-  font-size: 26pt !important;
-  margin-bottom: 10px !important;
-}
-  .page-heading{
-    color: #000000;
-  }
-</style>
-
-<section class="ms-hd" aria-labelledby="ms-hd-title">
-  <div class="ms-hd__bar" aria-hidden="true"></div>
-
-  <div class="ms-hd__intro">
-    <p>
-      Compare Monroe Heavy-Duty printing calculators side by side. Select up to two models to compare, benchmark against a typical competing calculator, and open a clean side by side view.
-    </p>
-    <p>
-      Questions. Call <a class="ms-hd__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.
-    </p>
-  </div>
-
-  <h2 id="ms-hd-title" class="ms-hd__title">Monroe Heavy-Duty Calculator Spec Chart</h2>
-
-  <div class="ms-hd__controls" role="region" aria-label="Heavy Duty chart controls">
-    <div class="ms-hd__controlsTop">
+{{ 'section-heavy-duty-comparison.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-heavy-duty-comparison.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign primary_link = section.settings.primary_link | default: '/collections/heavy-duty-calculators'
+  assign secondary_link = section.settings.secondary_link | default: '/pages/calculator-manuals'
+-%}
+
+<section
+  id="HeavyDutyComparison-{{ section.id }}"
+  class="hdc"
+  data-hd-comparison
+  style="
+    --hdc-accent: {{ section.settings.accent_color }};
+    --hdc-accent-dark: {{ section.settings.accent_dark }};
+    --hdc-ink: {{ section.settings.text_color }};
+    --hdc-surface: {{ section.settings.surface_color }};
+    --hdc-soft: {{ section.settings.soft_color }};
+  "
+  aria-labelledby="HeavyDutyComparisonTitle-{{ section.id }}"
+>
+  <script type="application/json" data-hdc-data>
+    {% render 'heavy-duty-comparison-data' %}
+  </script>
+
+  <div class="hdc__shell">
+    <header class="hdc__hero">
+      <div class="hdc__hero-copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hdc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        <h2 id="HeavyDutyComparisonTitle-{{ section.id }}" class="hdc__title">
+          {{ section.settings.heading | escape }}
+        </h2>
+
+        <div class="hdc__intro rte">
+          {{ section.settings.intro }}
+        </div>
+
+        <div class="hdc__hero-actions">
+          <a class="hdc__button hdc__button--primary" href="#HeavyDutyFinder-{{ section.id }}">
+            Find your model
+          </a>
+          <a class="hdc__button hdc__button--secondary" href="{{ primary_link }}">
+            {{ section.settings.primary_label | escape }}
+          </a>
+        </div>
+
+        <ul class="hdc__hero-points" role="list">
+          <li><strong>4</strong><span>heavy-duty models</span></li>
+          <li><strong>5.0</strong><span>lines per second</span></li>
+          <li><strong>2</strong><span>models at a time</span></li>
+        </ul>
+      </div>
+
+      <div class="hdc__hero-visual" aria-label="Heavy-duty calculator comparison overview">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'hdc__hero-image',
+              loading: 'eager',
+              widths: '480, 720, 960, 1200',
+              sizes: '(min-width: 990px) 42vw, 100vw',
+              alt: section.settings.hero_image.alt | default: section.settings.heading
+          }}
+        {%- else -%}
+          <div class="hdc__hero-stack" aria-hidden="true">
+            <span class="hdc__hero-card hdc__hero-card--one">ClassicX</span>
+            <span class="hdc__hero-card hdc__hero-card--two">UltimateX</span>
+            <span class="hdc__hero-card hdc__hero-card--three">8145X</span>
+            <span class="hdc__hero-card hdc__hero-card--four">8130X</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </header>
+
+    <nav class="hdc__jump" aria-label="Comparison page sections">
+      <a href="#HeavyDutyFinder-{{ section.id }}">Model finder</a>
+      <a href="#HeavyDutyModels-{{ section.id }}">Model overview</a>
+      <a href="#HeavyDutyChart-{{ section.id }}">Full comparison</a>
+      <a href="#HeavyDutySupport-{{ section.id }}">Need help?</a>
+    </nav>
+
+    <section id="HeavyDutyFinder-{{ section.id }}" class="hdc__panel hdc__finder" aria-labelledby="HeavyDutyFinderTitle-{{ section.id }}">
+      <div class="hdc__section-heading">
+        <div>
+          <p class="hdc__section-kicker">Guided selection</p>
+          <h3 id="HeavyDutyFinderTitle-{{ section.id }}">What matters most in your workflow?</h3>
+          <p>Choose a priority to highlight the models with the matching capability.</p>
+        </div>
+        <button class="hdc__text-button" type="button" data-hdc-reset-priority hidden>Reset recommendation</button>
+      </div>
+
+      <div class="hdc__priority-grid" role="group" aria-label="Choose a calculator priority">
+        <button type="button" class="hdc__priority" data-priority="reprint">
+          <span class="hdc__priority-icon" aria-hidden="true">↺</span>
+          <span><strong>Edit and reprint</strong><small>Review and correct prior entries</small></span>
+        </button>
+        <button type="button" class="hdc__priority" data-priority="14-digit">
+          <span class="hdc__priority-icon" aria-hidden="true">14</span>
+          <span><strong>14-digit capacity</strong><small>Work with larger displayed values</small></span>
+        </button>
+        <button type="button" class="hdc__priority" data-priority="financial-time">
+          <span class="hdc__priority-icon" aria-hidden="true">ƒx</span>
+          <span><strong>Financial and time tools</strong><small>Advanced calculation workflows</small></span>
+        </button>
+        <button type="button" class="hdc__priority" data-priority="dual-memory">
+          <span class="hdc__priority-icon" aria-hidden="true">M2</span>
+          <span><strong>Dual independent memory</strong><small>Keep two separate running values</small></span>
+        </button>
+        <button type="button" class="hdc__priority" data-priority="change-sign">
+          <span class="hdc__priority-icon" aria-hidden="true">±</span>
+          <span><strong>Change-sign function</strong><small>Reverse a value instantly</small></span>
+        </button>
+        <button type="button" class="hdc__priority" data-priority="core-functions">
+          <span class="hdc__priority-icon" aria-hidden="true">+</span>
+          <span><strong>Core heavy-duty functions</strong><small>Fast, straightforward accounting work</small></span>
+        </button>
+      </div>
+
+      <div class="hdc__recommendation" data-hdc-recommendation hidden aria-live="polite"></div>
+    </section>
+
+    <section id="HeavyDutyModels-{{ section.id }}" class="hdc__models-section" aria-labelledby="HeavyDutyModelsTitle-{{ section.id }}">
+      <div class="hdc__section-heading hdc__section-heading--models">
+        <div>
+          <p class="hdc__section-kicker">At a glance</p>
+          <h3 id="HeavyDutyModelsTitle-{{ section.id }}">Meet the heavy-duty lineup</h3>
+          <p>Select up to two models. Your choices will remain highlighted throughout the page.</p>
+        </div>
+        <span class="hdc__selection-count" data-hdc-selection-count>0 of 2 selected</span>
+      </div>
+
+      <div class="hdc__model-grid" data-hdc-model-grid></div>
+
+      <noscript>
+        <div class="hdc__noscript">
+          JavaScript is required for interactive comparison. You can still browse all
+          <a href="{{ primary_link }}">Monroe heavy-duty calculators</a>.
+        </div>
+      </noscript>
+    </section>
+
+    <aside class="hdc__compare-tray" data-hdc-tray hidden aria-label="Selected calculator models">
+      <div class="hdc__compare-tray-inner">
+        <div>
+          <p class="hdc__compare-label">Your comparison</p>
+          <div class="hdc__compare-chips" data-hdc-selected-chips></div>
+        </div>
+        <div class="hdc__compare-actions">
+          <button type="button" class="hdc__button hdc__button--secondary" data-hdc-clear>Clear</button>
+          <button type="button" class="hdc__button hdc__button--primary" data-hdc-open-compare disabled>
+            Compare selected models
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <section id="HeavyDutyChart-{{ section.id }}" class="hdc__chart-section" aria-labelledby="HeavyDutyChartTitle-{{ section.id }}">
+      <div class="hdc__section-heading hdc__section-heading--chart">
+        <div>
+          <p class="hdc__section-kicker">Detailed specifications</p>
+          <h3 id="HeavyDutyChartTitle-{{ section.id }}">Explore every function and specification</h3>
+          <p>Use the controls to focus the chart. On smaller screens, swipe horizontally to see each model.</p>
+        </div>
+      </div>
+
+      <div class="hdc__chart-controls" role="group" aria-label="Comparison chart controls">
+        <div class="hdc__segmented" data-hdc-section-filter>
+          <button type="button" class="is-active" data-section-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-section-filter="functions" aria-pressed="false">Functions</button>
+          <button type="button" data-section-filter="specifications" aria-pressed="false">Specifications</button>
+        </div>
+
+        <label class="hdc__switch">
+          <input type="checkbox" data-hdc-differences />
+          <span class="hdc__switch-track" aria-hidden="true"></span>
+          <span>Show only differences</span>
+        </label>
+      </div>
+
+      <div class="hdc__table-status" data-hdc-table-status aria-live="polite"></div>
+      <div class="hdc__table-wrap" tabindex="0" role="region" aria-label="Heavy-duty calculator comparison chart">
+        <table class="hdc__table" data-hdc-table></table>
+      </div>
+    </section>
+
+    <section id="HeavyDutySupport-{{ section.id }}" class="hdc__support" aria-labelledby="HeavyDutySupportTitle-{{ section.id }}">
       <div>
-        <p class="ms-hd__controlsTitle">Interactive controls</p>
-        <p class="ms-hd__controlsHint">
-          Use the buttons to expand or collapse sections. Select up to two models to compare and view a clean side by side summary.
-        </p>
+        <p class="hdc__section-kicker">Talk with a calculator specialist</p>
+        <h3 id="HeavyDutySupportTitle-{{ section.id }}">Still deciding between two models?</h3>
+        <p>{{ section.settings.support_text | escape }}</p>
       </div>
-
-      <div class="ms-hd__btnRow" aria-label="Section controls">
-        <button type="button" class="ms-hd__btn" data-action="toggle-functions" aria-pressed="true">Functions</button>
-        <button type="button" class="ms-hd__btn" data-action="toggle-specs" aria-pressed="true">Specifications</button>
+      <div class="hdc__support-actions">
+        <a class="hdc__button hdc__button--primary" href="tel:{{ section.settings.phone_number | remove: '-' | remove: '(' | remove: ')' | remove: ' ' }}">
+          Call {{ section.settings.phone_number | escape }}
+        </a>
+        <a class="hdc__button hdc__button--secondary" href="{{ secondary_link }}">
+          {{ section.settings.secondary_label | escape }}
+        </a>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div class="ms-hd__bench" role="region" aria-label="Typical competing calculator comparison">
-      <div class="ms-hd__benchTop">
-        <p class="ms-hd__benchTitle">Typical competing calculator benchmark</p>
-        <p class="ms-hd__benchNote">Generic category baseline only. No brands are named.</p>
+  <div class="hdc__toast" data-hdc-toast hidden role="status" aria-live="polite"></div>
+
+  <div class="hdc__modal" data-hdc-modal hidden>
+    <div class="hdc__modal-backdrop" data-hdc-close-modal></div>
+    <div class="hdc__modal-dialog" role="dialog" aria-modal="true" aria-labelledby="HeavyDutyModalTitle-{{ section.id }}">
+      <div class="hdc__modal-header">
+        <div>
+          <p class="hdc__section-kicker">Selected models</p>
+          <h3 id="HeavyDutyModalTitle-{{ section.id }}">Side-by-side comparison</h3>
+        </div>
+        <button type="button" class="hdc__modal-close" data-hdc-close-modal aria-label="Close comparison">×</button>
       </div>
-
-      <div class="ms-hd__benchGrid" aria-live="polite">
-        <div class="ms-hd__benchVisual">
-          <div class="ms-hd__benchIcon" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-label="Generic calculator icon">
-              <rect x="14" y="8" width="36" height="48" rx="6" fill="rgba(0,0,0,.30)"></rect>
-              <rect x="20" y="14" width="24" height="10" rx="2" fill="rgba(255,255,255,.60)"></rect>
-              <g fill="rgba(255,255,255,.55)">
-                <rect x="20" y="28" width="8" height="8" rx="2"></rect>
-                <rect x="30" y="28" width="8" height="8" rx="2"></rect>
-                <rect x="40" y="28" width="4" height="8" rx="2"></rect>
-                <rect x="20" y="38" width="8" height="8" rx="2"></rect>
-                <rect x="30" y="38" width="8" height="8" rx="2"></rect>
-                <rect x="40" y="38" width="4" height="18" rx="2"></rect>
-                <rect x="20" y="48" width="18" height="8" rx="2"></rect>
-              </g>
-            </svg>
-          </div>
-          <p class="ms-hd__benchVisualText">
-            The gray reference below represents a typical competing calculator in this category.
-            Your selected Monroe model is shown in teal.
-          </p>
-        </div>
-
-        <div class="ms-hd__benchCard">
-          <p class="ms-hd__benchLabel">Print speed</p>
-          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
-            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-speed" style="width:60%;"></div>
-          </div>
-          <div class="ms-hd__benchBar">
-            <div class="ms-hd__benchFill" data-bench="monroe-speed" style="width:0%;"></div>
-          </div>
-          <p class="ms-hd__benchValue" data-bench-text="speed">Select a model to see a comparison.</p>
-        </div>
-
-        <div class="ms-hd__benchCard">
-          <p class="ms-hd__benchLabel">Feature depth</p>
-          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
-            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-features" style="width:50%;"></div>
-          </div>
-          <div class="ms-hd__benchBar">
-            <div class="ms-hd__benchFill" data-bench="monroe-features" style="width:0%;"></div>
-          </div>
-          <p class="ms-hd__benchValue" data-bench-text="features">Select a model to see a comparison.</p>
-        </div>
-
-        <div class="ms-hd__benchCard">
-          <p class="ms-hd__benchLabel">Workload readiness</p>
-          <div class="ms-hd__benchBar" style="margin-bottom:8px;">
-            <div class="ms-hd__benchFill ms-hd__benchFill--comp" data-bench="comp-workload" style="width:55%;"></div>
-          </div>
-          <div class="ms-hd__benchBar">
-            <div class="ms-hd__benchFill" data-bench="monroe-workload" style="width:0%;"></div>
-          </div>
-          <p class="ms-hd__benchValue" data-bench-text="workload">Select a model to see a comparison.</p>
-        </div>
+      <div class="hdc__modal-body" data-hdc-modal-body></div>
+      <div class="hdc__modal-footer">
+        <button type="button" class="hdc__button hdc__button--secondary" data-hdc-print>Print comparison</button>
+        <button type="button" class="hdc__button hdc__button--primary" data-hdc-close-modal>Done</button>
       </div>
     </div>
   </div>
-
-  <!-- Compare tray -->
-  <div class="ms-hd__tray" role="region" aria-label="Selected models for comparison" hidden>
-    <div class="ms-hd__trayInner">
-      <div class="ms-hd__trayTitle">Compare (up to 2)</div>
-
-      <div class="ms-hd__traySlots" aria-label="Selected models">
-        <div class="ms-hd__traySlot" data-slot="0" aria-label="Selected model 1">
-          <div class="ms-hd__traySlotTop">
-            <span class="ms-hd__traySlotLabel">Model 1</span>
-            <button type="button" class="ms-hd__trayRemove" data-remove="0" aria-label="Remove model 1">Remove</button>
-          </div>
-          <div class="ms-hd__trayName">None selected</div>
-        </div>
-
-        <div class="ms-hd__traySlot" data-slot="1" aria-label="Selected model 2">
-          <div class="ms-hd__traySlotTop">
-            <span class="ms-hd__traySlotLabel">Model 2</span>
-            <button type="button" class="ms-hd__trayRemove" data-remove="1" aria-label="Remove model 2">Remove</button>
-          </div>
-          <div class="ms-hd__trayName">None selected</div>
-        </div>
-      </div>
-
-      <div class="ms-hd__trayActions">
-        <button type="button" class="ms-hd__btn" data-action="view" disabled>View side by side</button>
-        <button type="button" class="ms-hd__btn" data-action="clear">Clear</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Table -->
-  <div class="ms-hd__wrap" role="region" aria-label="Heavy Duty calculator comparison table" tabindex="0">
-    <table id="ms-hd-table" class="ms-hd__table">
-      <thead>
-        <tr>
-          <th scope="col">Functions and specs</th>
-
-          <th scope="col" class="ms-hd__modelHead" data-col="1">
-            <div class="ms-hd__modelImg">
-              <a href="https://monroe-systems.com/products/monroe-classicx-12-digit-heavy-duty-printing-calculator" target="_blank" rel="noopener" title="Monroe ClassicX">
-                <img src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/ClassicX_-_Calc_Classroom.png?v=1784053898" alt="Monroe ClassicX Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
-              </a>
-            </div>
-            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/products/monroe-classicx-12-digit-heavy-duty-printing-calculator" target="_blank" rel="noopener">Monroe ClassicX</a>
-            <label class="ms-hd__pick"><input type="checkbox" data-pick="1" /> <span>Select</span></label>
-          </th>
-
-          <th scope="col" class="ms-hd__modelHead" data-col="2">
-            <div class="ms-hd__modelImg">
-              <a href="https://monroe-systems.com/products/monroe-ultimatex-12-digit-programmable-heavy-duty-accounting-printing-calculator-with-edit-reprint-capabilities" target="_blank" rel="noopener" title="Monroe UltimateX">
-                <img src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/UltimateX_-_Calc_Classroom.png?v=1784053898" alt="Monroe UltimateX Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
-              </a>
-            </div>
-            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/products/monroe-ultimatex-12-digit-programmable-heavy-duty-accounting-printing-calculator-with-edit-reprint-capabilities" target="_blank" rel="noopener">Monroe UltimateX</a>
-            <label class="ms-hd__pick"><input type="checkbox" data-pick="2" /> <span>Select</span></label>
-          </th>
-
-          <th scope="col" class="ms-hd__modelHead" data-col="3">
-            <div class="ms-hd__modelImg">
-              <a href="https://monroe-systems.com/products/monroe-8145x-14-digit-dual-memory-heavy-duty-accounting-printing-calculator" target="_blank" rel="noopener" title="Monroe 8145X">
-                <img src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/8145X_-_Calc_Classroom.png?v=1784053898" alt="Monroe 8145X Heavy Duty printing calculator" width="140" height="175" loading="lazy" decoding="async" />
-              </a>
-            </div>
-            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/products/monroe-8145x-14-digit-dual-memory-heavy-duty-accounting-printing-calculator" target="_blank" rel="noopener">Monroe 8145X</a>
-            <label class="ms-hd__pick"><input type="checkbox" data-pick="3" /> <span>Select</span></label>
-          </th>
-
-          <th scope="col" class="ms-hd__modelHead" data-col="4">
-            <div class="ms-hd__modelImg">
-              <a href="https://monroe-systems.com/products/monroe-8130x-12-digit-heavy-duty-accounting-printing-calculator" target="_blank" rel="noopener" title="Monroe 8130X">
-                <img src="https://cdn.shopify.com/s/files/1/0653/0262/6407/files/8130x-black-modified-1.png?v=1782938567" alt="Monroe 8130X Heavy Duty printing calculator" width="130" height="165" loading="lazy" decoding="async" />
-              </a>
-            </div>
-            <a class="ms-hd__link ms-hd__modelName" href="https://monroe-systems.com/products/monroe-8130x-12-digit-heavy-duty-accounting-printing-calculator" target="_blank" rel="noopener">Monroe 8130X</a>
-            <label class="ms-hd__pick"><input type="checkbox" data-pick="4" /> <span>Select</span></label>
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr class="ms-hd__sectionRow" data-section="functions">
-          <th scope="rowgroup" colspan="5">Functions</th>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Automatic punctuation and grouping</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Percent (%+ and %- capability)</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Tax (%+ and %- capability)</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Item count (intelligent item count, automatic averaging)</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Standard</td><td data-col="4">Standard</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Change sign</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">VAT Tax</th>
-          <td data-col="1">Not Available</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Financial and time calculations</th>
-          <td data-col="1">Standard</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
-        </tr>
-
-        <tr data-section="functions">
-          <th class="ms-hd__rowLabel" scope="row">Reprint and editing capability</th>
-          <td data-col="1">Not Available</td><td data-col="2">Standard</td><td data-col="3">Not Available</td><td data-col="4">Not Available</td>
-        </tr>
-
-        <tr class="ms-hd__sectionRow" data-section="specs">
-          <th scope="rowgroup" colspan="5">Specifications</th>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Digits</th>
-          <td data-col="1">12</td><td data-col="2">12</td><td data-col="3">14</td><td data-col="4">12</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Print speed (lines per second)</th>
-          <td data-col="1">5.0</td><td data-col="2">5.0</td><td data-col="3">5.0</td><td data-col="4">5.0</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">4 Key independent memories</th>
-          <td data-col="1">2</td><td data-col="2">2</td><td data-col="3">2</td><td data-col="4">1</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Display type and color</th>
-          <td data-col="1">Fluorescent blue</td><td data-col="2">Fluorescent green</td><td data-col="3">Fluorescent green</td><td data-col="4">Fluorescent green</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Product dimensions (in inches)</th>
-          <td data-col="1">15.30 x 9.50 x 3.70</td><td data-col="2">15.30 x 9.50 x 3.70</td><td data-col="3">15.30 x 9.50 x 3.70</td><td data-col="4">15.30 x 9.50 x 3.70</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Weight (in US pounds)</th>
-          <td data-col="1">4.08 lbs.</td><td data-col="2">4.08 lbs.</td><td data-col="3">4.08 lbs.</td><td data-col="4">4.08 lbs.</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Ribbon options</th>
-          <td data-col="1">
-            Uses <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink" target="_blank" rel="noopener">M33X</a>
-            or <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink" target="_blank" rel="noopener">P65M</a>
-          </td>
-          <td data-col="2">
-            Uses <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink" target="_blank" rel="noopener">M33X</a>
-            or <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink" target="_blank" rel="noopener">P65M</a>
-          </td>
-          <td data-col="3">
-            Uses <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink" target="_blank" rel="noopener">M33X</a>
-            or <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink" target="_blank" rel="noopener">P65M</a>
-          </td>
-          <td data-col="4">
-            Uses <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-m33x-premium-printing-calculator-ribbon-cartridges-black-red-ink" target="_blank" rel="noopener">M33X</a>
-            or <a class="ms-hd__link" href="https://monroe-systems.com/products/monroe-p65m-premium-printing-calculator-ink-ribbon-spools-black-red-ink" target="_blank" rel="noopener">P65M</a>
-          </td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Power requirements</th>
-          <td data-col="1">115V AC, 50/60 Hz</td><td data-col="2">115V AC, 50/60 Hz</td><td data-col="3">115V AC, 50/60 Hz</td><td data-col="4">115V AC, 50/60 Hz</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Operational environment (in °F)</th>
-          <td data-col="1">41 to 104</td><td data-col="2">41 to 104</td><td data-col="3">41 to 104</td><td data-col="4">41 to 104</td>
-        </tr>
-
-        <tr data-section="specs">
-          <th class="ms-hd__rowLabel" scope="row">Storage environment (in °F)</th>
-          <td data-col="1">40 to 158</td><td data-col="2">40 to 158</td><td data-col="3">40 to 158</td><td data-col="4">40 to 158</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Modal -->
-  <div class="ms-hd__modal" role="dialog" aria-modal="true" aria-labelledby="ms-hd-modal-title" hidden>
-    <div class="ms-hd__modalBackdrop" data-close="true" aria-hidden="true"></div>
-
-    <div class="ms-hd__modalPanel" role="document">
-      <div class="ms-hd__modalHeader">
-        <div class="ms-hd__modalTitle" id="ms-hd-modal-title">Side by side comparison</div>
-        <button type="button" class="ms-hd__modalClose" data-close="true" aria-label="Close comparison">Close</button>
-      </div>
-
-      <div class="ms-hd__modalBody">
-        <div class="ms-hd__modalGrid" aria-label="Comparison grid"></div>
-      </div>
-    </div>
-  </div>
-
-  <p style="margin:16px 0 0 0;">
-    If you have additional questions please call us at <a class="ms-hd__link" href="tel:2675802600" title="Monroe Systems for Business Customer Service Phone Number">267-580-2600</a>.
-  </p>
-
-  <div class="ms-hd__bar" aria-hidden="true"></div>
 </section>
-
-<script>
-(function () {
-  function qs(root, sel) { return root.querySelector(sel); }
-  function qsa(root, sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
-  function txt(el) { return (el && el.textContent ? el.textContent : "").trim(); }
-  function norm(v) { return String(v || "").trim().toLowerCase(); }
-  function setHidden(el, hidden) { if (!el) return; hidden ? el.setAttribute("hidden","") : el.removeAttribute("hidden"); }
-  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
-  function num(v) { var m = String(v || "").match(/(\d+(\.\d+)?)/); return m ? parseFloat(m[1]) : 0; }
-
-  function init() {
-    var root = document.querySelector(".ms-hd");
-    if (!root) return;
-
-    var table = qs(root, "#ms-hd-table");
-    if (!table) return;
-
-    var tbody = table.querySelector("tbody");
-    if (!tbody) return;
-
-    var pickInputs = qsa(root, 'input[data-pick]');
-    var tray = qs(root, ".ms-hd__tray");
-    var traySlots = qsa(root, ".ms-hd__traySlot");
-    var trayRemoves = qsa(root, ".ms-hd__trayRemove");
-
-    var viewBtn = qs(root, '[data-action="view"]');
-    var clearBtn = qs(root, '[data-action="clear"]');
-
-    var btnFunctions = qs(root, 'button[data-action="toggle-functions"]');
-    var btnSpecs = qs(root, 'button[data-action="toggle-specs"]');
-
-    var modal = qs(root, ".ms-hd__modal");
-    var modalGrid = qs(root, ".ms-hd__modalGrid");
-    var modalClose = qs(root, ".ms-hd__modalClose");
-
-    var bench = {
-      monSpeed: qs(root, '[data-bench="monroe-speed"]'),
-      monFeatures: qs(root, '[data-bench="monroe-features"]'),
-      monWork: qs(root, '[data-bench="monroe-workload"]'),
-      tSpeed: qs(root, '[data-bench-text="speed"]'),
-      tFeat: qs(root, '[data-bench-text="features"]'),
-      tWork: qs(root, '[data-bench-text="workload"]')
-    };
-
-    var selectedCols = []; // 1..4
-    var sectionState = { functions: true, specs: true };
-    var lastFocusEl = null;
-
-    function getColName(col) {
-      var a = table.querySelector('thead th[data-col="' + col + '"] .ms-hd__modelName');
-      return a ? txt(a) : ("Model " + col);
-    }
-
-    function getColLink(col) {
-      var a = table.querySelector('thead th[data-col="' + col + '"] a.ms-hd__modelName');
-      return a ? a.getAttribute("href") : "";
-    }
-
-    function getColImg(col) {
-      var img = table.querySelector('thead th[data-col="' + col + '"] img');
-      return img ? { src: img.getAttribute("src") || "", alt: img.getAttribute("alt") || "" } : { src:"", alt:"" };
-    }
-
-    function cellValue(row, col) {
-      var td = row.querySelector('td[data-col="' + col + '"]');
-      return td ? txt(td) : "";
-    }
-
-    function getRowByLabel(label) {
-      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
-      var want = norm(label);
-      for (var i = 0; i < rows.length; i++) {
-        var th = rows[i].querySelector('th[scope="row"]');
-        if (th && norm(txt(th)) === want) return rows[i];
-      }
-      return null;
-    }
-
-    function setPickUI() {
-      pickInputs.forEach(function (inp) {
-        var col = parseInt(inp.getAttribute("data-pick"), 10);
-        inp.checked = selectedCols.indexOf(col) !== -1;
-      });
-    }
-
-    function updateTray() {
-      setHidden(tray, selectedCols.length === 0);
-
-      traySlots.forEach(function (slot, idx) {
-        var nameEl = slot.querySelector(".ms-hd__trayName");
-        var rm = slot.querySelector(".ms-hd__trayRemove");
-        var col = selectedCols[idx];
-
-        if (!col) {
-          if (nameEl) nameEl.textContent = "None selected";
-          if (rm) rm.style.visibility = "hidden";
-          return;
-        }
-
-        if (nameEl) nameEl.textContent = getColName(col);
-        if (rm) rm.style.visibility = "visible";
-      });
-
-      if (viewBtn) viewBtn.disabled = selectedCols.length !== 2;
-    }
-
-    function clearHighlights() {
-      qsa(table, ".ms-hd__colSelected").forEach(function (el) { el.classList.remove("ms-hd__colSelected"); });
-      qsa(table, ".ms-hd__colSelected2").forEach(function (el) { el.classList.remove("ms-hd__colSelected2"); });
-    }
-
-    function highlightSelected() {
-      clearHighlights();
-      if (selectedCols.length === 0) return;
-
-      var c1 = selectedCols[0];
-      var c2 = selectedCols[1];
-
-      function mark(col, cls) {
-        if (!col) return;
-        var th = table.querySelector('thead th[data-col="' + col + '"]');
-        if (th) th.classList.add(cls);
-        qsa(tbody, 'td[data-col="' + col + '"]').forEach(function (td) { td.classList.add(cls); });
-      }
-
-      mark(c1, "ms-hd__colSelected");
-      mark(c2, "ms-hd__colSelected2");
-    }
-
-    function updateSectionHeadersVisibility() {
-      ["functions", "specs"].forEach(function (sec) {
-        var header = tbody.querySelector('tr.ms-hd__sectionRow[data-section="' + sec + '"]');
-        if (!header) return;
-
-        if (!sectionState[sec]) {
-          header.setAttribute("hidden", "");
-          return;
-        }
-
-        var rows = qsa(tbody, 'tr[data-section="' + sec + '"]');
-        var anyVisible = rows.some(function (r) { return !r.hasAttribute("hidden"); });
-        if (anyVisible) header.removeAttribute("hidden");
-        else header.setAttribute("hidden", "");
-      });
-    }
-
-    function applySectionVisibility() {
-      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
-      rows.forEach(function (r) {
-        var sec = r.getAttribute("data-section");
-        if (sectionState[sec]) r.removeAttribute("hidden");
-        else r.setAttribute("hidden", "");
-      });
-      updateSectionHeadersVisibility();
-    }
-
-    function toggleSection(section, on) {
-      sectionState[section] = on;
-      if (section === "functions" && btnFunctions) btnFunctions.setAttribute("aria-pressed", on ? "true" : "false");
-      if (section === "specs" && btnSpecs) btnSpecs.setAttribute("aria-pressed", on ? "true" : "false");
-
-      qsa(tbody, 'tr[data-section="' + section + '"]').forEach(function (r) {
-        if (on) r.removeAttribute("hidden");
-        else r.setAttribute("hidden", "");
-      });
-
-      var header = tbody.querySelector('tr.ms-hd__sectionRow[data-section="' + section + '"]');
-      if (header) {
-        if (on) header.removeAttribute("hidden");
-        else header.setAttribute("hidden", "");
-      }
-
-      updateSectionHeadersVisibility();
-      highlightSelected();
-    }
-
-    function resetBenchmarkToEmpty() {
-      if (bench.monSpeed) bench.monSpeed.style.width = "0%";
-      if (bench.monFeatures) bench.monFeatures.style.width = "0%";
-      if (bench.monWork) bench.monWork.style.width = "0%";
-
-      if (bench.tSpeed) bench.tSpeed.textContent = "Select a model to see a comparison.";
-      if (bench.tFeat) bench.tFeat.textContent = "Select a model to see a comparison.";
-      if (bench.tWork) bench.tWork.textContent = "Select a model to see a comparison.";
-    }
-
-    function updateBenchmark() {
-      if (selectedCols.length === 0) {
-        resetBenchmarkToEmpty();
-        return;
-      }
-
-      // Generic competitor baselines (intentionally vague)
-      var compSpeed = 3.0;
-      var compFeat = 3.0;
-      var compWork = 55;
-
-      var col = selectedCols[0];
-
-      var digitsRow = getRowByLabel("Digits");
-      var speedRow = getRowByLabel("Print speed (lines per second)");
-      var memRow = getRowByLabel("4 Key independent memories");
-      var vatRow = getRowByLabel("VAT Tax");
-      var repRow = getRowByLabel("Reprint and editing capability");
-
-      var digits = digitsRow ? num(cellValue(digitsRow, col)) : 0;
-      var speed = speedRow ? num(cellValue(speedRow, col)) : 0;
-      var mem = memRow ? num(cellValue(memRow, col)) : 0;
-
-      var feat = 0;
-      if (digits >= 14) feat += 2;
-      else if (digits >= 12) feat += 1;
-
-      if (mem >= 2) feat += 2;
-      else if (mem >= 1) feat += 1;
-
-      function isStandard(row) {
-        if (!row) return false;
-        var v = norm(cellValue(row, col));
-        return v === "standard" || v === "yes" || v === "true";
-      }
-
-      if (isStandard(vatRow)) feat += 1;
-      if (isStandard(repRow)) feat += 1;
-
-      var work = clamp((speed / 5.0) * 60 + (feat / 6.0) * 40, 0, 100);
-
-      if (bench.monSpeed) bench.monSpeed.style.width = clamp((speed / 5.0) * 100, 0, 100) + "%";
-      if (bench.monFeatures) bench.monFeatures.style.width = clamp((feat / 6.0) * 100, 0, 100) + "%";
-      if (bench.monWork) bench.monWork.style.width = clamp(work, 0, 100) + "%";
-
-      var modelName = getColName(col);
-
-      if (bench.tSpeed) bench.tSpeed.textContent =
-        modelName + " runs at " + (speed ? speed.toFixed(1) : "0.0") + " lines per second versus a typical competing calculator around " + compSpeed.toFixed(1) + ".";
-
-      if (bench.tFeat) bench.tFeat.textContent =
-        modelName + " scores " + feat + " of 6 for feature depth. Typical competing calculators are closer to " + compFeat + " of 6.";
-
-      if (bench.tWork) bench.tWork.textContent =
-        modelName + " estimates at " + Math.round(work) + " of 100 for workload readiness versus a typical competing calculator around " + compWork + " of 100.";
-    }
-
-    function openModal() {
-      if (!modal || !modalGrid) return;
-      lastFocusEl = document.activeElement;
-      setHidden(modal, false);
-      document.body.style.overflow = "hidden";
-      renderModal();
-      if (modalClose) setTimeout(function () { modalClose.focus(); }, 0);
-    }
-
-    function closeModal() {
-      if (!modal) return;
-      setHidden(modal, true);
-      document.body.style.overflow = "";
-      if (lastFocusEl && typeof lastFocusEl.focus === "function") {
-        setTimeout(function () { lastFocusEl.focus(); }, 0);
-      }
-    }
-
-    function renderModal() {
-      if (selectedCols.length !== 2) return;
-
-      var c1 = selectedCols[0], c2 = selectedCols[1];
-      var name1 = getColName(c1), name2 = getColName(c2);
-      var link1 = getColLink(c1), link2 = getColLink(c2);
-      var img1 = getColImg(c1), img2 = getColImg(c2);
-
-      function cell(html, cls) {
-        var d = document.createElement("div");
-        d.className = "ms-hd__modalCell" + (cls ? " " + cls : "");
-        d.innerHTML = html;
-        return d;
-      }
-
-      modalGrid.innerHTML = "";
-
-      modalGrid.appendChild(cell("Feature", "ms-hd__modalHead"));
-      modalGrid.appendChild(cell(
-        '<a class="ms-hd__modalLink" href="' + (link1 || "#") + '" target="_blank" rel="noopener">' + name1 + '</a><br />' +
-        (img1.src ? '<img src="' + img1.src + '" alt="' + (img1.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
-        "ms-hd__modalHead"
-      ));
-      modalGrid.appendChild(cell(
-        '<a class="ms-hd__modalLink" href="' + (link2 || "#") + '" target="_blank" rel="noopener">' + name2 + '</a><br />' +
-        (img2.src ? '<img src="' + img2.src + '" alt="' + (img2.alt || "") + '" style="max-width:160px; height:auto; margin-top:8px;" />' : ""),
-        "ms-hd__modalHead"
-      ));
-
-      var rows = qsa(tbody, 'tr[data-section="functions"], tr[data-section="specs"]');
-      rows.forEach(function (r) {
-        var sec = r.getAttribute("data-section");
-        if (!sectionState[sec]) return;
-        if (r.hasAttribute("hidden")) return;
-
-        var key = r.querySelector('th[scope="row"]');
-        if (!key) return;
-
-        var v1 = cellValue(r, c1);
-        var v2 = cellValue(r, c2);
-
-        modalGrid.appendChild(cell('<span class="ms-hd__modalKey">' + txt(key) + "</span>"));
-        modalGrid.appendChild(cell(v1));
-        modalGrid.appendChild(cell(v2));
-      });
-    }
-
-    // Events
-    pickInputs.forEach(function (inp) {
-      inp.addEventListener("change", function () {
-        var col = parseInt(inp.getAttribute("data-pick"), 10);
-        var idx = selectedCols.indexOf(col);
-
-        if (inp.checked) {
-          if (selectedCols.length >= 2) { inp.checked = false; return; }
-          if (idx === -1) selectedCols.push(col);
-        } else {
-          if (idx !== -1) selectedCols.splice(idx, 1);
-        }
-
-        setPickUI();
-        updateTray();
-        highlightSelected();
-        updateBenchmark();
-      });
-    });
-
-    trayRemoves.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var slotIndex = parseInt(btn.getAttribute("data-remove"), 10);
-        if (isNaN(slotIndex)) return;
-
-        var col = selectedCols[slotIndex];
-        if (!col) return;
-
-        selectedCols = selectedCols.filter(function (x) { return x !== col; });
-
-        setPickUI();
-        updateTray();
-        highlightSelected();
-        updateBenchmark();
-      });
-    });
-
-    if (clearBtn) {
-      clearBtn.addEventListener("click", function () {
-        selectedCols = [];
-        setPickUI();
-        updateTray();
-        highlightSelected();
-        updateBenchmark();
-      });
-    }
-
-    if (viewBtn) {
-      viewBtn.addEventListener("click", function () {
-        if (selectedCols.length !== 2) return;
-        openModal();
-      });
-    }
-
-    if (modal) {
-      modal.addEventListener("click", function (e) {
-        var close = e.target && e.target.getAttribute && e.target.getAttribute("data-close");
-        if (close === "true") closeModal();
-      });
-
-      document.addEventListener("keydown", function (e) {
-        if (modal.hasAttribute("hidden")) return;
-        if (e.key === "Escape") closeModal();
-      });
-    }
-
-    if (btnFunctions) {
-      btnFunctions.addEventListener("click", function () {
-        var currentlyOn = btnFunctions.getAttribute("aria-pressed") === "true";
-        toggleSection("functions", !currentlyOn);
-      });
-    }
-
-    if (btnSpecs) {
-      btnSpecs.addEventListener("click", function () {
-        var currentlyOn = btnSpecs.getAttribute("aria-pressed") === "true";
-        toggleSection("specs", !currentlyOn);
-      });
-    }
-
-    // Init
-    applySectionVisibility();
-    setPickUI();
-    updateTray();
-    highlightSelected();
-    updateBenchmark();
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
-</script>
 
 {% schema %}
 {
-  "name": "Monroe heavy-duty chart",
-  "settings": [],
+  "name": "Heavy-duty comparison",
+  "tag": "section",
+  "class": "section-heavy-duty-comparison",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Monroe heavy-duty calculator guide"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find the Heavy-Duty Printing Calculator Built for Your Workflow"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "<p>Compare Monroe heavy-duty printing calculators by function, capacity, memory, display, and workflow. Use the guided model finder or select any two calculators for a focused side-by-side comparison.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Optional hero image"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Collection button label",
+      "default": "Shop heavy-duty calculators"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Collection button link"
+    },
+    {
+      "type": "text",
+      "id": "support_text",
+      "label": "Support text",
+      "default": "Tell us how you use your calculator and our team will help narrow down the best match. We are available Monday through Friday, 8 AM to 5 PM Eastern Time."
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "267-580-2600"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "View calculator manuals"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#007681"
+    },
+    {
+      "type": "color",
+      "id": "accent_dark",
+      "label": "Dark accent",
+      "default": "#005c64"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#101820"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Surface",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "soft_color",
+      "label": "Soft background",
+      "default": "#eef7f7"
+    }
+  ],
   "presets": [
     {
-      "name": "Monroe heavy-duty chart"
+      "name": "Heavy-duty comparison"
     }
   ]
 }
