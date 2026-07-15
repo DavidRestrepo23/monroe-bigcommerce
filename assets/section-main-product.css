@@ -505,7 +505,7 @@
 
 .accordion[open] .accordion__content {
   padding-top: 16px;
-  width: 645px; 
+  width: 100%; 
 }
 
 @media screen and (max-width: 768px) {
