@@ -1283,3 +1283,87 @@
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
+/* Actual calculator images in the hero */
+.hdc__hero-stack--products {
+  position: relative;
+  min-height: 430px;
+}
+
+.hdc__hero-product {
+  position: absolute;
+  display: flex;
+  width: 200px;
+  min-height: 250px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 24px;
+  background: linear-gradient(160deg, #ffffff, #d8eeee);
+  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.23);
+  text-decoration: none;
+}
+
+.hdc__hero-product img {
+  display: block;
+  width: 100%;
+  height: 185px;
+  object-fit: contain;
+}
+
+.hdc__hero-product span {
+  color: var(--hdc-accent-dark);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.hdc__hero-product:hover,
+.hdc__hero-product:focus-visible {
+  z-index: 5;
+  transform: translateY(-5px) scale(1.02);
+}
+
+.hdc__hero-product.hdc__hero-card--one {
+  left: 2%;
+  top: 18%;
+  transform: rotate(-8deg);
+}
+
+.hdc__hero-product.hdc__hero-card--two {
+  left: 30%;
+  top: 2%;
+  z-index: 2;
+  transform: rotate(2deg);
+}
+
+.hdc__hero-product.hdc__hero-card--three {
+  right: 1%;
+  top: 17%;
+  transform: rotate(8deg);
+}
+
+.hdc__hero-product.hdc__hero-card--four {
+  left: 32%;
+  bottom: -8%;
+  z-index: 3;
+  transform: rotate(-1deg) scale(0.86);
+}
+
+@media (max-width: 700px) {
+  .hdc__hero-product {
+    width: 145px;
+    min-height: 190px;
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .hdc__hero-product img {
+    height: 132px;
+  }
+
+  .hdc__hero-product span {
+    font-size: 14px;
+  }
+}
