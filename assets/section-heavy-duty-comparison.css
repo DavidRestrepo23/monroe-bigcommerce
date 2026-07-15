@@ -115,6 +115,7 @@
 .hdc__intro p {
   margin: 0;
   font-size: clamp(17px, 1.35vw, 21px);
+  color: #ffffff;
 }
 
 .hdc__hero-actions,
