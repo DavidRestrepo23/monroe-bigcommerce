@@ -501,7 +501,7 @@
   background-color: #F7FBFA;
   padding: 32px;
   border-radius: 8px;
-  width: 45%;
+  width: 50%;
 }
 
 .accordion[open] .accordion__content {
