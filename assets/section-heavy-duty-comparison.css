@@ -1262,3 +1262,23 @@
     overflow: visible;
   }
 }
+
+/* Keep View Model and phone CTA text white */
+.hdc a.hdc__product-link,
+.hdc a.hdc__product-link:visited,
+.hdc a.hdc__product-link:hover,
+.hdc a.hdc__product-link:focus,
+.hdc a.hdc__product-link:active,
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary,
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary:visited,
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary:hover,
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary:focus,
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary:active {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.hdc .hdc__support-actions > a.hdc__button.hdc__button--primary * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
