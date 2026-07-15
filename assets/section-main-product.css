@@ -501,12 +501,11 @@
   background-color: #F7FBFA;
   padding: 32px;
   border-radius: 8px;
-  width: 50%;
 }
 
 .accordion[open] .accordion__content {
   padding-top: 16px;
-  width: 100%; 
+  width: 686px; 
 }
 
 @media screen and (max-width: 768px) {
