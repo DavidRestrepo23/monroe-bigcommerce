@@ -1,0 +1,111 @@
+{%- liquid
+  assign title_down = product.title | downcase
+  assign short_title = product.title
+  assign category = 'peanuts'
+  assign format_label = 'Wildlife peanuts'
+  assign size_label = 'Animal feed'
+  assign use_label = 'Outdoor feeding'
+  assign product_note = 'Wakefield peanut products prepared for animal and backyard wildlife feeding.'
+
+  if title_down contains 'squirrel house' or title_down contains 'nesting box'
+    assign short_title = 'Premium Squirrel House'
+    assign category = 'habitat'
+    assign format_label = 'Wooden nesting box'
+    assign size_label = 'Outdoor habitat'
+    assign use_label = 'Squirrel shelter'
+    assign product_note = 'A durable wooden nesting box designed to create a more inviting backyard habitat for squirrels.'
+  elsif title_down contains 'shelled'
+    assign short_title = 'Shelled Peanuts — 45 lb'
+    assign category = 'peanuts shelled'
+    assign format_label = 'Shelled peanuts'
+    assign size_label = '45 lb bag'
+    assign use_label = 'Bulk animal feed'
+    assign product_note = 'A high-volume bag of shelled peanuts for customers with frequent animal-feeding needs.'
+  elsif title_down contains 'inshell' or title_down contains 'in-shell'
+    assign short_title = 'In-Shell Peanuts — 25 lb'
+    assign category = 'peanuts inshell'
+    assign format_label = 'In-shell peanuts'
+    assign size_label = '25 lb bag'
+    assign use_label = 'Wildlife feeding'
+    assign product_note = 'A generous bag of whole in-shell Virginia peanuts for backyard wildlife and animal feeding.'
+  elsif title_down contains '10 lbs' or title_down contains '10 lb'
+    assign short_title = 'Raw Wildlife Peanuts — 10 lb'
+    assign category = 'peanuts'
+    assign format_label = 'Raw peanuts'
+    assign size_label = '10 lb bag'
+    assign use_label = 'Backyard wildlife'
+    assign product_note = 'A practical mid-size option for maintaining a regular backyard wildlife-feeding station.'
+  elsif title_down contains 'extra large' or title_down contains '6 lbs' or title_down contains '6 lb'
+    assign short_title = 'Extra-Large Peanuts — 6 lb'
+    assign category = 'peanuts inshell'
+    assign format_label = 'Extra-large peanuts'
+    assign size_label = '6 lb bag'
+    assign use_label = 'Occasional feeding'
+    assign product_note = 'A manageable bag of extra-large animal-grade peanuts for smaller or occasional feeding needs.'
+  endif
+
+  assign card_search = short_title | append: ' ' | append: product.title | append: ' ' | append: category | append: ' ' | append: format_label | append: ' ' | append: size_label | downcase
+  assign form_id = 'WakefieldQuickAdd-' | append: product.id | append: '-' | append: position
+  assign product_image_alt = product.featured_image.alt | default: product.title
+-%}
+
+<article
+  class="wpf__product-card"
+  data-wpf-card
+  data-name="{{ short_title | escape }}"
+  data-search="{{ card_search | escape }}"
+  data-category="{{ category | escape }}"
+  data-price="{{ product.price }}"
+  data-position="{{ position }}"
+>
+  <a class="wpf__product-media" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+    <span class="wpf__availability{% unless product.available %} wpf__availability--sold{% endunless %}">
+      {%- if product.available -%}In stock{%- else -%}Sold out{%- endif -%}
+    </span>
+
+    {%- if product.featured_image != blank -%}
+      {{ product.featured_image
+        | image_url: width: 820
+        | image_tag:
+          loading: 'lazy',
+          widths: '280, 440, 620, 820',
+          sizes: '(min-width: 1200px) 23vw, (min-width: 750px) 31vw, 90vw',
+          alt: product_image_alt
+      }}
+    {%- else -%}
+      <span class="wpf__product-placeholder" aria-hidden="true">🥜</span>
+    {%- endif -%}
+  </a>
+
+  <div class="wpf__product-body">
+    <div class="wpf__product-topline">
+      <span>Wakefield Peanut Company</span>
+      <strong>{{ product.price | money }}</strong>
+    </div>
+
+    <h4><a href="{{ product.url }}">{{ short_title }}</a></h4>
+    <p>{{ product_note }}</p>
+
+    <ul class="wpf__product-facts" role="list">
+      <li>{{ format_label }}</li>
+      <li>{{ size_label }}</li>
+      <li>{{ use_label }}</li>
+    </ul>
+
+    <div class="wpf__product-actions">
+      <a class="wpf__product-link" href="{{ product.url }}">
+        {%- if category contains 'habitat' -%}View shelter{%- else -%}View product{%- endif -%}
+      </a>
+
+      {%- if show_quick_add -%}
+        <form id="{{ form_id }}" method="post" action="{{ routes.cart_add_url }}" class="wpf__quick-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" name="add" class="wpf__quick-add"{% unless product.available %} disabled{% endunless %}>
+            {%- if product.available -%}Quick add{%- else -%}Sold out{%- endif -%}
+          </button>
+        </form>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
