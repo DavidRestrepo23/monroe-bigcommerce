@@ -1,0 +1,17 @@
+{%- comment -%}
+  Optional compatibility snippet.
+  The redesigned section now reads products directly from the selected
+  Classic Cookie collection so pricing, inventory, and newly added flavors
+  stay current. This file is retained as a clear extension point for future
+  merchandising logic or a manually curated product order.
+{%- endcomment -%}
+
+{%- if collection != blank -%}
+  {%- for product in collection.products -%}
+    {% render 'classic-cookie-card',
+      product: product,
+      position: forloop.index,
+      show_quick_add: show_quick_add
+    %}
+  {%- endfor -%}
+{%- endif -%}
