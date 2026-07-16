@@ -1,0 +1,16 @@
+{%- comment -%}
+  Optional compatibility snippet for manually rendering the selected
+  Wakefield collection. The primary section already loops through the
+  collection directly so prices, inventory, product images, and newly
+  added items remain current automatically.
+{%- endcomment -%}
+
+{%- if collection != blank -%}
+  {%- for product in collection.products -%}
+    {% render 'wakefield-product-card',
+      product: product,
+      position: forloop.index,
+      show_quick_add: show_quick_add
+    %}
+  {%- endfor -%}
+{%- endif -%}
