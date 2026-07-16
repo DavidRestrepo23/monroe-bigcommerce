@@ -1,0 +1,132 @@
+{%- liquid
+  assign title_down = product.title | downcase
+  assign handle = product.handle
+  assign short_title = product.title
+  assign profile = 'classic'
+  assign flavor_note = 'A generously sized, individually wrapped soft-baked cookie.'
+
+  case handle
+    when 'classic-cookie-soft-baked-chocolate-chip-cookies-made-with-mini-chocolates-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Chocolate Chip'
+      assign profile = 'chocolate classic'
+      assign flavor_note = 'A timeless soft-baked favorite packed with mini chocolate pieces.'
+    when 'classic-cookie-soft-baked-cookies-made-with-cinnamon-and-cream-cheese-chips-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Cinnamon & Cream Cheese Chips'
+      assign profile = 'spice-fruit celebration'
+      assign flavor_note = 'Warm cinnamon flavor balanced by sweet cream cheese chips.'
+    when 'classic-cookie-soft-baked-cookies-n-creme-cookies-made-with-premier-white-creme-chips-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = "Cookies n’ Crème"
+      assign profile = 'chocolate celebration'
+      assign flavor_note = 'A cookies-and-cream inspired treat with smooth white crème chips.'
+    when 'classic-cookie-soft-baked-peanut-butter-cookies-made-with-peanut-butter-chips-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Peanut Butter'
+      assign profile = 'nutty classic'
+      assign flavor_note = 'Rich peanut butter flavor with peanut butter chips in every bite.'
+    when 'classic-cookie-soft-baked-double-chocolate-cookies-made-with-chocolate-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Double Chocolate'
+      assign profile = 'chocolate'
+      assign flavor_note = 'A deep chocolate cookie made for serious chocolate cravings.'
+    when 'classic-cookie-soft-baked-macadamia-nut-cookies-with-white-chocolate-chips-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'White Chocolate Macadamia'
+      assign profile = 'nutty chocolate'
+      assign flavor_note = 'Creamy white chocolate chips paired with macadamia nut flavor.'
+    when 'classic-cookie-soft-baked-oatmeal-raisin-cookies-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Oatmeal Raisin'
+      assign profile = 'classic spice-fruit'
+      assign flavor_note = 'A comforting oatmeal cookie with raisins and warm bakery character.'
+    when 'classic-cookie-soft-baked-brownie-rounds-made-with-chocolate-candies-2-boxes-16-individually-wrapped-brownies'
+      assign short_title = 'Brownie Rounds'
+      assign profile = 'chocolate celebration'
+      assign flavor_note = 'Soft brownie rounds finished with colorful chocolate candies.'
+    when 'classic-cookie-soft-baked-snickerdoodle-cookies-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Snickerdoodle'
+      assign profile = 'classic spice-fruit'
+      assign flavor_note = 'A soft-baked cinnamon-sugar classic with nostalgic bakery flavor.'
+    when 'classic-cookie-soft-baked-chocolate-chip-cookies-made-with-chocolate-candies-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Chocolate Chip with Candies'
+      assign profile = 'chocolate celebration'
+      assign flavor_note = 'Chocolate chip cookie flavor made more colorful with candy pieces.'
+    when 'classic-cookie-soft-baked-sugar-cookies-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Sugar Cookie'
+      assign profile = 'classic'
+      assign flavor_note = 'A simple, sweet, soft-baked cookie with timeless appeal.'
+    when 'classic-cookie-soft-baked-birthday-cake-cookies-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Birthday Cake'
+      assign profile = 'celebration'
+      assign flavor_note = 'A festive soft-baked cookie made for birthdays and everyday celebrations.'
+    when 'classic-cookie-soft-baked-apple-cinnamon-oats-cookie-2-boxes-16-individually-wrapped-cookies'
+      assign short_title = 'Apple Cinnamon & Oats'
+      assign profile = 'spice-fruit classic'
+      assign flavor_note = 'Apple, cinnamon, and oats come together in a cozy bakery-style cookie.'
+    else
+      if title_down contains 'chocolate' or title_down contains 'brownie' or title_down contains 'crème' or title_down contains 'creme'
+        assign profile = profile | append: ' chocolate'
+      endif
+      if title_down contains 'cinnamon' or title_down contains 'oatmeal' or title_down contains 'apple'
+        assign profile = profile | append: ' spice-fruit'
+      endif
+      if title_down contains 'peanut' or title_down contains 'macadamia' or title_down contains 'nut'
+        assign profile = profile | append: ' nutty'
+      endif
+      if title_down contains 'birthday' or title_down contains 'candies'
+        assign profile = profile | append: ' celebration'
+      endif
+  endcase
+
+  assign card_search = short_title | append: ' ' | append: product.title | append: ' ' | append: profile | downcase
+  assign form_id = 'ClassicCookieQuickAdd-' | append: product.id | append: '-' | append: position
+  assign product_image_alt = product.featured_image.alt | default: product.title
+-%}
+
+<article
+  class="ccb__product-card"
+  data-ccb-card
+  data-name="{{ short_title | escape }}"
+  data-search="{{ card_search | escape }}"
+  data-profile="{{ profile | escape }}"
+  data-position="{{ position }}"
+>
+  <a class="ccb__product-media" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+    <span class="ccb__availability{% unless product.available %} ccb__availability--sold{% endunless %}">
+      {%- if product.available -%}In stock{%- else -%}Sold out{%- endif -%}
+    </span>
+    {%- if product.featured_image != blank -%}
+      {{ product.featured_image
+        | image_url: width: 720
+        | image_tag:
+          loading: 'lazy',
+          widths: '260, 420, 560, 720',
+          sizes: '(min-width: 1200px) 22vw, (min-width: 750px) 31vw, 90vw',
+          alt: product_image_alt
+      }}
+    {%- endif -%}
+  </a>
+
+  <div class="ccb__product-body">
+    <div class="ccb__product-topline">
+      <span>Classic Cookie</span>
+      <strong>{{ product.price | money }}</strong>
+    </div>
+    <h4><a href="{{ product.url }}">{{ short_title }}</a></h4>
+    <p>{{ flavor_note }}</p>
+
+    <ul class="ccb__product-facts" role="list">
+      <li>2 boxes</li>
+      <li>16 wrapped treats</li>
+      <li>3 oz. each</li>
+    </ul>
+
+    <div class="ccb__product-actions">
+      <a class="ccb__product-link" href="{{ product.url }}">View flavor</a>
+      {%- if show_quick_add -%}
+        <form id="{{ form_id }}" method="post" action="{{ routes.cart_add_url }}" class="ccb__quick-form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" name="add" class="ccb__quick-add"{% unless product.available %} disabled{% endunless %}>
+            {%- if product.available -%}Quick add{%- else -%}Sold out{%- endif -%}
+          </button>
+        </form>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
