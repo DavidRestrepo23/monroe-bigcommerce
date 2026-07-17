@@ -1,0 +1,55 @@
+<section class="twm-library__hero" aria-labelledby="twm-heading-{{ section.id }}">
+  <div class="twm-library__hero-copy">
+    <p class="twm-library__kicker">Typewriters.com reference desk</p>
+    <h2 id="twm-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="twm-library__intro">{{ section.settings.intro }}</div>
+
+    <a class="twm-library__button twm-library__button--dark" href="#manual-library-{{ section.id }}">
+      Search the manual shelf
+      <span aria-hidden="true">↓</span>
+    </a>
+  </div>
+
+  <div class="twm-library__finder-note">
+    <span class="twm-library__finder-number" aria-hidden="true">01</span>
+    <div>
+      <h3>Start with the machine label</h3>
+      <p>Look on the back, underside, or inside the ribbon cover. Copy the complete model name and any series number.</p>
+    </div>
+    <span class="twm-library__finder-number" aria-hidden="true">02</span>
+    <div>
+      <h3>Match before downloading</h3>
+      <p>Wheelwriter series and similarly named electronic models can use different controls. Confirm the full model shown on the card.</p>
+    </div>
+  </div>
+</section>
+
+<nav class="twm-library__jump" aria-label="Manual page shortcuts">
+  <a href="#manual-library-{{ section.id }}">Find a manual</a>
+  <a href="#twm-identify-{{ section.id }}">Identify your model</a>
+  <a href="#twm-support-{{ section.id }}">Ask for help</a>
+</nav>
+
+<details id="twm-identify-{{ section.id }}" class="twm-library__identify">
+  <summary>
+    <span>
+      <small>Not sure what you own?</small>
+      How to identify a typewriter model
+    </span>
+    <span aria-hidden="true">+</span>
+  </summary>
+  <div class="twm-library__identify-body">
+    <div>
+      <strong>Check these locations</strong>
+      <p>Inspect the underside, rear panel, area beneath the ribbon cover, and the label near the power cord.</p>
+    </div>
+    <div>
+      <strong>Record the full wording</strong>
+      <p>Include Personal, Series II, or other suffixes. Those words can distinguish machines that use different manuals.</p>
+    </div>
+    <div>
+      <strong>Still uncertain?</strong>
+      <p>Send a clear photo of the machine and label to <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>.</p>
+    </div>
+  </div>
+</details>
