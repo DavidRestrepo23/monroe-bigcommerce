@@ -1,0 +1,158 @@
+{%- comment -%}
+  Renders one dynamically connected Shopify product and its static comparison specifications.
+  Product commerce data stays live; technical specifications are supplied by the data snippet.
+{%- endcomment -%}
+
+{%- liquid
+  assign card_product = product
+  assign card_title = card_product.title | default: short_name
+  assign short_name = short_name | default: card_title
+  assign card_image = images[image_filename] | default: card_product.featured_image
+  assign brand_key = brand | handleize
+  assign display_downcase = display | downcase | strip
+  assign memory_downcase = memory | downcase | strip
+  assign has_display = false
+  assign has_memory = false
+  unless display_downcase == blank or display_downcase == 'no'
+    assign has_display = true
+  endunless
+  unless memory_downcase == blank or memory_downcase == 'no'
+    assign has_memory = true
+  endunless
+
+  assign supply_one = blank
+  assign supply_two = blank
+  if supply_group == 'ibm'
+    assign supply_one = section.settings.ibm_ribbon
+    assign supply_two = section.settings.ibm_correction
+  elsif supply_group == 'portable'
+    assign supply_one = section.settings.portable_ribbon
+    assign supply_two = section.settings.portable_correction
+  endif
+-%}
+
+<article
+  class="twc-explorer__card"
+  data-model-card
+  data-model-id="{{ model_id | escape }}"
+  data-title="{{ card_title | escape }}"
+  data-search="{{ brand | append: ' ' | append: short_name | append: ' ' | append: card_title | downcase | escape }}"
+  data-brand="{{ brand_key }}"
+  data-available="{% if card_product != blank and card_product.available %}true{% else %}false{% endif %}"
+  data-spell="{{ spell_check }}"
+  data-battery="{{ battery_backup }}"
+  data-bold="{{ bold_type }}"
+  data-display="{{ has_display }}"
+  data-memory="{{ has_memory }}"
+  data-paper="{{ paper_width_number | escape }}"
+  data-weight="{{ weight_number | escape }}"
+  data-price="{{ card_product.price | default: 0 }}"
+>
+  <div class="twc-explorer__card-topline">
+    <span>{{ brand | escape }}</span>
+    <span>{{ condition | escape }}</span>
+    {%- if card_product != blank -%}
+      <span class="twc-explorer__stock{% unless card_product.available %} is-sold-out{% endunless %}">
+        {% if card_product.available %}In stock{% else %}Sold out{% endif %}
+      </span>
+    {%- endif -%}
+  </div>
+
+  <a class="twc-explorer__image-link" href="{{ card_product.url | default: '#' }}" aria-label="View {{ card_title | escape }}">
+    {%- if card_image != blank -%}
+      {{ card_image
+        | image_url: width: 720
+        | image_tag:
+          widths: '240, 360, 540, 720',
+          sizes: '(min-width: 1100px) 25vw, (min-width: 700px) 42vw, 88vw',
+          loading: 'lazy',
+          class: 'twc-explorer__product-image',
+          alt: card_title
+      }}
+    {%- else -%}
+      <span class="twc-explorer__image-missing">Product image not connected</span>
+    {%- endif -%}
+  </a>
+
+  <div class="twc-explorer__card-body">
+    <div class="twc-explorer__card-heading">
+      <h3><a href="{{ card_product.url | default: '#' }}">{{ card_title | escape }}</a></h3>
+      {%- if card_product != blank -%}
+        <p class="twc-explorer__price">{{ card_product.price | money }}</p>
+      {%- endif -%}
+    </div>
+
+    <dl class="twc-explorer__quick-specs">
+      <div><dt>Paper</dt><dd>{{ paper_capacity | escape }}</dd></div>
+      <div><dt>Display</dt><dd>{{ display | escape }}</dd></div>
+      <div><dt>Memory</dt><dd>{{ memory | escape }}</dd></div>
+      <div><dt>Spell check</dt><dd>{% if spell_check %}Yes{% else %}No{% endif %}</dd></div>
+    </dl>
+
+    {%- if supply_one != blank or supply_two != blank -%}
+      <div class="twc-explorer__supplies">
+        <span>Recommended supplies</span>
+        <div>
+          {%- if supply_one != blank -%}<a href="{{ supply_one.url }}">{{ supply_one.title | escape }}</a>{%- endif -%}
+          {%- if supply_two != blank -%}<a href="{{ supply_two.url }}">{{ supply_two.title | escape }}</a>{%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <div class="twc-explorer__card-actions">
+      <a class="twc-explorer__button twc-explorer__button--secondary" href="{{ card_product.url | default: '#' }}">View details</a>
+
+      {%- if section.settings.enable_quick_add and card_product != blank -%}
+        {%- if card_product.available and card_product.has_only_default_variant -%}
+          <form method="post" action="{{ routes.cart_add_url }}" data-quick-add>
+            <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button class="twc-explorer__button twc-explorer__button--primary" type="submit" data-quick-add-button>Quick add</button>
+            <span class="twc-explorer__quick-status" data-quick-status role="status" aria-live="polite"></span>
+            <a class="twc-explorer__cart-link" href="{{ routes.cart_url }}" data-cart-link hidden>View cart</a>
+          </form>
+        {%- elsif card_product.available -%}
+          <a class="twc-explorer__button twc-explorer__button--primary" href="{{ card_product.url }}">Choose options</a>
+        {%- else -%}
+          <button class="twc-explorer__button twc-explorer__button--primary" type="button" disabled>Sold out</button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+
+    <label class="twc-explorer__compare-control">
+      <input type="checkbox" value="{{ model_id | escape }}" data-compare-checkbox>
+      <span>Compare {{ short_name | escape }}</span>
+    </label>
+  </div>
+
+  <template data-compare-template>
+    <article class="twc-explorer__dialog-column" data-dialog-column data-model-id="{{ model_id | escape }}">
+      <header class="twc-explorer__dialog-product">
+        {%- if card_image != blank -%}
+          {{ card_image | image_url: width: 480 | image_tag: loading: 'lazy', class: 'twc-explorer__dialog-image', alt: card_title }}
+        {%- endif -%}
+        <p>{{ brand | escape }} · {{ condition | escape }}</p>
+        <h3>{{ short_name | escape }}</h3>
+        {%- if card_product != blank -%}<strong>{{ card_product.price | money }}</strong>{%- endif -%}
+        <a href="{{ card_product.url | default: '#' }}">View product</a>
+      </header>
+      <dl class="twc-explorer__dialog-specs">
+        <div data-spec="paper"><dt>Paper capacity</dt><dd>{{ paper_capacity | escape }}</dd></div>
+        <div data-spec="display"><dt>Display</dt><dd>{{ display | escape }}</dd></div>
+        <div data-spec="memory"><dt>Memory</dt><dd>{{ memory | escape }}</dd></div>
+        <div data-spec="correction"><dt>Correction memory</dt><dd>{{ correction_memory | escape }}</dd></div>
+        <div data-spec="battery"><dt>Battery backup</dt><dd>{% if battery_backup %}Yes{% else %}No{% endif %}</dd></div>
+        <div data-spec="bold"><dt>Bold</dt><dd>{% if bold_type %}Yes{% else %}No{% endif %}</dd></div>
+        <div data-spec="spell"><dt>Spell check</dt><dd>{% if spell_check %}Yes{% else %}No{% endif %}</dd></div>
+        <div data-spec="dimensions"><dt>Dimensions</dt><dd>{{ dimensions | escape }}</dd></div>
+        <div data-spec="weight"><dt>Weight</dt><dd>{{ weight | escape }}</dd></div>
+        <div data-spec="warranty"><dt>Warranty</dt><dd>{{ warranty | escape }}</dd></div>
+        <div data-spec="supplies"><dt>Recommended supplies</dt><dd>
+          {%- if supply_one != blank -%}<a href="{{ supply_one.url }}">{{ supply_one.title | escape }}</a>{%- endif -%}
+          {%- if supply_two != blank -%}<a href="{{ supply_two.url }}">{{ supply_two.title | escape }}</a>{%- endif -%}
+          {%- if supply_one == blank and supply_two == blank -%}Contact us for compatibility help{%- endif -%}
+        </dd></div>
+      </dl>
+    </article>
+  </template>
+</article>
