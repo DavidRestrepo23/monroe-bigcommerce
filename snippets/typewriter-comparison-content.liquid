@@ -1,0 +1,49 @@
+{%- comment -%}
+  Introductory content for the Typewriters.com comparison explorer.
+  The page template is expected to provide the H1, so this snippet starts at H2.
+{%- endcomment -%}
+
+<div class="twc-explorer__hero">
+  <div class="twc-explorer__paper">
+    <p class="twc-explorer__eyebrow">A Typewriters.com buying guide</p>
+    <h2 id="twc-title-{{ section.id }}" class="twc-explorer__title">
+      {{ section.settings.heading | escape }}
+    </h2>
+    <div class="twc-explorer__intro rte">
+      {{ section.settings.intro }}
+    </div>
+
+    <div class="twc-explorer__steps" aria-label="How to use the comparison finder">
+      <div class="twc-explorer__step">
+        <span class="twc-explorer__step-number" aria-hidden="true">01</span>
+        <span>Filter by the features that matter</span>
+      </div>
+      <div class="twc-explorer__step">
+        <span class="twc-explorer__step-number" aria-hidden="true">02</span>
+        <span>Select two or three models</span>
+      </div>
+      <div class="twc-explorer__step">
+        <span class="twc-explorer__step-number" aria-hidden="true">03</span>
+        <span>Compare specifications side by side</span>
+      </div>
+    </div>
+  </div>
+
+  <aside class="twc-explorer__help" aria-labelledby="twc-help-title-{{ section.id }}">
+    <span class="twc-explorer__help-mark" aria-hidden="true">?</span>
+    <div>
+      <h3 id="twc-help-title-{{ section.id }}">Need a human recommendation?</h3>
+      <p>{{ section.settings.support_text | escape }}</p>
+      <div class="twc-explorer__help-links">
+        <a href="tel:{{ section.settings.phone_link | escape }}">{{ section.settings.phone_label | escape }}</a>
+        <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<nav class="twc-explorer__jump" aria-label="Comparison page shortcuts">
+  <a href="#typewriter-finder-{{ section.id }}">Find models</a>
+  <a href="#typewriter-results-{{ section.id }}">Browse all models</a>
+  <a href="#typewriter-help-{{ section.id }}">Get expert help</a>
+</nav>
