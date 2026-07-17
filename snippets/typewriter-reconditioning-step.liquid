@@ -1,0 +1,13 @@
+<li class="tw-reconditioning__step" data-step data-phase="{{ phase | escape }}">
+  <details{% if index == 1 %} open{% endif %}>
+    <summary>
+      <span class="tw-reconditioning__step-number" aria-hidden="true">{{ index | prepend: '0' | slice: -2, 2 }}</span>
+      <span class="tw-reconditioning__step-title">{{ title | escape }}</span>
+      <span class="tw-reconditioning__step-toggle" aria-hidden="true"></span>
+    </summary>
+    <div class="tw-reconditioning__step-body">
+      <p>{{ description | escape }}</p>
+      <span>{{ phase_label | escape }}</span>
+    </div>
+  </details>
+</li>
