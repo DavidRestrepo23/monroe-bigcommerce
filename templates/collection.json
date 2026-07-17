@@ -24,7 +24,7 @@
         "category_mqhapE": {
           "type": "category",
           "settings": {
-            "collection": "frontpage",
+            "collection": "new-typewriters",
             "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-da-img6-para-a-maquin__7544_1.png",
             "title_override": "New Typewriters"
           }
