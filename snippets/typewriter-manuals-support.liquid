@@ -1,0 +1,30 @@
+<section id="twm-support-{{ section.id }}" class="twm-library__support" aria-labelledby="twm-support-title-{{ section.id }}">
+  <div class="twm-library__support-main">
+    <p class="twm-library__kicker">The manual is only the beginning</p>
+    <h2 id="twm-support-title-{{ section.id }}">Need help matching the machine or finding supplies?</h2>
+    <p>Send us the brand, full model number, and a clear photo of the label. Our team can help identify the closest manual and point you toward compatible ribbons, correction tape, or parts.</p>
+    <div class="twm-library__support-actions">
+      <a class="twm-library__button twm-library__button--dark" href="tel:{{ section.settings.phone_link | escape }}">Call {{ section.settings.phone_label | escape }}</a>
+      <a class="twm-library__button twm-library__button--paper" href="mailto:{{ section.settings.email | escape }}">Email a model photo</a>
+    </div>
+    <small>Monday through Friday, 9 AM to 5 PM Eastern Time</small>
+  </div>
+
+  <div class="twm-library__next-links" aria-label="Related typewriter resources">
+    <a href="/pages/typewriters-maintenance-guide">
+      <span aria-hidden="true">01</span>
+      <strong>Maintenance guide</strong>
+      <small>Cleaning, storage, and routine care.</small>
+    </a>
+    <a href="/pages/typewriter-comparison-chart">
+      <span aria-hidden="true">02</span>
+      <strong>Compare typewriters</strong>
+      <small>See current machines side by side.</small>
+    </a>
+    <a href="/pages/contact">
+      <span aria-hidden="true">03</span>
+      <strong>Contact the team</strong>
+      <small>Ask about a missing or uncertain model.</small>
+    </a>
+  </div>
+</section>
