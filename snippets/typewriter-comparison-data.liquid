@@ -1,0 +1,491 @@
+{%- comment -%}
+  Static comparison specifications keyed to Shopify product handles.
+  Commerce data (title, URL, image fallback, price, inventory, and variant ID) comes from the live product object.
+  To add a model, add its handle and specifications here, then select the product in the section's Model products setting.
+{%- endcomment -%}
+
+{%- assign supported_model = false -%}
+{%- assign model_id = section.id | append: '-' | append: product.id -%}
+{%- case product.handle -%}
+    {%- when 'ibm-lexmark-personal-wheelwriter-1-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Personal Wheelwriter 1' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '14.75 in' -%}
+      {%- assign paper_width_number = '14.75' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'No' -%}
+      {%- assign correction_memory = '1 line' -%}
+      {%- assign battery_backup = false -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '5.7 in H x 19.1 in W x 17.1 in D' -%}
+      {%- assign weight = '23 lb' -%}
+      {%- assign weight_number = '23' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-1-cutout.png' -%}
+    {%- when 'ibm-lexmark-personal-wheelwriter-2-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Personal Wheelwriter 2' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '14.75 in' -%}
+      {%- assign paper_width_number = '14.75' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'No' -%}
+      {%- assign correction_memory = '1K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '5.63 in H x 19.13 in W x 17.09 in D' -%}
+      {%- assign weight = '24 lb' -%}
+      {%- assign weight_number = '24' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-2.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-3-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 3' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'No' -%}
+      {%- assign correction_memory = '72 characters' -%}
+      {%- assign battery_backup = false -%}
+      {%- assign bold_type = false -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-3-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-5-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 5' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '7K' -%}
+      {%- assign correction_memory = '200 characters' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = false -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '6.6 in H x 21.4 in W x 18 in D' -%}
+      {%- assign weight = '33 lb' -%}
+      {%- assign weight_number = '33' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-5-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-6-electronic-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 6' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '31K' -%}
+      {%- assign correction_memory = '200 characters' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = false -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-6-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-6-series-ii-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 6 Series II' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '31K' -%}
+      {%- assign correction_memory = '200 characters' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = false -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-6-series-ii-chart-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-10-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 10' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'Reprint' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-10-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-15-electronic-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 15' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'Reprint' -%}
+      {%- assign correction_memory = '6K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-15-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-30-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 30' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '1 line ext' -%}
+      {%- assign memory = '30K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '7.5 in H x 21.3 in W x 18.1 in D' -%}
+      {%- assign weight = '28 lb' -%}
+      {%- assign weight_number = '28' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-30-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-35-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 35' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '1 line ext' -%}
+      {%- assign memory = '60K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '7.5 in H x 21.3 in W x 18.1 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-35-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-50-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 50' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '9 in monitor' -%}
+      {%- assign memory = '60K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-50-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-70-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 70' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '9 in monitor' -%}
+      {%- assign memory = '80K' -%}
+      {%- assign correction_memory = '1 line' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '27 lb' -%}
+      {%- assign weight_number = '27' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-70-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-1000-electronic-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 1000' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '14.75 in' -%}
+      {%- assign paper_width_number = '14.75' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'Reprint' -%}
+      {%- assign correction_memory = '6K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '5.7 in H x 19.1 in W x 17.1 in D' -%}
+      {%- assign weight = '23 lb' -%}
+      {%- assign weight_number = '23' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-1000-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-1500-electronic-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 1500' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '10K phrase' -%}
+      {%- assign correction_memory = '6K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-1500-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-2000-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 2000' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '14.75 in' -%}
+      {%- assign paper_width_number = '14.75' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '32K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '5.7 in H x 19.1 in W x 17.1 in D' -%}
+      {%- assign weight = '23 lb' -%}
+      {%- assign weight_number = '23' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-2000-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-2500-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 2500' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '14.75 in' -%}
+      {%- assign paper_width_number = '14.75' -%}
+      {%- assign display = '1 line ext' -%}
+      {%- assign memory = '48K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '5.7 in H x 19.1 in W x 17.1 in D' -%}
+      {%- assign weight = '23 lb' -%}
+      {%- assign weight_number = '23' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-2500-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-3000-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 3000' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = '48K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-3000-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-3500-electric-typewriter-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 3500' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '1 line ext' -%}
+      {%- assign memory = '60K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-3500-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-5000-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 5000' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '9 in monitor' -%}
+      {%- assign memory = '60K' -%}
+      {%- assign correction_memory = '4K' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-5000-cutout.png' -%}
+    {%- when 'ibm-lexmark-wheelwriter-7000-reconditioned' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Wheelwriter 7000' -%}
+      {%- assign brand = 'IBM' -%}
+      {%- assign condition = 'Reconditioned' -%}
+      {%- assign paper_capacity = '16.50 in' -%}
+      {%- assign paper_width_number = '16.5' -%}
+      {%- assign display = '9 in monitor' -%}
+      {%- assign memory = '172K' -%}
+      {%- assign correction_memory = '1 line' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '6.5 in H x 21.3 in W x 18 in D' -%}
+      {%- assign weight = '25 lb' -%}
+      {%- assign weight_number = '25' -%}
+      {%- assign warranty = '3 months' -%}
+      {%- assign supply_group = 'ibm' -%}
+      {%- assign image_filename = 'ibm-wheelwriter-7000-cutout.png' -%}
+    {%- when 'nakajima-wpt-150-portable-electronic-word-processing-typewriter' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'WPT-150' -%}
+      {%- assign brand = 'Nakajima' -%}
+      {%- assign condition = 'New' -%}
+      {%- assign paper_capacity = '13 in' -%}
+      {%- assign paper_width_number = '13' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'No' -%}
+      {%- assign correction_memory = '1 line' -%}
+      {%- assign battery_backup = false -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '4.5 in H x 16.2 in W x 14.7 in D' -%}
+      {%- assign weight = '11.3 lb' -%}
+      {%- assign weight_number = '11.3' -%}
+      {%- assign warranty = 'Limited manufacturer warranty' -%}
+      {%- assign supply_group = 'portable' -%}
+      {%- assign image_filename = 'nakajima-wpt-150-open-cutout.png' -%}
+    {%- when 'nakajima-wpt-160-portable-electronic-word-processing-typewriter' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'WPT-160' -%}
+      {%- assign brand = 'Nakajima' -%}
+      {%- assign condition = 'New' -%}
+      {%- assign paper_capacity = '13 in' -%}
+      {%- assign paper_width_number = '13' -%}
+      {%- assign display = '16 character' -%}
+      {%- assign memory = '16K' -%}
+      {%- assign correction_memory = 'Full line' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '4.5 in H x 16.2 in W x 14.7 in D' -%}
+      {%- assign weight = '11.6 lb' -%}
+      {%- assign weight_number = '11.6' -%}
+      {%- assign warranty = 'Limited manufacturer warranty' -%}
+      {%- assign supply_group = 'portable' -%}
+      {%- assign image_filename = 'nakajima-wpt-160-open-cutout.png' -%}
+    {%- when 'royal-scriptor' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Scriptor' -%}
+      {%- assign brand = 'Royal' -%}
+      {%- assign condition = 'New' -%}
+      {%- assign paper_capacity = '13 in' -%}
+      {%- assign paper_width_number = '13' -%}
+      {%- assign display = 'No' -%}
+      {%- assign memory = 'No' -%}
+      {%- assign correction_memory = '1 line' -%}
+      {%- assign battery_backup = false -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = false -%}
+      {%- assign dimensions = '4.5 in H x 16.2 in W x 14.7 in D' -%}
+      {%- assign weight = '11.3 lb' -%}
+      {%- assign weight_number = '11.3' -%}
+      {%- assign warranty = 'Limited manufacturer warranty' -%}
+      {%- assign supply_group = 'portable' -%}
+      {%- assign image_filename = 'royal-scriptor-cutout.png' -%}
+    {%- when 'royal-scriptor-ii-typewriter' -%}
+      {%- assign supported_model = true -%}
+      {%- assign short_name = 'Scriptor II' -%}
+      {%- assign brand = 'Royal' -%}
+      {%- assign condition = 'New' -%}
+      {%- assign paper_capacity = '13 in' -%}
+      {%- assign paper_width_number = '13' -%}
+      {%- assign display = 'Yes' -%}
+      {%- assign memory = '16k characters / 50 files' -%}
+      {%- assign correction_memory = 'Full line' -%}
+      {%- assign battery_backup = true -%}
+      {%- assign bold_type = true -%}
+      {%- assign spell_check = true -%}
+      {%- assign dimensions = '7.3 in H x 20.1 in W x 18.1 in D' -%}
+      {%- assign weight = '11.3 lb' -%}
+      {%- assign weight_number = '11.3' -%}
+      {%- assign warranty = 'Limited manufacturer warranty' -%}
+      {%- assign supply_group = 'portable' -%}
+      {%- assign image_filename = 'royal-scriptor-ii-cutout.png' -%}
+{%- endcase -%}
+
+{%- if supported_model -%}
+  {% render 'typewriter-comparison-card',
+    section: section,
+    product: product,
+    model_id: model_id,
+    short_name: short_name,
+    brand: brand,
+    condition: condition,
+    paper_capacity: paper_capacity,
+    paper_width_number: paper_width_number,
+    display: display,
+    memory: memory,
+    correction_memory: correction_memory,
+    battery_backup: battery_backup,
+    bold_type: bold_type,
+    spell_check: spell_check,
+    dimensions: dimensions,
+    weight: weight,
+    weight_number: weight_number,
+    warranty: warranty,
+    supply_group: supply_group,
+    image_filename: image_filename
+  %}
+{%- endif -%}
