@@ -1,0 +1,1286 @@
+/* Typewriters.com Typewriter Comparison Explorer
+   Every selector is scoped to the page-specific .twc-explorer namespace. */
+
+.twc-explorer,
+.twc-explorer * {
+  box-sizing: border-box;
+}
+
+.twc-explorer {
+  --twc-accent-dark: color-mix(in srgb, var(--twc-accent) 72%, #54211e);
+  --twc-paper-deep: color-mix(in srgb, var(--twc-paper) 83%, #c8b896);
+  --twc-ink-soft: color-mix(in srgb, var(--twc-ink) 72%, #ffffff);
+  --twc-line: color-mix(in srgb, var(--twc-ink) 18%, transparent);
+  --twc-shadow: 0 18px 44px rgba(49, 38, 25, 0.12);
+  --twc-radius: 5px;
+  color: var(--twc-ink);
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  position: relative;
+}
+
+.twc-explorer [hidden] {
+  display: none !important;
+}
+
+.twc-explorer__shell {
+  margin: 0 auto;
+  max-width: 1500px;
+  padding: 22px clamp(16px, 3vw, 48px) 54px;
+}
+
+.twc-explorer__hero {
+  align-items: stretch;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.45fr);
+}
+
+.twc-explorer__paper {
+  background-color: var(--twc-paper);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    color-mix(in srgb, var(--twc-ink) 8%, transparent) 32px
+  );
+  border: 1px solid var(--twc-line);
+  box-shadow: var(--twc-shadow);
+  min-height: 330px;
+  overflow: hidden;
+  padding: clamp(34px, 6vw, 78px) clamp(30px, 7vw, 96px) 40px;
+  position: relative;
+}
+
+.twc-explorer__paper::before {
+  background: var(--twc-accent);
+  bottom: 0;
+  content: "";
+  left: clamp(18px, 3.8vw, 55px);
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+.twc-explorer__paper::after {
+  color: color-mix(in srgb, var(--twc-ink) 10%, transparent);
+  content: "••••••••••••";
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  letter-spacing: 0.55em;
+  position: absolute;
+  right: 16px;
+  top: 4px;
+}
+
+.twc-explorer__eyebrow,
+.twc-explorer__filter-kicker,
+.twc-explorer__results-kicker,
+.twc-explorer__contact-kicker,
+.twc-explorer__dialog-kicker {
+  color: var(--twc-accent-dark);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.twc-explorer__title {
+  color: var(--twc-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5.5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 900px;
+  text-wrap: balance;
+}
+
+.twc-explorer__intro {
+  font-size: clamp(17px, 1.7vw, 20px);
+  margin-top: 24px;
+  max-width: 850px;
+}
+
+.twc-explorer__intro p {
+  margin: 0;
+}
+
+.twc-explorer__steps {
+  border-top: 1px solid var(--twc-line);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 34px;
+  padding-top: 22px;
+}
+
+.twc-explorer__step {
+  align-items: flex-start;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 10px;
+  line-height: 1.35;
+}
+
+.twc-explorer__step-number {
+  color: var(--twc-accent-dark);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.twc-explorer__help {
+  align-content: center;
+  background: var(--twc-ink);
+  border: 8px double var(--twc-paper-deep);
+  color: #ffffff;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto 1fr;
+  padding: clamp(24px, 3vw, 38px);
+}
+
+.twc-explorer__help-mark {
+  align-items: center;
+  border: 2px solid var(--twc-paper);
+  border-radius: 50%;
+  display: inline-flex;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.twc-explorer__help h3,
+.twc-explorer__help p {
+  color: #ffffff;
+  margin: 0;
+}
+
+.twc-explorer__help h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.15;
+}
+
+.twc-explorer__help p {
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.twc-explorer__help-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.twc-explorer__help-links a,
+.twc-explorer__help-links a:visited,
+.twc-explorer__help-links a:hover,
+.twc-explorer__help-links a:focus,
+.twc-explorer__help-links a:active {
+  color: #ffffff !important;
+  font-weight: 700;
+  text-decoration-color: var(--twc-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.twc-explorer__jump {
+  align-items: center;
+  border-bottom: 1px solid var(--twc-line);
+  border-top: 1px solid var(--twc-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 30px 0 36px;
+  padding: 14px 0;
+}
+
+.twc-explorer__jump a {
+  color: var(--twc-ink);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.twc-explorer__jump a::before {
+  color: var(--twc-accent);
+  content: "→";
+  margin-right: 8px;
+}
+
+.twc-explorer__workspace {
+  align-items: start;
+  display: grid;
+  gap: clamp(24px, 4vw, 52px);
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  scroll-margin-top: 24px;
+}
+
+.twc-explorer__filters {
+  background: var(--twc-paper);
+  border: 1px solid var(--twc-line);
+  box-shadow: 8px 8px 0 var(--twc-paper-deep);
+  position: sticky;
+  top: 18px;
+  z-index: 4;
+}
+
+.twc-explorer__mobile-filter-button {
+  display: none;
+}
+
+.twc-explorer__filter-panel {
+  padding: 24px;
+}
+
+.twc-explorer__filter-heading,
+.twc-explorer__results-bar,
+.twc-explorer__card-heading,
+.twc-explorer__dialog-header {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.twc-explorer__filter-heading {
+  border-bottom: 1px solid var(--twc-line);
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+}
+
+.twc-explorer__filter-heading h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.twc-explorer__text-button {
+  background: transparent;
+  border: 0;
+  color: var(--twc-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px;
+  text-decoration: underline;
+  text-decoration-color: var(--twc-accent);
+  text-underline-offset: 4px;
+}
+
+.twc-explorer__field {
+  display: grid;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 7px;
+  margin-top: 18px;
+}
+
+.twc-explorer__field input,
+.twc-explorer__field select,
+.twc-explorer__sort select {
+  appearance: none;
+  background: #ffffff;
+  border: 1px solid var(--twc-ink);
+  border-radius: 0;
+  color: var(--twc-ink);
+  font: inherit;
+  min-height: 46px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.twc-explorer__field select,
+.twc-explorer__sort select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--twc-ink) 50%), linear-gradient(135deg, var(--twc-ink) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 19px, calc(100% - 12px) 19px;
+  background-repeat: no-repeat;
+  background-size: 5px 5px, 5px 5px;
+  padding-right: 34px;
+}
+
+.twc-explorer__fieldset {
+  border: 0;
+  border-top: 1px solid var(--twc-line);
+  margin: 22px 0 0;
+  padding: 18px 0 0;
+}
+
+.twc-explorer__fieldset legend {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0 8px 0 0;
+  text-transform: uppercase;
+}
+
+.twc-explorer__preset-list,
+.twc-explorer__brand-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.twc-explorer__preset-list button,
+.twc-explorer__brand-list button {
+  background: #ffffff;
+  border: 1px solid var(--twc-ink);
+  border-radius: 999px;
+  color: var(--twc-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.2;
+  padding: 8px 11px;
+}
+
+.twc-explorer__preset-list button[aria-pressed="true"],
+.twc-explorer__preset-list button[aria-pressed="true"]:hover,
+.twc-explorer__preset-list button[aria-pressed="true"]:focus,
+.twc-explorer__preset-list button[aria-pressed="true"]:active,
+.twc-explorer__brand-list button[aria-pressed="true"],
+.twc-explorer__brand-list button[aria-pressed="true"]:hover,
+.twc-explorer__brand-list button[aria-pressed="true"]:focus,
+.twc-explorer__brand-list button[aria-pressed="true"]:active {
+  background: var(--twc-ink);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.twc-explorer__check-list {
+  display: grid;
+  gap: 11px;
+}
+
+.twc-explorer__check-list label,
+.twc-explorer__dialog-tools label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  gap: 9px;
+}
+
+.twc-explorer__check-list input,
+.twc-explorer__compare-control input,
+.twc-explorer__dialog-tools input {
+  accent-color: var(--twc-accent);
+  height: 18px;
+  margin: 0;
+  width: 18px;
+}
+
+.twc-explorer__results {
+  min-width: 0;
+  scroll-margin-top: 24px;
+}
+
+.twc-explorer__results-bar {
+  border-bottom: 3px double var(--twc-ink);
+  gap: 22px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+}
+
+.twc-explorer__results-bar h2,
+.twc-explorer__contact-card h2,
+.twc-explorer__dialog-header h2 {
+  color: var(--twc-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.6vw, 48px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.twc-explorer__status {
+  color: var(--twc-ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+
+.twc-explorer__sort {
+  display: grid;
+  flex: 0 0 220px;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.twc-explorer__grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.twc-explorer__card {
+  background: #ffffff;
+  border: 1px solid var(--twc-line);
+  box-shadow: 6px 6px 0 var(--twc-paper-deep);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.twc-explorer__card:hover {
+  box-shadow: 9px 9px 0 var(--twc-paper-deep);
+  transform: translate(-2px, -2px);
+}
+
+.twc-explorer__card-topline {
+  align-items: center;
+  background: var(--twc-paper);
+  border-bottom: 1px solid var(--twc-line);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  gap: 8px 14px;
+  letter-spacing: 0.07em;
+  min-height: 38px;
+  padding: 9px 14px;
+  text-transform: uppercase;
+}
+
+.twc-explorer__stock {
+  color: #3f6436;
+  margin-left: auto;
+}
+
+.twc-explorer__stock::before {
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 7px;
+  margin-right: 6px;
+  width: 7px;
+}
+
+.twc-explorer__stock.is-sold-out {
+  color: var(--twc-accent-dark);
+}
+
+.twc-explorer__image-link {
+  align-items: center;
+  background: linear-gradient(145deg, #fffdf7, var(--twc-paper));
+  display: flex;
+  justify-content: center;
+  min-height: 235px;
+  padding: 22px;
+  text-decoration: none;
+}
+
+.twc-explorer__product-image {
+  display: block;
+  height: 190px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 180ms ease;
+  width: 100%;
+}
+
+.twc-explorer__card:hover .twc-explorer__product-image {
+  transform: scale(1.025);
+}
+
+.twc-explorer__image-missing {
+  color: var(--twc-ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+}
+
+.twc-explorer__card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.twc-explorer__card-heading {
+  gap: 14px;
+}
+
+.twc-explorer__card-heading h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(21px, 2vw, 27px);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.twc-explorer__card-heading h3 a,
+.twc-explorer__card-heading h3 a:visited {
+  color: var(--twc-ink);
+  text-decoration: none;
+}
+
+.twc-explorer__price {
+  flex: 0 0 auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 4px 0 0;
+}
+
+.twc-explorer__quick-specs {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 20px 0 0;
+}
+
+.twc-explorer__quick-specs div {
+  border-bottom: 1px dotted var(--twc-line);
+  min-width: 0;
+  padding: 9px 7px 9px 0;
+}
+
+.twc-explorer__quick-specs dt,
+.twc-explorer__quick-specs dd {
+  margin: 0;
+}
+
+.twc-explorer__quick-specs dt {
+  color: var(--twc-ink-soft);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.twc-explorer__quick-specs dd {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+.twc-explorer__supplies {
+  background: var(--twc-paper);
+  border-left: 3px solid var(--twc-accent);
+  display: grid;
+  gap: 5px;
+  margin-top: 18px;
+  padding: 10px 12px;
+}
+
+.twc-explorer__supplies > span {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.twc-explorer__supplies > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+}
+
+.twc-explorer__supplies a {
+  color: var(--twc-ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.twc-explorer__card-actions {
+  display: grid;
+  gap: 9px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.twc-explorer__card-actions form {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+}
+
+.twc-explorer__button,
+.twc-explorer__button:visited {
+  align-items: center;
+  border: 2px solid var(--twc-ink);
+  border-radius: var(--twc-radius);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: 46px;
+  padding: 10px 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.twc-explorer__button--primary,
+.twc-explorer__button--primary:visited,
+.twc-explorer__button--primary:hover,
+.twc-explorer__button--primary:focus,
+.twc-explorer__button--primary:active {
+  background: var(--twc-ink);
+  border-color: var(--twc-ink);
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.twc-explorer__button--secondary,
+.twc-explorer__button--secondary:visited {
+  background: #ffffff;
+  color: var(--twc-ink);
+  -webkit-text-fill-color: var(--twc-ink);
+}
+
+.twc-explorer__button--paper,
+.twc-explorer__button--paper:visited {
+  background: var(--twc-paper);
+  color: var(--twc-ink);
+  -webkit-text-fill-color: var(--twc-ink);
+}
+
+.twc-explorer__button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.twc-explorer__quick-status,
+.twc-explorer__cart-link {
+  font-size: 12px;
+  grid-column: 1 / -1;
+}
+
+.twc-explorer__cart-link {
+  color: var(--twc-ink);
+  font-weight: 700;
+}
+
+.twc-explorer__compare-control {
+  align-items: center;
+  background: var(--twc-paper);
+  border: 1px dashed var(--twc-ink);
+  cursor: pointer;
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 9px;
+  margin-top: 14px;
+  min-height: 44px;
+  padding: 9px 11px;
+}
+
+.twc-explorer__compare-control:has(input:checked) {
+  background: color-mix(in srgb, var(--twc-accent) 13%, var(--twc-paper));
+  border-style: solid;
+}
+
+.twc-explorer__empty {
+  background: var(--twc-paper);
+  border: 2px dashed var(--twc-ink);
+  padding: 42px;
+  text-align: center;
+}
+
+.twc-explorer__empty > span {
+  color: var(--twc-accent-dark);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.twc-explorer__empty h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  margin: 10px 0 8px;
+}
+
+.twc-explorer__empty p {
+  margin: 0 auto 20px;
+  max-width: 540px;
+}
+
+.twc-explorer__resources {
+  border-bottom: 1px solid var(--twc-line);
+  border-top: 3px double var(--twc-ink);
+  margin-top: 58px;
+  padding: 34px 0 38px;
+}
+
+.twc-explorer__resources-heading {
+  display: flex;
+  gap: 22px;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.twc-explorer__resources-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.4vw, 46px);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.twc-explorer__resource-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.twc-explorer__resource-grid a,
+.twc-explorer__resource-grid a:visited {
+  background: var(--twc-paper);
+  border: 1px solid var(--twc-line);
+  color: var(--twc-ink);
+  display: grid;
+  gap: 6px;
+  min-height: 170px;
+  padding: 18px;
+  text-decoration: none;
+}
+
+.twc-explorer__resource-grid a:hover {
+  border-color: var(--twc-accent);
+  box-shadow: 4px 4px 0 var(--twc-paper-deep);
+}
+
+.twc-explorer__resource-grid span {
+  color: var(--twc-accent-dark);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.twc-explorer__resource-grid strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.twc-explorer__resource-grid small {
+  color: var(--twc-ink-soft);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.twc-explorer__contact-card {
+  align-items: center;
+  background: var(--twc-accent);
+  border: 8px double var(--twc-paper);
+  color: var(--twc-ink);
+  display: grid;
+  gap: 30px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 58px;
+  padding: clamp(28px, 5vw, 58px);
+  scroll-margin-top: 24px;
+}
+
+.twc-explorer__contact-card p {
+  margin: 14px 0 0;
+  max-width: 780px;
+}
+
+.twc-explorer__contact-actions {
+  display: grid;
+  gap: 10px;
+  min-width: min(100%, 240px);
+}
+
+.twc-explorer__compare-bar {
+  bottom: 12px;
+  left: 0;
+  padding: 0 14px 14px;
+  position: sticky;
+  right: 0;
+  z-index: 20;
+}
+
+.twc-explorer__compare-bar-inner {
+  align-items: center;
+  background: var(--twc-ink);
+  border: 4px double var(--twc-paper);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.26);
+  color: #ffffff;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 14px 18px;
+}
+
+.twc-explorer__compare-bar-inner strong,
+.twc-explorer__compare-bar-inner > div > span {
+  color: #ffffff;
+  display: block;
+}
+
+.twc-explorer__compare-bar-inner > div > span {
+  font-size: 12px;
+  opacity: 0.78;
+}
+
+.twc-explorer__selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.twc-explorer__selected-list button {
+  background: var(--twc-paper);
+  border: 0;
+  border-radius: 999px;
+  color: var(--twc-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 10px;
+}
+
+.twc-explorer__selected-list button::after {
+  content: " ×";
+}
+
+.twc-explorer__compare-actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.twc-explorer__compare-actions .twc-explorer__text-button,
+.twc-explorer__compare-actions .twc-explorer__text-button:hover,
+.twc-explorer__compare-actions .twc-explorer__text-button:focus,
+.twc-explorer__compare-actions .twc-explorer__text-button:active {
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+.twc-explorer__dialog {
+  background: transparent;
+  border: 0;
+  color: var(--twc-ink);
+  height: min(92vh, 940px);
+  margin: auto;
+  max-height: none;
+  max-width: 1320px;
+  padding: 0;
+  width: calc(100% - 32px);
+}
+
+.twc-explorer__dialog::backdrop {
+  background: rgba(22, 20, 17, 0.72);
+  backdrop-filter: blur(3px);
+}
+
+.twc-explorer__dialog-frame {
+  background: var(--twc-paper);
+  border: 5px double var(--twc-ink);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.twc-explorer__dialog-header {
+  align-items: center;
+  background: var(--twc-paper);
+  border-bottom: 3px double var(--twc-ink);
+  gap: 20px;
+  padding: 18px 22px;
+}
+
+.twc-explorer__dialog-header h2 {
+  font-size: clamp(28px, 3vw, 42px);
+}
+
+.twc-explorer__dialog-close,
+.twc-explorer__dialog-close:hover,
+.twc-explorer__dialog-close:focus,
+.twc-explorer__dialog-close:active {
+  background: var(--twc-ink);
+  border: 2px solid var(--twc-ink);
+  color: #ffffff !important;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 9px 14px;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.twc-explorer__dialog-tools {
+  align-items: center;
+  background: #ffffff;
+  border-bottom: 1px solid var(--twc-line);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 11px 22px;
+}
+
+.twc-explorer__dialog-tools p {
+  color: var(--twc-ink-soft);
+  font-size: 12px;
+  margin: 0;
+}
+
+.twc-explorer__dialog-scroll {
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 18px;
+}
+
+.twc-explorer__dialog-columns {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(var(--twc-columns, 2), minmax(270px, 1fr));
+  min-width: calc(var(--twc-columns, 2) * 270px);
+}
+
+.twc-explorer__dialog-column {
+  background: #ffffff;
+  border: 1px solid var(--twc-line);
+  min-width: 0;
+}
+
+.twc-explorer__dialog-product {
+  border-bottom: 3px double var(--twc-ink);
+  min-height: 285px;
+  padding: 18px;
+  text-align: center;
+}
+
+.twc-explorer__dialog-image {
+  display: block;
+  height: 130px;
+  margin: 0 auto 12px;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.twc-explorer__dialog-product p {
+  color: var(--twc-ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.twc-explorer__dialog-product h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  line-height: 1.1;
+  margin: 7px 0;
+}
+
+.twc-explorer__dialog-product strong {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+}
+
+.twc-explorer__dialog-product a {
+  color: var(--twc-ink);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 7px;
+  text-underline-offset: 3px;
+}
+
+.twc-explorer__dialog-specs {
+  margin: 0;
+}
+
+.twc-explorer__dialog-specs > div {
+  border-bottom: 1px dotted var(--twc-line);
+  min-height: 82px;
+  padding: 13px 16px;
+}
+
+.twc-explorer__dialog-specs > div[data-different="true"] {
+  background: color-mix(in srgb, var(--twc-accent) 10%, #ffffff);
+}
+
+.twc-explorer__dialog-specs dt,
+.twc-explorer__dialog-specs dd {
+  margin: 0;
+}
+
+.twc-explorer__dialog-specs dt {
+  color: var(--twc-ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.twc-explorer__dialog-specs dd {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 3px;
+  overflow-wrap: anywhere;
+}
+
+.twc-explorer__dialog-specs dd a {
+  color: var(--twc-ink);
+  display: block;
+  text-underline-offset: 3px;
+}
+
+.twc-explorer__announcement {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.twc-explorer :focus-visible {
+  outline: 3px solid var(--twc-accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1320px) {
+  .twc-explorer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1040px) {
+  .twc-explorer__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__help {
+    grid-template-columns: auto 1fr;
+  }
+
+  .twc-explorer__workspace {
+    gap: 28px;
+    grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  }
+
+  .twc-explorer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__resource-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .twc-explorer__compare-bar-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .twc-explorer__selected-list {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .twc-explorer {
+    font-size: 16px;
+  }
+
+  .twc-explorer__shell {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .twc-explorer__paper {
+    min-height: 0;
+    padding: 42px 24px 30px 42px;
+  }
+
+  .twc-explorer__paper::before {
+    left: 24px;
+  }
+
+  .twc-explorer__paper::after {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+  }
+
+  .twc-explorer__title {
+    font-size: clamp(36px, 12vw, 52px);
+  }
+
+  .twc-explorer__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__help {
+    border-width: 5px;
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__jump {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .twc-explorer__workspace {
+    display: block;
+  }
+
+  .twc-explorer__filters {
+    box-shadow: 5px 5px 0 var(--twc-paper-deep);
+    margin-bottom: 28px;
+    position: static;
+  }
+
+  .twc-explorer__mobile-filter-button,
+  .twc-explorer__mobile-filter-button:hover,
+  .twc-explorer__mobile-filter-button:focus,
+  .twc-explorer__mobile-filter-button:active {
+    align-items: center;
+    background: var(--twc-ink);
+    border: 0;
+    color: #ffffff !important;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-weight: 700;
+    justify-content: space-between;
+    min-height: 50px;
+    padding: 12px 16px;
+    width: 100%;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  .twc-explorer__mobile-filter-button[aria-expanded="true"] span:last-child {
+    transform: rotate(45deg);
+  }
+
+  .twc-explorer__filter-panel {
+    padding: 20px 16px;
+  }
+
+  .twc-explorer__results-bar {
+    display: grid;
+  }
+
+  .twc-explorer__sort {
+    width: 100%;
+  }
+
+  .twc-explorer__quick-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .twc-explorer__card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__contact-card {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__resources-heading {
+    display: block;
+  }
+
+  .twc-explorer__resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .twc-explorer__contact-actions {
+    width: 100%;
+  }
+
+  .twc-explorer__compare-bar {
+    bottom: 4px;
+    padding: 0 6px 6px;
+  }
+
+  .twc-explorer__compare-bar-inner {
+    gap: 10px;
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .twc-explorer__selected-list {
+    grid-column: auto;
+    grid-row: auto;
+    max-height: 74px;
+    overflow: auto;
+  }
+
+  .twc-explorer__compare-actions {
+    justify-content: space-between;
+  }
+
+  .twc-explorer__dialog {
+    height: 100dvh;
+    max-width: none;
+    width: 100%;
+  }
+
+  .twc-explorer__dialog-frame {
+    border-width: 0;
+  }
+
+  .twc-explorer__dialog-header,
+  .twc-explorer__dialog-tools {
+    align-items: flex-start;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .twc-explorer__dialog-header h2 {
+    font-size: 27px;
+  }
+
+  .twc-explorer__dialog-tools {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .twc-explorer__dialog-scroll {
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twc-explorer__card,
+  .twc-explorer__product-image {
+    transition: none;
+  }
+}
