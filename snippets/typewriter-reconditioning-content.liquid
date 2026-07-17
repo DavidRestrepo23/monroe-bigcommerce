@@ -1,0 +1,45 @@
+<section class="tw-reconditioning__hero" aria-labelledby="tw-recon-heading-{{ section.id }}">
+  <div class="tw-reconditioning__hero-copy">
+    <p class="tw-reconditioning__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 id="tw-recon-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    <div class="tw-reconditioning__intro rte">{{ section.settings.intro }}</div>
+
+    <div class="tw-reconditioning__hero-actions">
+      <a class="tw-reconditioning__button tw-reconditioning__button--primary" href="#tw-process-{{ section.id }}">
+        Explore all 21 steps
+      </a>
+      <a class="tw-reconditioning__text-link" href="#tw-reviews-{{ section.id }}">
+        Read customer notes
+      </a>
+    </div>
+  </div>
+
+  <aside class="tw-reconditioning__job-card" aria-label="Workshop job card">
+    <div class="tw-reconditioning__job-card-top">
+      <span>Service record</span>
+      <span>No. 21</span>
+    </div>
+    <p class="tw-reconditioning__job-title">Reconditioned typewriter</p>
+    <dl class="tw-reconditioning__job-list">
+      <div><dt>Process</dt><dd>21 workshop steps</dd></div>
+      <div><dt>Focus</dt><dd>Clean, adjust, test</dd></div>
+      <div><dt>Finish</dt><dd>Protective packing</dd></div>
+    </dl>
+    <p class="tw-reconditioning__job-note">{{ section.settings.experience_note | escape }}</p>
+  </aside>
+</section>
+
+<section class="tw-reconditioning__promise" aria-labelledby="tw-promise-title-{{ section.id }}">
+  <div class="tw-reconditioning__section-heading">
+    <p class="tw-reconditioning__kicker">What the process covers</p>
+    <h2 id="tw-promise-title-{{ section.id }}">A practical check from the inside out</h2>
+    <p>Every machine is different. The process gives technicians a consistent route through cleanliness, mechanical condition, typing performance, installed supplies, and shipping preparation.</p>
+  </div>
+
+  <ul class="tw-reconditioning__promise-list" role="list">
+    <li><span aria-hidden="true">01</span><strong>Clean &amp; inspect</strong><p>Disassembly, cleaning, wear review, rubber treatment, and platen work.</p></li>
+    <li><span aria-hidden="true">02</span><strong>Renew &amp; adjust</strong><p>Model-appropriate component work, lubrication, connector checks, and factory-setting review.</p></li>
+    <li><span aria-hidden="true">03</span><strong>Test &amp; verify</strong><p>Characters, paper feeding, correction, key action, ribbon movement, and copy performance.</p></li>
+    <li><span aria-hidden="true">04</span><strong>Supply &amp; protect</strong><p>A new ribbon and correction tape are installed before the typewriter is packed for shipment.</p></li>
+  </ul>
+</section>
