@@ -16,7 +16,7 @@
         "intro": "<p>Search, filter, and compare electric and electronic typewriters by the specifications that matter to you. Select up to three models to build a focused side-by-side shortlist.</p>",
         "support_text": "Our team can help with product recommendations, compatibility questions, and ordering support.",
         "phone_label": "(404) 377-1884",
-        "phone_link": "+14043771884",
+        "phone_link": "+1 (404) 377-1884",
         "email": "info@typewriters.com",
         "enable_quick_add": true,
         "models": [
@@ -45,11 +45,11 @@
           "royal-scriptor",
           "royal-scriptor-ii-typewriter"
         ],
-        "ibm_ribbon": "",
-        "ibm_correction": "",
-        "portable_ribbon": "",
-        "portable_correction": "",
-        "accent_color": "#c94b42",
+        "ibm_ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+        "ibm_correction": "grc-compatible-ibm-wheelwriter-correction-tape",
+        "portable_ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+        "portable_correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
+        "accent_color": "#D24742",
         "paper_color": "#f5eedc",
         "ink_color": "#29251f"
       }
