@@ -1,0 +1,86 @@
+{%- liquid
+  assign brand_key = brand | downcase
+  assign manual_product = blank
+
+  if product_handle != blank and manual_products != blank
+    assign manual_product = manual_products | where: 'handle', product_handle | first
+  endif
+
+  assign search_text = brand | append: ' ' | append: model | append: ' ' | append: aliases | downcase | strip
+  assign manual_label = manual_kind | default: "Operator's guide"
+-%}
+
+<article
+  class="twm-library__card"
+  data-manual-card
+  data-brand="{{ brand_key | escape }}"
+  data-model="{{ model | downcase | escape }}"
+  data-search="{{ search_text | escape }}"
+  data-order="{{ order }}"
+>
+  <div class="twm-library__card-image{% if manual_product == blank %} twm-library__card-image--archive{% endif %}">
+    {%- if manual_product.featured_image != blank -%}
+      {%- capture product_alt -%}{{ brand }} {{ model }} typewriter{%- endcapture -%}
+      {{ manual_product.featured_image
+        | image_url: width: 720
+        | image_tag:
+          loading: 'lazy',
+          widths: '280, 420, 560, 720',
+          sizes: '(min-width: 1200px) 24vw, (min-width: 720px) 42vw, 92vw',
+          alt: product_alt,
+          class: 'twm-library__product-image'
+      }}
+      <span class="twm-library__image-source">Current product image</span>
+    {%- elsif archive_asset != blank -%}
+      <img
+        src="{{ archive_asset | asset_url }}"
+        alt="Archive manual illustration of the {{ brand | escape }} {{ model | escape }} typewriter"
+        width="1000"
+        height="1200"
+        loading="lazy"
+      >
+      <span class="twm-library__image-source">Archive manual illustration</span>
+    {%- else -%}
+      <span class="twm-library__manual-placeholder" aria-hidden="true">
+        <span>Reference copy</span>
+        <strong>{{ brand | escape }}<br>{{ model | escape }}</strong>
+      </span>
+      <span class="twm-library__image-source">Manual reference</span>
+    {%- endif -%}
+  </div>
+
+  <div class="twm-library__card-body">
+    <div class="twm-library__card-meta">
+      <span>{{ brand | escape }}</span>
+      <small>{{ manual_label | escape }}</small>
+    </div>
+
+    <h3>{{ model | escape }}</h3>
+
+    {%- if note != blank -%}
+      <p class="twm-library__card-note">{{ note | escape }}</p>
+    {%- endif -%}
+
+    <div class="twm-library__card-actions">
+      <a class="twm-library__button twm-library__button--dark" href="{{ manual_url }}" target="_blank" rel="noopener">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+        {{ manual_cta | default: 'Open manual' | escape }}
+      </a>
+
+      {%- if manual_url_2 != blank -%}
+        <a class="twm-library__button twm-library__button--paper" href="{{ manual_url_2 }}" target="_blank" rel="noopener">
+          {{ manual_cta_2 | default: 'Open part two' | escape }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.show_product_links and manual_product != blank -%}
+        <a class="twm-library__product-link" href="{{ manual_product.url }}">
+          View {{ manual_product.title | escape }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <small class="twm-library__pdf-note">PDF opens in a new tab</small>
+  </div>
+</article>
