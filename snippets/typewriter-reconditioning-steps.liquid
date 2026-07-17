@@ -1,0 +1,59 @@
+{%- liquid
+  assign steps_data = 'clean|Thorough cleaning|The machine is disassembled as appropriate so components can be carefully cleaned.||clean|Condition inspection|Parts are examined for wear, damage, and issues that may affect dependable operation.||clean|Print-hammer service|Print-hammer solenoids are serviced and caps are renewed where the model and condition call for it.||clean|Rubber treatment|Rubber components are treated to help preserve their useful condition and performance.||clean|Platen resurfacing|The platen is resurfaced as needed to support clear, consistent printing.||renew|Series I gear renewal|Steel gears are installed in applicable Series I transport motors to improve durability.||renew|Connector check|Keyboard and circuit-board connectors are checked for secure connections.||renew|Battery-box inspection|The battery box is inspected for corrosion and replaced when its condition requires it.||renew|Platen-latch examination|Platen latches are checked for secure operation and steady paper feeding.||renew|Factory-spec lubrication|The machine is reassembled with model-appropriate lubrication at designated service points.||renew|Ground-strap verification|Ground straps and connections are checked for correct placement and function.||adjust|Adjustment review|Applicable factory adjustments are checked and corrected where necessary.||adjust|Character testing|Every printwheel character is tested repeatedly for consistent output.||adjust|Mechanical integrity|Gear movement and tabulation are checked for correct operation.||adjust|Paper-insert testing|SAPI paper-insert functionality is checked with the machine covers in place.||adjust|Keyboard adjustment|Keyboard angle and key response are checked and adjusted as needed.||finish|Ribbon and tape installation|A new ribbon and correction tape are installed so the machine arrives ready for use.||finish|Carbon-copy calibration|Print-hammer force is adjusted to support multiple copies while retaining correction function.||finish|Key-button testing|Each key is tested for smooth response without unintended repeats.||finish|Ribbon-mechanism check|Ribbon lift height and feed are checked and fine-tuned for consistent movement.||finish|Protective packaging|The finished typewriter is packed with a custom box and foam caps to help protect it in transit.'
+  assign steps = steps_data | split: '||'
+-%}
+
+<section id="tw-process-{{ section.id }}" class="tw-reconditioning__process" aria-labelledby="tw-process-title-{{ section.id }}">
+  <div class="tw-reconditioning__section-heading tw-reconditioning__section-heading--process">
+    <div>
+      <p class="tw-reconditioning__kicker">The complete service record</p>
+      <h2 id="tw-process-title-{{ section.id }}">Explore the 21-step workshop process</h2>
+      <p>Choose a phase or move through the full sequence. Each step remains available without JavaScript.</p>
+    </div>
+    <p class="tw-reconditioning__counter" aria-live="polite">
+      <strong data-visible-count>21</strong><span> steps shown</span>
+    </p>
+  </div>
+
+  <div class="tw-reconditioning__toolbar" aria-label="Filter and expand process steps">
+    <div class="tw-reconditioning__phase-filters" role="group" aria-label="Filter by workshop phase">
+      <button type="button" class="is-active" data-phase-filter="all" aria-pressed="true">All 21</button>
+      <button type="button" data-phase-filter="clean" aria-pressed="false">Clean &amp; inspect</button>
+      <button type="button" data-phase-filter="renew" aria-pressed="false">Renew &amp; service</button>
+      <button type="button" data-phase-filter="adjust" aria-pressed="false">Adjust &amp; test</button>
+      <button type="button" data-phase-filter="finish" aria-pressed="false">Finish &amp; protect</button>
+    </div>
+    <div class="tw-reconditioning__expand-controls">
+      <button type="button" data-expand-all>Expand shown</button>
+      <button type="button" data-collapse-all>Collapse shown</button>
+    </div>
+  </div>
+
+  <ol class="tw-reconditioning__steps">
+    {%- for step in steps -%}
+      {%- liquid
+        assign fields = step | split: '|'
+        assign phase = fields[0]
+        assign title = fields[1]
+        assign description = fields[2]
+        case phase
+          when 'clean'
+            assign phase_label = 'Clean & inspect'
+          when 'renew'
+            assign phase_label = 'Renew & service'
+          when 'adjust'
+            assign phase_label = 'Adjust & test'
+          else
+            assign phase_label = 'Finish & protect'
+        endcase
+      -%}
+      {% render 'typewriter-reconditioning-step',
+        index: forloop.index,
+        phase: phase,
+        phase_label: phase_label,
+        title: title,
+        description: description
+      %}
+    {%- endfor -%}
+  </ol>
+</section>
