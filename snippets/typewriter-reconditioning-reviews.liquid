@@ -1,0 +1,83 @@
+<section id="tw-reviews-{{ section.id }}" class="tw-reconditioning__reviews" aria-labelledby="tw-reviews-title-{{ section.id }}">
+  <div class="tw-reconditioning__section-heading">
+    <p class="tw-reconditioning__kicker">Notes from Wheelwriter customers</p>
+    <h2 id="tw-reviews-title-{{ section.id }}">The process matters after the box arrives</h2>
+    <p>The original review collage is now presented as readable text cards, with the source artwork available in a focused viewer.</p>
+  </div>
+
+  <div class="tw-reconditioning__review-layout">
+    <div class="tw-reconditioning__review-cards">
+      <figure>
+        <blockquote>“I was used to using this model of typewriter previously. This model is familiar and easy to use.”</blockquote>
+        <figcaption><strong>Typewriters.com customer</strong><span>IBM Lexmark Personal Wheelwriter 2</span></figcaption>
+      </figure>
+      <figure>
+        <blockquote>“Very happy with my purchase, would highly recommend Typewriters.com. Product arrived in an acceptable amount of time. Very pleased.”</blockquote>
+        <figcaption><strong>Jeremy M.</strong><span>IBM Lexmark Wheelwriter 3</span></figcaption>
+      </figure>
+      <figure>
+        <blockquote>“Very favorable—this is my second purchase of this typewriter.”</blockquote>
+        <figcaption><strong>Jeria S.</strong><span>IBM Lexmark Wheelwriter 3</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="tw-reconditioning__review-clipping">
+      <div class="tw-reconditioning__review-tape" aria-hidden="true"></div>
+      {%- if review_image != blank -%}
+        {{ review_image
+          | image_url: width: 720
+          | image_tag:
+            class: 'tw-reconditioning__review-image',
+            widths: '360, 540, 720',
+            sizes: '(max-width: 749px) 82vw, 330px',
+            loading: 'lazy',
+            alt: 'Review collage featuring IBM Wheelwriter 2 and Wheelwriter 3 customer comments'
+        }}
+      {%- else -%}
+        <img
+          class="tw-reconditioning__review-image"
+          src="{{ 'typewriter-reconditioning-reviews.png' | asset_url }}"
+          alt="Review collage featuring IBM Wheelwriter 2 and Wheelwriter 3 customer comments"
+          loading="lazy"
+          width="1200"
+          height="1200"
+        >
+      {%- endif -%}
+      <button type="button" class="tw-reconditioning__review-open" data-review-open aria-haspopup="dialog">
+        View original collage
+      </button>
+    </div>
+  </div>
+
+  <dialog class="tw-reconditioning__dialog" data-review-dialog aria-labelledby="tw-review-dialog-title-{{ section.id }}">
+    <div class="tw-reconditioning__dialog-header">
+      <div>
+        <p class="tw-reconditioning__kicker">Original artwork</p>
+        <h2 id="tw-review-dialog-title-{{ section.id }}">Wheelwriter customer review collage</h2>
+      </div>
+      <button type="button" class="tw-reconditioning__dialog-close" data-review-close aria-label="Close review collage">×</button>
+    </div>
+    <div class="tw-reconditioning__dialog-body">
+      {%- if review_image != blank -%}
+        {{ review_image
+          | image_url: width: 1400
+          | image_tag:
+            class: 'tw-reconditioning__dialog-image',
+            widths: '720, 1000, 1400',
+            sizes: '90vw',
+            loading: 'lazy',
+            alt: 'Original review collage for IBM Wheelwriter 2 and Wheelwriter 3 models'
+        }}
+      {%- else -%}
+        <img
+          class="tw-reconditioning__dialog-image"
+          src="{{ 'typewriter-reconditioning-reviews.png' | asset_url }}"
+          alt="Original review collage for IBM Wheelwriter 2 and Wheelwriter 3 models"
+          loading="lazy"
+          width="1200"
+          height="1200"
+        >
+      {%- endif -%}
+    </div>
+  </dialog>
+</section>
