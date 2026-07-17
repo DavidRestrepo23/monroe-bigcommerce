@@ -1,0 +1,27 @@
+<article class="tw-reconditioning__product-card">
+  <a class="tw-reconditioning__product-image-link" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+    {%- if product.featured_image != blank -%}
+      {{ product.featured_image
+        | image_url: width: 720
+        | image_tag:
+          class: 'tw-reconditioning__product-image',
+          widths: '320, 480, 720',
+          sizes: '(max-width: 749px) 86vw, (max-width: 1099px) 42vw, 360px',
+          loading: 'lazy',
+          alt: product.featured_image.alt | default: product.title
+      }}
+    {%- else -%}
+      <div class="tw-reconditioning__product-placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+  </a>
+  <div class="tw-reconditioning__product-copy">
+    <p class="tw-reconditioning__product-status">
+      {%- if product.available -%}Available now{%- else -%}Currently sold out{%- endif -%}
+    </p>
+    <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <p class="tw-reconditioning__product-price">
+      {%- if product.price_varies -%}From {% endif -%}{{ product.price | money }}
+    </p>
+    <a class="tw-reconditioning__text-link" href="{{ product.url }}">View typewriter</a>
+  </div>
+</article>
