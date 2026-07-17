@@ -1,0 +1,79 @@
+{%- comment -%}
+  Search, presets, filters, and sorting controls.
+  JavaScript progressively enhances these controls; all models remain visible without JavaScript.
+{%- endcomment -%}
+
+<button
+  type="button"
+  class="twc-explorer__mobile-filter-button"
+  data-filter-toggle
+  aria-expanded="true"
+  aria-controls="twc-filter-panel-{{ section.id }}"
+>
+  <span>Filter models</span>
+  <span aria-hidden="true">+</span>
+</button>
+
+<div id="twc-filter-panel-{{ section.id }}" class="twc-explorer__filter-panel" data-filter-panel>
+  <div class="twc-explorer__filter-heading">
+    <div>
+      <p class="twc-explorer__filter-kicker">Typewriter finder</p>
+      <h3>Shape your shortlist</h3>
+    </div>
+    <button type="button" class="twc-explorer__text-button" data-reset-filters>Reset</button>
+  </div>
+
+  <label class="twc-explorer__field" for="twc-search-{{ section.id }}">
+    <span>Search models</span>
+    <input
+      id="twc-search-{{ section.id }}"
+      type="search"
+      inputmode="search"
+      autocomplete="off"
+      placeholder="Try Wheelwriter 10"
+      data-search
+    >
+  </label>
+
+  <fieldset class="twc-explorer__fieldset">
+    <legend>Quick paths</legend>
+    <div class="twc-explorer__preset-list">
+      <button type="button" data-preset="lightweight" aria-pressed="false">Lightweight, 12 lb or less</button>
+      <button type="button" data-preset="wide" aria-pressed="false">Wide paper, 16.5 in</button>
+      <button type="button" data-preset="spell" aria-pressed="false">Spell check</button>
+      <button type="button" data-preset="display" aria-pressed="false">Built-in display</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="twc-explorer__fieldset">
+    <legend>Brand</legend>
+    <div class="twc-explorer__brand-list" data-brand-list>
+      <button type="button" data-brand="all" aria-pressed="true">All</button>
+      <button type="button" data-brand="ibm" aria-pressed="false">IBM</button>
+      <button type="button" data-brand="nakajima" aria-pressed="false">Nakajima</button>
+      <button type="button" data-brand="royal" aria-pressed="false">Royal</button>
+    </div>
+  </fieldset>
+
+  <fieldset class="twc-explorer__fieldset">
+    <legend>Must-have features</legend>
+    <div class="twc-explorer__check-list">
+      <label><input type="checkbox" value="available" data-feature-filter> In stock now</label>
+      <label><input type="checkbox" value="spell" data-feature-filter> Spell check</label>
+      <label><input type="checkbox" value="battery" data-feature-filter> Battery backup</label>
+      <label><input type="checkbox" value="display" data-feature-filter> Display</label>
+      <label><input type="checkbox" value="memory" data-feature-filter> Memory</label>
+      <label><input type="checkbox" value="bold" data-feature-filter> Bold typing</label>
+    </div>
+  </fieldset>
+
+  <label class="twc-explorer__field" for="twc-paper-{{ section.id }}">
+    <span>Paper capacity</span>
+    <select id="twc-paper-{{ section.id }}" data-paper-filter>
+      <option value="all">Any paper capacity</option>
+      <option value="13">13 in</option>
+      <option value="14.75">14.75 in</option>
+      <option value="16.5">16.5 in</option>
+    </select>
+  </label>
+</div>
