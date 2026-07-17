@@ -11,7 +11,48 @@
   "sections": {
     "typewriter_comparison_chart": {
       "type": "typewriter-comparison-chart",
-      "settings": {}
+      "settings": {
+        "heading": "Find the right typewriter for the way you work",
+        "intro": "<p>Search, filter, and compare electric and electronic typewriters by the specifications that matter to you. Select up to three models to build a focused side-by-side shortlist.</p>",
+        "support_text": "Our team can help with product recommendations, compatibility questions, and ordering support.",
+        "phone_label": "(404) 377-1884",
+        "phone_link": "+14043771884",
+        "email": "info@typewriters.com",
+        "enable_quick_add": true,
+        "models": [
+          "ibm-lexmark-wheelwriter-7000-reconditioned",
+          "ibm-lexmark-wheelwriter-70-reconditioned",
+          "ibm-lexmark-wheelwriter-6-series-ii-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-6-electronic-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-5000-reconditioned",
+          "ibm-lexmark-wheelwriter-50-reconditioned",
+          "ibm-lexmark-wheelwriter-5-reconditioned",
+          "ibm-lexmark-wheelwriter-3500-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-35-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-3000-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-30-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-3-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-2500-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-2000-electric-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-1500-electronic-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-15-electronic-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-1000-electronic-typewriter-reconditioned",
+          "ibm-lexmark-wheelwriter-10-electric-typewriter-reconditioned",
+          "ibm-lexmark-personal-wheelwriter-2-electric-typewriter-reconditioned",
+          "ibm-lexmark-personal-wheelwriter-1-electric-typewriter-reconditioned",
+          "nakajima-wpt-160-portable-electronic-word-processing-typewriter",
+          "nakajima-wpt-150-portable-electronic-word-processing-typewriter",
+          "royal-scriptor",
+          "royal-scriptor-ii-typewriter"
+        ],
+        "ibm_ribbon": "",
+        "ibm_correction": "",
+        "portable_ribbon": "",
+        "portable_correction": "",
+        "accent_color": "#c94b42",
+        "paper_color": "#f5eedc",
+        "ink_color": "#29251f"
+      }
     }
   },
   "order": [
