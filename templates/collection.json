@@ -32,7 +32,7 @@
         "category_ibGfCU": {
           "type": "category",
           "settings": {
-            "collection": "ink-ribbons-paper-tape-rolls",
+            "collection": "typewriter-supplies",
             "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69367_1_9ce962a6-0ca6-4293-a273-ebc50dfda4f3.png",
             "title_override": "Supplies"
           }
@@ -40,7 +40,7 @@
         "category_BwRM94": {
           "type": "category",
           "settings": {
-            "collection": "ink-ribbons-paper-tape-rolls",
+            "collection": "ibm-parts",
             "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69366_1_5d8df5d3-076b-42ec-8a27-1b4504fa2530.png",
             "title_override": "IBM Parts"
           }
@@ -48,7 +48,7 @@
         "category_wB3Kmm": {
           "type": "category",
           "settings": {
-            "collection": "frontpage",
+            "collection": "ibm-wheelwriters",
             "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-e-remova-a-mo-da-imag__37827_1_7c74dcfc-224a-4403-8a6f-f8c9316f1593.png",
             "title_override": "Reconditioned Typewriters"
           }
