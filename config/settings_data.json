@@ -404,6 +404,11 @@
         "type": "shopify://apps/blockify-fraud-filter/blocks/app_embed/2e3e0ba5-0e70-447a-9ec5-3bf76b5ef12e",
         "disabled": false,
         "settings": {}
+      },
+      "9674181886073616913": {
+        "type": "shopify://apps/mida-fraud-ip-blocker/blocks/blocker-script/09aab972-8c77-47b1-a9a0-4712e9f2405d",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
