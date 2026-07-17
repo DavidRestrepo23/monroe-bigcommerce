@@ -143,8 +143,16 @@
   color: #ffffff;
   display: grid;
   gap: 18px;
-  grid-template-columns: auto 1fr;
-  padding: clamp(24px, 3vw, 38px);
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  padding: clamp(26px, 3vw, 38px) clamp(20px, 2.5vw, 34px);
+  text-align: center;
+}
+
+.twc-explorer__help > div {
+  max-width: 290px;
+  min-width: 0;
+  width: 100%;
 }
 
 .twc-explorer__help-mark {
@@ -167,18 +175,23 @@
 
 .twc-explorer__help h3 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
+  font-size: clamp(22px, 2vw, 25px);
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .twc-explorer__help p {
   font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 12px;
+  max-width: 28ch;
 }
 
 .twc-explorer__help-links {
   display: grid;
   gap: 8px;
+  justify-items: center;
   margin-top: 20px;
 }
 
@@ -189,6 +202,7 @@
 .twc-explorer__help-links a:active {
   color: #ffffff !important;
   font-weight: 700;
+  overflow-wrap: anywhere;
   text-decoration-color: var(--twc-accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -1088,7 +1102,7 @@
   }
 
   .twc-explorer__help {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .twc-explorer__workspace {
