@@ -1,176 +1,135 @@
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign articles_per_page = section.settings.articles_per_page | default: 12
+  assign articles_per_page = section.settings.articles_per_page | default: 18
   assign current_tag = current_tags | first
 -%}
 
 {%- paginate blog.articles by articles_per_page -%}
-<div class="page-width">
-
-  {%- comment -%} ── Featured Posts (page 1 only) ── {%- endcomment -%}
-  {%- if paginate.current_page == 1 and blog.articles.size > 0 -%}
-    <div class="blog-featured">
-      <h2 class="blog-featured__label">{{ section.settings.featured_heading | default: 'Featured Posts' }}</h2>
-
-      {%- assign featured_article = blog.articles[0] -%}
-      <div class="blog-featured__hero">
-        <a href="{{ featured_article.url }}" class="blog-featured__hero-image">
-          {%- if featured_article.image != blank -%}
-            {{ featured_article.image | image_url: width: 1554 | image_tag:
-              loading: 'eager',
-              widths: '600, 900, 1200, 1554',
-              sizes: '(min-width: 769px) 777px, 100vw',
-              alt: featured_article.title
-            }}
-          {%- endif -%}
-        </a>
-        <div class="blog-featured__hero-body">
-          <div class="blog-meta">
-            <span class="blog-meta__author">
-              {%- render 'icon-blog-book' -%}
-              {{ featured_article.author }}
-            </span>
-            <span class="blog-meta__date">{{ featured_article.published_at | date: '%b %d, %Y' }}</span>
-          </div>
-          <h3 class="blog-featured__hero-title">{{ featured_article.title }}</h3>
-          <a href="{{ featured_article.url }}" class="blog-read-more">Read More</a>
-        </div>
-      </div>
-
-      {%- if blog.articles.size > 1 -%}
-        <div class="blog-featured__cards">
-          {%- for article in blog.articles offset: 1 limit: 4 -%}
-            {%- render 'blog-card', article: article -%}
-          {%- endfor -%}
-        </div>
+  <div class="blog-page page-width">
+    <header class="blog-page__header">
+      <p class="blog-page__eyebrow">Monroe Systems for Business</p>
+      <h1 class="blog-page__title">
+        {%- if current_tag -%}
+          {{ current_tag | escape }}
+        {%- else -%}
+          {{ blog.title | escape }}
+        {%- endif -%}
+      </h1>
+      {%- if section.settings.intro != blank -%}
+        <div class="blog-page__intro rte">{{ section.settings.intro }}</div>
       {%- endif -%}
-    </div>
+    </header>
 
-    {%- comment -%} ── Highlight Section ── {%- endcomment -%}
-    {%- if blog.articles.size > 5 -%}
-      {%- assign highlight_article = blog.articles[5] -%}
-      <div class="blog-highlight">
-        <a href="{{ highlight_article.url }}" class="blog-highlight__main">
-          {%- if highlight_article.image != blank -%}
-            {{ highlight_article.image | image_url: width: 1486 | image_tag:
-              class: 'blog-highlight__main-image',
-              loading: 'lazy',
-              widths: '600, 900, 1200, 1486',
-              sizes: '(min-width: 769px) 743px, 100vw',
-              alt: highlight_article.title
-            }}
-          {%- endif -%}
-          <div class="blog-highlight__main-overlay"></div>
-          <div class="blog-highlight__main-content">
-            <h3 class="blog-highlight__main-title">{{ highlight_article.title }}</h3>
-            <div class="blog-highlight__main-meta">
+    {%- if paginate.current_page == 1 and current_tag == blank and blog.articles.size > 0 -%}
+      <section class="blog-featured" aria-labelledby="featured-posts-heading">
+        <div class="blog-section-heading">
+          <h2 id="featured-posts-heading">{{ section.settings.featured_heading | default: 'Featured Posts' | escape }}</h2>
+        </div>
+
+        {%- assign featured_article = blog.articles.first -%}
+        <article class="blog-featured__hero">
+          <a href="{{ featured_article.url }}" class="blog-featured__hero-image" aria-label="Read {{ featured_article.title | escape }}">
+            {%- if featured_article.image != blank -%}
+              {{ featured_article.image | image_url: width: 1664 | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '416, 624, 832, 1248, 1664',
+                sizes: '(min-width: 1200px) 832px, (min-width: 990px) 62vw, 100vw',
+                alt: featured_article.image.alt | default: featured_article.title
+              }}
+            {%- else -%}
+              <span class="blog-image-placeholder" aria-hidden="true"></span>
+            {%- endif -%}
+          </a>
+
+          <div class="blog-featured__hero-body">
+            <div class="blog-meta">
               <span class="blog-meta__author">
-                {%- render 'icon-blog-book', color: '#fff' -%}
-                {{ highlight_article.author }}
+                {%- render 'icon-blog-book' -%}
+                {{ featured_article.author | escape }}
               </span>
-              <span class="blog-meta__date">{{ highlight_article.published_at | date: '%b %d, %Y' }}</span>
+              <time class="blog-meta__date" datetime="{{ featured_article.published_at | date: '%Y-%m-%d' }}">
+                {{ featured_article.published_at | date: '%b %d, %Y' }}
+              </time>
             </div>
+            <h2 class="blog-featured__hero-title">
+              <a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a>
+            </h2>
+            <p class="blog-featured__excerpt">
+              {{ featured_article.excerpt_or_content | strip_html | truncatewords: 30 }}
+            </p>
+            <a href="{{ featured_article.url }}" class="blog-read-more" aria-label="Read {{ featured_article.title | escape }}">
+              Read article <span aria-hidden="true">→</span>
+            </a>
           </div>
-        </a>
+        </article>
 
-        {%- if blog.articles.size > 6 -%}
-          <div class="blog-highlight__sidebar">
-            {%- for article in blog.articles offset: 6 limit: 2 -%}
-              <div class="blog-highlight__sidebar-item">
-                <a href="{{ article.url }}" class="blog-highlight__sidebar-thumb">
-                  {%- if article.image != blank -%}
-                    {{ article.image | image_url: width: 378 | image_tag:
-                      loading: 'lazy',
-                      alt: article.title
-                    }}
-                  {%- endif -%}
-                </a>
-                <div class="blog-highlight__sidebar-body">
-                  <div class="blog-meta">
-                    <span class="blog-meta__author">
-                      {%- render 'icon-blog-book' -%}
-                      {{ article.author }}
-                    </span>
-                    <span class="blog-meta__date">{{ article.published_at | date: '%b %d, %Y' }}</span>
-                  </div>
-                  <h3 class="blog-highlight__sidebar-title">{{ article.title }}</h3>
-                  <a href="{{ article.url }}" class="blog-read-more">Read More</a>
-                </div>
-              </div>
+        {%- if blog.articles.size > 1 -%}
+          <div class="blog-featured__cards">
+            {%- for article in blog.articles offset: 1 limit: 4 -%}
+              {%- render 'blog-card', article: article -%}
             {%- endfor -%}
           </div>
         {%- endif -%}
-      </div>
+      </section>
     {%- endif -%}
-  {%- endif -%}
 
-  {%- comment -%} ── Recent Posts Grid ── {%- endcomment -%}
-
-<div class="blog-recent__header">
-  <h2 class="blog-recent__label">
-    {{ section.settings.recent_heading | default: 'Recent Posts' }}
-  </h2>
-
-  {%- comment -%}
-    Blog tag filter buttons intentionally hidden.
-    Article tags remain assigned and tagged blog URLs will continue to work.
-  {%- endcomment -%}
-</div>
-
-    {%- liquid
-      if paginate.current_page == 1
-        assign grid_offset = 8
-      else
-        assign grid_offset = 0
-      endif
-    -%}
-
-    <div class="blog-recent__grid">
-      {%- for article in blog.articles offset: grid_offset -%}
-        {%- render 'blog-card', article: article -%}
-      {%- endfor -%}
-    </div>
-
-    {%- comment -%} ── Pagination ── {%- endcomment -%}
-    {%- if paginate.pages > 1 -%}
-      <nav class="blog-pagination" role="navigation" aria-label="Blog pagination">
-        {%- if paginate.previous -%}
-          <a href="{{ paginate.previous.url }}" class="blog-pagination__arrow" aria-label="Previous page">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </a>
-        {%- else -%}
-          <span class="blog-pagination__arrow blog-pagination__arrow--disabled" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </span>
-        {%- endif -%}
-
-        {%- for part in paginate.parts -%}
-          {%- if part.is_link -%}
-            <a href="{{ part.url }}" class="blog-pagination__page">{{ part.title }}</a>
+    <section class="blog-recent" aria-labelledby="recent-posts-heading">
+      <div class="blog-section-heading">
+        <h2 id="recent-posts-heading">
+          {%- if current_tag -%}
+            Posts tagged “{{ current_tag | escape }}”
           {%- else -%}
-            {%- if part.title == paginate.current_page -%}
+            {{ section.settings.recent_heading | default: 'Recent Posts' | escape }}
+          {%- endif -%}
+        </h2>
+        <span class="blog-section-heading__count">{{ blog.articles_count }} articles</span>
+      </div>
+
+      {%- liquid
+        if paginate.current_page == 1 and current_tag == blank
+          assign grid_offset = 5
+        else
+          assign grid_offset = 0
+        endif
+      -%}
+
+      <div class="blog-recent__grid">
+        {%- for article in blog.articles offset: grid_offset -%}
+          {%- render 'blog-card', article: article -%}
+        {%- else -%}
+          <p class="blog-recent__empty">No articles are available yet.</p>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="blog-pagination" role="navigation" aria-label="Blog pagination">
+          {%- if paginate.previous -%}
+            <a href="{{ paginate.previous.url }}" class="blog-pagination__arrow" aria-label="Previous page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            </a>
+          {%- endif -%}
+
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}
+              <a href="{{ part.url }}" class="blog-pagination__page">{{ part.title }}</a>
+            {%- elsif part.title == paginate.current_page -%}
               <span class="blog-pagination__page blog-pagination__page--current" aria-current="page">{{ part.title }}</span>
             {%- else -%}
-              <span class="blog-pagination__page">{{ part.title }}</span>
+              <span class="blog-pagination__ellipsis">{{ part.title }}</span>
             {%- endif -%}
+          {%- endfor -%}
+
+          {%- if paginate.next -%}
+            <a href="{{ paginate.next.url }}" class="blog-pagination__arrow" aria-label="Next page">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
           {%- endif -%}
-        {%- endfor -%}
-
-        {%- if paginate.next -%}
-          <a href="{{ paginate.next.url }}" class="blog-pagination__arrow" aria-label="Next page">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </a>
-        {%- else -%}
-          <span class="blog-pagination__arrow blog-pagination__arrow--disabled" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </span>
-        {%- endif -%}
-      </nav>
-    {%- endif -%}
+        </nav>
+      {%- endif -%}
+    </section>
   </div>
-
-</div>
 {%- endpaginate -%}
 
 {% schema %}
@@ -179,18 +138,16 @@
   "tag": "section",
   "settings": [
     {
-      "type": "header",
-      "content": "Featured Section"
+      "type": "richtext",
+      "id": "intro",
+      "label": "Blog introduction",
+      "default": "<p>Practical guidance for accountants, bookkeepers, finance teams, and offices that rely on accurate business tools.</p>"
     },
     {
       "type": "text",
       "id": "featured_heading",
       "label": "Featured heading",
       "default": "Featured Posts"
-    },
-    {
-      "type": "header",
-      "content": "Recent Posts"
     },
     {
       "type": "text",
@@ -201,10 +158,10 @@
     {
       "type": "range",
       "id": "articles_per_page",
-      "min": 6,
+      "min": 9,
       "max": 24,
-      "step": 2,
-      "default": 20,
+      "step": 3,
+      "default": 18,
       "label": "Articles per page"
     }
   ]
