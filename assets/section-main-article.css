@@ -369,3 +369,10 @@
 @media (prefers-reduced-motion: reduce) {
   html:focus-within { scroll-behavior: auto; }
 }
+
+/* Center the 832 × 468 article hero. */
+.article-page > .article-hero {
+  float: none !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
