@@ -1,21 +1,30 @@
 <article class="blog-card">
-  <a href="{{ article.url }}" class="blog-card__image">
+  <a href="{{ article.url }}" class="blog-card__image" aria-label="Read {{ article.title | escape }}">
     {%- if article.image != blank -%}
-      {{ article.image | image_url: width: 600 | image_tag:
+      {{ article.image | image_url: width: 832 | image_tag:
         loading: 'lazy',
-        widths: '300, 400, 600',
-        sizes: '(min-width: 769px) 300px, 100vw',
-        alt: article.title
+        widths: '416, 624, 832',
+        sizes: '(min-width: 990px) 30vw, (min-width: 640px) 50vw, 100vw',
+        alt: article.image.alt | default: article.title
       }}
+    {%- else -%}
+      <span class="blog-image-placeholder" aria-hidden="true"></span>
     {%- endif -%}
   </a>
-  <div class="blog-meta">
-    <span class="blog-meta__author">
-      {%- render 'icon-blog-book' -%}
-      {{ article.author }}
-    </span>
-    <span class="blog-meta__date">{{ article.published_at | date: '%b %d, %Y' }}</span>
+  <div class="blog-card__body">
+    <div class="blog-meta">
+      <span class="blog-meta__author">
+        {%- render 'icon-blog-book' -%}
+        {{ article.author | escape }}
+      </span>
+      <time class="blog-meta__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+        {{ article.published_at | date: '%b %d, %Y' }}
+      </time>
+    </div>
+    <h3 class="blog-card__title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+    <p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+    <a href="{{ article.url }}" class="blog-card__link" aria-label="Read {{ article.title | escape }}">
+      Read article <span aria-hidden="true">→</span>
+    </a>
   </div>
-  <h3 class="blog-card__title">{{ article.title }}</h3>
-  <a href="{{ article.url }}" class="blog-read-more">Read More</a>
 </article>
