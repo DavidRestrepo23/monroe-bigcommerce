@@ -560,6 +560,21 @@
 /* Compact editorial scale
    Pixel values are intentional: this theme's root font size is not 10px, so
    rem-based type rendered substantially larger than the design intended. */
+/*
+  These elements also carry the theme's global .page-width class. base.css is
+  loaded after this file and applies fixed 70px side margins, which left-anchors
+  any wrapper narrower than the viewport. The more-specific selector below
+  keeps the theme gutters while distributing the remaining space evenly.
+*/
+.tw-article > .page-width.tw-article__header,
+.tw-article > .page-width.tw-article__hero,
+.tw-article > .page-width.tw-article__layout,
+.tw-article > .page-width.tw-article__related {
+  width: calc(100% - 140px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .tw-article__header {
   max-width: 1180px;
   padding-top: 30px;
@@ -778,6 +793,13 @@
 }
 
 @media screen and (max-width: 749px) {
+  .tw-article > .page-width.tw-article__header,
+  .tw-article > .page-width.tw-article__hero,
+  .tw-article > .page-width.tw-article__layout,
+  .tw-article > .page-width.tw-article__related {
+    width: calc(100% - 48px);
+  }
+
   .tw-article__header {
     padding-top: 20px;
     padding-bottom: 24px;
