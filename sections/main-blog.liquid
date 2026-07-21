@@ -1,222 +1,86 @@
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign articles_per_page = section.settings.articles_per_page | default: 12
   assign current_tag = current_tags | first
+  assign image_fit = section.settings.card_image_fit | default: 'contain'
 -%}
 
-{%- paginate blog.articles by articles_per_page -%}
-<div class="page-width">
+<section class="tw-blog tw-blog--fit-{{ image_fit }}" aria-labelledby="tw-blog-title-{{ section.id }}">
+  <header class="tw-blog__masthead page-width">
+    <p class="tw-blog__eyebrow">{{ blog.title | escape }}</p>
+    <h1 id="tw-blog-title-{{ section.id }}">{{ section.settings.heading | default: blog.title | escape }}</h1>
+    {%- if section.settings.introduction != blank -%}<div class="tw-blog__intro rte">{{ section.settings.introduction }}</div>{%- endif -%}
+  </header>
 
-  {%- comment -%} ── Featured Posts (page 1 only) ── {%- endcomment -%}
-  {%- if paginate.current_page == 1 and blog.articles.size > 0 -%}
-    <div class="blog-featured">
-      <h2 class="blog-featured__label">{{ section.settings.featured_heading | default: 'Featured Posts' }}</h2>
-
-      {%- assign featured_article = blog.articles[0] -%}
-      <div class="blog-featured__hero">
-        <a href="{{ featured_article.url }}" class="blog-featured__hero-image">
-          {%- if featured_article.image != blank -%}
-            {{ featured_article.image | image_url: width: 1554 | image_tag:
-              loading: 'eager',
-              widths: '600, 900, 1200, 1554',
-              sizes: '(min-width: 769px) 777px, 100vw',
-              alt: featured_article.title
-            }}
-          {%- endif -%}
-        </a>
-        <div class="blog-featured__hero-body">
-          <div class="blog-meta">
-            <span class="blog-meta__author">
-              {%- render 'icon-blog-book' -%}
-              {{ featured_article.author }}
-            </span>
-            <span class="blog-meta__date">{{ featured_article.published_at | date: '%b %d, %Y' }}</span>
-          </div>
-          <h3 class="blog-featured__hero-title">{{ featured_article.title }}</h3>
-          <a href="{{ featured_article.url }}" class="blog-read-more">Read More</a>
-        </div>
-      </div>
-
-      {%- if blog.articles.size > 1 -%}
-        <div class="blog-featured__cards">
-          {%- for article in blog.articles offset: 1 limit: 4 -%}
-            {%- render 'blog-card', article: article -%}
-          {%- endfor -%}
-        </div>
+  {%- paginate blog.articles by section.settings.articles_per_page -%}
+    <div class="page-width">
+      {%- if current_tag != blank -%}
+        <div class="tw-blog__filter-status"><p>Showing articles tagged <strong>{{ current_tag | escape }}</strong></p><a href="{{ blog.url }}">Clear filter</a></div>
       {%- endif -%}
-    </div>
 
-    {%- comment -%} ── Highlight Section ── {%- endcomment -%}
-    {%- if blog.articles.size > 5 -%}
-      {%- assign highlight_article = blog.articles[5] -%}
-      <div class="blog-highlight">
-        <a href="{{ highlight_article.url }}" class="blog-highlight__main">
-          {%- if highlight_article.image != blank -%}
-            {{ highlight_article.image | image_url: width: 1486 | image_tag:
-              class: 'blog-highlight__main-image',
-              loading: 'lazy',
-              widths: '600, 900, 1200, 1486',
-              sizes: '(min-width: 769px) 743px, 100vw',
-              alt: highlight_article.title
-            }}
-          {%- endif -%}
-          <div class="blog-highlight__main-overlay"></div>
-          <div class="blog-highlight__main-content">
-            <h3 class="blog-highlight__main-title">{{ highlight_article.title }}</h3>
-            <div class="blog-highlight__main-meta">
-              <span class="blog-meta__author">
-                {%- render 'icon-blog-book', color: '#fff' -%}
-                {{ highlight_article.author }}
-              </span>
-              <span class="blog-meta__date">{{ highlight_article.published_at | date: '%b %d, %Y' }}</span>
+      {%- if paginate.current_page == 1 and current_tag == blank and blog.articles.size > 0 -%}
+        {%- assign featured_article = blog.articles.first -%}
+        {%- assign featured_alt = featured_article.image.alt | default: featured_article.title -%}
+        <div class="tw-blog-featured">
+          <article class="tw-blog-featured__primary">
+            <a class="tw-blog-featured__media" href="{{ featured_article.url }}"{% if featured_article.image != blank %} style="--tw-source-width: {{ featured_article.image.width }}px;"{% endif %}>
+              {%- if featured_article.image != blank -%}
+                {{ featured_article.image | image_url: width: 1600 | image_tag:
+                  class: 'tw-blog-featured__image', loading: 'eager', fetchpriority: 'high',
+                  widths: '540, 750, 960, 1200, 1600', sizes: '(min-width: 990px) 64vw, 100vw',
+                  alt: featured_alt, width: featured_article.image.width, height: featured_article.image.height
+                }}
+              {%- endif -%}
+            </a>
+            <div class="tw-blog-featured__body">
+              <p class="tw-blog-featured__label">Featured article</p>
+              <p class="tw-blog-card__meta"><span>{{ featured_article.author | escape }}</span><span aria-hidden="true">·</span><time datetime="{{ featured_article.published_at | date: '%Y-%m-%d' }}">{{ featured_article.published_at | date: '%b %d, %Y' }}</time></p>
+              <h2><a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a></h2>
+              <p>{{ featured_article.excerpt_or_content | strip_html | truncatewords: 34 }}</p>
+              <a class="tw-blog-card__link" href="{{ featured_article.url }}">Read featured article<span class="visually-hidden">: {{ featured_article.title | escape }}</span></a>
             </div>
-          </div>
-        </a>
-
-        {%- if blog.articles.size > 6 -%}
-          <div class="blog-highlight__sidebar">
-            {%- for article in blog.articles offset: 6 limit: 2 -%}
-              <div class="blog-highlight__sidebar-item">
-                <a href="{{ article.url }}" class="blog-highlight__sidebar-thumb">
-                  {%- if article.image != blank -%}
-                    {{ article.image | image_url: width: 378 | image_tag:
-                      loading: 'lazy',
-                      alt: article.title
-                    }}
-                  {%- endif -%}
-                </a>
-                <div class="blog-highlight__sidebar-body">
-                  <div class="blog-meta">
-                    <span class="blog-meta__author">
-                      {%- render 'icon-blog-book' -%}
-                      {{ article.author }}
-                    </span>
-                    <span class="blog-meta__date">{{ article.published_at | date: '%b %d, %Y' }}</span>
-                  </div>
-                  <h3 class="blog-highlight__sidebar-title">{{ article.title }}</h3>
-                  <a href="{{ article.url }}" class="blog-read-more">Read More</a>
-                </div>
-              </div>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-  {%- endif -%}
-
-  {%- comment -%} ── Recent Posts Grid ── {%- endcomment -%}
-  <div class="blog-recent">
-    <div class="blog-recent__header">
-      <h2 class="blog-recent__label">{{ section.settings.recent_heading | default: 'Recent Posts' }}</h2>
-
-      {%- if blog.all_tags.size > 0 -%}
-        <div class="blog-recent__filters">
-          {%- for tag in blog.all_tags -%}
-            {%- if current_tag == tag -%}
-              <a href="{{ blog.url }}" class="blog-recent__filter blog-recent__filter--active">
-                {{ tag }}
-                <svg class="blog-recent__filter-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-              </a>
-            {%- else -%}
-              <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-recent__filter">{{ tag }}</a>
-            {%- endif -%}
-          {%- endfor -%}
+          </article>
+          {%- if blog.articles.size > 1 -%}
+            <div class="tw-blog-featured__secondary" aria-label="More highlighted articles">
+              {%- for article in blog.articles offset: 1 limit: 3 -%}{%- render 'blog-card', article: article, heading_level: 'h3', show_excerpt: false, image_fit: image_fit -%}{%- endfor -%}
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
+
+      {%- liquid
+        assign article_offset = 0
+        if paginate.current_page == 1 and current_tag == blank
+          assign article_offset = 4
+        endif
+      -%}
+      <div class="tw-blog__recent-heading"><h2>{% if current_tag != blank %}Tagged articles{% else %}Latest from the blog{% endif %}</h2></div>
+      <div class="tw-blog-grid">
+        {%- for article in blog.articles offset: article_offset -%}
+          {%- render 'blog-card', article: article, heading_level: 'h3', show_excerpt: true, image_fit: image_fit -%}
+        {%- else -%}<p>No articles were found.</p>{%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="tw-blog-pagination" aria-label="Blog pagination">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" rel="prev">Previous</a>{%- endif -%}
+          <span>Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}" rel="next">Next</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
     </div>
-
-    {%- liquid
-      if paginate.current_page == 1
-        assign grid_offset = 8
-      else
-        assign grid_offset = 0
-      endif
-    -%}
-
-    <div class="blog-recent__grid">
-      {%- for article in blog.articles offset: grid_offset -%}
-        {%- render 'blog-card', article: article -%}
-      {%- endfor -%}
-    </div>
-
-    {%- comment -%} ── Pagination ── {%- endcomment -%}
-    {%- if paginate.pages > 1 -%}
-      <nav class="blog-pagination" role="navigation" aria-label="Blog pagination">
-        {%- if paginate.previous -%}
-          <a href="{{ paginate.previous.url }}" class="blog-pagination__arrow" aria-label="Previous page">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </a>
-        {%- else -%}
-          <span class="blog-pagination__arrow blog-pagination__arrow--disabled" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </span>
-        {%- endif -%}
-
-        {%- for part in paginate.parts -%}
-          {%- if part.is_link -%}
-            <a href="{{ part.url }}" class="blog-pagination__page">{{ part.title }}</a>
-          {%- else -%}
-            {%- if part.title == paginate.current_page -%}
-              <span class="blog-pagination__page blog-pagination__page--current" aria-current="page">{{ part.title }}</span>
-            {%- else -%}
-              <span class="blog-pagination__page">{{ part.title }}</span>
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- if paginate.next -%}
-          <a href="{{ paginate.next.url }}" class="blog-pagination__arrow" aria-label="Next page">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </a>
-        {%- else -%}
-          <span class="blog-pagination__arrow blog-pagination__arrow--disabled" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </span>
-        {%- endif -%}
-      </nav>
-    {%- endif -%}
-  </div>
-
-</div>
-{%- endpaginate -%}
+  {%- endpaginate -%}
+</section>
 
 {% schema %}
 {
-  "name": "Blog Page",
+  "name": "Main blog",
   "tag": "section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Featured Section"
-    },
-    {
-      "type": "text",
-      "id": "featured_heading",
-      "label": "Featured heading",
-      "default": "Featured Posts"
-    },
-    {
-      "type": "header",
-      "content": "Recent Posts"
-    },
-    {
-      "type": "text",
-      "id": "recent_heading",
-      "label": "Recent heading",
-      "default": "Recent Posts"
-    },
-    {
-      "type": "range",
-      "id": "articles_per_page",
-      "min": 6,
-      "max": 24,
-      "step": 2,
-      "default": 20,
-      "label": "Articles per page"
-    }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stories from Typewriters.com" },
+    { "type": "richtext", "id": "introduction", "label": "Introduction", "default": "<p>Practical advice, typewriter history, and stories from people who still believe the right machine can change the way you write.</p>" },
+    { "type": "select", "id": "card_image_fit", "label": "Card image treatment", "default": "contain", "options": [{ "value": "contain", "label": "Show the full image" }, { "value": "cover", "label": "Fill and crop" }] },
+    { "type": "range", "id": "articles_per_page", "label": "Articles per page", "min": 8, "max": 24, "step": 4, "default": 12 }
   ]
 }
 {% endschema %}
