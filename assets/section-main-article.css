@@ -899,7 +899,7 @@
     align-self: start;
     justify-self: start;
     /* Fill more of the left rail without colliding with the centered article. */
-    width: min(380px, calc(100% - 32px));
+    width: min(550px, calc(100% - 32px));
   }
 
   .tw-article__toc {
