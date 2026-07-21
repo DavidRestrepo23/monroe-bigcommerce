@@ -28,11 +28,14 @@
 .tw-blog__filter-status a { font-weight: 700; text-underline-offset: .25em; }
 
 .tw-blog-featured { border-bottom: 1px solid var(--tw-rule); display: grid; gap: 3rem; margin-bottom: 4.5rem; padding-bottom: 4.5rem; }
-.tw-blog-featured__primary { background: var(--tw-paper); border: 1px solid var(--tw-rule); display: grid; overflow: hidden; }
+.tw-blog-featured__primary {
+  background: var(--tw-paper); border: 1px solid var(--tw-rule); display: grid;
+  margin-inline: auto; max-width: 144rem; overflow: hidden; width: 100%;
+}
 .tw-blog-featured__media { background: #ece8e0; display: grid; min-height: 0; place-items: center; }
-.tw-blog-featured__image { display: block; height: auto; max-height: 58rem; max-width: min(100%, var(--tw-source-width)); object-fit: contain; width: auto; }
-.tw-blog-featured__body { align-self: center; padding: clamp(2.4rem, 5vw, 5.5rem); }
-.tw-blog-featured__body h2 { font-family: var(--font-heading-family); font-size: clamp(2.8rem, 4.2vw, 5rem); line-height: 1.05; margin: 1.2rem 0 1.7rem; text-wrap: balance; }
+.tw-blog-featured__image { display: block; height: auto; max-height: 46rem; max-width: min(100%, var(--tw-source-width)); object-fit: contain; width: auto; }
+.tw-blog-featured__body { align-self: center; padding: clamp(2.4rem, 3.2vw, 4.2rem); }
+.tw-blog-featured__body h2 { font-family: var(--font-heading-family); font-size: clamp(2.8rem, 3.1vw, 4.2rem); line-height: 1.08; margin: 1rem 0 1.4rem; text-wrap: balance; }
 .tw-blog-featured__body h2 a, .tw-blog-card__title a { text-decoration: none; }
 .tw-blog-featured__body > p:not([class]) { color: rgba(var(--color-foreground, 24 24 24), .74); line-height: 1.65; }
 .tw-blog-featured__secondary { display: grid; gap: 2.4rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -63,7 +66,7 @@
   .tw-blog-card__title a:hover, .tw-blog-featured__body h2 a:hover { text-decoration: underline; text-underline-offset: .15em; }
 }
 @media screen and (min-width: 990px) {
-  .tw-blog-featured__primary { grid-template-columns: minmax(0, 1.55fr) minmax(30rem, .9fr); }
+  .tw-blog-featured__primary { grid-template-columns: minmax(0, 1.25fr) minmax(34rem, 1fr); }
 }
 @media screen and (max-width: 989px) {
   .tw-blog-featured__secondary, .tw-blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
