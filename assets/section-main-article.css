@@ -875,3 +875,67 @@
     min-height: 190px;
   }
 }
+
+/*
+  Center the reading column beneath the featured image while allowing the
+  table of contents to occupy the open space at the far left of the viewport.
+  The equal outer grid tracks keep the 760px article column on the page's true
+  centerline; the sidebar no longer participates in that centering calculation.
+*/
+@media screen and (min-width: 1340px) {
+  .tw-article > .page-width.tw-article__layout {
+    width: calc(100% - 32px);
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 760px) minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .tw-article__aside {
+    position: relative;
+    left: auto;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    width: 270px;
+  }
+
+  .tw-article__main {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+  }
+
+  .tw-article__toc summary {
+    padding: 19px 21px;
+    font-size: 15px;
+  }
+
+  .tw-article__toc ol {
+    padding: 18px 21px 21px 39px;
+  }
+
+  .tw-article__toc li {
+    margin-bottom: 11px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+/* At narrower desktop widths there is not enough room for a larger left rail
+   and a centered 760px article without overlap, so the contents card stacks. */
+@media screen and (min-width: 990px) and (max-width: 1339px) {
+  .tw-article > .page-width.tw-article__layout {
+    display: block;
+    max-width: 760px;
+  }
+
+  .tw-article__aside {
+    left: auto;
+    width: 100%;
+    margin-bottom: 28px;
+  }
+
+  .tw-article__toc {
+    position: static;
+  }
+}
