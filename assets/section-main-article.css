@@ -637,18 +637,24 @@
   max-width: 1040px;
 }
 
+.tw-article__aside {
+  position: relative;
+  left: -45px;
+  width: 245px;
+}
+
 .tw-article__toc summary {
-  padding: 14px 16px;
-  font-size: 13px;
+  padding: 16px 18px;
+  font-size: 14px;
 }
 
 .tw-article__toc ol {
-  padding: 14px 16px 16px 32px;
+  padding: 16px 18px 18px 34px;
 }
 
 .tw-article__toc li {
-  margin-bottom: 9px;
-  font-size: 13px;
+  margin-bottom: 10px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -721,9 +727,15 @@
 
 /* Continue reading: compact, self-contained editorial cards. */
 .tw-article__related {
-  max-width: 1100px;
+  max-width: none;
   margin-top: 64px;
   padding-top: 34px;
+}
+
+/* Let the related-article row use the viewport while retaining safe gutters. */
+.tw-article > .page-width.tw-article__related {
+  width: calc(100% - 80px);
+  max-width: none;
 }
 
 .tw-article__related-header {
@@ -789,6 +801,11 @@
 @media screen and (max-width: 989px) {
   .tw-article__layout {
     max-width: 760px;
+  }
+
+  .tw-article__aside {
+    left: 0;
+    width: 100%;
   }
 }
 
