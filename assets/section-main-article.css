@@ -884,19 +884,25 @@
 */
 @media screen and (min-width: 1340px) {
   .tw-article > .page-width.tw-article__layout {
-    width: calc(100% - 32px);
+    width: calc(100% - 96px);
     max-width: none;
     grid-template-columns: minmax(0, 1fr) minmax(0, 760px) minmax(0, 1fr);
     gap: 0;
   }
 
   .tw-article__aside {
-    position: relative;
+    position: sticky;
+    top: 110px;
     left: auto;
     grid-column: 1;
     grid-row: 1;
+    align-self: start;
     justify-self: start;
     width: 270px;
+  }
+
+  .tw-article__toc {
+    position: static;
   }
 
   .tw-article__main {
