@@ -898,7 +898,8 @@
     grid-row: 1;
     align-self: start;
     justify-self: start;
-    width: 270px;
+    /* Fill more of the left rail without colliding with the centered article. */
+    width: min(380px, calc(100% - 32px));
   }
 
   .tw-article__toc {
