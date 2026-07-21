@@ -9,7 +9,7 @@
   --tw-article-line: #d6cdbf;
   color: var(--tw-article-ink);
   font-family: Arial, Helvetica, sans-serif;
-  padding-bottom: 6rem;
+  padding-bottom: 4.5rem;
 }
 
 .tw-article,
@@ -30,14 +30,14 @@
 
 /* Header */
 .tw-article__header {
-  max-width: 112rem;
-  padding-top: clamp(3.2rem, 6vw, 7rem);
-  padding-bottom: clamp(3rem, 5vw, 5.5rem);
+  max-width: 96rem;
+  padding-top: clamp(2.6rem, 4vw, 4.8rem);
+  padding-bottom: clamp(2.6rem, 3.5vw, 4rem);
   text-align: center;
 }
 
 .tw-article__breadcrumbs {
-  margin-bottom: clamp(2.8rem, 4vw, 4.5rem);
+  margin-bottom: clamp(2rem, 3vw, 3.2rem);
   text-align: left;
 }
 
@@ -94,11 +94,11 @@
 }
 
 .tw-article__header h1 {
-  max-width: 100rem;
+  max-width: 84rem;
   margin: 0 auto;
   color: var(--tw-article-ink);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(3.6rem, 5vw, 6rem);
+  font-size: clamp(3.3rem, 4vw, 4.8rem);
   font-weight: 700;
   letter-spacing: -.025em;
   line-height: 1.07;
@@ -110,7 +110,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: .7rem 0;
-  margin-top: 2.4rem;
+  margin-top: 1.8rem;
   color: var(--tw-article-muted);
   font-size: 1.5rem;
   line-height: 1.5;
@@ -133,9 +133,9 @@
 .tw-article__hero {
   display: flex;
   justify-content: center;
-  max-width: 144rem;
+  max-width: 110rem;
   margin-top: 0;
-  margin-bottom: clamp(4rem, 6vw, 7.5rem);
+  margin-bottom: clamp(3rem, 4vw, 5rem);
 }
 
 .tw-article__hero-image {
@@ -143,22 +143,22 @@
   width: auto;
   max-width: min(100%, var(--tw-hero-native-width));
   height: auto;
-  max-height: 68rem;
+  max-height: 50rem;
   border: 1px solid var(--tw-article-line);
-  border-radius: 2rem;
+  border-radius: 1.4rem;
   background: var(--tw-article-paper);
-  box-shadow: 0 1.8rem 4.8rem rgba(0, 0, 0, .10);
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, .09);
   object-fit: contain;
 }
 
 /* Reading layout */
 .tw-article__layout {
   display: grid;
-  grid-template-columns: minmax(20rem, 24rem) minmax(0, 96rem);
-  gap: clamp(3rem, 6vw, 8rem);
+  grid-template-columns: minmax(18rem, 21rem) minmax(0, 80rem);
+  gap: clamp(2.8rem, 4vw, 5rem);
   justify-content: center;
   align-items: start;
-  max-width: 138rem;
+  max-width: 112rem;
 }
 
 .tw-article__aside {
@@ -236,7 +236,7 @@
 /* Article body — broad defaults remain compatible with scoped custom article HTML */
 .tw-article__content {
   width: 100%;
-  max-width: 96rem;
+  max-width: 80rem;
   margin: 0;
   color: var(--tw-article-ink);
   font-family: Arial, Helvetica, sans-serif;
@@ -273,18 +273,18 @@
 }
 
 .tw-article__content h2 {
-  margin: 5rem 0 2rem;
-  font-size: 4rem;
+  margin: 4.2rem 0 1.8rem;
+  font-size: 3.4rem;
 }
 
 .tw-article__content h3 {
-  margin: 4.2rem 0 1.7rem;
-  font-size: 2.5rem;
+  margin: 3.6rem 0 1.5rem;
+  font-size: 2.3rem;
 }
 
 .tw-article__content h4 {
-  margin: 3.2rem 0 1.4rem;
-  font-size: 2rem;
+  margin: 2.8rem 0 1.2rem;
+  font-size: 1.9rem;
 }
 
 .tw-article__content h5 {
@@ -312,10 +312,12 @@
   display: block;
   width: auto;
   max-width: 100%;
+  max-height: 52rem;
   height: auto;
   margin-right: auto;
   margin-left: auto;
   border-radius: 1.2rem;
+  object-fit: contain;
 }
 
 .tw-article__content iframe,
@@ -420,9 +422,9 @@
 
 /* Related articles */
 .tw-article__related {
-  max-width: 144rem;
-  margin-top: clamp(6rem, 9vw, 10rem);
-  padding-top: clamp(4rem, 6vw, 6rem);
+  max-width: 112rem;
+  margin-top: clamp(5rem, 7vw, 7.5rem);
+  padding-top: clamp(3.5rem, 5vw, 4.8rem);
   border-top: 1px solid var(--tw-article-line);
 }
 
@@ -439,7 +441,7 @@
   margin: 0;
   color: var(--tw-article-ink);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(2.8rem, 3vw, 3.4rem);
   line-height: 1.15;
 }
 
@@ -452,7 +454,7 @@
 @media screen and (max-width: 989px) {
   .tw-article__layout {
     display: block;
-    max-width: 100rem;
+    max-width: 80rem;
   }
 
   .tw-article__aside {
@@ -491,7 +493,7 @@
   }
 
   .tw-article__header h1 {
-    font-size: clamp(3.2rem, 10vw, 4.4rem);
+    font-size: clamp(3rem, 8vw, 3.8rem);
   }
 
   .tw-article__meta {
@@ -509,18 +511,18 @@
   }
 
   .tw-article__hero-image {
-    max-height: 42rem;
+    max-height: 34rem;
     border-radius: 1.2rem;
   }
 
   .tw-article__content h2 {
-    margin-top: 4rem;
-    font-size: 3.2rem;
+    margin-top: 3.5rem;
+    font-size: 3rem;
   }
 
   .tw-article__content h3 {
-    margin-top: 3.4rem;
-    font-size: 2.5rem;
+    margin-top: 3rem;
+    font-size: 2.3rem;
   }
 
   .tw-article__content table {
