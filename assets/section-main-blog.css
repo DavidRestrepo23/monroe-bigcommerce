@@ -33,7 +33,7 @@
   margin-inline: auto; max-width: 144rem; overflow: hidden; width: 100%;
 }
 .tw-blog-featured__media { background: #ece8e0; display: grid; min-height: 0; place-items: center; }
-.tw-blog-featured__image { display: block; height: auto; max-height: 46rem; max-width: min(100%, var(--tw-source-width)); object-fit: contain; width: auto; }
+.tw-blog-featured__image { display: block; height: auto; max-height: 46rem; max-width: min(100%, var(--tw-source-width)); object-fit: contain; width: 100%; }
 .tw-blog-featured__body { align-self: center; padding: clamp(2.4rem, 3.2vw, 4.2rem); }
 .tw-blog-featured__body h2 { font-family: var(--font-heading-family); font-size: clamp(2.8rem, 3.1vw, 4.2rem); line-height: 1.08; margin: 1rem 0 1.4rem; text-wrap: balance; }
 .tw-blog-featured__body h2 a, .tw-blog-card__title a { text-decoration: none; }
