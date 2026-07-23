@@ -43,7 +43,7 @@
 .tw-blog-card { display: flex; flex-direction: column; min-width: 0; }
 .tw-blog-card__media {
   aspect-ratio: 16 / 9; background: var(--tw-paper); border: 1px solid var(--tw-rule);
-  display: grid; overflow: hidden; place-items: center; text-decoration: none;
+  display: grid; overflow: hidden; place-items: center; text-decoration: none; max-width: 100%;
 }
 .tw-blog-card__image { display: block; height: auto; max-height: min(100%, var(--tw-source-height)); max-width: min(100%, var(--tw-source-width)); object-fit: contain; transition: transform .25s ease; width: auto; }
 .tw-blog--fit-cover .tw-blog-card__image { height: 100%; max-height: 100%; max-width: 100%; object-fit: cover; width: 100%; }
