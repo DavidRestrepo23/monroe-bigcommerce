@@ -270,6 +270,10 @@
   text-transform: uppercase;
 }
 
+.meta-pill[hidden] {
+  display: none !important;
+}
+
 .meta-rating {
   display: inline-flex;
   align-items: center;
