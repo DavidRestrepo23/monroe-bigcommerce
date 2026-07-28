@@ -294,12 +294,12 @@
 .variant-option__label {
   display: flex;
   gap: 6px;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .variant-option__name {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 18px;
   text-transform: capitalize;
   color: #000;
 }
