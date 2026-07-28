@@ -50,7 +50,7 @@
 }
 
 .product-gallery .swiper:not(.swiper-initialized) .swiper-slide {
-  width: 75% !important;
+  width: 100% !important;
 }
 
 .product-gallery .swiper:not(.swiper-initialized) .swiper-slide~.swiper-slide {
