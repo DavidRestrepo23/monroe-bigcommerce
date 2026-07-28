@@ -183,6 +183,11 @@
     grid-row: 1;
   }
 
+  .main-product__accordions {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .product-gallery__thumbs {
     height: auto;
     overflow: visible;
@@ -536,6 +541,7 @@
 .main-product__accordions {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin-top: 0;
   gap: 16px;
 }
@@ -549,7 +555,7 @@
 .accordion[open] .accordion__content {
   padding-top: 16px;
   width: 100%;
-  max-width: 775px;
+  max-width: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -588,9 +594,18 @@
 
 .accordion__content {
   padding: 0;
+  width: 100%;
+  max-width: none;
   font-size: 1rem;
   line-height: 1.6;
   color: #000;
+}
+
+.accordion__content > div {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .accordion__content p,
