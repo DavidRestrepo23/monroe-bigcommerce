@@ -25,11 +25,6 @@
   }
 }
 
-.main-product__gallery {
-  min-width: 0;
-  align-self: start;
-}
-
 
 .main-product *,
 .main-product *::before,
@@ -170,49 +165,6 @@
 
 .product-gallery__thumb.swiper-slide-thumb-active {
   border-color: #007a87;
-}
-
-@media (min-width: 990px) {
-  .main-product__gallery {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .main-product__info {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .product-gallery {
-    overflow: visible;
-  }
-
-  .product-gallery__main {
-    aspect-ratio: auto;
-    overflow: visible;
-    background: transparent;
-  }
-
-  .product-gallery__main .swiper-wrapper {
-    display: grid;
-    gap: 16px;
-    height: auto;
-    transform: none !important;
-  }
-
-  .product-gallery__main .swiper-slide {
-    width: 100% !important;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    margin: 0 !important;
-    background: #f4f5f6;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .product-gallery__thumbs {
-    display: none;
-  }
 }
 
 .main-product__info {
