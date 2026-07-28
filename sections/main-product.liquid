@@ -226,50 +226,50 @@
           {%- endif -%}
         {%- endform -%}
       </product-form-pdp>
+    </div>
 
-      <div class="main-product__accordions" id="description">
+    <div class="main-product__accordions" id="description">
+      <details class="accordion">
+        <summary class="accordion__summary">
+          <span>{{ 'products.product.description' | t }}</span>
+          {%- render 'icon-arrow-down' -%}
+        </summary>
+        <div class="accordion__content">
+          {{ product.description }}
+        </div>
+      </details>
+
+      {%- if product.metafields.custom.warranty_information.value != blank or section.settings.warranty_text != blank -%}
         <details class="accordion">
           <summary class="accordion__summary">
-            <span>{{ 'products.product.description' | t }}</span>
-            {%- render 'icon-arrow-down' -%}
+            <span>{{ 'products.product.warranty_information' | t }}</span>
+             {%- render 'icon-arrow-down' -%}
           </summary>
-          <div class="accordion__content">
-            {{ product.description }}
+          <div class="accordion__content" data-raw-desc>
+            {%- if product.metafields.custom.warranty_information.value != blank -%}
+              {{ product.metafields.custom.warranty_information.value }}
+            {%- else -%}
+              {{ section.settings.warranty_text | strip_html }}
+            {%- endif -%}
           </div>
         </details>
+      {%- endif -%}
 
-        {%- if product.metafields.custom.warranty_information.value != blank or section.settings.warranty_text != blank -%}
-          <details class="accordion">
-            <summary class="accordion__summary">
-              <span>{{ 'products.product.warranty_information' | t }}</span>
-               {%- render 'icon-arrow-down' -%}
-            </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.warranty_information.value != blank -%}
-                {{ product.metafields.custom.warranty_information.value }}
-              {%- else -%}
-                {{ section.settings.warranty_text | strip_html }}
-              {%- endif -%}
-            </div>
-          </details>
-        {%- endif -%}
-
-        {%- if product.metafields.custom.additional_information.value != blank or section.settings.additional_text != blank -%}
-          <details class="accordion">
-            <summary class="accordion__summary">
-              <span>{{ 'products.product.additional_information' | t }}</span>
-               {%- render 'icon-arrow-down' -%}
-            </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.additional_information.value != blank -%}
-                {{ product.metafields.custom.additional_information.value }}
-              {%- else -%}
-                {{ section.settings.additional_text | strip_html }}
-              {%- endif -%}
-            </div>
-          </details>
-        {%- endif -%}
-      </div>
+      {%- if product.metafields.custom.additional_information.value != blank or section.settings.additional_text != blank -%}
+        <details class="accordion">
+          <summary class="accordion__summary">
+            <span>{{ 'products.product.additional_information' | t }}</span>
+             {%- render 'icon-arrow-down' -%}
+          </summary>
+          <div class="accordion__content" data-raw-desc>
+            {%- if product.metafields.custom.additional_information.value != blank -%}
+              {{ product.metafields.custom.additional_information.value }}
+            {%- else -%}
+              {{ section.settings.additional_text | strip_html }}
+            {%- endif -%}
+          </div>
+        </details>
+      {%- endif -%}
     </div>
   </div>
 
