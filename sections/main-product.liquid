@@ -82,12 +82,12 @@
       <h1 class="main-product__title">{{ product.title }}</h1>
 
       <div class="main-product__meta">
-        {%- if current_variant.sku != blank -%}
-          <span class="meta-pill">SKU: {{ current_variant.sku }}</span>
-        {%- endif -%}
-        {%- if current_variant.barcode != blank -%}
-          <span class="meta-pill">UPC: {{ current_variant.barcode }}</span>
-        {%- endif -%}
+        <span class="meta-pill" data-variant-sku{% if current_variant.sku == blank %} hidden{% endif %}>
+          SKU: <span data-variant-sku-value>{{ current_variant.sku }}</span>
+        </span>
+        <span class="meta-pill" data-variant-upc{% if current_variant.barcode == blank %} hidden{% endif %}>
+          UPC: <span data-variant-upc-value>{{ current_variant.barcode }}</span>
+        </span>
         {%- if product.metafields.reviews.rating.value != blank -%}
           {%- assign rating = product.metafields.reviews.rating.value | round: 1 -%}
           {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
