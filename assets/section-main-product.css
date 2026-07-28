@@ -611,12 +611,12 @@
 .accordion__content p,
 .accordion__content ul,
 .accordion__content ol {
-  margin: 0 0 1px;
+  margin: 0 0 12px;
 }
 
 .accordion__content ul,
 .accordion__content ol {
-  padding-left: 2px;
+  padding-left: 20px;
 }
 
 .accordion__content h2 {
