@@ -33,7 +33,7 @@
   flex-direction: column;
   gap: 12px;
   width: 75%;
-  max-width: 75%;
+  max-width: 500px;
   overflow: hidden;
 }
 
