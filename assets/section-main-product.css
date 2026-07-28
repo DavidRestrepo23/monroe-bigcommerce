@@ -14,8 +14,14 @@
 
 @media (min-width: 990px) {
   .main-product__container {
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-product__container {
+    grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
   }
 }
 
@@ -494,7 +500,7 @@
 .main-product__accordions {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 0;
   gap: 16px;
 }
 
@@ -506,7 +512,8 @@
 
 .accordion[open] .accordion__content {
   padding-top: 16px;
-  width: 775px; 
+  width: 100%;
+  max-width: 775px;
 }
 
 @media screen and (max-width: 768px) {
@@ -599,10 +606,6 @@
   .main-product__info {
     margin-top: 24px;
     gap: 16px;
-  }
-
-  .main-product__accordions {
-    margin-top: 24px;
   }
 
   .main-product__price {
