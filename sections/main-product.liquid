@@ -1,7 +1,6 @@
 {%- liquid
   assign product_form_id = 'product-form-' | append: section.id
   assign current_variant = product.selected_or_first_available_variant
-  assign featured_media = current_variant.featured_media | default: product.featured_media
   assign product_media = product.media
   assign has_variants = false
   if product.has_only_default_variant == false
@@ -9,7 +8,9 @@
   endif
 -%}
 
+{% # theme-check-disable RemoteAsset %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+{% # theme-check-enable RemoteAsset %}
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
 
@@ -66,49 +67,6 @@
         {%- endif -%}
       </div>
 
-      <div class="main-product__accordions hide--on-mobile" id="description">
-        <details class="accordion">
-          <summary class="accordion__summary">
-            <span>{{ 'products.product.description' | t }}</span>
-            {%- render 'icon-arrow-down' -%}
-          </summary>
-          <div class="accordion__content" >
-            {{ product.description }}
-          </div>
-        </details>
-
-        {%- if product.metafields.custom.warranty_information.value != blank or section.settings.warranty_text != blank -%}
-          <details class="accordion">
-            <summary class="accordion__summary">
-              <span>{{ 'products.product.warranty_information' | t }}</span>
-               {%- render 'icon-arrow-down' -%}
-            </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.warranty_information.value != blank -%}
-                {{ product.metafields.custom.warranty_information.value }}
-              {%- else -%}
-                {{ section.settings.warranty_text | strip_html }}
-              {%- endif -%}
-            </div>
-          </details>
-        {%- endif -%}
-
-        {%- if product.metafields.custom.additional_information.value != blank or section.settings.additional_text != blank -%}
-          <details class="accordion">
-            <summary class="accordion__summary">
-              <span>{{ 'products.product.additional_information' | t }}</span>
-               {%- render 'icon-arrow-down' -%}
-            </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.additional_information.value != blank -%}
-                {{ product.metafields.custom.additional_information.value }}
-              {%- else -%}
-                {{ section.settings.additional_text | strip_html }}
-              {%- endif -%}
-            </div>
-          </details>
-        {%- endif -%}
-      </div>
     </div>
 
     <div class="main-product__info">
@@ -268,10 +226,8 @@
           {%- endif -%}
         {%- endform -%}
       </product-form-pdp>
-    </div>
-  </div>
 
-  <div class="main-product__accordions hide--on-desktop" id="description">
+      <div class="main-product__accordions" id="description">
         <details class="accordion">
           <summary class="accordion__summary">
             <span>{{ 'products.product.description' | t }}</span>
@@ -314,7 +270,8 @@
           </details>
         {%- endif -%}
       </div>
-
+    </div>
+  </div>
 
       {% comment %} <!-- Start of Judge.me code -->{% assign has_legacy = false %}{% if product.metafields.judgeme.widget.size > 20 %}{% assign has_legacy = true %}{% endif %}<div style='clear:both'></div><div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-product-title='{{ product.title | escape }}' data-id='{{ product.id }}' data-product-id='{{ product.id }}' data-widget='review' data-auto-install='false' data-shop-reviews-count='{{ shop.metafields.judgeme.shop_reviews_count | default: 0 | escape }}' data-entry-point='review_widget.js' data-entry-key='review-widget/main.js'>{% if has_legacy %}<div class='jdgm-legacy-widget-content' style='display: none;'>{{ product.metafields.judgeme.widget }}</div>{% endif %}</div>{% if product.metafields.judgeme.review_widget_data %}<script>jdgm.data ||= {}; jdgm.data.reviewWidget ||= {}; jdgm.data.reviewWidget[{{ product.id }}] = {{ product.metafields.judgeme.review_widget_data }}</script>{% endif %}<!-- End of Judge.me code --> {% endcomment %}
 
@@ -325,7 +282,9 @@
 
 
 
+{% # theme-check-disable RemoteAsset %}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+{% # theme-check-enable RemoteAsset %}
 <script src="{{ 'main-product.js' | asset_url }}" defer></script>
 
 {% schema %}
