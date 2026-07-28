@@ -92,7 +92,7 @@
 
 .product-gallery__slide img {
   display: block;
-  max-width: 75%;
+  max-width: 100%;
   max-height: auto;
   width: auto;
   height: auto;
