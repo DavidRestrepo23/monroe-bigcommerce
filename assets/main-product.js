@@ -91,6 +91,8 @@ function initProductSection(section) {
   var variantInput = section.querySelector('[data-variant-input]');
   var addBtn = section.querySelector('[data-add-to-cart-button]');
   var priceEl = section.querySelector('[data-price]');
+  var skuEl = section.querySelector('[data-variant-sku]');
+  var upcEl = section.querySelector('[data-variant-upc]');
 
   function getSelectedOptions() {
     var groups = section.querySelectorAll('.variant-option');
@@ -121,9 +123,21 @@ function initProductSection(section) {
     if (del) del.remove();
     if (compare) priceEl.insertAdjacentHTML('afterbegin', compare);
 
+    updateVariantIdentifier(skuEl, '[data-variant-sku-value]', variant.sku);
+    updateVariantIdentifier(upcEl, '[data-variant-upc-value]', variant.barcode);
+
     var url = new URL(window.location);
     url.searchParams.set('variant', variant.id);
     window.history.replaceState({}, '', url);
+  }
+
+  function updateVariantIdentifier(container, valueSelector, value) {
+    if (!container) return;
+    var valueEl = container.querySelector(valueSelector);
+    if (!valueEl) return;
+
+    valueEl.textContent = value || '';
+    container.hidden = !value;
   }
 
   function formatMoney(cents) {
