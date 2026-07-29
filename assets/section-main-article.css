@@ -36,7 +36,7 @@
   gap: 8px;
   margin-bottom: 36px;
   color: var(--article-muted);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .article-breadcrumb a { color: inherit; text-underline-offset: 3px; }
