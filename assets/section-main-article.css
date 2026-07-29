@@ -32,7 +32,7 @@
 .article-breadcrumb {
   display: flex;
   align-items: left;
-  justify-content: center;
+  justify-content: left;
   gap: 8px;
   margin-bottom: 36px;
   color: var(--article-muted);
