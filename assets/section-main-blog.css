@@ -68,7 +68,7 @@
 
 .blog-featured__hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.75fr);
+  grid-template-columns: minmax(0, 832px) minmax(300px, 1fr);
   align-items: center;
   overflow: hidden;
   margin-bottom: 40px;
