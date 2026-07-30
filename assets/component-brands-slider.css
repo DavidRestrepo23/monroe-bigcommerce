@@ -11,10 +11,6 @@
   animation: brands-marquee var(--bs-speed) linear infinite;
 }
 
-/* .brands-slider__track:hover {
-  animation-play-state: var(--bs-play-state);
-} */
-
 .brands-slider__list {
   display: flex;
   align-items: center;
@@ -46,8 +42,13 @@
 }
 
 @keyframes brands-marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -57,6 +58,7 @@
     justify-content: center;
     width: 100%;
   }
+
   .brands-slider__list {
     flex-wrap: wrap;
     justify-content: center;
