@@ -50,8 +50,9 @@
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/Smith_Corona_Logo_500_x_270_px.png",
-            "brand_name": "",
-            "link": ""
+            "brand_name": "Smith Corona",
+            "logo_scale": 250,
+            "link": "shopify://collections/smith-corona-supplies"
           }
         },
         "brand_eednFq": {
@@ -59,6 +60,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_14.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -67,6 +69,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_13.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -75,6 +78,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_11.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -83,6 +87,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_7.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -91,14 +96,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_8.png",
             "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_DwNHE6": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image.jpg",
-            "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -107,6 +105,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_14.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -115,6 +114,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_13.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         },
@@ -123,6 +123,7 @@
           "settings": {
             "logo": "shopify://shop_images/image_7.png",
             "brand_name": "",
+            "logo_scale": 100,
             "link": ""
           }
         }
@@ -134,7 +135,6 @@
         "brand_4bmykQ",
         "brand_tp9dWF",
         "brand_N3wm8J",
-        "brand_DwNHE6",
         "brand_FKJRgK",
         "brand_3hXMTn",
         "brand_cUYibe"
