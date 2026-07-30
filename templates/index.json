@@ -109,89 +109,228 @@
     "brands_slider_xNRMmQ": {
       "type": "brands-slider",
       "blocks": {
-        "brand_97JFeP": {
+        "brand_ybMBRC": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/Wakefield_Peanut_Company_Logo.png",
-            "brand_name": "Wakefield Peanut Company",
-            "link": "shopify://collections/wakefield-wildlife-peanuts"
+            "logo": "shopify://shop_images/medmanager-logo-320x85.png",
+            "brand_name": "Med Manager",
+            "logo_scale": 100,
+            "link": "shopify://collections/med-manager"
           }
         },
-        "brand_Yx7tQG": {
+        "brand_b6FTb4": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_2_1.png",
-            "brand_name": "",
-            "link": ""
+            "logo": "shopify://shop_images/AccuBanker_Logo.webp",
+            "brand_name": "Accubanker",
+            "logo_scale": 100,
+            "link": "shopify://collections/cash-management"
           }
         },
-        "brand_KBJK8j": {
+        "brand_Ee4RBG": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_8_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_Tj7iUc": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_10_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_Ec4hKi": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_9_1.png",
-            "brand_name": "",
-            "link": ""
+            "logo": "shopify://shop_images/Calculated-Industries-logo.avif",
+            "brand_name": "Calculated Industries",
+            "logo_scale": 100,
+            "link": "shopify://collections/special-calculators"
           }
         },
         "brand_MREBJe": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_7_1_6821b279-b94e-4734-b6e1-4bf572a75bed.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_MF4QW9": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_4_1_7be2f2b8-279d-4625-b99d-14fab76c9ea6.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_zkiJnB": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_11_1_fb7a659d-19aa-497b-86ce-47d955856eb8.png",
-            "brand_name": "",
-            "link": ""
+            "logo": "shopify://shop_images/classic-cookie-logo.png",
+            "brand_name": "Classic Cookie",
+            "logo_scale": 195,
+            "link": "shopify://collections/classic-cookie"
           }
         },
         "brand_ytceRJ": {
           "type": "brand",
           "settings": {
-            "logo": "shopify://shop_images/image_6_1.png",
-            "brand_name": "",
-            "link": ""
+            "logo": "shopify://shop_images/dahle-logo.png",
+            "brand_name": "Dahle",
+            "logo_scale": 125,
+            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=Dahle"
+          }
+        },
+        "brand_zkiJnB": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Drake_s_Cake_Logo-cutout.png",
+            "brand_name": "Drake's Cakes",
+            "logo_scale": 150,
+            "link": "shopify://collections/drakes-cakes"
+          }
+        },
+        "brand_Tj7iUc": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Formax-logo-cutout_aeee365b-a2b5-403f-aa98-8d690b255d06.png",
+            "brand_name": "Formax",
+            "logo_scale": 100,
+            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=Formax"
+          }
+        },
+        "brand_g97LLC": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/grc_logo__86438.original.png",
+            "brand_name": "GRC",
+            "logo_scale": 160,
+            "link": "shopify://collections/grc-ribbons"
+          }
+        },
+        "brand_UGATHW": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Little_Debbie_Logo-cutout.png",
+            "brand_name": "Little Debbie",
+            "logo_scale": 200,
+            "link": "shopify://collections/little-debbie"
+          }
+        },
+        "brand_iTRKbi": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Maverick_Logo.jpg",
+            "brand_name": "Maverick International",
+            "logo_scale": 125,
+            "link": "https://monroe-systems.com/collections/cash-management?filter.p.vendor=Maverick+International"
+          }
+        },
+        "brand_Yx7tQG": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/MBM_logo.png",
+            "brand_name": "MBM Corporation",
+            "logo_scale": 175,
+            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=MBM"
+          }
+        },
+        "brand_Y4mU3c": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Copy_of_MyFingerComb_Logo_500_x_350_px.png",
+            "brand_name": "MyFingerComb",
+            "logo_scale": 200,
+            "link": "shopify://collections/myfingercomb"
+          }
+        },
+        "brand_Xr6gbM": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Nakajima_Clear_logo.webp",
+            "brand_name": "Nakajima",
+            "logo_scale": 160,
+            "link": "shopify://collections/nakajima"
+          }
+        },
+        "brand_cFPL7G": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/NuLife_Sugar_Logo_USA-cutout-cutout.png",
+            "brand_name": "NuLife Sugar",
+            "logo_scale": 200,
+            "link": "shopify://collections/nulife-sugar"
+          }
+        },
+        "brand_UeqihE": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/rarotype_1619638518__90142-cutout.png",
+            "brand_name": "Rarotype",
+            "logo_scale": 200,
+            "link": "shopify://collections/printwheels"
+          }
+        },
+        "brand_Qcxp7L": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Rosati_Water_Ice_Logo.png",
+            "brand_name": "Rosati Water Ice",
+            "logo_scale": 225,
+            "link": "shopify://collections/rosati-water-ice"
+          }
+        },
+        "brand_hwFB66": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Royal_Electric.png",
+            "brand_name": "Royal",
+            "logo_scale": 100,
+            "link": "shopify://collections/royal"
+          }
+        },
+        "brand_7gJrAK": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Smart_Print_Supplies_Logo.png",
+            "brand_name": "Smart Print Supplies",
+            "logo_scale": 250,
+            "link": "shopify://collections/smart-print-supplies-toner"
+          }
+        },
+        "brand_PGpY7M": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Smith_Corona_Logo_500_x_270_px.png",
+            "brand_name": "Smith Corona",
+            "logo_scale": 250,
+            "link": "shopify://collections/smith-corona"
+          }
+        },
+        "brand_pVtJb9": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Sunbelt_Bakery_Logo-cutout.png",
+            "brand_name": "Sunbelt Bakery",
+            "logo_scale": 250,
+            "link": "shopify://collections/sunbelt-bakery"
+          }
+        },
+        "brand_DbJ6gq": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Titi_s_Kitchen.png",
+            "brand_name": "Titi's Kitchen",
+            "logo_scale": 175,
+            "link": "shopify://collections/titis-kitchen"
+          }
+        },
+        "brand_97JFeP": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Wakefield_Peanut_Company_Logo.png",
+            "brand_name": "Wakefield Peanut Company",
+            "logo_scale": 100,
+            "link": "shopify://collections/wakefield-wildlife-peanuts"
           }
         }
       },
       "block_order": [
-        "brand_97JFeP",
-        "brand_Yx7tQG",
-        "brand_KBJK8j",
-        "brand_Tj7iUc",
-        "brand_Ec4hKi",
+        "brand_ybMBRC",
+        "brand_b6FTb4",
+        "brand_Ee4RBG",
         "brand_MREBJe",
-        "brand_MF4QW9",
+        "brand_ytceRJ",
         "brand_zkiJnB",
-        "brand_ytceRJ"
+        "brand_Tj7iUc",
+        "brand_g97LLC",
+        "brand_UGATHW",
+        "brand_iTRKbi",
+        "brand_Yx7tQG",
+        "brand_Y4mU3c",
+        "brand_Xr6gbM",
+        "brand_cFPL7G",
+        "brand_UeqihE",
+        "brand_Qcxp7L",
+        "brand_hwFB66",
+        "brand_7gJrAK",
+        "brand_PGpY7M",
+        "brand_pVtJb9",
+        "brand_DbJ6gq",
+        "brand_97JFeP"
       ],
       "name": "Brands Slider",
       "settings": {
