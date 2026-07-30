@@ -59,72 +59,72 @@
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_14.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "GRC Ribbons",
+            "logo_scale": 225,
+            "link": "shopify://collections/grc-universal-typewriter-ribbons"
           }
         },
         "brand_ndeapn": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_13.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "Royal",
+            "logo_scale": 150,
+            "link": "shopify://collections/royal-typewriters"
           }
         },
         "brand_4bmykQ": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_11.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "Panasonic",
+            "logo_scale": 125,
+            "link": "shopify://collections/panasonic-supplies"
           }
         },
         "brand_tp9dWF": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_7.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "IBM",
+            "logo_scale": 175,
+            "link": "shopify://collections/ibm-wheelwriters"
           }
         },
         "brand_N3wm8J": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_8.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "Brother",
+            "logo_scale": 150,
+            "link": "shopify://collections/brother-supplies"
           }
         },
         "brand_FKJRgK": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_14.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "GRC Ribbons",
+            "logo_scale": 225,
+            "link": "shopify://collections/grc-universal-typewriter-ribbons"
           }
         },
         "brand_3hXMTn": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_13.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "Royal",
+            "logo_scale": 150,
+            "link": "shopify://collections/royal-supplies"
           }
         },
         "brand_cUYibe": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_7.png",
-            "brand_name": "",
-            "logo_scale": 100,
-            "link": ""
+            "brand_name": "IBM",
+            "logo_scale": 175,
+            "link": "shopify://collections/ibm-wheelwriters"
           }
         }
       },
