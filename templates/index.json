@@ -195,7 +195,7 @@
       ],
       "name": "Brands Slider",
       "settings": {
-        "logo_height": 40,
+        "logo_height": 50,
         "gap": 64,
         "padding_vertical": 60,
         "speed": 65,
