@@ -109,18 +109,18 @@
     "brands_slider_xNRMmQ": {
       "type": "brands-slider",
       "blocks": {
+        "brand_97JFeP": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Wakefield_Peanut_Company_Logo.png",
+            "brand_name": "Wakefield Peanut Company",
+            "link": "shopify://collections/wakefield-wildlife-peanuts"
+          }
+        },
         "brand_Yx7tQG": {
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/image_2_1.png",
-            "brand_name": "",
-            "link": ""
-          }
-        },
-        "brand_RmNP9m": {
-          "type": "brand",
-          "settings": {
-            "logo": "shopify://shop_images/image_3_1.png",
             "brand_name": "",
             "link": ""
           }
@@ -183,8 +183,8 @@
         }
       },
       "block_order": [
+        "brand_97JFeP",
         "brand_Yx7tQG",
-        "brand_RmNP9m",
         "brand_KBJK8j",
         "brand_Tj7iUc",
         "brand_Ec4hKi",
