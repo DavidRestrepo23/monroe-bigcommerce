@@ -17,22 +17,27 @@
 {%- if section.blocks.size > 0 -%}
   <div id="BrandsSlider-{{ section.id }}" class="brands-slider" aria-label="Brand partners">
     <div class="brands-slider__track">
-      {%- comment -%} Render list twice for seamless loop {%- endcomment -%}
       {%- for i in (1..2) -%}
         <ul class="brands-slider__list" aria-hidden="{{ forloop.index | minus: 1 | at_least: 0 | at_most: 1 }}">
           {%- for block in section.blocks -%}
-            <li class="brands-slider__item" {{ block.shopify_attributes }}>
+            {%- assign block_logo_scale = block.settings.logo_scale | default: 100 -%}
+            {%- assign individual_logo_height = section.settings.logo_height | times: block_logo_scale | divided_by: 100.0 -%}
+            <li
+              class="brands-slider__item"
+              style="--bs-logo-height: {{ individual_logo_height }}px;"
+              {{ block.shopify_attributes }}
+            >
               {%- if block.settings.logo != blank -%}
                 {%- if block.settings.link != blank -%}
                   <a href="{{ block.settings.link }}" aria-label="{{ block.settings.brand_name | default: 'Brand' }}">
-                    {{- block.settings.logo | image_url: height: section.settings.logo_height | image_tag:
-                      height: section.settings.logo_height,
+                    {{- block.settings.logo | image_url: width: 600 | image_tag:
+                      loading: 'lazy',
                       alt: block.settings.brand_name | default: block.settings.logo.alt
                     -}}
                   </a>
                 {%- else -%}
-                  {{- block.settings.logo | image_url: height: section.settings.logo_height | image_tag:
-                    height: section.settings.logo_height,
+                  {{- block.settings.logo | image_url: width: 600 | image_tag:
+                    loading: 'lazy',
                     alt: block.settings.brand_name | default: block.settings.logo.alt
                   -}}
                 {%- endif -%}
@@ -146,6 +151,17 @@
           "id": "brand_name",
           "label": "Brand name",
           "info": "Used as alt text"
+        },
+        {
+          "type": "range",
+          "id": "logo_scale",
+          "min": 50,
+          "max": 300,
+          "step": 5,
+          "default": 100,
+          "unit": "%",
+          "label": "Individual logo size",
+          "info": "100% uses the section's Logo height. Increase or decrease this value for this logo only."
         },
         {
           "type": "url",
