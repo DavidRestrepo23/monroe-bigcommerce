@@ -195,11 +195,11 @@
       ],
       "name": "Brands Slider",
       "settings": {
-        "logo_height": 36,
+        "logo_height": 40,
         "gap": 64,
         "padding_vertical": 60,
-        "speed": 30,
-        "pause_on_hover": false,
+        "speed": 65,
+        "pause_on_hover": true,
         "background_color": "#ffffff",
         "logo_opacity": 100,
         "grayscale": false
