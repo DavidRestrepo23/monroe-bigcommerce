@@ -377,7 +377,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1171276606.png",
             "title": "Printing Calculators",
-            "link": ""
+            "link": "shopify://collections/printing-calculators"
           }
         },
         "category_KJhVQC": {
@@ -385,7 +385,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1171276607.png",
             "title": "Calculator Tape Rolls",
-            "link": ""
+            "link": "shopify://collections/paper-rolls"
           }
         },
         "category_jBPDhY": {
@@ -393,7 +393,7 @@
           "settings": {
             "image": "shopify://shop_images/freepik__replace-the-product-from-img1-with-this-typewriter__70875_1.png",
             "title": "Office Equipment",
-            "link": ""
+            "link": "shopify://collections/office-equipment"
           }
         },
         "category_b7BER4": {
@@ -401,7 +401,7 @@
           "settings": {
             "image": "shopify://shop_images/image_26.png",
             "title": "Calculator Ink Ribbons",
-            "link": ""
+            "link": "shopify://collections/monroe-ribbons-1"
           }
         }
       },
