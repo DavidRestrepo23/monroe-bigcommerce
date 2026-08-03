@@ -70,9 +70,19 @@
     </div>
 
     <div class="main-product__info">
-      <div class="main-product__availability">
-        <span class="availability-dot"></span>
-        <span>{% if current_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.out_of_stock' | t }}{% endif %}</span>
+      <div class="main-product__availability-group">
+        <div class="main-product__availability">
+          <span class="availability-dot"></span>
+          <span>{% if current_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.out_of_stock' | t }}{% endif %}</span>
+        </div>
+
+        {%- assign sales_contact_message = product.metafields.custom.sales_contact_message.value | strip -%}
+        {%- if sales_contact_message != blank -%}
+          {%- capture sales_contact_phone_link -%}<a href="tel:+12675802600">(267) 580-2600</a>{%- endcapture -%}
+          <p class="main-product__sales-contact">
+            {{ sales_contact_message | escape | replace: '(267) 580-2600', sales_contact_phone_link }}
+          </p>
+        {%- endif -%}
       </div>
 
       {%- if product.vendor != blank -%}
