@@ -476,8 +476,8 @@
       "settings": {
         "heading": "Find the Right Solution for Your Business",
         "heading_size": 64,
-        "button_label": "View All Solutions",
-        "button_url": "#",
+        "button_label": "Shop All Products",
+        "button_url": "shopify://collections",
         "testimonial_quote": "Users love the key touch of the UltimateX, and the reprint feature eliminates the need to use more expensive, 2-ply paper.",
         "testimonial_author": "NICOLA T.",
         "background_color": "#ffffff",
