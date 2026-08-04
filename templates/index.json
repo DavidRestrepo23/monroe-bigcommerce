@@ -77,7 +77,7 @@
             "button_link": "#",
             "main_image": "shopify://shop_images/Printing_Calculator_Comparison_Chart_3360_x_1440_px.png",
             "mobile_image": "shopify://shop_images/Printing_Calculator_Comparison_Chart_390_x_520_px.png",
-            "slide_link": "https://monroe-systems.com/monroe-heavy-duty-calculator-chart/",
+            "slide_link": "/pages/heavy-duty-calculator-chart",
             "featured_product": "",
             "rating": 5
           }
@@ -151,7 +151,7 @@
             "logo": "shopify://shop_images/dahle-logo.png",
             "brand_name": "Dahle",
             "logo_scale": 125,
-            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=Dahle"
+            "link": "/collections/shredders?filter.p.vendor=Dahle"
           }
         },
         "brand_zkiJnB": {
@@ -169,7 +169,7 @@
             "logo": "shopify://shop_images/Formax-logo-cutout_aeee365b-a2b5-403f-aa98-8d690b255d06.png",
             "brand_name": "Formax",
             "logo_scale": 100,
-            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=Formax"
+            "link": "/collections/shredders?filter.p.vendor=Formax"
           }
         },
         "brand_g97LLC": {
@@ -196,7 +196,7 @@
             "logo": "shopify://shop_images/Maverick_Logo.jpg",
             "brand_name": "Maverick International",
             "logo_scale": 125,
-            "link": "https://monroe-systems.com/collections/cash-management?filter.p.vendor=Maverick+International"
+            "link": "/collections/cash-management?filter.p.vendor=Maverick+International"
           }
         },
         "brand_Yx7tQG": {
@@ -205,7 +205,7 @@
             "logo": "shopify://shop_images/MBM_logo.png",
             "brand_name": "MBM Corporation",
             "logo_scale": 175,
-            "link": "https://monroe-systems.com/collections/shredders?filter.p.vendor=MBM"
+            "link": "/collections/shredders?filter.p.vendor=MBM"
           }
         },
         "brand_Y4mU3c": {
