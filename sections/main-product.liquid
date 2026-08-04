@@ -295,6 +295,8 @@
 {% # theme-check-enable RemoteAsset %}
 <script src="{{ 'main-product.js' | asset_url }}" defer></script>
 
+{% render 'structured-data-product', product: product %}
+
 {% schema %}
 {
   "name": "Product",
