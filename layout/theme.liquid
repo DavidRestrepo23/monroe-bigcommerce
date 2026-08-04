@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" href="{{ 'normalize.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
 
     {{ content_for_header }}
     <script>
@@ -49,6 +50,7 @@
         step_error: `{{ 'products.product.quantity.multiples_of' | t: quantity: '[step]' }}`
       };
     </script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
