@@ -1,0 +1,58 @@
+{%- comment -%}
+  Site-level structured data (JSON-LD): Organization + WebSite.
+
+  Rendered once, in the <head> of every page via theme.liquid. Gives Google a
+  canonical record of the business (name, logo, phone, social profiles) and
+  enables a sitelinks search box for the storefront search.
+
+  Usage (in layout/theme.liquid, before </head>):
+    {% render 'structured-data-site' %}
+{%- endcomment -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }},
+    {%- if settings.logo != blank %}
+    "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+    {%- endif %}
+    {%- if shop.description != blank %}
+    "description": {{ shop.description | strip_html | json }},
+    {%- endif %}
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+1-267-580-2600",
+      "email": "csr@monroe-systems.com",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    },
+    "sameAs": [
+      "https://www.facebook.com/MonroeSystems/",
+      "https://www.instagram.com/monroesystems/",
+      "https://twitter.com/monroesystems",
+      "https://www.youtube.com/c/Monroe-systems",
+      "https://www.tiktok.com/@monroesystemsforbusiness",
+      "https://www.linkedin.com/company/8446168"
+    ]
+  }
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }},
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+</script>
