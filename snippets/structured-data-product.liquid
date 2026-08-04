@@ -1,0 +1,93 @@
+{%- comment -%}
+  Product structured data (JSON-LD) for Google rich results.
+
+  Renders name, brand, SKU, GTIN, images, description, price, and availability
+  for the product and every variant. Only outputs values that actually exist,
+  so nothing is invented. Rating is pulled from the native Shopify reviews
+  metafields and is omitted entirely when there are no reviews.
+
+  Usage (inside a product template/section):
+    {% render 'structured-data-product', product: product %}
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- liquid
+    assign current_variant = product.selected_or_first_available_variant
+    assign product_description = product.description | strip_html | strip_newlines | truncate: 5000
+    assign rating_value = product.metafields.reviews.rating.value
+    assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "url": {{ shop.url | append: product.url | json }},
+      {%- if product_description != blank %}
+      "description": {{ product_description | json }},
+      {%- endif %}
+      {%- if product.vendor != blank %}
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+      {%- endif %}
+      {%- if product.type != blank %}
+      "category": {{ product.type | json }},
+      {%- endif %}
+      {%- if current_variant.sku != blank %}
+      "sku": {{ current_variant.sku | json }},
+      "mpn": {{ current_variant.sku | json }},
+      {%- endif %}
+      {%- assign barcode = current_variant.barcode | strip -%}
+      {%- if barcode != blank -%}
+        {%- assign barcode_size = barcode | size -%}
+        {%- if barcode_size == 13 %}
+      "gtin13": {{ barcode | json }},
+        {%- elsif barcode_size == 12 %}
+      "gtin12": {{ barcode | json }},
+        {%- elsif barcode_size == 14 %}
+      "gtin14": {{ barcode | json }},
+        {%- elsif barcode_size == 8 %}
+      "gtin8": {{ barcode | json }},
+        {%- endif -%}
+      {%- endif %}
+      {%- if product.images.size > 0 %}
+      "image": [
+        {%- for image in product.images limit: 5 -%}
+          {{ image | image_url: width: 1920 | prepend: "https:" | json }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      {%- endif %}
+      {%- if rating_value != blank and rating_count > 0 %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ rating_value | json }},
+        "reviewCount": {{ rating_count | json }},
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      {%- endif %}
+      "offers": [
+        {%- for variant in product.variants -%}
+          {
+            "@type": "Offer",
+            "url": {{ shop.url | append: variant.url | json }},
+            "price": {{ variant.price | divided_by: 100.0 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "itemCondition": "https://schema.org/NewCondition",
+            {%- if variant.sku != blank %}
+            "sku": {{ variant.sku | json }},
+            {%- endif %}
+            "seller": {
+              "@type": "Organization",
+              "name": {{ shop.name | json }}
+            },
+            "name": {{ variant.title | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
