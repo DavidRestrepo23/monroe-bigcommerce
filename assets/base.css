@@ -125,3 +125,10 @@ a.button-primary {
   .hide-mobile { display: block !important; }
   .hide-desktop { display: none !important; }
 }
+/* Quantity buttons: keep clicks on the button, not the icon inside it.
+   QuantityInput checks event.target.name, so a click landing on the SVG
+   reads as "not plus" and decrements instead of incrementing. */
+.quantity__button svg,
+.quantity__button svg * {
+  pointer-events: none;
+}
