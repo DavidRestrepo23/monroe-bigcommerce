@@ -1,5 +1,29 @@
 {{ 'component-hero-slider.css' | asset_url | stylesheet_tag }}
-
+ 
+{%- comment -%}
+  LCP: slide images render as CSS background-images, which the browser cannot
+  discover until stylesheets are parsed. Preload the first slide's image so it
+  starts downloading immediately. The widths below (1920 / 900) must stay
+  identical to the widths used in the background-image URLs further down.
+{%- endcomment -%}
+{%- liquid
+  assign first_slide = blank
+  for block in section.blocks
+    if block.type == 'slide'
+      assign first_slide = block
+      break
+    endif
+  endfor
+-%}
+{%- if first_slide != blank and first_slide.settings.main_image != blank -%}
+  {%- if first_slide.settings.mobile_image != blank -%}
+    <link rel="preload" as="image" href="{{ first_slide.settings.main_image | image_url: width: 1920 }}" media="(min-width: 750px)" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ first_slide.settings.mobile_image | image_url: width: 900 }}" media="(max-width: 749px)" fetchpriority="high">
+  {%- else -%}
+    <link rel="preload" as="image" href="{{ first_slide.settings.main_image | image_url: width: 1920 }}" fetchpriority="high">
+  {%- endif -%}
+{%- endif -%}
+ 
 {%- style -%}
   #HeroSlider-{{ section.id }} {
     --hero-bg: {{ section.settings.background_color | default: '#EDEDED' }};
@@ -12,27 +36,27 @@
   #HeroSlider-{{ section.id }} .hero-slider__slide {
     position: relative;
   }
-
+ 
   #HeroSlider-{{ section.id }} .hero-slider__full-link {
     position: absolute;
     inset: 0;
     z-index: 1;
     display: block;
   }
-
+ 
   #HeroSlider-{{ section.id }} .hero-slider__inner {
     position: relative;
     z-index: 2;
     pointer-events: none;
   }
-
+ 
   #HeroSlider-{{ section.id }} .hero-slider__inner a,
   #HeroSlider-{{ section.id }} .hero-slider__button,
   #HeroSlider-{{ section.id }} .hero-slider__product-card {
     pointer-events: auto;
   }
 {%- endstyle -%}
-
+ 
 <section
   id="HeroSlider-{{ section.id }}"
   class="hero-slider"
@@ -114,14 +138,14 @@
                           </span>
                         </div>
                       {%- endif -%}
-
+ 
                       <p class="hero-slider__product-title">{{ fp.title | escape }}</p>
                       <p class="hero-slider__product-price">{{ fp.price | money }}</p>
                     </div>
                   </a>
                 {%- endif -%}
               </div>
-
+ 
               {%- if block.settings.main_image == blank -%}
                 <div class="hero-slider__media">
                   <div class="hero-slider__media-placeholder">
@@ -134,7 +158,7 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
-
+ 
     {%- if section.settings.show_arrows -%}
       <button class="hero-slider__nav hero-slider__nav--prev swiper-button-prev" aria-label="Previous slide"></button>
       <button class="hero-slider__nav hero-slider__nav--next swiper-button-next" aria-label="Next slide"></button>
@@ -142,7 +166,7 @@
   </div>
   <div class="hero-slider__pagination swiper-pagination"></div>
 </section>
-
+ 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var root = document.getElementById('HeroSlider-{{ section.id }}');
@@ -153,17 +177,17 @@
     }
     initHeroSlider{{ section.id | replace: '-', '_' }}();
   });
-
+ 
   function initHeroSlider{{ section.id | replace: '-', '_' }}() {
     var root = document.getElementById('HeroSlider-{{ section.id }}');
     if (!root || root.dataset.initialized === 'true' || typeof Swiper === 'undefined') return;
     root.dataset.initialized = 'true';
-
+ 
     var autoplay = root.dataset.autoplay === 'true';
     var delay = parseInt(root.dataset.autoplayDelay, 10) || 5000;
     var showArrows = root.dataset.showArrows === 'true';
     var loop = root.dataset.loop === 'true';
-
+ 
     new Swiper(root.querySelector('.hero-slider__swiper'), {
       slidesPerView: 1,
       spaceBetween: 0,
@@ -181,7 +205,7 @@
     });
   }
 </script>
-
+ 
 {% schema %}
 {
   "name": "Hero Slider",
