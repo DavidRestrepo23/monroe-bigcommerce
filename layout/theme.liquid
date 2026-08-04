@@ -59,21 +59,6 @@
     {{ 'wishlist-toggle.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'wishlist-toggle.js' | asset_url }}" defer="defer"></script>
     {% render 'structured-data-site' %}
-    <script>
-  // cart-drawer.js requests sections=['cart-drawer','cart-icon-bubble'] but
-  // there is no 'cart-icon-bubble' section file → response missing → forEach
-  // throws → publish(cartUpdate) never fires. Restrict to cart-drawer only;
-  // bubble is updated via our own publish handler / response.item_count.
-  document.addEventListener('DOMContentLoaded', function () {
-    if (typeof CartDrawerItems !== 'undefined') {
-      CartDrawerItems.prototype.getSectionsToRender = function () {
-        return [
-          { id: 'CartDrawer', section: 'cart-drawer', selector: '.drawer__inner' }
-        ];
-      };
-    }
-  });
-</script>
   </head>
   <body>
     {%- section 'top-ribbon' -%}
