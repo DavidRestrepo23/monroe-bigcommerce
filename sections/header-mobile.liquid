@@ -16,6 +16,8 @@
             src="{{ section.settings.logo | image_url: width: 200 }}"
             alt="{{ shop.name }}"
             loading="eager"
+            width="200"
+            height="{{ 200 | times: section.settings.logo.height | divided_by: section.settings.logo.width }}"
           >
         {%- else -%}
           <span>{{ shop.name }}</span>
@@ -34,6 +36,8 @@
             src="{{ section.settings.store_name_image | image_url: width: 300 }}"
             alt="{{ shop.name }}"
             loading="eager"
+            width="300"
+            height="{{ 300 | times: section.settings.store_name_image.height | divided_by: section.settings.store_name_image.width }}"
           >
         </a>
       {%- endif -%}
@@ -159,6 +163,8 @@
                             src="{{ child.object.image | image_url: width: 64 }}"
                             alt="{{ child.title }}"
                             loading="lazy"
+                            width="64"
+                            height="{{ 64 | times: child.object.image.height | divided_by: child.object.image.width }}"
                           >
                         </div>
                       {%- elsif child.object.featured_image != blank -%}
@@ -167,6 +173,8 @@
                             src="{{ child.object.featured_image | image_url: width: 64 }}"
                             alt="{{ child.title }}"
                             loading="lazy"
+                            width="64"
+                            height="{{ 64 | times: child.object.featured_image.height | divided_by: child.object.featured_image.width }}"
                           >
                         </div>
                       {%- else -%}
