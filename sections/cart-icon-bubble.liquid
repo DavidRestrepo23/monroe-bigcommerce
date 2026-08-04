@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders the inner contents of the header cart button (#cart-icon-bubble).
+
+  Exists so cart-drawer.js can request sections=['cart-drawer','cart-icon-bubble']
+  and get a real response. Dawn replaces the innerHTML of the element with id
+  "cart-icon-bubble" using the contents of this section, so this file must output
+  exactly what lives inside that <a> in sections/header.liquid — icon + badge,
+  no wrapper.
+
+  Keep this in sync with the cart button markup in sections/header.liquid.
+{%- endcomment -%}
+{% render 'icon-cart' %}
+<span class="header__cart-badge" data-count="{{ cart.item_count }}" aria-hidden="true">
+  {{ cart.item_count }}
+</span>
