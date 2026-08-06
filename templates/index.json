@@ -244,6 +244,15 @@
             "link": "shopify://collections/printwheels"
           }
         },
+        "brand_MmQMtK": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/Horizontal_Roefield_with_R.png",
+            "brand_name": "Roefield",
+            "logo_scale": 190,
+            "link": ""
+          }
+        },
         "brand_Qcxp7L": {
           "type": "brand",
           "settings": {
@@ -324,6 +333,7 @@
         "brand_Xr6gbM",
         "brand_cFPL7G",
         "brand_UeqihE",
+        "brand_MmQMtK",
         "brand_Qcxp7L",
         "brand_hwFB66",
         "brand_7gJrAK",
