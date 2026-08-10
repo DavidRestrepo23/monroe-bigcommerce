@@ -12,6 +12,20 @@
     "hero_slider_main": {
       "type": "hero-slider",
       "blocks": {
+        "slide_dVPqr6": {
+          "type": "slide",
+          "settings": {
+            "heading": "",
+            "subtext": "",
+            "button_text": "",
+            "button_link": "shopify://collections/printing-calculators",
+            "main_image": "shopify://shop_images/Free_Shipping_Handling_on_Select_Formax_Document_Folders_Homepage_Image.png",
+            "mobile_image": "shopify://shop_images/ChatGPT_Image_Aug_6_2026_04_54_27_PM.png",
+            "slide_link": "https://monroe-systems.com/collections/paper-folders?filter.p.vendor=Formax",
+            "featured_product": "",
+            "rating": 5
+          }
+        },
         "slide_UXz9Hi": {
           "type": "slide",
           "settings": {
@@ -37,20 +51,6 @@
             "mobile_image": "shopify://shop_images/6120X_Price_Drop_390_x_520_px.png",
             "slide_link": "shopify://products/monroe-6120x-12-digit-entry-level-accounting-desktop-printing-calculator",
             "featured_product": "",
-            "rating": 5
-          }
-        },
-        "slide_dVPqr6": {
-          "type": "slide",
-          "settings": {
-            "heading": "Industry-Leading Printing Calculators and Business Supplies",
-            "subtext": "Trusted by professionals since 1912 for accuracy, durability, and reliability.",
-            "button_text": "Browse Our Printing Calculators",
-            "button_link": "shopify://collections/printing-calculators",
-            "main_image": "shopify://shop_images/UltimateX_on_a_desk.png",
-            "mobile_image": "shopify://shop_images/UltimateX_on_a_desk_390_x_520_px.png",
-            "slide_link": "shopify://products/monroe-ultimatex-12-digit-programmable-heavy-duty-accounting-printing-calculator-with-edit-reprint-capabilities",
-            "featured_product": "monroe-ultimatex-12-digit-programmable-heavy-duty-accounting-printing-calculator-with-edit-reprint-capabilities",
             "rating": 5
           }
         },
@@ -84,9 +84,9 @@
         }
       },
       "block_order": [
+        "slide_dVPqr6",
         "slide_UXz9Hi",
         "slide_cH4jHn",
-        "slide_dVPqr6",
         "slide_mmUFYz",
         "slide_CcjC8d"
       ],
