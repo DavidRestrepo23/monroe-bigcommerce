@@ -16,6 +16,17 @@
     assign product_description = product.description | strip_html | strip_newlines | truncate: 5000
     assign rating_value = product.metafields.reviews.rating.value
     assign rating_count = product.metafields.reviews.rating_count.value | default: 0
+    assign current_variant_mpn = current_variant.metafields.google.mpn.value
+    if current_variant_mpn == blank
+      assign current_variant_mpn = current_variant.metafields['mm-google-shopping'].mpn.value
+    endif
+    if current_variant_mpn == blank
+      assign current_variant_mpn = current_variant.metafields.custom.mpn.value
+    endif
+    if current_variant_mpn == blank
+      assign current_variant_mpn = product.metafields.custom.mpn.value
+    endif
+    assign offer_currency = cart.currency.iso_code | default: shop.currency
   -%}
   <script type="application/ld+json">
     {
@@ -37,7 +48,9 @@
       {%- endif %}
       {%- if current_variant.sku != blank %}
       "sku": {{ current_variant.sku | json }},
-      "mpn": {{ current_variant.sku | json }},
+      {%- endif %}
+      {%- if current_variant_mpn != blank %}
+      "mpn": {{ current_variant_mpn | json }},
       {%- endif %}
       {%- assign barcode = current_variant.barcode | strip -%}
       {%- if barcode != blank -%}
@@ -70,11 +83,17 @@
       {%- endif %}
       "offers": [
         {%- for variant in product.variants -%}
+          {%- liquid
+            assign offer_name = product.title
+            unless product.has_only_default_variant
+              assign offer_name = product.title | append: ' - ' | append: variant.title
+            endunless
+          -%}
           {
             "@type": "Offer",
             "url": {{ shop.url | append: variant.url | json }},
             "price": {{ variant.price | divided_by: 100.0 | json }},
-            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "priceCurrency": {{ offer_currency | json }},
             "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
             "itemCondition": "https://schema.org/NewCondition",
             {%- if variant.sku != blank %}
@@ -84,7 +103,7 @@
               "@type": "Organization",
               "name": {{ shop.name | json }}
             },
-            "name": {{ variant.title | json }}
+            "name": {{ offer_name | json }}
           }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
       ]
