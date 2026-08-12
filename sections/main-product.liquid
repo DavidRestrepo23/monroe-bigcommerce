@@ -95,18 +95,14 @@
           </details>
         {%- endif -%}
 
-        {%- if product.metafields.custom.additional_information.value != blank or section.settings.additional_text != blank -%}
+        {%- if product.metafields.custom.additional_information.value != blank -%}
           <details class="accordion">
             <summary class="accordion__summary">
               <span>{{ 'products.product.additional_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.additional_information.value != blank -%}
-                {{ product.metafields.custom.additional_information.value }}
-              {%- else -%}
-                {{ section.settings.additional_text | strip_html }}
-              {%- endif -%}
+            <div class="accordion__content">
+              {{ product.metafields.custom.additional_information | metafield_tag }}
             </div>
           </details>
         {%- endif -%}
@@ -300,18 +296,14 @@
           </details>
         {%- endif -%}
 
-        {%- if product.metafields.custom.additional_information.value != blank or section.settings.additional_text != blank -%}
+        {%- if product.metafields.custom.additional_information.value != blank -%}
           <details class="accordion">
             <summary class="accordion__summary">
               <span>{{ 'products.product.additional_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
-              {%- if product.metafields.custom.additional_information.value != blank -%}
-                {{ product.metafields.custom.additional_information.value }}
-              {%- else -%}
-                {{ section.settings.additional_text | strip_html }}
-              {%- endif -%}
+            <div class="accordion__content">
+              {{ product.metafields.custom.additional_information | metafield_tag }}
             </div>
           </details>
         {%- endif -%}
@@ -363,11 +355,6 @@
       "type": "richtext",
       "id": "warranty_text",
       "label": "Warranty information (fallback)"
-    },
-    {
-      "type": "richtext",
-      "id": "additional_text",
-      "label": "Additional information (fallback)"
     }
   ],
   "presets": [
