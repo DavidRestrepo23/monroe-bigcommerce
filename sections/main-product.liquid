@@ -129,7 +129,7 @@
         <span class="meta-pill" data-variant-sku{% if current_variant.sku == blank %} hidden{% endif %}>
           SKU: <span data-variant-sku-value>{{ current_variant.sku }}</span>
         </span>
-        <span class="meta-pill" data-variant-upc{% if current_variant.barcode == blank %} hidden{% endif %}>
+        <span class="meta-pill" data-variant-upc{% if current_variant.barcode == blank %} hidden aria-hidden="true" style="display: none;"{% else %} aria-hidden="false"{% endif %}>
           UPC: <span data-variant-upc-value>{{ current_variant.barcode }}</span>
         </span>
         {%- if product.metafields.reviews.rating.value != blank -%}
