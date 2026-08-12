@@ -123,8 +123,12 @@ function initProductSection(section) {
 
   function updateVariantMeta(container, valueElement, value) {
     if (!container || !valueElement) return;
-    valueElement.textContent = value || '';
-    container.hidden = !value;
+    var normalizedValue = value == null ? '' : String(value).trim();
+    var hasValue = normalizedValue !== '';
+    valueElement.textContent = normalizedValue;
+    container.hidden = !hasValue;
+    container.setAttribute('aria-hidden', hasValue ? 'false' : 'true');
+    container.style.display = hasValue ? '' : 'none';
   }
 
   function updateUI(variant) {
