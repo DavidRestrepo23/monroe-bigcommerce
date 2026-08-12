@@ -17,6 +17,8 @@
   data-section-id="{{ section.id }}"
   data-add-to-cart-text="{{ 'products.product.add_to_cart' | t | escape }}"
   data-sold-out-text="{{ 'products.product.sold_out' | t | escape }}"
+  data-in-stock-text="{{ 'products.product.in_stock' | t | escape }}"
+  data-out-of-stock-text="{{ 'products.product.out_of_stock' | t | escape }}"
 >
   <div class="main-product__container">
     <div class="main-product__gallery">
@@ -112,9 +114,9 @@
     </div>
 
     <div class="main-product__info">
-      <div class="main-product__availability">
+      <div class="main-product__availability" data-variant-availability>
         <span class="availability-dot"></span>
-        <span>{% if current_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.out_of_stock' | t }}{% endif %}</span>
+        <span data-variant-availability-text>{% if current_variant.available %}{{ 'products.product.in_stock' | t }}{% else %}{{ 'products.product.out_of_stock' | t }}{% endif %}</span>
       </div>
 
       {%- if product.vendor != blank -%}
@@ -124,12 +126,12 @@
       <h1 class="main-product__title">{{ product.title }}</h1>
 
       <div class="main-product__meta">
-        {%- if current_variant.sku != blank -%}
-          <span class="meta-pill">SKU: {{ current_variant.sku }}</span>
-        {%- endif -%}
-        {%- if current_variant.barcode != blank -%}
-          <span class="meta-pill">UPC: {{ current_variant.barcode }}</span>
-        {%- endif -%}
+        <span class="meta-pill" data-variant-sku{% if current_variant.sku == blank %} hidden{% endif %}>
+          SKU: <span data-variant-sku-value>{{ current_variant.sku }}</span>
+        </span>
+        <span class="meta-pill" data-variant-upc{% if current_variant.barcode == blank %} hidden{% endif %}>
+          UPC: <span data-variant-upc-value>{{ current_variant.barcode }}</span>
+        </span>
         {%- if product.metafields.reviews.rating.value != blank -%}
           {%- assign rating = product.metafields.reviews.rating.value | round: 1 -%}
           {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
@@ -206,6 +208,7 @@
                       {% if variant_image %}data-media-id="{{ variant_image.id }}"{% endif %}
                       {% if value_color %}style="--swatch-color: #{{ value_color | remove: '#' }}"{% endif %}
                       aria-label="{{ option.name }}: {{ value_name }}"
+                      aria-pressed="{% if value_name == selected_name %}true{% else %}false{% endif %}"
                       title="{{ value_name }}"
                     >
                       {%- if value_color -%}
