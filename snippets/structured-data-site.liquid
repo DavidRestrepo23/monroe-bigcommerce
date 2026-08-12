@@ -15,9 +15,20 @@
     "@type": "Organization",
     "name": {{ shop.name | json }},
     "url": {{ shop.url | json }},
-    {%- if shop.brand.logo != blank %}
-    "logo": {{ shop.brand.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {%- endif %}
+    "logo": {
+  "@type": "ImageObject",
+  "url": "https://cdn.shopify.com/s/files/1/0653/0262/6407/files/Monroe_Logo_1200x628_510a887b-6a4d-4e01-9bad-94e8e50c880b.png?v=1783430311",
+  "contentUrl": "https://cdn.shopify.com/s/files/1/0653/0262/6407/files/Monroe_Logo_1200x628_510a887b-6a4d-4e01-9bad-94e8e50c880b.png?v=1783430311",
+  "width": 1200,
+  "height": 628
+},
+"image": {
+  "@type": "ImageObject",
+  "url": "https://cdn.shopify.com/s/files/1/0653/0262/6407/files/Monroe_M_logo_512x512_bdc672eb-b443-4e82-a5c6-8f017d0850bd.png?v=1786555404",
+  "contentUrl": "https://cdn.shopify.com/s/files/1/0653/0262/6407/files/Monroe_M_logo_512x512_bdc672eb-b443-4e82-a5c6-8f017d0850bd.png?v=1786555404",
+  "width": 512,
+  "height": 512
+},
     {%- if shop.description != blank %}
     "description": {{ shop.description | strip_html | json }},
     {%- endif %}
