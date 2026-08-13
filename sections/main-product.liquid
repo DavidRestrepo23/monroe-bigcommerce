@@ -158,13 +158,6 @@
       <span>{{ availability_text }}</span>
     </div>
   {%- endif -%}
-        {%- if section.settings.bulk_pricing_url != blank -%}
-          <div class="note-row">
-             {% render 'icon-shop' %}
-            <strong>{{ 'products.product.bulk_pricing' | t }}:</strong>
-            <a href="{{ section.settings.bulk_pricing_url }}">{{ 'products.product.buy_in_bulk' | t }}</a>
-          </div>
-        {%- endif -%}
       </div>
 
       <product-form-pdp class="main-product__form-wrapper" data-section="{{ section.id }}">
@@ -333,11 +326,6 @@
       "id": "availability_note",
       "label": "Availability note",
       "default": "Orders placed by 11 am ET will ship same-day (Mon - Fri)"
-    },
-    {
-      "type": "url",
-      "id": "bulk_pricing_url",
-      "label": "Bulk pricing URL"
     },
     {
       "type": "text",
