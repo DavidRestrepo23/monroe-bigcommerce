@@ -88,11 +88,11 @@
               <span>{{ 'products.product.warranty_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" >
+            <div class="accordion__content">
               {%- if product.metafields.custom.warranty_information.value != blank -%}
                 {{ product.metafields.custom.warranty_information.value }}
               {%- else -%}
-                {{ section.settings.warranty_text | strip_html }}
+                {{ section.settings.warranty_text }}
               {%- endif -%}
             </div>
           </details>
@@ -301,11 +301,11 @@
               <span>{{ 'products.product.warranty_information' | t }}</span>
                {%- render 'icon-arrow-down' -%}
             </summary>
-            <div class="accordion__content" data-raw-desc>
+            <div class="accordion__content">
               {%- if product.metafields.custom.warranty_information.value != blank -%}
                 {{ product.metafields.custom.warranty_information.value }}
               {%- else -%}
-                {{ section.settings.warranty_text | strip_html }}
+                {{ section.settings.warranty_text }}
               {%- endif -%}
             </div>
           </details>
