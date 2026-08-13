@@ -13,11 +13,9 @@
       "type": "main-product",
       "settings": {
         "availability_note": "Orders placed by 11 am ET will ship same-day (Mon - Fri)",
-        "bulk_pricing_url": "shopify://products/accubanker-ab4200-commercial-bill-counter",
         "financing_text": "Starting at $20.92/mo or as low as 0% APR with PayPal",
         "show_paypal_button": true,
-        "warranty_text": "<p>All products come with a 30-day satisfaction guarantee. If you're not completely happy with your purchase, we'll make it right. Contact our customer service team for returns, exchanges, or refunds — no questions asked.</p>",
-        "additional_text": "<p>I need more information to generate text. Please provide:<br/><br/>- What type of block is this? (heading, body text, product description, etc.)<br/>- What should the text be about?<br/>- Any specific tone or style preferences?<br/>- Any key details to include?</p>"
+        "warranty_text": "<p>All products come with a 30-day satisfaction guarantee. If you're not completely happy with your purchase, we'll make it right. Contact our customer service team for returns, exchanges, or refunds — no questions asked.</p>"
       }
     }
   },
