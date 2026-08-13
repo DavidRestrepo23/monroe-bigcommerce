@@ -229,6 +229,7 @@
               data-paypal-maximum="{{ paypal_pay_in_4_maximum }}"
               {% if current_variant.price <= 0 %}hidden{% endif %}
             >
+              <span data-paypal-financing-text>
               {%- if current_variant.price < paypal_pay_in_4_minimum -%}
                 | About 4 payments of {{ paypal_installment_amount | money }} for this item when included in a qualifying $30+ order with PayPal.
               {%- elsif current_variant.price <= paypal_pay_in_4_maximum -%}
@@ -236,6 +237,12 @@
               {%- else -%}
                 | PayPal Pay Monthly may be available at checkout.
               {%- endif -%}
+              </span>
+              <small
+                class="price-financing__disclaimer"
+                data-paypal-financing-disclaimer
+                {% if current_variant.price > paypal_pay_in_4_maximum %}hidden{% endif %}
+              >+ taxes &amp; shipping</small>
             </span>
           </div>
 
@@ -336,6 +343,8 @@
 
     var financingMessage = section.querySelector('[data-paypal-financing-message]');
     if (!financingMessage) return;
+    var financingText = financingMessage.querySelector('[data-paypal-financing-text]');
+    var financingDisclaimer = financingMessage.querySelector('[data-paypal-financing-disclaimer]');
 
     var minimumPrice = parseInt(financingMessage.dataset.paypalMinimum, 10) || 3000;
     var maximumPrice = parseInt(financingMessage.dataset.paypalMaximum, 10) || 150000;
@@ -352,16 +361,17 @@
 
       financingMessage.hidden = false;
       var installmentAmount = formatUsd(variant.price / 4);
+      financingDisclaimer.hidden = variant.price > maximumPrice;
 
       if (variant.price < minimumPrice) {
-        financingMessage.textContent =
+        financingText.textContent =
           ' | About 4 payments of ' + installmentAmount +
           ' for this item when included in a qualifying $30+ order with PayPal.';
       } else if (variant.price <= maximumPrice) {
-        financingMessage.textContent =
+        financingText.textContent =
           ' | Split into 4 interest-free payments of ' + installmentAmount + ' with PayPal.';
       } else {
-        financingMessage.textContent = ' | PayPal Pay Monthly may be available at checkout.';
+        financingText.textContent = ' | PayPal Pay Monthly may be available at checkout.';
       }
     }
 
