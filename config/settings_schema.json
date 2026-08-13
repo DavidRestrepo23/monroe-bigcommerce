@@ -70,5 +70,23 @@
         "default": "#be322d"
       }
     ]
+  },
+  {
+    "name": "SEO and social sharing",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "default_meta_description",
+        "label": "Default meta description",
+        "info": "Used when a page does not have its own Shopify search engine description.",
+        "default": "Shop new and reconditioned typewriters, ribbons, correction tape, printwheels, IBM parts, manuals, and expert support from Typewriters.com."
+      },
+      {
+        "type": "image_picker",
+        "id": "social_share_image",
+        "label": "Default social sharing image",
+        "info": "Recommended size: 1200 x 630 pixels. Product and article images take priority when available."
+      }
+    ]
   }
 ]
