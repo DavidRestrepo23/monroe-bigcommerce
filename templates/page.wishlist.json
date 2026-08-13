@@ -15,15 +15,15 @@
         "heading": "My Favorites",
         "clear_label": "Clear All",
         "add_all_label": "Add All to Cart",
-        "badge_text": "Top Seller",
-        "cart_label": "Cart",
+        "badge_text": "",
+        "cart_label": "Add to Cart",
         "columns_desktop": 4,
         "empty_text": "You haven't saved any favorites yet.",
         "empty_link": "shopify://collections/all",
         "empty_link_label": "Browse Products",
-        "accent_color": "#be322d",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "accent_color": "#d24742",
+        "padding_top": 56,
+        "padding_bottom": 72
       }
     }
   },
