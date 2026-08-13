@@ -104,7 +104,13 @@
   "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
   "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
   "author": { "@type": "Person", "name": {{ article.author | json }} },
-  "publisher": { "@type": "Organization", "name": {{ shop.name | json }} },
+  "publisher": {
+    "@type": "Organization",
+    "@id": {{ shop.url | append: '#organization' | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+  },
+  "url": {{ canonical_url | json }},
   "mainEntityOfPage": { "@type": "WebPage", "@id": {{ canonical_url | json }} }{% if schema_image != blank %},
   "image": {{ schema_image | json }}{% endif %}
 }
