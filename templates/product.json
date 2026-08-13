@@ -7,19 +7,4 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
-  "sections": {
-    "main": {
-      "type": "main-product",
-      "settings": {
-        "availability_note": "Orders placed by 11 am ET will ship same-day (Mon - Fri)",
-        "financing_text": "Starting at $20.92/mo or as low as 0% APR with PayPal",
-        "show_paypal_button": true,
-        "warranty_text": "<p>All products come with a 30-day satisfaction guarantee. If you're not completely happy with your purchase, we'll make it right. Contact our customer service team for returns, exchanges, or refunds — no questions asked.</p>"
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
-}
+{"sections":{"main":{"type":"main-product","settings":{"availability_note":"Orders placed by 11 am ET will ship same-day (Mon - Fri)","show_paypal_button":true,"warranty_text":"<p>All products come with a 30-day satisfaction guarantee. If you're not completely happy with your purchase, we'll make it right. Contact our customer service team for returns, exchanges, or refunds — no questions asked.<\/p>"}}},"order":["main"]}
