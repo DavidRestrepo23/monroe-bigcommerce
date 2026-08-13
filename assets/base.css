@@ -133,11 +133,14 @@ a.button-primary {
   }
 }
 
-/* ── Visibility utilities ── */
+/* ── Visibility utilities ──
+   The full Typewriters.com navigation needs approximately 1,440px.
+   Keep the mobile/tablet header active until the desktop menu has
+   enough room to render without clipping or horizontal overflow. */
 .hide-mobile { display: none !important; }
 .hide-desktop { display: block !important; }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 1500px) {
   .hide-mobile { display: block !important; }
   .hide-desktop { display: none !important; }
 }
