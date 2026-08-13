@@ -97,6 +97,26 @@ function initProductSection(section) {
     });
   }
 
+  function getVariantForSubmission() {
+    var selectedOptions = getSelectedOptions();
+
+    if (selectedOptions.length > 0) {
+      var matchedVariant = findVariant(selectedOptions);
+      if (matchedVariant) return matchedVariant;
+    }
+
+    if (currentVariant) return currentVariant;
+
+    if (variantInput && variantInput.value) {
+      var inputVariant = variants.find(function (variant) {
+        return String(variant.id) === String(variantInput.value);
+      });
+      if (inputVariant) return inputVariant;
+    }
+
+    return variants[0] || null;
+  }
+
   function findVariantForClickedOption(optionIndex, optionValue) {
     var matches = variants.filter(function (variant) {
       return variant.options[optionIndex] === optionValue;
@@ -211,8 +231,8 @@ function initProductSection(section) {
   if (form && addBtn) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var selectedVariant = findVariant(getSelectedOptions());
-      if (!selectedVariant || !currentVariant || String(selectedVariant.id) !== String(currentVariant.id)) {
+      var selectedVariant = getVariantForSubmission();
+      if (selectedVariant && (!currentVariant || String(selectedVariant.id) !== String(currentVariant.id))) {
         updateUI(selectedVariant);
       }
       if (!selectedVariant || !selectedVariant.available || addBtn.disabled || addBtn.classList.contains('is-loading')) return;
