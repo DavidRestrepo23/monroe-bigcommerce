@@ -1,0 +1,390 @@
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign collections_to_display = collections
+  assign pagination_anchor = '#CollectionDirectory-' | append: section.id
+  case section.settings.sort
+    when 'alphabetical_reversed'
+      assign collections_to_display = collections_to_display | sort: 'title' | reverse
+    when 'date_reversed'
+      assign collections_to_display = collections_to_display | sort: 'published_at' | reverse
+    when 'date'
+      assign collections_to_display = collections_to_display | sort: 'published_at'
+    when 'products_high'
+      assign collections_to_display = collections_to_display | sort: 'all_products_count' | reverse
+    when 'products_low'
+      assign collections_to_display = collections_to_display | sort: 'all_products_count'
+    else
+      assign collections_to_display = collections_to_display | sort: 'title'
+  endcase
+-%}
+
+{%- style -%}
+  #CollectionDirectory-{{ section.id }} {
+    --cd-accent: {{ section.settings.accent_color }};
+    --cd-columns: {{ section.settings.columns_desktop }};
+    --cd-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__inner {
+    width: min(100%, 1440px);
+    margin: 0 auto;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__header {
+    max-width: 780px;
+    margin-bottom: 40px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--cd-accent);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__heading {
+    margin: 0;
+    color: #0a0a0a;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.08;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__intro {
+    margin: 16px 0 0;
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__summary {
+    margin: 14px 0 0;
+    color: #6b6b6b;
+    font-size: 15px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cd-columns), minmax(0, 1fr));
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__card {
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(10, 10, 10, .1);
+    border-radius: var(--cd-radius);
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(10, 10, 10, .06);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(210, 71, 66, .35);
+    box-shadow: 0 16px 38px rgba(10, 10, 10, .11);
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__link {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #f7f4ef, #ece8e0);
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 18px;
+    transition: transform .35s ease;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__card:hover img {
+    transform: scale(1.035);
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__fallback {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: var(--cd-accent);
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__fallback svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__title {
+    margin: 0;
+    color: #0a0a0a;
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__count {
+    display: block;
+    margin-top: 7px;
+    color: #737373;
+    font-size: 14px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__arrow {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--cd-accent);
+    color: #fff;
+  }
+
+  #CollectionDirectory-{{ section.id }} .collection-directory__arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #CollectionDirectory-{{ section.id }} .pagination-wrapper {
+    margin-top: 48px;
+  }
+
+  @media (max-width: 989px) {
+    #CollectionDirectory-{{ section.id }} {
+      --cd-columns: 2;
+    }
+  }
+
+  @media (max-width: 749px) {
+    #CollectionDirectory-{{ section.id }} {
+      --cd-columns: {{ section.settings.columns_mobile }};
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+
+    #CollectionDirectory-{{ section.id }} .collection-directory__header {
+      margin-bottom: 28px;
+    }
+
+    #CollectionDirectory-{{ section.id }} .collection-directory__grid {
+      gap: 16px;
+    }
+
+    #CollectionDirectory-{{ section.id }} .collection-directory__content {
+      padding: 16px;
+    }
+
+    #CollectionDirectory-{{ section.id }} .collection-directory__title {
+      font-size: 17px;
+    }
+
+    #CollectionDirectory-{{ section.id }} .collection-directory__arrow {
+      width: 34px;
+      height: 34px;
+      flex-basis: 34px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="CollectionDirectory-{{ section.id }}" class="collection-directory">
+  <div class="collection-directory__inner">
+    <header class="collection-directory__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="collection-directory__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1 class="collection-directory__heading">{{ section.settings.title }}</h1>
+      {%- if section.settings.intro != blank -%}
+        <div class="collection-directory__intro">{{ section.settings.intro }}</div>
+      {%- endif -%}
+      <p class="collection-directory__summary">
+        {{ collections.size }} collection{% if collections.size != 1 %}s{% endif %} available
+      </p>
+    </header>
+
+    {%- paginate collections_to_display by section.settings.collections_per_page -%}
+      <ul class="collection-directory__grid" role="list">
+        {%- for collection in collections_to_display -%}
+          {%- liquid
+            assign collection_image = collection.featured_image
+            if collection_image == blank and collection.products.first.featured_image != blank
+              assign collection_image = collection.products.first.featured_image
+            endif
+          -%}
+          <li>
+            <article class="collection-directory__card">
+              <a class="collection-directory__link" href="{{ collection.url }}">
+                <div class="collection-directory__media">
+                  {%- if collection_image != blank -%}
+                    {{
+                      collection_image
+                      | image_url: width: 900
+                      | image_tag:
+                        widths: '320, 480, 640, 900',
+                        sizes: '(min-width: 990px) 25vw, (min-width: 750px) 50vw, 100vw',
+                        loading: 'lazy',
+                        alt: collection.title
+                    }}
+                  {%- else -%}
+                    <span class="collection-directory__fallback" aria-hidden="true">
+                      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="19" width="44" height="31" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M18 19V13H46V19M18 28H46M21 36H43M25 44H39" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                  {%- endif -%}
+                </div>
+                <div class="collection-directory__content">
+                  <div>
+                    <h2 class="collection-directory__title">{{ collection.title }}</h2>
+                    <span class="collection-directory__count">
+                      {{ collection.all_products_count }} product{% if collection.all_products_count != 1 %}s{% endif %}
+                    </span>
+                  </div>
+                  <span class="collection-directory__arrow" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 10H16M11 5L16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </article>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate, anchor: pagination_anchor -%}
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections directory",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop Typewriters.com"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Browse All Collections"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introductory text",
+      "default": "<p>Explore typewriters, ribbons, correction supplies, printwheels, IBM parts, manuals, and more.</p>"
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "label": "Sort collections",
+      "default": "alphabetical",
+      "options": [
+        { "value": "alphabetical", "label": "Alphabetically, A–Z" },
+        { "value": "alphabetical_reversed", "label": "Alphabetically, Z–A" },
+        { "value": "date_reversed", "label": "Date, newest first" },
+        { "value": "date", "label": "Date, oldest first" },
+        { "value": "products_high", "label": "Product count, high to low" },
+        { "value": "products_low", "label": "Product count, low to high" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "collections_per_page",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "default": 24,
+      "label": "Collections per page"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop columns"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 16,
+      "label": "Card corner radius"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#d24742"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80,
+      "label": "Bottom padding"
+    }
+  ]
+}
+{% endschema %}
