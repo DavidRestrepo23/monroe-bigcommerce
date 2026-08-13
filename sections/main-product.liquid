@@ -7,6 +7,7 @@
   if product.has_only_default_variant == false
     assign has_variants = true
   endif
+  assign financing_minimum_cents = section.settings.financing_minimum_price | default: 50 | times: 100
 -%}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -220,7 +221,12 @@
             {%- endif -%}
             <span class="price-current">{{ current_variant.price | money }}</span>
             {%- if section.settings.financing_text != blank -%}
-              <span class="price-financing"> | {{ section.settings.financing_text }}</span>
+              <span
+                class="price-financing"
+                data-financing-message
+                data-financing-minimum="{{ financing_minimum_cents }}"
+                {% if current_variant.price < financing_minimum_cents %}hidden{% endif %}
+              > | {{ section.settings.financing_text }}</span>
             {%- endif -%}
           </div>
 
@@ -314,6 +320,22 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="{{ 'main-product-v2.js' | asset_url }}" defer></script>
+<script>
+  (function () {
+    var section = document.querySelector('.main-product[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    var financingMessage = section.querySelector('[data-financing-message]');
+    if (!financingMessage) return;
+
+    var minimumPrice = parseInt(financingMessage.dataset.financingMinimum, 10) || 0;
+
+    section.addEventListener('variant:change', function (event) {
+      var variant = event.detail && event.detail.variant;
+      financingMessage.hidden = !variant || variant.price < minimumPrice;
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -332,6 +354,16 @@
       "id": "financing_text",
       "label": "Financing text",
       "default": "Starting at $20.92/mo or as low as 0% APR with PayPal"
+    },
+    {
+      "type": "range",
+      "id": "financing_minimum_price",
+      "min": 0,
+      "max": 500,
+      "step": 5,
+      "unit": "$",
+      "label": "Minimum price for financing message",
+      "default": 50
     },
     {
       "type": "checkbox",
