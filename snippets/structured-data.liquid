@@ -1,0 +1,146 @@
+{%- comment -%}
+  Sitewide JSON-LD. The article template already owns its BlogPosting schema,
+  so this snippet adds the remaining global, product, and breadcrumb entities.
+{%- endcomment -%}
+
+{%- liquid
+  assign organization_logo = settings.social_share_image
+  if organization_logo == blank and shop.brand.logo != blank
+    assign organization_logo = shop.brand.logo
+  endif
+  assign organization_logo_url = blank
+  if organization_logo != blank
+    assign organization_logo_url = organization_logo | image_url: width: 600
+    unless organization_logo_url contains 'http'
+      assign organization_logo_url = organization_logo_url | prepend: 'https:'
+    endunless
+  endif
+-%}
+
+{%- if request.page_type == 'index' -%}
+  {%- capture search_target -%}{{ shop.url }}{{ routes.search_url }}?q={search_term_string}{%- endcapture -%}
+  <script type="application/ld+json" id="typewriters-site-structured-data">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": {{ shop.url | append: '#organization' | json }},
+          "name": {{ shop.name | json }},
+          "url": {{ shop.url | json }},
+          "email": "info@typewriters.com",
+          "telephone": "+1-404-377-1884",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "5357 Royal Woods Parkway",
+            "addressLocality": "Tucker",
+            "addressRegion": "GA",
+            "postalCode": "30084",
+            "addressCountry": "US"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-404-377-1884",
+            "contactType": "customer service",
+            "areaServed": "US",
+            "availableLanguage": "English"
+          }{% if organization_logo_url != blank %},
+          "logo": {
+            "@type": "ImageObject",
+            "url": {{ organization_logo_url | json }}
+          }{% endif %}
+        },
+        {
+          "@type": "WebSite",
+          "@id": {{ shop.url | append: '#website' | json }},
+          "url": {{ shop.url | json }},
+          "name": {{ shop.name | json }},
+          "publisher": { "@id": {{ shop.url | append: '#organization' | json }} },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": {{ search_target | json }}
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  <script type="application/ld+json" id="typewriters-product-structured-data">
+    {{ product | structured_data }}
+  </script>
+{%- endif -%}
+
+{%- liquid
+  assign breadcrumb_enabled = true
+  assign breadcrumb_parent_title = blank
+  assign breadcrumb_parent_url = blank
+  assign breadcrumb_current_title = page_title
+  assign breadcrumb_current_url = canonical_url
+
+  case request.page_type
+    when 'index', 'search', 'cart', '404'
+      assign breadcrumb_enabled = false
+    when 'product'
+      assign breadcrumb_current_title = product.title
+      assign breadcrumb_current_url = product.url | prepend: shop.url
+    when 'collection'
+      assign breadcrumb_current_title = collection.title
+      assign breadcrumb_current_url = collection.url | prepend: shop.url
+    when 'page'
+      assign breadcrumb_current_title = page.title
+      assign breadcrumb_current_url = page.url | prepend: shop.url
+    when 'blog'
+      assign breadcrumb_current_title = blog.title
+      assign breadcrumb_current_url = blog.url | prepend: shop.url
+    when 'article'
+      assign breadcrumb_parent_title = blog.title
+      assign breadcrumb_parent_url = blog.url | prepend: shop.url
+      assign breadcrumb_current_title = article.title
+      assign breadcrumb_current_url = article.url | prepend: shop.url
+  endcase
+
+  if breadcrumb_current_title == blank or breadcrumb_current_url == blank
+    assign breadcrumb_enabled = false
+  endif
+-%}
+
+{%- if breadcrumb_enabled -%}
+  <script type="application/ld+json" id="typewriters-breadcrumb-structured-data">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ shop.url | json }}
+        }{% if breadcrumb_parent_title != blank %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ breadcrumb_parent_title | json }},
+          "item": {{ breadcrumb_parent_url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ breadcrumb_current_title | json }},
+          "item": {{ breadcrumb_current_url | json }}
+        }{% else %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ breadcrumb_current_title | json }},
+          "item": {{ breadcrumb_current_url | json }}
+        }{% endif %}
+      ]
+    }
+  </script>
+{%- endif -%}
