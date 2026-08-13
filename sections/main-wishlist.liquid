@@ -21,7 +21,7 @@
     <div class="wishlist__header">
       <div class="wishlist__heading-wrap">
         <h1 class="wishlist__heading">{{ section.settings.heading }}</h1>
-        <span class="wishlist__count" data-wishlist-count>0 items saved</span>
+        <span class="wishlist__count" data-wishlist-count aria-live="polite">0 items saved</span>
       </div>
       <div class="wishlist__actions" data-wishlist-actions hidden>
         <button type="button" class="wishlist__clear-btn" data-wishlist-clear>
@@ -46,6 +46,17 @@
       <p>{{ section.settings.empty_text }}</p>
       <a href="{{ section.settings.empty_link }}">{{ section.settings.empty_link_label }}</a>
     </div>
+
+    <div class="wishlist__error" data-wishlist-error hidden role="status">
+      <p>We couldn't load your saved products. Your favorites are still saved.</p>
+      <button type="button" data-wishlist-retry>Try Again</button>
+    </div>
+
+    <noscript>
+      <div class="wishlist__error wishlist__error--noscript">
+        <p>Please enable JavaScript to view products saved to your wishlist.</p>
+      </div>
+    </noscript>
   </div>
 </wishlist-page>
 
@@ -62,25 +73,32 @@
     }
 
     function saveWishlist(handles) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(handles));
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(handles));
+        window.dispatchEvent(new CustomEvent('wishlist:updated', { detail: { handles: handles } }));
+      } catch (e) {
+        /* Keep the page responsive if browser storage is unavailable. */
+      }
     }
 
     function formatMoney(cents) {
       return '$' + (cents / 100).toFixed(2);
     }
 
-    customElements.define('wishlist-page', class extends HTMLElement {
+    if (!customElements.get('wishlist-page')) customElements.define('wishlist-page', class extends HTMLElement {
       connectedCallback() {
         this.grid = this.querySelector('[data-wishlist-grid]');
         this.empty = this.querySelector('[data-wishlist-empty]');
         this.loading = this.querySelector('[data-wishlist-loading]');
         this.countEl = this.querySelector('[data-wishlist-count]');
         this.actions = this.querySelector('[data-wishlist-actions]');
+        this.error = this.querySelector('[data-wishlist-error]');
         this.badgeText = this.dataset.badgeText || '';
         this.cartLabel = this.dataset.cartLabel || 'Cart';
 
         this.querySelector('[data-wishlist-clear]').addEventListener('click', this.clearAll.bind(this));
         this.querySelector('[data-wishlist-add-all]').addEventListener('click', this.addAllToCart.bind(this));
+        this.querySelector('[data-wishlist-retry]').addEventListener('click', this.render.bind(this));
         this.grid.addEventListener('click', this.handleGridClick.bind(this));
 
         this.render();
@@ -98,8 +116,27 @@
         this.loading.hidden = false;
         this.grid.hidden = true;
         this.empty.hidden = true;
+        this.error.hidden = true;
+        this.actions.hidden = true;
 
-        var products = await this.fetchProducts(handles);
+        var result = await this.fetchProducts(handles);
+        if (result.networkError && result.products.length === 0) {
+          this.showError();
+          return;
+        }
+
+        var products = result.products;
+        var validHandles = handles.filter(function (handle) {
+          return result.unavailableHandles.indexOf(handle) === -1;
+        });
+        if (validHandles.length !== handles.length) saveWishlist(validHandles);
+        this.updateCount(products.length);
+
+        if (products.length === 0) {
+          this.showEmpty();
+          return;
+        }
+
         this.products = products;
 
         this.grid.innerHTML = '';
@@ -113,48 +150,54 @@
       }
 
       async fetchProducts(handles) {
-        var products = [];
-        for (var i = 0; i < handles.length; i++) {
+        var root = window.Shopify && window.Shopify.routes && window.Shopify.routes.root
+          ? window.Shopify.routes.root
+          : '/';
+        var networkError = false;
+        var requests = handles.map(async function (handle) {
           try {
-            var resp = await fetch('/products/' + encodeURIComponent(handles[i]) + '.js');
-            if (resp.ok) {
-              products.push(await resp.json());
-            }
+            var resp = await fetch(root + 'products/' + encodeURIComponent(handle) + '.js', {
+              headers: { Accept: 'application/json' }
+            });
+            if (resp.ok) return { handle: handle, product: await resp.json() };
+            return { handle: handle, unavailable: true };
           } catch (e) {
-            /* skip unavailable products */
+            networkError = true;
+            return { handle: handle, networkError: true };
           }
-        }
-        return products;
+        });
+        var results = await Promise.all(requests);
+        var products = results.filter(function (result) { return result.product; }).map(function (result) { return result.product; });
+        var unavailableHandles = results.filter(function (result) { return result.unavailable; }).map(function (result) { return result.handle; });
+        return { products: products, unavailableHandles: unavailableHandles, networkError: networkError };
       }
 
       createCard(product) {
         var li = document.createElement('li');
         li.className = 'wishlist__item';
 
-        var variant = product.variants[0];
-        var imageUrl = product.featured_image
-          ? product.featured_image.replace(/(\.\w+)(\?|$)/, '_600x$1$2')
-          : '';
+        var variant = this.getPurchaseVariant(product);
+        var imageUrl = product.featured_image || '';
         var hasCompare = product.compare_at_price && product.compare_at_price > product.price;
 
         var html = '<article class="wishlist-card">' +
-          '<a class="wishlist-card__media" href="' + product.url + '" aria-label="' + this.escHtml(product.title) + '">';
+          '<div class="wishlist-card__media">' +
+          '<a class="wishlist-card__image-link" href="' + this.escAttr(product.url) + '" aria-label="View ' + this.escAttr(product.title) + '">';
 
         if (this.badgeText) {
           html += '<span class="wishlist-card__badge">' + this.escHtml(this.badgeText) + '</span>';
         }
 
-        html += '<button type="button" class="wishlist-card__remove" data-remove-handle="' + this.escHtml(product.handle) + '" aria-label="Remove from wishlist">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
-          '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>' +
-          '</svg></button>';
-
         if (imageUrl) {
-          html += '<img src="' + imageUrl + '" alt="' + this.escHtml(product.title) + '" loading="lazy">';
+          html += '<img src="' + this.escAttr(imageUrl) + '" alt="' + this.escAttr(product.title) + '" loading="lazy" width="600" height="800">';
         }
 
         html += '</a>' +
-          '<h3 class="wishlist-card__title"><a href="' + product.url + '">' + this.escHtml(product.title) + '</a></h3>' +
+          '<button type="button" class="wishlist-card__remove" data-remove-handle="' + this.escAttr(product.handle) + '" aria-label="Remove ' + this.escAttr(product.title) + ' from wishlist">' +
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+          '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>' +
+          '</svg></button></div>' +
+          '<h3 class="wishlist-card__title"><a href="' + this.escAttr(product.url) + '">' + this.escHtml(product.title) + '</a></h3>' +
           '<div class="wishlist-card__row">' +
           '<span class="wishlist-card__price">';
 
@@ -208,7 +251,10 @@
           btn.querySelector('span').textContent = 'Adding...';
         }
         try {
-          await fetch('/cart/add.js', {
+          var root = window.Shopify && window.Shopify.routes && window.Shopify.routes.root
+            ? window.Shopify.routes.root
+            : '/';
+          await fetch(root + 'cart/add.js', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ items: [{ id: parseInt(variantId, 10), quantity: 1 }] })
@@ -216,14 +262,15 @@
           if (btn) {
             btn.querySelector('span').textContent = 'Added!';
             setTimeout(function () {
-              var variant = this.products && this.products.find(function (p) {
-                return p.variants[0].id == variantId;
+              var product = this.products && this.products.find(function (item) {
+                return item.variants.some(function (variant) { return variant.id == variantId; });
               });
-              btn.querySelector('span').textContent = variant && variant.variants[0].available ? this.cartLabel : 'Sold Out';
-              btn.disabled = !(variant && variant.variants[0].available);
+              var variant = product && this.getPurchaseVariant(product);
+              btn.querySelector('span').textContent = variant && variant.available ? this.cartLabel : 'Sold Out';
+              btn.disabled = !(variant && variant.available);
             }.bind(this), 1500);
           }
-          if (typeof publish === 'function') {
+          if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
             publish(PUB_SUB_EVENTS.cartUpdate, {});
           }
         } catch (e) {
@@ -238,8 +285,9 @@
         var allBtn = this.querySelector('[data-wishlist-add-all]');
         allBtn.textContent = 'Adding...';
         var items = (this.products || [])
-          .filter(function (p) { return p.variants[0].available; })
-          .map(function (p) { return { id: p.variants[0].id, quantity: 1 }; });
+          .map(function (product) { return this.getPurchaseVariant(product); }.bind(this))
+          .filter(function (variant) { return variant && variant.available; })
+          .map(function (variant) { return { id: variant.id, quantity: 1 }; });
 
         if (items.length === 0) {
           allBtn.textContent = this.querySelector('[data-wishlist-add-all]').dataset.originalText || 'Add All to Cart';
@@ -253,9 +301,12 @@
           if (cartDrawer && cartDrawer.dataset.section) sections.push(cartDrawer.dataset.section);
           if (cartNotification && cartNotification.dataset.section) sections.push(cartNotification.dataset.section);
 
-          var resp = await fetch('/cart/add.js', {
+          var root = window.Shopify && window.Shopify.routes && window.Shopify.routes.root
+            ? window.Shopify.routes.root
+            : '/';
+          var resp = await fetch(root + 'cart/add.js', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/javascript' },
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
             body: JSON.stringify({ items: items, sections: sections.join(','), sections_url: window.location.pathname })
           });
           var data = await resp.json();
@@ -292,17 +343,39 @@
         this.countEl.textContent = count + ' item' + (count !== 1 ? 's' : '') + ' saved';
       }
 
+      getPurchaseVariant(product) {
+        return product && product.variants
+          ? product.variants.find(function (variant) { return variant.available; }) || product.variants[0]
+          : null;
+      }
+
       showEmpty() {
         this.loading.hidden = true;
         this.grid.hidden = true;
+        this.grid.innerHTML = '';
         this.empty.hidden = false;
+        this.error.hidden = true;
+        this.actions.hidden = true;
+      }
+
+      showError() {
+        this.loading.hidden = true;
+        this.grid.hidden = true;
+        this.empty.hidden = true;
+        this.error.hidden = false;
         this.actions.hidden = true;
       }
 
       escHtml(str) {
         var div = document.createElement('div');
-        div.textContent = str;
+        div.textContent = String(str || '');
         return div.innerHTML;
+      }
+
+      escAttr(str) {
+        return String(str || '').replace(/[&<>"']/g, function (char) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char];
+        });
       }
     });
   })();
