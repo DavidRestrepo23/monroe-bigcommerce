@@ -70,8 +70,8 @@
                 {%- if block.settings.subtext != blank -%}
                   <p class="hero-slider__subtext">{{ block.settings.subtext }}</p>
                 {%- endif -%}
-                {%- if block.settings.button_text != blank -%}
-                  <a class="hero-slider__button button-primary" href="{{ block.settings.button_link | default: '#' }}">
+                {%- if block.settings.button_text != blank and block.settings.button_link != blank -%}
+                  <a class="hero-slider__button button-primary" href="{{ block.settings.button_link }}">
                     {{ block.settings.button_text }}
                   </a>
                 {%- endif -%}
