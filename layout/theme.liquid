@@ -1,20 +1,29 @@
 <!doctype html>
-<html>
+<html lang="{{ request.locale.iso_code }}">
   <head>
-    <meta name="google-site-verification" content="t7_j0VTEKx0zNo0Xn8Sw3LJiDZV5P6zzqzKk9uJ3T9A" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="t7_j0VTEKx0zNo0Xn8Sw3LJiDZV5P6zzqzKk9uJ3T9A">
+
+    {%- render 'seo-meta-tags' -%}
     {{ content_for_header }}
+
+    {%- render 'structured-data' -%}
+
     <link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="{{ 'typewriters-favicon.png' | asset_url }}"
->
-  <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ 'typewriters-favicon.png' | asset_url }}"
+    >
+    <link
       rel="shortcut icon"
       type="image/png"
       href="{{ 'typewriters-favicon.png' | asset_url }}"
     >
+    <link rel="stylesheet" href="{{ 'normalize.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
     <script>
       window.Shopify = window.Shopify || {};
@@ -68,8 +77,6 @@
     }
   {%- endstyle -%}
   </head>
-  <link rel="stylesheet" href="{{ 'normalize.css' | asset_url }}">
-  <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
   <body>
     {%- section 'top-ribbon' -%}
     {%- section 'header' -%}
