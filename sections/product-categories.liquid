@@ -34,7 +34,7 @@
     >
       {%- for block in section.blocks -%}
         {%- if block.type == 'category' -%}
-          {%- assign card_link = block.settings.link | default: '#' -%}
+          {%- assign card_link = block.settings.link | default: routes.all_products_collection_url -%}
           <a
             href="{{ card_link }}"
             class="product-categories__card"
