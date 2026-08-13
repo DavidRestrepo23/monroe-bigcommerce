@@ -18,7 +18,7 @@
             "heading": "Write Without Distractions.",
             "subtext": "Trusted by professionals for accuracy, durability, and reliability.",
             "button_text": "Shop Our Typewriters",
-            "button_link": "",
+            "button_link": "shopify://collections/new-and-reconditioned-typewriters",
             "main_image": "shopify://shop_images/Hero-Section.png",
             "featured_product": "ibm-lexmark-wheelwriter-1000-electronic-typewriter-reconditioned",
             "rating": 5
@@ -185,7 +185,7 @@
           "settings": {
             "image": "shopify://shop_images/Frame_1171276606.png",
             "title": "New Typewriters",
-            "link": ""
+            "link": "shopify://collections/new-typewriters"
           }
         },
         "category_KJhVQC": {
@@ -193,7 +193,7 @@
           "settings": {
             "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69367_1.png",
             "title": "Supplies",
-            "link": ""
+            "link": "shopify://collections/typewriter-supplies"
           }
         },
         "category_jBPDhY": {
@@ -201,7 +201,7 @@
           "settings": {
             "image": "shopify://shop_images/freepik__diminua-o-tamanho-img1-desse-produto-para-que-fiqu__69366_1.png",
             "title": "IBM Parts",
-            "link": ""
+            "link": "shopify://collections/ibm-parts"
           }
         },
         "category_b7BER4": {
@@ -209,7 +209,7 @@
           "settings": {
             "image": "shopify://shop_images/freepik__troque-a-maquina-de-escrever-e-remova-a-mo-da-imag__37827_1.png",
             "title": "Reconditioned Typewriters",
-            "link": ""
+            "link": "shopify://collections/ibm-reconditioned-typewriters"
           }
         }
       },
@@ -311,7 +311,7 @@
         "heading": "Find the Right Solution for Your Business",
         "heading_size": 64,
         "button_label": "View All Solutions",
-        "button_url": "#",
+        "button_url": "shopify://collections",
         "testimonial_avatar": "shopify://shop_images/Ellipse_1.png",
         "testimonial_quote": "I was skeptical about buying a reconditioned typewriter online, but the IBM Wheelwriter I received looked and worked like new. You could tell it went through a serious process before shipping. Exactly what I needed for my legal office — and at a fraction of the price of a new unit.",
         "testimonial_author": "NICOLA T.",
