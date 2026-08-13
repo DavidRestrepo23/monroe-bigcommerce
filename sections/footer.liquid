@@ -157,9 +157,61 @@
                 {%- if block.settings.menu != blank -%}
                   <ul class="site-footer__links">
                     {%- for link in linklists[block.settings.menu].links -%}
-                      <li>
-                        <a href="{{ link.url }}">{{ link.title }}</a>
-                      </li>
+                      {%- liquid
+                        assign footer_link_url = link.url | default: '' | strip
+                        if footer_link_url == blank or footer_link_url == '#'
+                          case link.title
+                            when 'Typewriter Manuals'
+                              assign footer_link_url = '/pages/typewriter-manuals'
+                            when 'Typewriter Comparison Chart'
+                              assign footer_link_url = '/pages/typewriter-comparison-chart'
+                            when 'About'
+                              assign footer_link_url = '/pages/about-us'
+                            when 'Contact Us'
+                              assign footer_link_url = '/pages/contact'
+                            when 'New & Reconditioned Typewriters'
+                              assign footer_link_url = '/collections/new-and-reconditioned-typewriters'
+                            when 'Typewriter Supplies'
+                              assign footer_link_url = '/collections/typewriter-supplies'
+                            when 'IBM Parts'
+                              assign footer_link_url = '/collections/ibm-parts'
+                            when 'Printwheels'
+                              assign footer_link_url = '/collections/typewriter-printwheels'
+                            when 'Our Partner Brands'
+                              assign footer_link_url = '/collections/our-partner-brands'
+                            when 'IBM'
+                              assign footer_link_url = '/search?q=IBM&type=product'
+                            when 'Rarotype'
+                              assign footer_link_url = '/collections/vendors?q=Rarotype'
+                            when 'GRC'
+                              assign footer_link_url = '/collections/grc-universal-typewriter-ribbons'
+                            when 'Nakajima'
+                              assign footer_link_url = '/search?q=Nakajima&type=product'
+                            when 'Classic Cookie'
+                              assign footer_link_url = '/collections/classic-cookie'
+                            when 'Monroe Systems for Business'
+                              assign footer_link_url = 'https://monroe-systems.com/'
+                            when 'Smith Corona'
+                              assign footer_link_url = '/collections/smith-corona-supplies'
+                            when 'Med Manager'
+                              assign footer_link_url = 'https://medmanager.com/'
+                            when 'Royal'
+                              assign footer_link_url = '/search?q=Royal&type=product'
+                          endcase
+                        endif
+                      -%}
+                      {%- if footer_link_url != blank and footer_link_url != '#' -%}
+                        <li>
+                          <a
+                            href="{{ footer_link_url | escape }}"
+                            {%- if footer_link_url contains '://' %}
+                              target="_blank" rel="noopener"
+                            {%- endif -%}
+                          >
+                            {{- link.title -}}
+                          </a>
+                        </li>
+                      {%- endif -%}
                     {%- endfor -%}
                   </ul>
                 {%- elsif block.settings.links_text != blank -%}
@@ -167,9 +219,10 @@
                     {%- assign rows = block.settings.links_text | newline_to_br | split: '<br />' -%}
                     {%- for row in rows -%}
                       {%- assign parts = row | strip | split: '|' -%}
-                      {%- if parts[0] != blank -%}
+                      {%- assign manual_link_url = parts[1] | default: '' | strip -%}
+                      {%- if parts[0] != blank and manual_link_url != blank and manual_link_url != '#' -%}
                         <li>
-                          <a href="{{ parts[1] | default: '#' | strip }}">{{ parts[0] | strip }}</a>
+                          <a href="{{ manual_link_url | escape }}">{{ parts[0] | strip }}</a>
                         </li>
                       {%- endif -%}
                     {%- endfor -%}
@@ -185,16 +238,31 @@
         {%- if social_blocks.size > 0 -%}
           <ul class="site-footer__social">
             {%- for block in social_blocks -%}
-              <li {{ block.shopify_attributes }}>
-                <a
-                  href="{{ block.settings.url | default: '#' }}"
-                  aria-label="{{ block.settings.platform | default: 'Social link' }}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {%- render 'footer-social-icon', platform: block.settings.platform -%}
-                </a>
-              </li>
+              {%- liquid
+                assign social_url = block.settings.url | default: '' | strip
+                if social_url == blank or social_url == '#'
+                  case block.settings.platform
+                    when 'facebook'
+                      assign social_url = 'https://www.facebook.com/people/Typewriterscom/100087261631656'
+                    when 'instagram'
+                      assign social_url = 'https://www.instagram.com/typewriters_website/'
+                    when 'linkedin'
+                      assign social_url = 'https://www.linkedin.com/company/monroe-systems-for-business/'
+                  endcase
+                endif
+              -%}
+              {%- if social_url != blank and social_url != '#' -%}
+                <li {{ block.shopify_attributes }}>
+                  <a
+                    href="{{ social_url }}"
+                    aria-label="{{ block.settings.platform | default: 'Social link' }}"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {%- render 'footer-social-icon', platform: block.settings.platform -%}
+                  </a>
+                </li>
+              {%- endif -%}
             {%- endfor -%}
           </ul>
         {%- endif -%}
