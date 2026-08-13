@@ -7,7 +7,9 @@
   if product.has_only_default_variant == false
     assign has_variants = true
   endif
-  assign financing_minimum_cents = section.settings.financing_minimum_price | default: 50 | times: 100
+  assign paypal_pay_in_4_minimum = 3000
+  assign paypal_pay_in_4_maximum = 150000
+  assign paypal_installment_amount = current_variant.price | divided_by: 4.0
 -%}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -220,14 +222,21 @@
               <del class="price-compare">{{ current_variant.compare_at_price | money }}</del>
             {%- endif -%}
             <span class="price-current">{{ current_variant.price | money }}</span>
-            {%- if section.settings.financing_text != blank -%}
-              <span
-                class="price-financing"
-                data-financing-message
-                data-financing-minimum="{{ financing_minimum_cents }}"
-                {% if current_variant.price < financing_minimum_cents %}hidden{% endif %}
-              > | {{ section.settings.financing_text }}</span>
-            {%- endif -%}
+            <span
+              class="price-financing"
+              data-paypal-financing-message
+              data-paypal-minimum="{{ paypal_pay_in_4_minimum }}"
+              data-paypal-maximum="{{ paypal_pay_in_4_maximum }}"
+              {% if current_variant.price <= 0 %}hidden{% endif %}
+            >
+              {%- if current_variant.price < paypal_pay_in_4_minimum -%}
+                | About 4 payments of {{ paypal_installment_amount | money }} for this item when included in a qualifying $30+ order with PayPal.
+              {%- elsif current_variant.price <= paypal_pay_in_4_maximum -%}
+                | Split into 4 interest-free payments of {{ paypal_installment_amount | money }} with PayPal.
+              {%- else -%}
+                | PayPal Pay Monthly may be available at checkout.
+              {%- endif -%}
+            </span>
           </div>
 
           <div class="main-product__actions">
@@ -325,14 +334,40 @@
     var section = document.querySelector('.main-product[data-section-id="{{ section.id }}"]');
     if (!section) return;
 
-    var financingMessage = section.querySelector('[data-financing-message]');
+    var financingMessage = section.querySelector('[data-paypal-financing-message]');
     if (!financingMessage) return;
 
-    var minimumPrice = parseInt(financingMessage.dataset.financingMinimum, 10) || 0;
+    var minimumPrice = parseInt(financingMessage.dataset.paypalMinimum, 10) || 3000;
+    var maximumPrice = parseInt(financingMessage.dataset.paypalMaximum, 10) || 150000;
+
+    function formatUsd(cents) {
+      return '$' + (cents / 100).toFixed(2);
+    }
+
+    function updatePayPalMessage(variant) {
+      if (!variant || variant.price <= 0) {
+        financingMessage.hidden = true;
+        return;
+      }
+
+      financingMessage.hidden = false;
+      var installmentAmount = formatUsd(variant.price / 4);
+
+      if (variant.price < minimumPrice) {
+        financingMessage.textContent =
+          ' | About 4 payments of ' + installmentAmount +
+          ' for this item when included in a qualifying $30+ order with PayPal.';
+      } else if (variant.price <= maximumPrice) {
+        financingMessage.textContent =
+          ' | Split into 4 interest-free payments of ' + installmentAmount + ' with PayPal.';
+      } else {
+        financingMessage.textContent = ' | PayPal Pay Monthly may be available at checkout.';
+      }
+    }
 
     section.addEventListener('variant:change', function (event) {
       var variant = event.detail && event.detail.variant;
-      financingMessage.hidden = !variant || variant.price < minimumPrice;
+      updatePayPalMessage(variant);
     });
   })();
 </script>
@@ -348,22 +383,6 @@
       "id": "availability_note",
       "label": "Availability note",
       "default": "Orders placed by 11 am ET will ship same-day (Mon - Fri)"
-    },
-    {
-      "type": "text",
-      "id": "financing_text",
-      "label": "Financing text",
-      "default": "Starting at $20.92/mo or as low as 0% APR with PayPal"
-    },
-    {
-      "type": "range",
-      "id": "financing_minimum_price",
-      "min": 0,
-      "max": 500,
-      "step": 5,
-      "unit": "$",
-      "label": "Minimum price for financing message",
-      "default": 50
     },
     {
       "type": "checkbox",
