@@ -11,7 +11,19 @@
   "sections": {
     "main": {
       "type": "main-list-collections",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Shop Typewriters.com",
+        "title": "Browse All Collections",
+        "intro": "<p>Explore typewriters, ribbons, correction supplies, printwheels, IBM parts, manuals, and more.</p>",
+        "sort": "alphabetical",
+        "collections_per_page": 24,
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "card_radius": 16,
+        "accent_color": "#d24742",
+        "padding_top": 64,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
