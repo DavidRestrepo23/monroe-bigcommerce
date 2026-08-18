@@ -873,6 +873,7 @@
   line-height: 1.2;
   font-weight: 600;
   transition: background-color 160ms ease, transform 160ms ease;
+  border: 5px solid #000000;
 }
 
 .mbs__submit:hover {
