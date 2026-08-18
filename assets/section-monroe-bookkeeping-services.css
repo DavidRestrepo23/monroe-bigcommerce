@@ -130,6 +130,7 @@
   color: var(--mbs-white) !important;
   background: var(--mbs-accent);
   border-color: var(--mbs-accent);
+  border: 5px solid #000000;
 }
 
 .mbs__button--primary:hover {
@@ -143,6 +144,7 @@
   background: var(--mbs-white);
   border-color: var(--mbs-white);
   -webkit-text-fill-color: var(--mbs-accent-dark);
+  border: 5px solid #000000;
 }
 
 .mbs__button--light:hover {
