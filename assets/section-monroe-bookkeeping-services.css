@@ -127,7 +127,7 @@
 }
 
 .mbs__button--primary {
-  color: var(--mbs-white);
+  color: var(--mbs-white) !important;
   background: var(--mbs-accent);
   border-color: var(--mbs-accent);
 }
