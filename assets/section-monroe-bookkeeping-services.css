@@ -139,9 +139,10 @@
 }
 
 .mbs__button--light {
-  color: var(--mbs-accent-dark);
+  color: var(--mbs-accent-dark) !important;
   background: var(--mbs-white);
   border-color: var(--mbs-white);
+  -webkit-text-fill-color: var(--mbs-accent-dark);
 }
 
 .mbs__button--light:hover {
@@ -1050,4 +1051,13 @@
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+
+.mbs a.mbs__button--light,
+.mbs a.mbs__button--light:link,
+.mbs a.mbs__button--light:visited,
+.mbs a.mbs__button--light:hover,
+.mbs a.mbs__button--light:active {
+  color: var(--mbs-accent-dark) !important;
+  -webkit-text-fill-color: var(--mbs-accent-dark);
 }
