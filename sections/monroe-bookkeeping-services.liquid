@@ -1,0 +1,705 @@
+{{ 'section-monroe-bookkeeping-services.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign form_id = 'MonroeBookkeepingForm-' | append: section.id
+  assign form_anchor = 'BookkeepingDiscovery-' | append: section.id
+  assign contact_name = section.settings.contact_name | default: 'Jason Marsdale'
+  assign discovery_duration = section.settings.discovery_duration | default: '5–10 minutes'
+  assign phone_display = section.settings.phone_display | default: '(267) 580-2600'
+  assign phone_link = section.settings.phone_link | default: '+12675802600'
+-%}
+
+<section
+  id="MonroeBookkeeping-{{ section.id }}"
+  class="mbs"
+  style="
+    --mbs-accent: {{ section.settings.accent_color }};
+    --mbs-accent-dark: {{ section.settings.accent_dark_color }};
+    --mbs-charcoal: {{ section.settings.charcoal_color }};
+    --mbs-soft: {{ section.settings.soft_background_color }};
+  "
+  aria-labelledby="MonroeBookkeepingTitle-{{ section.id }}"
+>
+  <header class="mbs__hero">
+    <div class="mbs__shell mbs__hero-grid">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="mbs__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        <h1 id="MonroeBookkeepingTitle-{{ section.id }}" class="mbs__title">
+          {{ section.settings.heading | escape }}
+        </h1>
+
+        <div class="mbs__hero-copy rte">
+          {{ section.settings.introduction }}
+        </div>
+
+        <div class="mbs__button-row">
+          <a class="mbs__button mbs__button--light" href="#{{ form_anchor }}">
+            {{ section.settings.primary_button_label | escape }}
+          </a>
+          <a class="mbs__button mbs__button--outline-light" href="tel:{{ phone_link | escape }}">
+            Call {{ phone_display | escape }}
+          </a>
+        </div>
+
+        <p class="mbs__hero-note">
+          Customized recommendations and pricing after a short discovery call.
+        </p>
+      </div>
+
+      <aside class="mbs__hero-card" aria-label="Common bookkeeping challenges">
+        <p class="mbs__hero-card-label">Does this sound familiar?</p>
+        <h2>Your team needs more bookkeeping capacity—but another hire may not be the right next step.</h2>
+        <ul class="mbs__hero-checks" role="list">
+          <li>Routine entries and reconciliations are falling behind.</li>
+          <li>Your staff is spending too much time on back-office work.</li>
+          <li>Growth or turnover has created an immediate coverage gap.</li>
+          <li>You need support that can adjust as the workload changes.</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <div class="mbs__shell mbs__trust-strip" aria-label="Bookkeeping service highlights">
+    <div class="mbs__trust-grid">
+      <div class="mbs__trust-item">
+        <strong>Dedicated Support</strong>
+        <span>Work with a dedicated bookkeeping professional.</span>
+      </div>
+      <div class="mbs__trust-item">
+        <strong>Flexible Capacity</strong>
+        <span>Match support to the size and needs of your organization.</span>
+      </div>
+      <div class="mbs__trust-item">
+        <strong>Data Protection</strong>
+        <span>Documented protections for sensitive financial information.</span>
+      </div>
+      <div class="mbs__trust-item">
+        <strong>Quick First Step</strong>
+        <span>Begin with a focused discovery call lasting {{ discovery_duration | escape }}.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__section" aria-labelledby="BookkeepingSolution-{{ section.id }}">
+    <div class="mbs__shell mbs__intro-grid">
+      <div>
+        <p class="mbs__eyebrow">A practical next step</p>
+        <h2 class="mbs__heading" id="BookkeepingSolution-{{ section.id }}">
+          Give your team room to focus on the business.
+        </h2>
+        <p class="mbs__body-copy">
+          Outsourced bookkeeping can be a cost-conscious alternative to immediately expanding your internal staff. Monroe helps you explore a service level shaped around your actual workload—whether you need ongoing day-to-day assistance, temporary capacity, or help bringing overdue books back up to date.
+        </p>
+        <div class="mbs__button-row">
+          <a class="mbs__button mbs__button--primary" href="#{{ form_anchor }}">Tell Us What You Need</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="mbs__question-card">
+          <p>Is your current team struggling to keep up with bookkeeping?</p>
+        </div>
+        <div class="mbs__question-card">
+          <p>Could flexible outsourced support help your business grow without immediately adding another employee?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__section mbs__section--soft" aria-labelledby="BookkeepingServices-{{ section.id }}">
+    <div class="mbs__shell">
+      <p class="mbs__eyebrow mbs__eyebrow--center">Bookkeeping support</p>
+      <h2 class="mbs__heading mbs__heading--center" id="BookkeepingServices-{{ section.id }}">
+        Support where you need it most.
+      </h2>
+      <p class="mbs__lead mbs__lead--center">
+        Your service plan is tailored after discovery and may include any combination of the following bookkeeping functions.
+      </p>
+
+      <div class="mbs__service-grid">
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Routine Transaction Entry</h3>
+          <p>Keep day-to-day financial activity organized and recorded consistently.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Accounts Payable</h3>
+          <p>Support the organization and processing of vendor bills and outgoing payments.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Accounts Receivable</h3>
+          <p>Help keep customer invoices, incoming payments, and balances organized.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Bank and Credit-Card Reconciliation</h3>
+          <p>Compare financial records with account activity and identify discrepancies.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Monthly Financial Reports</h3>
+          <p>Receive recurring reporting that provides a clearer view of business performance.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Payroll Support</h3>
+          <p>Get assistance with the bookkeeping tasks connected to your payroll process.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Catch-Up Bookkeeping</h3>
+          <p>Bring overdue financial records forward so your business can regain visibility.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Cleanup Bookkeeping</h3>
+          <p>Organize inconsistent or incomplete records and create a stronger foundation.</p>
+        </article>
+        <article class="mbs__service-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>Customized Support</h3>
+          <p>Build a scope around your current team, workload, priorities, and growth plans.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__section" aria-labelledby="BookkeepingAudience-{{ section.id }}">
+    <div class="mbs__shell">
+      <p class="mbs__eyebrow mbs__eyebrow--center">Who we can help</p>
+      <h2 class="mbs__heading mbs__heading--center" id="BookkeepingAudience-{{ section.id }}">
+        Built for businesses at different stages.
+      </h2>
+      <p class="mbs__lead mbs__lead--center">
+        The right bookkeeping solution depends on your team, current processes, and where the business is heading next.
+      </p>
+
+      <div class="mbs__audience-grid">
+        <article class="mbs__audience-card">
+          <span class="mbs__audience-number">01</span>
+          <h3>Small and Midsize Businesses</h3>
+          <p>Stay focused on customers and operations while receiving dependable back-office support.</p>
+        </article>
+        <article class="mbs__audience-card">
+          <span class="mbs__audience-number">02</span>
+          <h3>Accounting and Bookkeeping Firms</h3>
+          <p>Add capacity when client work, seasonal demand, or staffing challenges stretch your team.</p>
+        </article>
+        <article class="mbs__audience-card">
+          <span class="mbs__audience-number">03</span>
+          <h3>Growing Organizations</h3>
+          <p>Scale bookkeeping support alongside the business instead of rushing into a full-time hire.</p>
+        </article>
+        <article class="mbs__audience-card">
+          <span class="mbs__audience-number">04</span>
+          <h3>Businesses Without an In-House Bookkeeper</h3>
+          <p>Establish consistent bookkeeping support without building the entire function internally.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__section mbs__section--soft" aria-labelledby="BookkeepingProcess-{{ section.id }}">
+    <div class="mbs__shell">
+      <p class="mbs__eyebrow mbs__eyebrow--center">How to get started</p>
+      <h2 class="mbs__heading mbs__heading--center" id="BookkeepingProcess-{{ section.id }}">
+        A simple path to the right level of support.
+      </h2>
+
+      <div class="mbs__process">
+        <article class="mbs__step">
+          <span class="mbs__step-number">1</span>
+          <h3>Tell Us What You Need</h3>
+          <p>Complete the short form and share the bookkeeping challenge you are trying to solve.</p>
+        </article>
+        <article class="mbs__step">
+          <span class="mbs__step-number">2</span>
+          <h3>Speak With {{ contact_name | escape }}</h3>
+          <p>{{ contact_name | escape }} will spend approximately {{ discovery_duration | escape }} learning about your needs and workload.</p>
+        </article>
+        <article class="mbs__step">
+          <span class="mbs__step-number">3</span>
+          <h3>Review a Tailored Recommendation</h3>
+          <p>Monroe will recommend an appropriate service scope and provide customized pricing.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__section" aria-labelledby="BookkeepingBenefits-{{ section.id }}">
+    <div class="mbs__shell">
+      <p class="mbs__eyebrow mbs__eyebrow--center">Why outsource</p>
+      <h2 class="mbs__heading mbs__heading--center" id="BookkeepingBenefits-{{ section.id }}">
+        More capacity without unnecessary overhead.
+      </h2>
+      <p class="mbs__lead mbs__lead--center">
+        Outsourcing can give your organization a more adaptable way to handle recurring financial work.
+      </p>
+
+      <div class="mbs__benefit-grid">
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">$</span>
+          <h3>A Cost-Conscious Alternative</h3>
+          <p>Explore the potential savings of outside support before committing to another full-time internal position.</p>
+        </article>
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">↗</span>
+          <h3>Support That Can Scale</h3>
+          <p>Match the service to your present workload and revisit the scope as the size of your business changes.</p>
+        </article>
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">✓</span>
+          <h3>More Time for Higher-Value Work</h3>
+          <p>Give owners and internal employees more time to focus on clients, operations, and growth.</p>
+        </article>
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">+</span>
+          <h3>Coverage During Staffing Gaps</h3>
+          <p>Add capacity when turnover, leave, or a seasonal workload creates pressure on your current team.</p>
+        </article>
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">1</span>
+          <h3>Dedicated Professional Support</h3>
+          <p>Work with a dedicated bookkeeping professional who supports the agreed-upon scope of service.</p>
+        </article>
+        <article class="mbs__benefit-card">
+          <span class="mbs__card-icon" aria-hidden="true">◆</span>
+          <h3>Documented Data Protections</h3>
+          <p>Handle sensitive bookkeeping information through a service with documented data-security protections.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.show_technology_services -%}
+    <div class="mbs__section mbs__section--soft" aria-labelledby="BookkeepingTechnology-{{ section.id }}">
+      <div class="mbs__shell">
+        <div class="mbs__tech-panel">
+          <div>
+            <p class="mbs__eyebrow">More ways Monroe can help</p>
+            <h2 id="BookkeepingTechnology-{{ section.id }}">Bookkeeping is only the beginning.</h2>
+            <p>
+              When your operational needs extend beyond the books, Monroe can also help you explore complementary technology services. These capabilities can be discussed during discovery when they are relevant to your goals.
+            </p>
+          </div>
+          <ul class="mbs__tech-list" role="list">
+            <li>IT Services</li>
+            <li>AI-Enabled Business Dashboards</li>
+            <li>Custom Coding and Workflow Solutions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.show_faqs -%}
+    <div class="mbs__section" aria-labelledby="BookkeepingFaqs-{{ section.id }}">
+      <div class="mbs__shell">
+        <p class="mbs__eyebrow mbs__eyebrow--center">Frequently asked questions</p>
+        <h2 class="mbs__heading mbs__heading--center" id="BookkeepingFaqs-{{ section.id }}">
+          What to know before getting started.
+        </h2>
+
+        <div class="mbs__faq-list">
+          <details class="mbs__faq-item">
+            <summary>How do I know whether outsourced bookkeeping is right for my business?</summary>
+            <div class="mbs__faq-answer">
+              <p>It may be a good fit if bookkeeping is falling behind, your team lacks capacity, you are experiencing a staffing gap, or you want to explore an alternative to immediately hiring another employee. The discovery call helps determine whether the available service matches your situation.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>Can the service support an accounting or bookkeeping firm?</summary>
+            <div class="mbs__faq-answer">
+              <p>Yes. Accounting and bookkeeping firms can use the discovery process to discuss additional capacity for current workloads, seasonal demand, or staffing shortages. The exact scope is confirmed after Monroe learns more about your needs.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>What bookkeeping services are available?</summary>
+            <div class="mbs__faq-answer">
+              <p>Available support may include transaction entry, accounts payable and receivable, bank and credit-card reconciliation, monthly financial reports, payroll support, and catch-up or cleanup bookkeeping. Your final scope is tailored after discovery.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>How much does the service cost?</summary>
+            <div class="mbs__faq-answer">
+              <p>Pricing is customized because bookkeeping needs vary by organization, workload, and service scope. After the short discovery call, Monroe can recommend an appropriate level of support and provide pricing.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>Which bookkeeping software is supported?</summary>
+            <div class="mbs__faq-answer">
+              <p>Software compatibility is confirmed during discovery. Tell us which platforms and tools you currently use in the form below so {{ contact_name | escape }} can include them in the initial conversation.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>How is sensitive financial information protected?</summary>
+            <div class="mbs__faq-answer">
+              <p>The service incorporates documented data-security protections. Specific requirements, processes, and available documentation can be reviewed as part of determining the appropriate service arrangement.</p>
+            </div>
+          </details>
+          <details class="mbs__faq-item">
+            <summary>What happens after I submit the form?</summary>
+            <div class="mbs__faq-answer">
+              <p>{{ contact_name | escape }} will review the information and follow up to arrange a discovery call lasting approximately {{ discovery_duration | escape }}. The conversation is used to understand your current challenges, workload, priorities, and next steps.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div
+    class="mbs__section mbs__form-section"
+    id="{{ form_anchor }}"
+    aria-labelledby="BookkeepingFormTitle-{{ section.id }}"
+  >
+    <div class="mbs__shell mbs__form-grid">
+      <div class="mbs__form-intro">
+        <p class="mbs__eyebrow">Start the conversation</p>
+        <h2 id="BookkeepingFormTitle-{{ section.id }}">Tell us about your bookkeeping needs.</h2>
+        <p>
+          Complete the short form and {{ contact_name | escape }} will follow up to learn more. You do not need to have every detail figured out—the discovery call is designed to identify the right questions and next steps.
+        </p>
+
+        <div class="mbs__contact-options">
+          <div class="mbs__contact-option">
+            <strong>Prefer to call?</strong>
+            Speak with Monroe at <a href="tel:{{ phone_link | escape }}">{{ phone_display | escape }}</a>.
+          </div>
+          <div class="mbs__contact-option">
+            <strong>What happens next?</strong>
+            {{ contact_name | escape }} will review your information and contact you about a discovery call lasting approximately {{ discovery_duration | escape }}.
+          </div>
+        </div>
+      </div>
+
+      <div class="mbs__form-card">
+        <h3>Request a discovery call</h3>
+        <p>Fields marked with an asterisk are required.</p>
+
+        {% form 'contact', id: form_id, class: 'mbs__contact-form' %}
+          <input type="hidden" name="contact[Inquiry type]" value="Monroe Bookkeeping Services">
+
+          {%- if form.posted_successfully? -%}
+            <div class="mbs__form-status mbs__form-status--success" role="status" tabindex="-1">
+              <strong>Thank you for your interest.</strong><br>
+              Your bookkeeping inquiry has been submitted. {{ contact_name | escape }} will follow up to learn more about your needs.
+            </div>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="mbs__form-status mbs__form-errors" role="alert">
+              <strong>Please review the following:</strong>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="mbs__form-row">
+            <div class="mbs__field">
+              <label for="BookkeepingName-{{ section.id }}">Name <span class="mbs__required" aria-hidden="true">*</span></label>
+              <input
+                id="BookkeepingName-{{ section.id }}"
+                type="text"
+                name="contact[name]"
+                value="{{ form.name | default: customer.name | escape }}"
+                autocomplete="name"
+                required
+                aria-required="true"
+              >
+            </div>
+            <div class="mbs__field">
+              <label for="BookkeepingCompany-{{ section.id }}">Company <span class="mbs__required" aria-hidden="true">*</span></label>
+              <input
+                id="BookkeepingCompany-{{ section.id }}"
+                type="text"
+                name="contact[Company]"
+                autocomplete="organization"
+                required
+                aria-required="true"
+              >
+            </div>
+          </div>
+
+          <div class="mbs__form-row">
+            <div class="mbs__field">
+              <label for="BookkeepingEmail-{{ section.id }}">Email <span class="mbs__required" aria-hidden="true">*</span></label>
+              <input
+                id="BookkeepingEmail-{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                value="{{ form.email | default: customer.email | escape }}"
+                autocomplete="email"
+                autocapitalize="off"
+                spellcheck="false"
+                required
+                aria-required="true"
+              >
+            </div>
+            <div class="mbs__field">
+              <label for="BookkeepingPhone-{{ section.id }}">Phone</label>
+              <input
+                id="BookkeepingPhone-{{ section.id }}"
+                type="tel"
+                name="contact[phone]"
+                value="{{ form.phone | default: customer.phone | escape }}"
+                autocomplete="tel"
+              >
+            </div>
+          </div>
+
+          <div class="mbs__form-row">
+            <div class="mbs__field">
+              <label for="BookkeepingBusinessType-{{ section.id }}">Type of business <span class="mbs__required" aria-hidden="true">*</span></label>
+              <select id="BookkeepingBusinessType-{{ section.id }}" name="contact[Business type]" required aria-required="true">
+                <option value="" selected disabled>Select one</option>
+                <option value="Small or midsize business">Small or midsize business</option>
+                <option value="Accounting or bookkeeping firm">Accounting or bookkeeping firm</option>
+                <option value="Business without an in-house bookkeeper">Business without an in-house bookkeeper</option>
+                <option value="Growing organization needing capacity">Growing organization needing capacity</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="mbs__field">
+              <label for="BookkeepingContactPreference-{{ section.id }}">Preferred contact method</label>
+              <select id="BookkeepingContactPreference-{{ section.id }}" name="contact[Preferred contact method]">
+                <option value="Email">Email</option>
+                <option value="Phone">Phone</option>
+                <option value="Either email or phone">Either email or phone</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mbs__field">
+            <label for="BookkeepingSoftware-{{ section.id }}">Current bookkeeping or payroll software</label>
+            <input
+              id="BookkeepingSoftware-{{ section.id }}"
+              type="text"
+              name="contact[Current software]"
+              placeholder="List any platforms or tools you currently use"
+            >
+          </div>
+
+          <fieldset class="mbs__fieldset">
+            <legend>Which services are you interested in?</legend>
+            <div class="mbs__check-grid">
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Transaction entry]" value="Interested">
+                Transaction entry
+              </label>
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Accounts payable and receivable]" value="Interested">
+                Accounts payable or receivable
+              </label>
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Reconciliation]" value="Interested">
+                Bank or credit-card reconciliation
+              </label>
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Monthly reports]" value="Interested">
+                Monthly financial reports
+              </label>
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Payroll support]" value="Interested">
+                Payroll support
+              </label>
+              <label class="mbs__check-label">
+                <input type="checkbox" name="contact[Service - Catch-up or cleanup]" value="Interested">
+                Catch-up or cleanup bookkeeping
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="mbs__field">
+            <label for="BookkeepingMessage-{{ section.id }}">What bookkeeping challenge are you trying to solve? <span class="mbs__required" aria-hidden="true">*</span></label>
+            <textarea
+              id="BookkeepingMessage-{{ section.id }}"
+              name="contact[body]"
+              placeholder="Tell us briefly about your workload, staffing needs, overdue work, or other priorities."
+              required
+              aria-required="true"
+            >{{ form.body | escape }}</textarea>
+          </div>
+
+          <button class="mbs__submit" type="submit">Request My Discovery Call</button>
+          <p class="mbs__privacy-note">
+            By submitting this form, you agree that Monroe may contact you about this request. Review our <a href="/policies/privacy-policy">Privacy Policy</a>.
+          </p>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  <div class="mbs__scope-note">
+    <div class="mbs__shell">
+      Specific service availability, compatibility, scope, timing, and pricing are confirmed after discovery and documented in the applicable service agreement.
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.show_faqs -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I know whether outsourced bookkeeping is right for my business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Outsourced bookkeeping may be a good fit when bookkeeping is falling behind, the current team lacks capacity, a staffing gap exists, or the business wants to explore an alternative to immediately hiring another employee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the service support an accounting or bookkeeping firm?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Accounting and bookkeeping firms can discuss additional capacity for current workloads, seasonal demand, or staffing shortages during the discovery process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What bookkeeping services are available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Available support may include transaction entry, accounts payable and receivable, bank and credit-card reconciliation, monthly financial reports, payroll support, and catch-up or cleanup bookkeeping."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does the service cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pricing is customized based on the organization, workload, and agreed service scope. Monroe provides pricing after a short discovery call."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which bookkeeping software is supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Software compatibility is confirmed during discovery based on the platforms and tools the organization currently uses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is sensitive financial information protected?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The service incorporates documented data-security protections. Specific requirements, processes, and available documentation can be reviewed during discovery."
+          }
+        }
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bookkeeping services",
+  "tag": "section",
+  "class": "section-bookkeeping-services",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Monroe Bookkeeping Services"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Keep your books moving—and your business growing."
+    },
+    {
+      "type": "richtext",
+      "id": "introduction",
+      "label": "Introduction",
+      "default": "<p>Flexible remote bookkeeping support gives your organization the capacity to stay current, understand its financial position, and focus on higher-value work.</p>"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Request a 5–10 Minute Call"
+    },
+    {
+      "type": "text",
+      "id": "contact_name",
+      "label": "Discovery call contact",
+      "default": "Jason Marsdale"
+    },
+    {
+      "type": "text",
+      "id": "discovery_duration",
+      "label": "Discovery call duration",
+      "default": "5–10 minutes"
+    },
+    {
+      "type": "text",
+      "id": "phone_display",
+      "label": "Phone number shown",
+      "default": "(267) 580-2600"
+    },
+    {
+      "type": "text",
+      "id": "phone_link",
+      "label": "Phone number link",
+      "info": "Use international format without spaces.",
+      "default": "+12675802600"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_technology_services",
+      "label": "Show IT, AI, and coding services",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faqs",
+      "label": "Show frequently asked questions",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#007681"
+    },
+    {
+      "type": "color",
+      "id": "accent_dark_color",
+      "label": "Dark accent",
+      "default": "#005e67"
+    },
+    {
+      "type": "color",
+      "id": "charcoal_color",
+      "label": "Charcoal",
+      "default": "#2f3a42"
+    },
+    {
+      "type": "color",
+      "id": "soft_background_color",
+      "label": "Soft background",
+      "default": "#f4f7f8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bookkeeping services"
+    }
+  ]
+}
+{% endschema %}
