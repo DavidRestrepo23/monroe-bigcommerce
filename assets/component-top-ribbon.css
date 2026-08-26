@@ -6,7 +6,10 @@
     overflow: hidden;
     width: 100%;
     padding: 10px 0;
-    text-align:center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-ribbon.is-hidden {
