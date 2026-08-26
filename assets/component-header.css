@@ -19,7 +19,7 @@
 .header__top-bar {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  align-items: center;
+  text-align: center;
   gap: 24px;
   padding: 12px 32px;
 }
