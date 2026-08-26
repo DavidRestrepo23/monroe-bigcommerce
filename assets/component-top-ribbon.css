@@ -6,6 +6,7 @@
     overflow: hidden;
     width: 100%;
     padding: 10px 0;
+    text-align:center;
 }
 
 .top-ribbon.is-hidden {
