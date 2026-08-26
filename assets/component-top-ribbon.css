@@ -17,10 +17,11 @@
 
 .top-ribbon__slide {
     display: flex;
-    align-items: flex-start;
-    justify-content: start;
-    text-align: start;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 8px;
+    width: 100%;
 }
 
 .top-ribbon__text {
