@@ -181,9 +181,15 @@
   border-radius: 50%;
   background: #7ED231;
   position: relative;
-  z-index: 100;
+  z-index: 0;
   stroke-width: 4px;
   box-shadow: 8px 8px 8px rgba(126, 210, 49, 0.23);
+}
+
+@media screen and (min-width: 769px) {
+  body:has(.header__nav-item[open]) .availability-dot {
+    visibility: hidden;
+  }
 }
 
 .main-product__vendor {
