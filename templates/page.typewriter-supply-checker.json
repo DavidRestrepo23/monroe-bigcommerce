@@ -1,0 +1,120 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "checker": {
+      "type": "typewriter-supply-checker",
+      "blocks": {
+        "nakajima_150": {
+          "type": "model",
+          "settings": {
+            "brand": "Nakajima",
+            "model": "WPT-150",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
+            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+          }
+        },
+        "nakajima_160": {
+          "type": "model",
+          "settings": {
+            "brand": "Nakajima",
+            "model": "WPT-160",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
+            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+          }
+        },
+        "royal_scriptor_ii": {
+          "type": "model",
+          "settings": {
+            "brand": "Royal",
+            "model": "Scriptor II",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160"
+          }
+        },
+        "ibm_1000": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 1000",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_2000": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 2000",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_2500": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 2500",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_5": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 5",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_6": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 6",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        }
+      },
+      "block_order": [
+        "nakajima_150",
+        "nakajima_160",
+        "royal_scriptor_ii",
+        "ibm_1000",
+        "ibm_2000",
+        "ibm_2500",
+        "ibm_5",
+        "ibm_6"
+      ],
+      "settings": {
+        "heading": "Find the right ribbon and correction tape.",
+        "intro": "Choose your typewriter model. We’ll show the matching correctable ribbon and correction tape for a focused set of machines.",
+        "support_email": "info@typewriters.com",
+        "support_phone": "+14043771884",
+        "support_phone_label": "(404) 377-1884"
+      }
+    }
+  },
+  "order": [
+    "checker"
+  ]
+}
