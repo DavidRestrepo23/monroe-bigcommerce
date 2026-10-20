@@ -48,6 +48,12 @@
 .tcc__support-actions{display:grid;gap:9px;min-width:220px}
 .tcc__support-actions a{border:1px solid #fff;border-radius:999px;padding:12px 18px;text-align:center;text-decoration:none;font-weight:800}
 .tcc__support-actions a:first-child{background:#fff;color:#29251f}
+.tcc .tcc__hero .tcc__lede{color:#fff!important}
+.tcc .tcc__hero .tcc__hero-link,.tcc .tcc__hero .tcc__hero-link span{color:#29251f!important}
+.tcc .tcc__support p:not(.tcc__step){color:#fff!important}
+.tcc .tcc__support .tcc__step{color:#ffbcb6!important}
+.tcc .tcc__support .tcc__support-actions a:first-child{color:#29251f!important}
+.tcc .tcc__support .tcc__support-actions a:last-child{color:#fff!important}
 .tcc a:focus-visible,.tcc select:focus-visible{outline:3px solid #007681;outline-offset:3px}
 @media(max-width:780px){.tcc__shell{width:min(100% - 28px,600px);padding:14px 0 40px}.tcc__hero{border-radius:20px}.tcc__layout,.tcc__learn-grid{grid-template-columns:1fr}.tcc__facts{grid-template-columns:1fr}.tcc__facts p{display:flex;justify-content:space-between;gap:10px}.tcc__support{display:block}.tcc__support-actions{margin-top:24px}}
 @media(max-width:420px){.tcc__products{grid-template-columns:1fr}.tcc__product{display:grid;grid-template-columns:92px 1fr;gap:0 12px}.tcc__product-type,.tcc__product-link{grid-column:1/-1}.tcc__product>a:first-of-type{grid-row:2/5}.tcc__product img{height:95px}.tcc__product h3{grid-column:2}.tcc__price{grid-column:2}.tcc__product-link{margin-top:8px}}
