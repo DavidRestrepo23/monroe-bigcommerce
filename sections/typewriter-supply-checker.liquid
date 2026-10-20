@@ -1,0 +1,144 @@
+{{ 'section-typewriter-supply-checker.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-typewriter-supply-checker.js' | asset_url }}" defer="defer"></script>
+
+<section class="tcc" id="tcc-{{ section.id }}" aria-labelledby="tcc-title-{{ section.id }}">
+  <div class="tcc__shell">
+    <header class="tcc__hero">
+      <p class="tcc__eyebrow">Typewriters.com / owner support</p>
+      <h1 id="tcc-title-{{ section.id }}">{{ section.settings.heading | escape }}</h1>
+      <p class="tcc__lede">{{ section.settings.intro | escape }}</p>
+      <a href="#tcc-find-{{ section.id }}" class="tcc__hero-link">Find my supplies <span aria-hidden="true">↘</span></a>
+    </header>
+
+    <div class="tcc__layout" id="tcc-find-{{ section.id }}">
+      <div class="tcc__finder">
+        <p class="tcc__step">01 / Identify your machine</p>
+        <h2>Start with the model on your typewriter.</h2>
+        <p>Choose the brand, then the exact model. If yours is missing, ask us to verify it before ordering.</p>
+        <div class="tcc__fields">
+          <label for="tcc-brand-{{ section.id }}">Brand</label>
+          <select id="tcc-brand-{{ section.id }}" data-tcc-brand>
+            <option value="">Choose a brand</option>
+            <option value="IBM / Lexmark">IBM / Lexmark</option>
+            <option value="Nakajima">Nakajima</option>
+            <option value="Royal">Royal</option>
+          </select>
+          <label for="tcc-model-{{ section.id }}">Exact model</label>
+          <select id="tcc-model-{{ section.id }}" data-tcc-model disabled>
+            <option value="">Choose a model</option>
+            {% for block in section.blocks %}
+              <option value="{{ block.id | escape }}" data-brand="{{ block.settings.brand | escape }}" hidden>{{ block.settings.model | escape }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <p class="tcc__hint">A name such as “Wheelwriter” alone may cover several versions. Check the label on the machine or old supply.</p>
+        <a class="tcc__help-link" href="mailto:{{ section.settings.support_email | escape }}?subject=Typewriter%20supply%20compatibility">My model is not listed — ask Jim <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="tcc__results" aria-live="polite" data-tcc-results>
+        <div class="tcc__empty" data-tcc-empty>
+          <span aria-hidden="true">02</span>
+          <h2>Your supply match will appear here.</h2>
+          <p>Select your brand and exact model to see the ribbon format, correction system, and current product links.</p>
+        </div>
+        {% for block in section.blocks %}
+          {% assign ribbon = block.settings.ribbon %}
+          {% assign correction = block.settings.correction %}
+          {% assign alternative = block.settings.alternative %}
+          <article class="tcc__result" data-tcc-result="{{ block.id | escape }}" hidden {{ block.shopify_attributes }}>
+            <p class="tcc__step">02 / Your model-level match</p>
+            <h2>{{ block.settings.brand | escape }} {{ block.settings.model | escape }}</h2>
+            <div class="tcc__facts">
+              <p><span>Ribbon format</span><strong>{{ block.settings.ribbon_format | escape }}</strong></p>
+              <p><span>Ribbon type</span><strong>Correctable black film</strong></p>
+              <p><span>Correction</span><strong>Lift-off tape</strong></p>
+            </div>
+            <p class="tcc__pair-note">This recommendation pairs the listed correctable ribbon with its compatible lift-off tape. Check both product pages before checkout.</p>
+            <div class="tcc__products">
+              {% if ribbon != blank %}
+                <div class="tcc__product">
+                  <p class="tcc__product-type">Matching ribbon</p>
+                  {% if ribbon.featured_image != blank %}
+                    <a href="{{ ribbon.url }}"><img src="{{ ribbon.featured_image | image_url: width: 320 }}" alt="{{ ribbon.title | escape }}" width="160" height="160" loading="lazy"></a>
+                  {% endif %}
+                  <h3>{{ ribbon.title | escape }}</h3>
+                  <p class="tcc__price">{{ ribbon.price | money }}</p>
+                  <a class="tcc__product-link" href="{{ ribbon.url }}">{% if ribbon.available %}View ribbon{% else %}Check ribbon availability{% endif %} <span aria-hidden="true">→</span></a>
+                </div>
+              {% endif %}
+              {% if correction != blank %}
+                <div class="tcc__product">
+                  <p class="tcc__product-type">Matching correction tape</p>
+                  {% if correction.featured_image != blank %}
+                    <a href="{{ correction.url }}"><img src="{{ correction.featured_image | image_url: width: 320 }}" alt="{{ correction.title | escape }}" width="160" height="160" loading="lazy"></a>
+                  {% endif %}
+                  <h3>{{ correction.title | escape }}</h3>
+                  <p class="tcc__price">{{ correction.price | money }}</p>
+                  <a class="tcc__product-link" href="{{ correction.url }}">{% if correction.available %}View correction tape{% else %}Check tape availability{% endif %} <span aria-hidden="true">→</span></a>
+                </div>
+              {% endif %}
+            </div>
+            {% if alternative != blank and ribbon.available == false %}
+              <div class="tcc__alternative">
+                <strong>Another listed correctable ribbon for this model</strong>
+                <p>{{ alternative.title | escape }}. Confirm the part number on its product page before ordering.</p>
+                <a href="{{ alternative.url }}">{% if alternative.available %}View alternative ribbon{% else %}Check alternative availability{% endif %} <span aria-hidden="true">→</span></a>
+              </div>
+            {% endif %}
+            <p class="tcc__result-help">Supply status can change. <a href="mailto:{{ section.settings.support_email | escape }}?subject=Typewriter%20supply%20compatibility">Ask Jim to confirm this pair</a> if your installed ribbon or tape looks different.</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="tcc__learn">
+      <div><p class="tcc__step">A quick supply check</p><h2>Why the format matters</h2></div>
+      <div class="tcc__learn-grid">
+        <div><h3>Spool or cartridge?</h3><p>Two-spool ribbons thread through guides. These electronic models use a shaped cartridge. The cartridge must match the machine; a generic spool does not replace it.</p></div>
+        <div><h3>Correctable or permanent?</h3><p>A correctable film ribbon can pair with the specified lift-off tape. Permanent fabric or film may need a different correction method. Match the ribbon and correction system together.</p></div>
+      </div>
+      <a href="/blogs/posts/blogthe-ultimate-guide-to-typewriter-ribbon-replacement">Read the ribbon replacement guide <span aria-hidden="true">→</span></a>
+    </div>
+    <aside class="tcc__support">
+      <div><p class="tcc__step">Unsure of the model?</p><h2>Ask Jim before you order.</h2><p>Send the machine model and a photo or number from the old ribbon. We can help identify the right supplies.</p></div>
+      <div class="tcc__support-actions"><a href="mailto:{{ section.settings.support_email | escape }}?subject=Typewriter%20supply%20compatibility">Email {{ section.settings.support_email | escape }}</a><a href="tel:{{ section.settings.support_phone | escape }}">Call {{ section.settings.support_phone_label | escape }}</a></div>
+    </aside>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Typewriter supply checker",
+  "tag": "section",
+  "class": "section-typewriter-supply-checker",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find the right ribbon and correction tape." },
+    { "type": "text", "id": "intro", "label": "Introduction", "default": "Choose your typewriter model. We’ll show the matching correctable ribbon and correction tape for a focused set of machines." },
+    { "type": "text", "id": "support_email", "label": "Support email", "default": "info@typewriters.com" },
+    { "type": "text", "id": "support_phone", "label": "Phone link", "default": "+14043771884" },
+    { "type": "text", "id": "support_phone_label", "label": "Phone display", "default": "(404) 377-1884" }
+  ],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "Verified model",
+      "settings": [
+        { "type": "select", "id": "brand", "label": "Brand", "options": [
+          { "value": "IBM / Lexmark", "label": "IBM / Lexmark" },
+          { "value": "Nakajima", "label": "Nakajima" },
+          { "value": "Royal", "label": "Royal" }
+        ], "default": "Nakajima" },
+        { "type": "text", "id": "model", "label": "Exact model", "default": "WPT-150" },
+        { "type": "select", "id": "ribbon_format", "label": "Ribbon format", "options": [
+          { "value": "Correctable film cartridge", "label": "Correctable film cartridge" },
+          { "value": "Wheelwriter ribbon cartridge", "label": "Wheelwriter ribbon cartridge" }
+        ], "default": "Correctable film cartridge" },
+        { "type": "product", "id": "ribbon", "label": "Verified ribbon" },
+        { "type": "product", "id": "correction", "label": "Verified correction tape" },
+        { "type": "product", "id": "alternative", "label": "Verified ribbon alternative (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Typewriter supply checker" }]
+}
+{% endschema %}
