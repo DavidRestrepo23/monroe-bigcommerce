@@ -45,7 +45,7 @@
           {% assign ribbon = block.settings.ribbon %}
           {% assign correction = block.settings.correction %}
           {% assign alternative = block.settings.alternative %}
-          <article class="tcc__result" data-tcc-result="{{ block.id | escape }}" hidden {{ block.shopify_attributes }}>
+          <article class="tcc__result" data-tcc-result="{{ block.id | escape }}" {{ block.shopify_attributes }}>
             <p class="tcc__step">02 / Your model-level match</p>
             <h2>{{ block.settings.brand | escape }} {{ block.settings.model | escape }}</h2>
             <div class="tcc__facts">
@@ -113,7 +113,7 @@
   "class": "section-typewriter-supply-checker",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Find the right ribbon and correction tape." },
-    { "type": "text", "id": "intro", "label": "Introduction", "default": "Choose your typewriter model. We’ll show the matching correctable ribbon and correction tape for a focused set of machines." },
+    { "type": "text", "id": "intro", "label": "Introduction", "default": "Choose your exact typewriter model to see its matching correctable ribbon and correction tape." },
     { "type": "text", "id": "support_email", "label": "Support email", "default": "info@typewriters.com" },
     { "type": "text", "id": "support_phone", "label": "Phone link", "default": "+14043771884" },
     { "type": "text", "id": "support_phone_label", "label": "Phone display", "default": "(404) 377-1884" }
