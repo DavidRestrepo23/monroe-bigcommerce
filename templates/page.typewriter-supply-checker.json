@@ -12,36 +12,104 @@
     "checker": {
       "type": "typewriter-supply-checker",
       "blocks": {
-        "nakajima_150": {
+        "ibm_3": {
           "type": "model",
           "settings": {
-            "brand": "Nakajima",
-            "model": "WPT-150",
-            "ribbon_format": "Correctable film cartridge",
-            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
-            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
-            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 3",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
         },
-        "nakajima_160": {
+        "ibm_5": {
           "type": "model",
           "settings": {
-            "brand": "Nakajima",
-            "model": "WPT-160",
-            "ribbon_format": "Correctable film cartridge",
-            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
-            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
-            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 5",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
         },
-        "royal_scriptor_ii": {
+        "ibm_6": {
           "type": "model",
           "settings": {
-            "brand": "Royal",
-            "model": "Scriptor II",
-            "ribbon_format": "Correctable film cartridge",
-            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
-            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160"
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 6",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_6_series_ii": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 6 Series II",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_10": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 10",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_15": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 15",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_30": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 30",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_35": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 35",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_50": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 50",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_70": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 70",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
         },
         "ibm_1000": {
@@ -49,6 +117,16 @@
           "settings": {
             "brand": "IBM / Lexmark",
             "model": "Wheelwriter 1000",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_1500": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 1500",
             "ribbon_format": "Wheelwriter ribbon cartridge",
             "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
             "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
@@ -74,40 +152,138 @@
             "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
         },
-        "ibm_5": {
+        "ibm_3000": {
           "type": "model",
           "settings": {
             "brand": "IBM / Lexmark",
-            "model": "Wheelwriter 5",
+            "model": "Wheelwriter 3000",
             "ribbon_format": "Wheelwriter ribbon cartridge",
             "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
             "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
         },
-        "ibm_6": {
+        "ibm_3500": {
           "type": "model",
           "settings": {
             "brand": "IBM / Lexmark",
-            "model": "Wheelwriter 6",
+            "model": "Wheelwriter 3500",
             "ribbon_format": "Wheelwriter ribbon cartridge",
             "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
             "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
           }
+        },
+        "ibm_5000": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 5000",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_7000": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Wheelwriter 7000",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_personal_1": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Personal Wheelwriter 1",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "ibm_personal_2": {
+          "type": "model",
+          "settings": {
+            "brand": "IBM / Lexmark",
+            "model": "Personal Wheelwriter 2",
+            "ribbon_format": "Wheelwriter ribbon cartridge",
+            "ribbon": "grc-compatible-ibm-wheelwriter-ink-ribbon-fits-all-ibm-wheelwriters",
+            "correction": "grc-compatible-ibm-wheelwriter-correction-tape"
+          }
+        },
+        "nakajima_150": {
+          "type": "model",
+          "settings": {
+            "brand": "Nakajima",
+            "model": "WPT-150",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
+            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+          }
+        },
+        "nakajima_160": {
+          "type": "model",
+          "settings": {
+            "brand": "Nakajima",
+            "model": "WPT-160",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160",
+            "alternative": "nakajima-correctable-film-ribbon-for-wpt-150-and-wpt-160-90-000-characters"
+          }
+        },
+        "royal_scriptor": {
+          "type": "model",
+          "settings": {
+            "brand": "Royal",
+            "model": "Scriptor",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160"
+          }
+        },
+        "royal_scriptor_ii": {
+          "type": "model",
+          "settings": {
+            "brand": "Royal",
+            "model": "Scriptor II",
+            "ribbon_format": "Correctable film cartridge",
+            "ribbon": "nakajima-correctable-ribbon-for-wpt-150-and-wpt-160-typewriters",
+            "correction": "nakajima-lift-off-tape-2-000-characters-6-units-fits-wpt-150-wpt-160"
+          }
         }
       },
       "block_order": [
-        "nakajima_150",
-        "nakajima_160",
-        "royal_scriptor_ii",
+        "ibm_3",
+        "ibm_5",
+        "ibm_6",
+        "ibm_6_series_ii",
+        "ibm_10",
+        "ibm_15",
+        "ibm_30",
+        "ibm_35",
+        "ibm_50",
+        "ibm_70",
         "ibm_1000",
+        "ibm_1500",
         "ibm_2000",
         "ibm_2500",
-        "ibm_5",
-        "ibm_6"
+        "ibm_3000",
+        "ibm_3500",
+        "ibm_5000",
+        "ibm_7000",
+        "ibm_personal_1",
+        "ibm_personal_2",
+        "nakajima_150",
+        "nakajima_160",
+        "royal_scriptor",
+        "royal_scriptor_ii"
       ],
       "settings": {
         "heading": "Find the right ribbon and correction tape.",
-        "intro": "Choose your typewriter model. We’ll show the matching correctable ribbon and correction tape for a focused set of machines.",
+        "intro": "Choose your exact typewriter model to see its matching correctable ribbon and correction tape.",
         "support_email": "info@typewriters.com",
         "support_phone": "+14043771884",
         "support_phone_label": "(404) 377-1884"
