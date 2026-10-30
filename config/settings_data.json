@@ -419,7 +419,7 @@
           "greeting_message": "",
           "show_featured_products": true,
           "featured_products": [],
-          "background_color": "#FFFFFF",
+          "background_color": "#ffffff",
           "font_color": "#000000",
           "agent_invert_activator_colors": true,
           "button_color": "#000000",
@@ -431,7 +431,7 @@
           "agent_inherit_fonts": true,
           "agent_font": "system_ui_n4",
           "agent_font_size": 14,
-          "agent_activator_font_size": 16,
+          "agent_activator_font_size": 24,
           "agent_border_radius": 16
         }
       }
